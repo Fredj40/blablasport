@@ -12,18 +12,18 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :sports, through: :events, dependent: :destroy
 
-  # validates :first_name, presence: true
-  # validates :last_name, presence: true
-  # validates :email, presence: true
-  # validates :email, uniqueness: true
-  # validates :password, presence: true
-  # validates :password, length: { minimum: 6 }
-  # validates :password, confirmation: true
-  # validates :password_confirmation, presence: true
-  # validates :phone_number, presence: true
-  # validates :phone_number, uniqueness: true
-  # validates :phone_number, length: { minimum: 10 }
-  # validates :address, presence: true
-  # validates :city, presence: true
-  # validates :zip_code, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true
+  validates :email, uniqueness: true
+  validates :password, presence: true
+  validates :password, length: { minimum: 6 }
+  validates :password, confirmation: true
+  validates :password_confirmation, presence: true
+  validates :phone_number, presence: true
+  validates :phone_number, uniqueness: true
+  validates :phone_number, length: { minimum: 10 }
+  validates :address, presence: true
+  validates :city, presence: true
+  validates :zip_code, presence: true
 end
