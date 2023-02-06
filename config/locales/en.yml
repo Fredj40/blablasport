@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+fr:
+  date:
+    formats:
+      default: "%d / %m / %Y"

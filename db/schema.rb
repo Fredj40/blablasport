@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_04_141502) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_06_155143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_141502) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "sport_id", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["sport_id"], name: "index_events_on_sport_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -70,6 +72,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_141502) do
     t.bigint "chatroom_id", null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -103,6 +114,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_141502) do
     t.string "address"
     t.string "city"
     t.integer "zip_code"
+    t.integer "age"
+    t.string "sex"
+    t.string "user_description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

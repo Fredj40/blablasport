@@ -1,0 +1,24 @@
+<h1>HELLO !</h1>
+
+<div class="d-flex justify-content-between">
+  <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
+    <%= f.input :"", label: "", placeholder: "Activité recherchée ? ", input_html: { name: 'search', value: params.dig(:search) } %>
+  <% end %>
+</div>
+
+<div>
+  <% @events.each do |event| %>
+    <strong><%= event.sport.sport.upcase %></strong><span>- <%= event.title %></span><br>
+    <%= event.date %><span> à <%= event.time.strftime("%k:%M") %></span><br>
+    <strong><%= event.city %></strong><span> (<%= event.address %>)<br></span><br>
+  <% end %>
+</div>
+
+<div id="map" data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+
+<div>
+<%= link_to "Ajouter un événement", new_event_path, class: "btn btn-secondary" %>
+</div>

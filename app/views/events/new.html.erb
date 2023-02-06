@@ -1,0 +1,31 @@
+
+<div class="container-form">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <h1>Je publie un nouvel événement</h1>
+      <%= @error %>
+      <%= simple_form_for @event do |f| %>
+        <%= f.input :sport_id, collection: Sport.all.map { |sport| [sport.sport] }, label: "Sport" %>
+        <%= f.input :title, label: "Nom de la partie" %>
+        <%= f.input :players_number, label: "Place(s) disponible(s)" %>
+        <%= f.input :level, label: "Niveau minimum" %>
+        <%= f.input :address, label: "Adresse" %>
+        <%= f.input :city, label: "Ville" %>
+        <%= f.input :price, label: "Prix" %>
+        <%= f.input :date %>
+        <%= f.input :time, label: "Heure de début" %>
+        <%= f.input :duration, label: "Durée en minutes" %>
+        <%= f.input :description, label: "Eventuel commentaire" %>
+        <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+        <%= f.submit "Créer", :confirm => "Confirmer la création ?", class: "btn btn-secondary" %>
+      <% end %>
+      <br>
+      <br>
+      <%= link_to "Retour au menu", events_path, class: "btn btn-secondary" %>
+      <br>
+      <br>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+
+<h1><%= @event.title %></h1>
+
+<div class="d-flex" style="width: 40% ; height: 190px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
