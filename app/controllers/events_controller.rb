@@ -5,26 +5,24 @@ class EventsController < ApplicationController
     if params[:search].present?
       # @events = Event.search_by_sport_and_adress(params[:search])
       @events = Event.global_search(params[:search])
-
       # @reviews = Review.all
       # @rating = @reviews.average(:rating)
-
-# set_markers
-
+      set_markers
     else
       @events = Event.all
-
-# set_markers
-
+      set_markers
     end
   end
 
   def show
     @event = Event.find(params[:id])
     # @review = Review.new
-
-# set_markers
-
+    @markers = [{
+      lat: @event.latitude,
+      lng: @event.longitude,
+      info_window_html: render_to_string(partial: "events/info_window_html", locals: {event: @event}),
+      marker_html: render_to_string(partial: "marker")
+    }]
   end
 
   def new
@@ -34,6 +32,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    @user_id = current_user.id
     if @event.save
       redirect_to event_path(@event)
     else
@@ -69,8 +68,8 @@ class EventsController < ApplicationController
       {
         lat: event.latitude,
         lng: event.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { event: event }),
-        marker_html: render_to_string(partial: "marker")
+        info_window_html: render_to_string(partial: "events/info_window_html", locals: {event: event}),
+        marker_html: render_to_string(partial: "marker", locals: {event: event})
       }
     end
   end

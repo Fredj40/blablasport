@@ -1,24 +1,29 @@
-<h1>HELLO !</h1>
 
-<div class="d-flex justify-content-between">
-  <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
-    <%= f.input :"", label: "", placeholder: "Activité recherchée ? ", input_html: { name: 'search', value: params.dig(:search) } %>
-  <% end %>
-</div>
+<div class="container-form">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
 
-<div>
-  <% @events.each do |event| %>
-    <strong><%= event.sport.sport.upcase %></strong><span>- <%= event.title %></span><br>
-    <%= event.date %><span> à <%= event.time.strftime("%k:%M") %></span><br>
-    <strong><%= event.city %></strong><span> (<%= event.address %>)<br></span><br>
-  <% end %>
-</div>
+      <div>
+        <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
+          <%= f.input :"", label: "", placeholder: "Activité recherchée ? ", input_html: { name: 'search', value: params.dig(:search) } %>
+        <% end %>
+      </div>
 
-<div id="map" data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
+      <div class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div><br>
 
-<div>
-<%= link_to "Ajouter un événement", new_event_path, class: "btn btn-secondary" %>
+      <div>
+        <% @events.each do |event| %>
+          <strong><%= event.sport.sport_name.upcase %></strong><span>- <%= event.title %></span><br>
+          <%= event.date %><span> à <%= event.time.strftime("%k:%M") %></span><br>
+          <strong><%= event.city %></strong><br>
+          <%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %><br><br>
+        <% end %>
+      </div>
+
+      <div>
+        <%= link_to "Ajouter un événement", new_event_path, class: "btn btn-warning" %>
+      </div>
+    </div>
+  </div>
 </div>

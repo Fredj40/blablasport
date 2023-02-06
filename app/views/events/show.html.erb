@@ -1,8 +1,20 @@
+<div class="container-form">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
 
-<h1><%= @event.title %></h1>
+      <strong><%= @event.sport.sport_name.upcase %></strong><span>- <%= @event.title %></span><br>
+          <%= @event.date %><span> à <%= @event.time.strftime("%kh%M") %></span><br>
+          <strong><%= @event.city.upcase %><span> - <%= @event.address %></span></strong><br>
 
-<div class="d-flex" style="width: 40% ; height: 190px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div class="d-flex" style="width: 100% ; height: 190px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div><br>
+
+      <%= link_to "Retour au menu", events_path, class: "btn btn-secondary" %>
+
+    </div>
+  </div>
 </div>

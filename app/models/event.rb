@@ -21,9 +21,11 @@ class Event < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :global_search,
-  against: [ :description, :title, :address, :city ],
+  against:
+
+  [ :description, :title, :address, :city ],
   associated_against: {
-    sport: [:sport]
+    sport: [:sport_name]
   },
   using: {
     tsearch: { prefix: true }

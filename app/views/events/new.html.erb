@@ -6,8 +6,8 @@
       <h1>Je publie un nouvel événement</h1>
       <%= @error %>
       <%= simple_form_for @event do |f| %>
-        <%= f.input :sport_id, collection: Sport.all.map { |sport| [sport.sport] }, label: "Sport" %>
-        <%= f.input :title, label: "Nom de la partie" %>
+        <%= f.input :title, collection: Sport.all.map { |sport| [sport.sport_name] }, label: "Sport" %>
+        <%= f.input :sport_id, as: :hidden, input_html: { value: current_user.id } %>
         <%= f.input :players_number, label: "Place(s) disponible(s)" %>
         <%= f.input :level, label: "Niveau minimum" %>
         <%= f.input :address, label: "Adresse" %>
