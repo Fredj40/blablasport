@@ -1,12 +1,11 @@
-
 <div class="container-form">
   <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-      <h1>Je publie un nouvel événement</h1>
+      <h1>Modification de l'événement</h1>
       <%= @error %>
       <%= simple_form_for @event do |f| %>
-        <%= f.input :title, collection: Sport.all.map { |sport| [sport.sport_name] }, label: "Choisis ton sport" %>
+        <%= f.input :title, collection: Sport.all.map { |sport| [sport.sport_name] }, label: "Sport" %>
         <%= f.input :sport_id, as: :hidden, input_html: { value: current_user.id } %>
         <%= f.input :players_number, label: "Place(s) disponible(s)" %>
         <%= f.input :level, label: "Niveau minimum" %>
@@ -17,11 +16,9 @@
         <%= f.input :duration, label: "Durée en minutes" %>
         <%= f.input :description, label: "Eventuel commentaire" %>
         <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-        <%= f.submit "Créer", :confirm => "Confirmer la création ?", class: "btn btn-warning" %>
+        <%= f.submit "Valider les modifications", class: "btn btn-outline-success" %>
+        <%= link_to "Annuler les modifications", event_path, class: "btn btn-outline-danger" %>
       <% end %>
-      <br>
-      <br>
-      <%= link_to "Retour au menu", events_path, class: "btn btn-secondary" %>
       <br>
       <br>
     </div>

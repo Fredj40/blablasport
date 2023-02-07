@@ -3,17 +3,50 @@
     <div class="col-2"></div>
     <div class="col-8">
 
-      <strong><%= @event.sport.sport_name.upcase %></strong><span>- <%= @event.title %></span><br>
-          <%= @event.date %><span> à <%= @event.time.strftime("%kh%M") %></span><br>
-          <strong><%= @event.city.upcase %><span> - <%= @event.address %></span></strong><br>
+      <strong><%= @event.sport.sport_name.upcase %></strong><span> - créé par <strong><%= @event.user.first_name %></strong> (<%= @event.user.age %> ans, <%= @event.user.city %>)</span><br><br>
+      <%= @event.title %><span> - <%= @event.description %></span><br><br>
 
-      <div class="d-flex" style="width: 100% ; height: 190px;"
+      <% if @event.age_mini.nil? %>
+      <% else %>
+      <span>Age mini : <strong><%= @event.age_mini %> ans</strong></span>
+      <% end %><br>
+      <% if @event.age_maxi.nil? %>
+      <% else %>
+      <span>Age maxi : <strong><%= @event.age_maxi %> ans</strong></span>
+      <% end %><br><br>
+
+      <% if @event.players_number == 1 %>
+        <p><strong><%= @event.players_number %></strong> place disponible</p>
+      <% else %>
+        <p><strong><%= @event.players_number %></strong> places disponibles</p>
+      <% end %>
+
+      <% if @event.level.nil? %>
+      <span>Tout niveau accepté</span><br>
+      <% else %>
+      <p>Niveau minimum requis : <strong><%= @event.level %></strong></p>
+      <% end %>
+
+
+      <% if @event.price.nil? || @event.price == 0 %>
+      <span>Gratuit</span><br>
+      <% else %>
+      <p>Prix : <%= @event.price %> €</p>
+      <% end %>
+
+      <p>Le <%= @event.date %><span> à <%= @event.time.strftime("%kh%M") %></span></p>
+      <p>Lieu de rendez-vous : <%= @event.address %></p>
+
+      <div class="d-flex" style="width: 30% ; height: 190px;"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div><br>
 
-      <%= link_to "Retour au menu", events_path, class: "btn btn-secondary" %>
+      <%= link_to "Je m'inscris !", booking_path, class: "btn btn-outline-primary" %>
+      <%= link_to "Modifier", edit_event_path, class: "btn btn-outline-warning" %>
+      <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
+      <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %>
 
     </div>
   </div>

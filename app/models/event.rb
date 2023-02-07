@@ -6,7 +6,6 @@ class Event < ApplicationRecord
   has_many :chatrooms, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 20 }
-  validates :city, presence: true
   validates :date, presence: true
   validates :time, presence: true
   validates :price, presence: true
@@ -23,7 +22,7 @@ class Event < ApplicationRecord
   pg_search_scope :global_search,
   against:
 
-  [ :description, :title, :address, :city ],
+  [ :description, :title, :address ],
   associated_against: {
     sport: [:sport_name]
   },
