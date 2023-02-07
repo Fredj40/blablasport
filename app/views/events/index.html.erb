@@ -21,7 +21,7 @@
         <h3>Toutes les parties à venir : </h3><br>
 
         <% @events.each do |event| %>
-          <h4><strong><%= event.sport.sport_name %></strong> - <span><strong><%= event.address.split.last %></strong> - Le <%= event.date %> à <%= event.time.strftime("%kh%M") %><br></h2>
+          <h4><strong><%= event.sport.sport_name %></strong> - <span><strong><%= event.address.split.last %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h2>
 
           <%= event.title %>
           <span> - <% if event.players_number == 1 %>

@@ -34,7 +34,7 @@
       <p>Prix : <%= @event.price %> €</p>
       <% end %>
 
-      <p>Le <%= @event.date %><span> à <%= @event.time.strftime("%kh%M") %></span></p>
+      <p>Le <%= @event.date.strftime("%d/%m/%Y") %><span> à <%= @event.time.strftime("%kh%M") %></span></p>
       <p>Lieu de rendez-vous : <%= @event.address %></p>
 
       <div class="d-flex" style="width: 30% ; height: 190px;"

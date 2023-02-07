@@ -4,15 +4,18 @@ class EventsController < ApplicationController
   def index
     if params[:search].present?
       # @events = Event.search_by_sport_and_adress(params[:search])
-      @events = Event.global_search(params[:search])
+      @events = Event.global_search(params[:search]).order("date ASC, time ASC")
       # @reviews = Review.all
       # @rating = @reviews.average(:rating)
       set_markers
     else
-      @events = Event.all
+      @events = Event.all.order("date ASC, time ASC")
       set_markers
     end
   end
+
+
+
 
   def show
     @event = Event.find(params[:id])
