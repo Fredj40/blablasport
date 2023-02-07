@@ -1,36 +1,52 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+  <div class="container">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div>
+      <%= link_to events_path, class: "navbar-brand" do %>
+        <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675773995/development/9d57b7mzxng9axv78r9rfh0sael8.png" %>
+      <% end %>
+    </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+    <div class="cities">
+      <%= link_to "Paris", events_path(search:"Paris") %>
+      <%= link_to "Marseille", events_path(search:"Marseille") %>
+      <%= link_to "Lyon", events_path(search:"Lyon") %>
+      <%= link_to "Lausanne", events_path(search:"Lausanne") %>
+      <%= link_to "Bayonne", events_path(search:"Bayonne") %>
+      <%= link_to "Peyrehorade", events_path(search:"Peyrehorade") %>
+    </div>
+
+    <div class="sports">
+      <%= link_to "Football", events_path(search:"Football") %>
+      <%= link_to "Tennis", events_path(search:"Tennis") %>
+      <%= link_to "Badminton", events_path(search:"Badminton") %>
+      <%= link_to "Basketball", events_path(search:"Basketball") %>
+      <%= link_to "Yoga", events_path(search:"Yoga") %>
+    </div>
+
+    <div>
+      <%= link_to "Ajouter un événement", new_event_path, class: "btn btn-outline-warning" %><br>
+    </div>
+
+    <div>
+        <%# <div><%= link_to "Mes inscriptions", bookings_path, class: "nav-link" %>
+
+      <%# <ul> %>
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
+          <%# <li class="nav-item dropdown"> %>
+            <strong><%=current_user.full_name %></strong>
+            <%# <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1674220835/rwcaekxsosig45kistar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%# <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Profile", profile_path, class: "dropdown-item" %>
+              <%# <%= link_to "Bookings", bookings_path, class: "dropdown-item" %>
+              <%# <%= link_to "Setting", "#", class: "dropdown-item" %>
+              <%# <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            <%# </div>
+          </li> %>
         <% else %>
-          <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
         <% end %>
-      </ul>
+      <%# </ul> %>
     </div>
   </div>
 </div>
