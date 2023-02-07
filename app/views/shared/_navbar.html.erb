@@ -1,10 +1,10 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container">
+  <div class="container-fluid">
 
     <div>
-      <%= link_to events_path, class: "navbar-brand" do %>
-        <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675773995/development/9d57b7mzxng9axv78r9rfh0sael8.png" %>
-      <% end %>
+      <a class="navbar-brand" href="">
+      <img src="https://res.cloudinary.com/di7k88pkv/image/upload/v1675773995/development/9d57b7mzxng9axv78r9rfh0sael8.png" alt="Logo" width="30%" height="30%" class="d-inline-block align-text-top">
+      </a>
     </div>
 
     <div class="cities">
@@ -13,7 +13,7 @@
       <%= link_to "Lyon", events_path(search:"Lyon") %>
       <%= link_to "Lausanne", events_path(search:"Lausanne") %>
       <%= link_to "Bayonne", events_path(search:"Bayonne") %>
-      <%= link_to "Peyrehorade", events_path(search:"Peyrehorade") %>
+      <%= link_to "Peyrehorade", events_path(search:"Peyrehorade") %><br>
     </div>
 
     <div class="sports">
@@ -28,8 +28,8 @@
       <%= link_to "Ajouter un événement", new_event_path, class: "btn btn-outline-warning" %><br>
     </div>
 
-    <div>
-        <%# <div><%= link_to "Mes inscriptions", bookings_path, class: "nav-link" %>
+
+    <%# <div><%= link_to "Mes inscriptions", bookings_path, class: "nav-link" %>
 
       <%# <ul> %>
         <% if user_signed_in? %>
