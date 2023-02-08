@@ -75,21 +75,42 @@ Event.create!(title: "Bières offertes !", description: "Le Lorem Ipsum est le f
 Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "13:00:00", price: "0", address: "197 ancienne route du Grès, Orange", level: "Débutant", players_number: "4", duration: "60", user: @user8, sport: @sport19, age_mini: "3", age_maxi: "")
 p "16 Events created"
 
-image_path = Rails.root.join("app/assets/images/Blablasport_logo_transparent.png")
+# image_path = Rails.root.join("app/assets/images/Blablasport_logo_transparent.png")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture1 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'blablasport.png',
+#   content_type: 'image/png'
+# )
+# image_path = Rails.root.join("app/assets/images/marker2.png")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture5 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'marker.png',
+#   content_type: 'image/png'
+# )
+# image_path = Rails.root.join("app/assets/images/logo_split.png")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture3 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'marker.png',
+#   content_type: 'image/png'
+# )
+# image_path = Rails.root.join("app/assets/images/ball.png")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture4 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'marker.png',
+#   content_type: 'image/png'
+# )
+image_path = Rails.root.join("app/assets/images/marker3.png")
 cloudinary_image = Cloudinary::Uploader.upload(image_path)
-picture1 = ActiveStorage::Blob.create_and_upload!(
+picture5 = ActiveStorage::Blob.create_and_upload!(
   io: URI.open(cloudinary_image['secure_url']),
-  filename: 'blablasport.png',
+  filename: 'marker3.png',
   content_type: 'image/png'
 )
-image_path = Rails.root.join("app/assets/images/marker.png")
-cloudinary_image = Cloudinary::Uploader.upload(image_path)
-picture2 = ActiveStorage::Blob.create_and_upload!(
-  io: URI.open(cloudinary_image['secure_url']),
-  filename: 'marker.png',
-  content_type: 'image/png'
-)
-puts "images uploaded..."
+# puts "images uploaded..."
 
 # campnou = Stadium.create!(user_id: @user.id, name: "Camp Nou", location: "Barcelona", energy_class: "C", stadium_description: "zzz", capacity: 99354, price: 49000)
 # campnou.pictures.attach(picture1)

@@ -2,9 +2,9 @@
   <div class="container-fluid">
 
     <div>
-      <a class="navbar-brand" href="">
-      <img src="https://res.cloudinary.com/di7k88pkv/image/upload/v1675773995/development/9d57b7mzxng9axv78r9rfh0sael8.png" alt="Logo" width="30%" height="30%" class="d-inline-block align-text-top">
-      </a>
+      <%= link_to events_path, class: "navbar-brand" do %>
+        <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675773995/development/9d57b7mzxng9axv78r9rfh0sael8.png" %>
+      <% end %>
     </div>
 
     <div class="cities">
@@ -24,12 +24,8 @@
       <%= link_to "Yoga", events_path(search:"Yoga") %>
     </div>
 
-    <div>
-      <%= link_to "Ajouter un événement", new_event_path, class: "btn btn-outline-warning" %><br>
-    </div>
-
-
-    <%# <div><%= link_to "Mes inscriptions", bookings_path, class: "nav-link" %>
+    <%= link_to "Ajouter un événement", new_event_path, class: "btn btn-warning" %>
+    <%= link_to "Mon historique", bookings_path, class: "btn btn-outline-warning" %>
 
       <%# <ul> %>
         <% if user_signed_in? %>
