@@ -1,7 +1,6 @@
-<div class="container-form">
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
 
       <h4><strong><%= @event.sport.sport_name.upcase %></strong></h4>
       <h5>Créé par <strong><%= @event.user.first_name %></strong> (<%= @event.user.age %> ans, <%= @event.user.city %>) le <%=@event.created_at.strftime("%d/%m/%Y à %kh%M")%></h5>
@@ -37,46 +36,48 @@
       <span>Le <%= @event.date.strftime("%d/%m/%Y") %> à <%= @event.time.strftime("%kh%M") %></span><br>
       <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
 
-      <%= link_to "Je m'inscris !", booking_path(@event), class: "btn btn-outline-success" %><br><br>
+      <%= link_to "Je m'inscris !", booking_path(@event), class: "btn btn-outline-success" %>
+      <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br>
 
-      <div class="d-flex" style="width: 30% ; height: 190px;"
+      <div class="d-flex" style="width: 100% ; height: 190px;"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div><br>
 
-      <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning" %>
-      <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
-      <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br><br><br>
-
-<%# à déplacer dans bookings_path %>
+      <% unless @event.user != current_user %>
+        <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning" %>
+        <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
+      <% end %>
 
       <div class="second-container">
-        <h3><%= pluralize @event.reviews.size, "commentaire" %><span></h3>
-        <h4> Note :
         <% if @event.reviews.blank? %>
-            <i> -- </i></h4><br><br>
-          <% else %>
-            <%= @event.reviews.average(:rating).round(1) %><span>/5</span></h4><br>
-          <% end %>
-
-        <% if @event.reviews.blank? %>
-          <p>Sois le 1er à laisser un commentaire</p>
+          <h5>Aucun avis</h5>
         <% else %>
-          <% @event.reviews.each do |review| %>
-            <%= review.rating %>
-            <span>/ 5  -   </span>
-            <%= review.comment %><br>
-          <% end %>
-        <% end %><br>
-        <%= simple_form_for([@event, @review]) do |f| %>
-        <%= f.input :comment, placeholder: "Laisse un commentaire" %>
-        <%= f.input :rating, placeholder: "Donne une note entre 1 et 5" %>
-        <%= f.button :submit, class: "btn btn-outline-warning" %><br><br>
+          <h5><strong><%= @event.reviews.size %></strong> avis - Note moyenne : <%= @event.reviews.average(:rating).round(1) %> / 5</h5>
         <% end %>
-        </div>
-      </div>
 
-    </div>
+
+        <% if current_user.events.include?(@event) && @event.bookings.find_by(user:current_user) == "accepté" && Date.today > @event.date %>
+          <% if @event.reviews.blank? %>
+            <p>Sois le premier à laisser un avis</p>
+          <% else %>
+            <% @event.reviews.each do |review| %>
+              <%= review.rating.round(0) %>
+              <span>/ 5  -   </span>
+              <%= review.comment %><br>
+            <% end %>
+          <% end %><br>
+      </div>
+      <div class="col-12 col-sm-4">
+          <%= simple_form_for([@event, @review]) do |f| %>
+          <%= f.input :comment, label: "Avis", placeholder: "Laisse un avis" %>
+          <%= f.input :rating, label: "Note", placeholder: "Note (1 à 5)" %>
+          <%= f.button :submit, class: "btn btn-outline-warning" %><br><br>
+          <% end %>
+        <% else %>
+          <p>Vous devez avoir été inscrit à cet événement pour laisser un avis</p>
+        <% end %>
+      </div>
   </div>
 </div>

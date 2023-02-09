@@ -1,10 +1,9 @@
 
-
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" style="background-color: #d09d76;">
-  <div class="container-fluid">
+  <div class="container">
     <div>
       <%= link_to events_path, class: "navbar-brand" do %>
-        <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 40, width: 90, alt: "Logo blablasport" %>
+        <%= image_tag "logo_split2.png", height: 40, width: 40, alt: "Logo blablasport" %>
       <% end %>
     </div>
 
@@ -13,12 +12,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
+
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Page d'accueil</a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Sélectionner une ville
           </a>
           <ul class="dropdown-menu">
@@ -30,27 +30,21 @@
           </ul>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Sélectionner un sport
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" <%= link_to "Football", events_path(search:"Football") %></a></li>
-            <li><a class="dropdown-item" <%= link_to "Tennis", events_path(search:"Tennis") %></a></li>
-            <li><a class="dropdown-item" <%= link_to "Basketball", events_path(search:"Basketball") %></a></li>
-            <li><a class="dropdown-item" <%= link_to "Badminton", events_path(search:"Badminton") %></a></li>
-            <li><a class="dropdown-item" <%= link_to "Squash", events_path(search:"Squash") %></a></li>
-            <li><a class="dropdown-item" <%= link_to "Yoga", events_path(search:"Yoga") %></a></li>
-          </ul>
-        </li>
-
         <li class="nav-item">
           <a class="nav-link active" <%= link_to "Ajouter un événement", new_event_path %></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" <%= link_to "Mes amis", events_path %></a>
+          <a class="nav-link" <%= link_to "Mes amis", events_path %></a>
         </li>
       </ul>
+
+      <div class="form_search">
+        <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
+          <%= f.input :"", label: "", placeholder: "Je cherche une partie ", input_html: { name: 'search', value: params.dig(:search) } %>
+        <% end %>
+      </div>
+
+    </div>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
@@ -72,6 +66,5 @@
           <% end %>
         </ul>
       </div>
-    </div>
   </div>
 </nav>

@@ -1,27 +1,26 @@
-<div class="container-form">
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-      <h1>Modification de l'événement</h1>
-      <%= @error %>
-      <%= simple_form_for @event do |f| %>
-        <%= f.input :sport_id, collection: Sport.all.map { |sport| [sport.sport_name, sport.id] }, label: "Choisis ton sport" %>
-        <%# <%= f.input :title, label: "Titre" %>
-        <%= f.input :players_number, label: "Place(s) disponible(s)" %>
-        <%= f.input :level, label: "Niveau minimum" %>
-        <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-        <%= f.input :price, label: "Prix" %>
-        <%= f.input :date %>
-        <%= f.input :time, label: "Heure de début" %>
-        <%= f.input :duration, label: "Durée en minutes" %>
-        <%= f.input :description, label: "Eventuel commentaire" %>
-        <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-        <%= f.submit "Valider les modifications", class: "btn btn-outline-success" %>
-        <%= link_to "Annuler les modifications", event_path, class: "btn btn-outline-danger" %>
-      <% end %>
-      <br>
-      <br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <div class="form-login">
+        <h2>Modifier mon événement</h2>
+        <%= @error %>
+        <%= simple_form_for @event do |f| %>
+          <%= f.input :sport_id, collection: Sport.all.map { |sport| [sport.sport_name, sport.id] }, label: "Choisis ton sport" %>
+          <%# <%= f.input :title, label: "Titre" %>
+          <%= f.input :players_number, label: "Place(s) disponible(s)" %>
+          <%= f.input :level, label: "Niveau minimum" %>
+          <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+          <%= f.input :price, label: "Prix" %>
+          <%= f.input :date %>
+          <%= f.input :time, label: "Heure de début" %>
+          <%= f.input :duration, label: "Durée en minutes" %>
+          <%= f.input :description, label: "Eventuel commentaire" %>
+          <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+          <%= f.submit "Valider les modifications", class: "btn btn-outline-success" %>
+          <%= link_to "Annuler les modifications", event_path, class: "btn btn-outline-danger" %>
+        <% end %>
+        <%= link_to "Retour au menu", events_path, class: "btn btn-secondary" %>
+      </div>
     </div>
-    <div class="col-3"></div>
   </div>
 </div>
