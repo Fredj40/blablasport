@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
     @user = current_user
     @review = Review.new(review_params)
     @review.event = @event
+    @review.user = @user
     if @review.save
       redirect_to event_path(@event)
     else

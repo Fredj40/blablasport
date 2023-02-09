@@ -1,32 +1,20 @@
 
 <div class="banner">
   <div class="d-flex justify-content-center"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 115, width: 210, alt: "Logo blablasport" %></div>
-  <div class="d-flex justify-content-center"><h1>LE RESEAU SPORTIF</h1></div>
+  <div class="d-flex justify-content-center"><h1>LE RESEAU SPORTIF</h1></div><br>
+  <div class="d-flex justify-content-center"><%= link_to "J'ajoute une partie", new_event_path, class: "btn btn-outline-warning" %></div><br>
 </div>
 
-<div class="container-form">
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
 
-      <div class="choice">
-
-        <div class="d-flex justify-content-between">
-
-          <div class="d-flex align-items-center">
-              <div class="form_search">
-                <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
-                  <%= f.input :"", label: "", placeholder: "Je cherche une partie ", input_html: { name: 'search', value: params.dig(:search) } %>
-                <% end %>
-              </div>
-              <button class="btn btn-outline-warning" type="submit">Go!</button>
-           </div>
-
-          <div class="d-flex align-items-center">
-            <%= link_to "J'ajoute une partie", new_event_path, class: "btn btn-outline-warning" %>
-          </div>
+      <div class="d-flex justify-content-center">
+        <div class="form_search">
+          <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
+            <%= f.input :"", label: "", placeholder: "Je cherche une partie ", input_html: { name: 'search', value: params.dig(:search) } %>
+          <% end %>
         </div>
-
       </div>
 
       <div class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div><br>
