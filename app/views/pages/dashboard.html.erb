@@ -1,0 +1,49 @@
+<h1>Mon tableau de bord</h1>
+<% if @bookings.empty?  %>
+  <p>Tu n'es inscrit à aucun événement</p>
+<%else%>
+  <p>Vous avez <%= @bookings.count %> réservation(s)</p>
+
+<div>
+  <h1>Toutes mes inscriptions</h1>
+</div>
+
+<div>
+  <h2>Mes séances à venir</h2>
+</div>
+
+<div>
+  <ul>
+    <% @bookings.each do |booking| %>
+      <%if booking.start_date >= Date.today %>
+        <ul>
+          <p>Séance : <%= booking.event.sport_name %></p>
+          <p>Date : <%= booking.date %></p>
+          <p><%= link_to "Voir details", booking_path(booking), class: "btn btn-outline-warning" %></p>
+        </ul>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+
+<div>
+  <h2>Mes séances passées</h2>
+</div>
+
+<div>
+  <ul>
+    <% @bookings.each do |booking| %>
+      <%if booking.start_date < Date.today %>
+        <ul>
+          <p>Séance : <%= booking.event.sport_name %></p>
+          <p>date: <%= booking.date %></p>
+        </ul>
+      <% end %>
+    <% end %>
+    <div><%= link_to "Retourner à mon profil", profile_path, class: "btn btn-outline-warning" %></h3></div>
+  </ul>
+
+
+  <%end%>
+</div>

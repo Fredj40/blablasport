@@ -1,27 +1,32 @@
 .body_application {
   background-color: white;
   color: #181f47;
-  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
 }
 h1 {
   color: #c95014;
-  font-size: 36px;
+  font-size: 32px;
+  font-weight: bold;
 }
 h2 {
   color: #E67E22;
-  font-size: 30px;
+  font-size: 28px;
 }
 
 h3  {
   color: #c95014;
-  font-size: 26px;
+  font-size: 24px;
 }
 h4 {
-  color: #E67E22;
+  color: #e98b2a;
   font-size: 20px;
 }
 h5 {
   color: #d09d76;
   font-size: 16px;
+}
+h6 {
+  color: #181f47;
+  font-size: 14px;
+  font-style: italic;
 }

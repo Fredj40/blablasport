@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :chatrooms, dependent: :destroy
 
-  validates :title, presence: true, length: { maximum: 20 }
+  # validates :title, presence: true, length: { maximum: 20 }
   validates :date, presence: true
   validates :time, presence: true
   validates :price, presence: true

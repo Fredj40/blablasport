@@ -1,52 +1,77 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+
+
+<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" style="background-color: #d09d76;">
   <div class="container-fluid">
-
     <div>
-      <a class="navbar-brand" href="">
-      <img src="https://res.cloudinary.com/di7k88pkv/image/upload/v1675773995/development/9d57b7mzxng9axv78r9rfh0sael8.png" alt="Logo" width="30%" height="30%" class="d-inline-block align-text-top">
-      </a>
+      <%= link_to events_path, class: "navbar-brand" do %>
+        <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 40, width: 90, alt: "Logo blablasport" %>
+      <% end %>
     </div>
 
-    <div class="cities">
-      <%= link_to "Paris", events_path(search:"Paris") %>
-      <%= link_to "Marseille", events_path(search:"Marseille") %>
-      <%= link_to "Lyon", events_path(search:"Lyon") %>
-      <%= link_to "Lausanne", events_path(search:"Lausanne") %>
-      <%= link_to "Bayonne", events_path(search:"Bayonne") %>
-      <%= link_to "Peyrehorade", events_path(search:"Peyrehorade") %><br>
-    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Page d'accueil</a>
+        </li>
 
-    <div class="sports">
-      <%= link_to "Football", events_path(search:"Football") %>
-      <%= link_to "Tennis", events_path(search:"Tennis") %>
-      <%= link_to "Badminton", events_path(search:"Badminton") %>
-      <%= link_to "Basketball", events_path(search:"Basketball") %>
-      <%= link_to "Yoga", events_path(search:"Yoga") %>
-    </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sélectionner une ville
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" <%= link_to "Paris", events_path(search:"Paris") %></a></li>
+            <li><a class="dropdown-item" <%= link_to "Marseille", events_path(search:"Marseille") %></a></li>
+            <li><a class="dropdown-item" <%= link_to "Strasbourg", events_path(search:"Strasbourg") %></a></li>
+            <li><a class="dropdown-item" <%= link_to "Lausanne", events_path(search:"Lausanne") %></a></li>
+            <li><a class="dropdown-item" <%= link_to "Peyrehorade", events_path(search:"Peyrehorade") %></a></li>
+          </ul>
+        </li>
 
-    <div>
-      <%= link_to "Ajouter un événement", new_event_path, class: "btn btn-outline-warning" %><br>
-    </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sélectionner un sport
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" <%= link_to "Football", events_path(search:"Football") %></a></li>
+            <li><a class="dropdown-item" <%= link_to "Tennis", events_path(search:"Tennis") %></a></li>
+            <li><a class="dropdown-item" <%= link_to "Basketball", events_path(search:"Basketball") %></a></li>
+            <li><a class="dropdown-item" <%= link_to "Badminton", events_path(search:"Badminton") %></a></li>
+            <li><a class="dropdown-item" <%= link_to "Squash", events_path(search:"Squash") %></a></li>
+            <li><a class="dropdown-item" <%= link_to "Yoga", events_path(search:"Yoga") %></a></li>
+          </ul>
+        </li>
 
+        <li class="nav-item">
+          <a class="nav-link active" <%= link_to "Ajouter un événement", new_event_path %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" <%= link_to "Mes amis", events_path %></a>
+        </li>
+      </ul>
 
-    <%# <div><%= link_to "Mes inscriptions", bookings_path, class: "nav-link" %>
-
-      <%# <ul> %>
-        <% if user_signed_in? %>
-          <%# <li class="nav-item dropdown"> %>
-            <strong><%=current_user.full_name %></strong>
-            <%# <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1674220835/rwcaekxsosig45kistar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <%# <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Profile", profile_path, class: "dropdown-item" %>
-              <%# <%= link_to "Bookings", bookings_path, class: "dropdown-item" %>
-              <%# <%= link_to "Setting", "#", class: "dropdown-item" %>
-              <%# <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            <%# </div>
-          </li> %>
-        <% else %>
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        <% end %>
-      <%# </ul> %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <%=current_user.full_name %>
+              <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
+                <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
+                <%= link_to "Settings", settings_path, class: "dropdown-item" %>
+                <%= link_to "Me deconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              </div>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+</nav>

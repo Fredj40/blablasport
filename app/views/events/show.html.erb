@@ -3,8 +3,9 @@
     <div class="col-2"></div>
     <div class="col-8">
 
-      <strong><%= @event.sport.sport_name.upcase %></strong><span> - créé par <strong><%= @event.user.first_name %></strong> (<%= @event.user.age %> ans, <%= @event.user.city %>)</span><br><br>
-      <%= @event.title %><span> - <%= @event.description %></span><br><br>
+      <h4><strong><%= @event.sport.sport_name.upcase %></strong></h4>
+      <h5>Créé par <strong><%= @event.user.first_name %></strong> (<%= @event.user.age %> ans, <%= @event.user.city %>) le <%=@event.created_at.strftime("%d/%m/%Y à %kh%M")%></h5>
+      <%= @event.description %><br>
 
       <% if @event.age_mini.nil? %>
       <% else %>
@@ -13,29 +14,30 @@
       <% if @event.age_maxi.nil? %>
       <% else %>
       <span>Age maxi : <strong><%= @event.age_maxi %> ans</strong></span>
-      <% end %><br><br>
+      <% end %><br>
 
       <% if @event.players_number == 1 %>
-        <p><strong><%= @event.players_number %></strong> place disponible</p>
+        <span><strong><%= @event.players_number %></strong> place disponible</span><br>
       <% else %>
-        <p><strong><%= @event.players_number %></strong> places disponibles</p>
+        <span><strong><%= @event.players_number %></strong> places disponibles</span><br>
       <% end %>
 
       <% if @event.level.nil? %>
       <span>Tout niveau accepté</span><br>
       <% else %>
-      <p>Niveau minimum requis : <strong><%= @event.level %></strong></p>
+      <span>Niveau minimum requis : <strong><%= @event.level %></strong></span><br>
       <% end %>
-
 
       <% if @event.price.nil? || @event.price == 0 %>
       <span>Gratuit</span><br>
       <% else %>
-      <p>Prix : <%= @event.price %> €</p>
+      <span>Prix : <%= @event.price %> €</span><br>
       <% end %>
 
-      <p>Le <%= @event.date %><span> à <%= @event.time.strftime("%kh%M") %></span></p>
-      <p>Lieu de rendez-vous : <%= @event.address %></p>
+      <span>Le <%= @event.date.strftime("%d/%m/%Y") %> à <%= @event.time.strftime("%kh%M") %></span><br>
+      <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
+
+      <%= link_to "Je m'inscris !", booking_path(@event), class: "btn btn-outline-success" %><br><br>
 
       <div class="d-flex" style="width: 30% ; height: 190px;"
         data-controller="map"
@@ -43,10 +45,37 @@
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div><br>
 
-      <%= link_to "Je m'inscris !", booking_path, class: "btn btn-outline-primary" %>
-      <%= link_to "Modifier", edit_event_path, class: "btn btn-outline-warning" %>
+      <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning" %>
       <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
-      <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %>
+      <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br><br><br>
+
+<%# à déplacer dans bookings_path %>
+
+      <div class="second-container">
+        <h3><%= pluralize @event.reviews.size, "commentaire" %><span></h3>
+        <h4> Note :
+        <% if @event.reviews.blank? %>
+            <i> -- </i></h4><br><br>
+          <% else %>
+            <%= @event.reviews.average(:rating).round(1) %><span>/5</span></h4><br>
+          <% end %>
+
+        <% if @event.reviews.blank? %>
+          <p>Sois le 1er à laisser un commentaire</p>
+        <% else %>
+          <% @event.reviews.each do |review| %>
+            <%= review.rating %>
+            <span>/ 5  -   </span>
+            <%= review.comment %><br>
+          <% end %>
+        <% end %><br>
+        <%= simple_form_for([@event, @review]) do |f| %>
+        <%= f.input :comment, placeholder: "Laisse un commentaire" %>
+        <%= f.input :rating, placeholder: "Donne une note entre 1 et 5" %>
+        <%= f.button :submit, class: "btn btn-outline-warning" %><br><br>
+        <% end %>
+        </div>
+      </div>
 
     </div>
   </div>
