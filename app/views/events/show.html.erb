@@ -47,8 +47,10 @@
 
       <% unless @event.user != current_user %>
         <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning" %>
-        <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
       <% end %>
+      <% if @event.user == current_user && Date.today < @event.date %>
+        <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
+      <% end %><br>
 
       <div class="second-container">
         <% if @event.reviews.blank? %>
@@ -76,7 +78,7 @@
           <%= f.button :submit, class: "btn btn-outline-warning" %><br><br>
           <% end %>
         <% else %>
-          <p>Vous devez avoir été inscrit à cet événement pour laisser un avis</p>
+          <p>Vous devez avoir participé à cet événement pour laisser un avis</p>
         <% end %>
       </div>
   </div>

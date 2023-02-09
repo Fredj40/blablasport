@@ -271,13 +271,13 @@ p "16 Events created"
 #   filename: 'blablasport23.jpeg',
 #   content_type: 'image/jpeg'
 # )
-# image_path = Rails.root.join("app/assets/images/background/blablasport24.jpeg")
-# cloudinary_image = Cloudinary::Uploader.upload(image_path)
-# picture29 = ActiveStorage::Blob.create_and_upload!(
-#   io: URI.open(cloudinary_image['secure_url']),
-#   filename: 'blablasport24.jpeg',
-#   content_type: 'image/jpeg'
-# )
+image_path = Rails.root.join("app/assets/images/background/blablasport24.jpeg")
+cloudinary_image = Cloudinary::Uploader.upload(image_path)
+picture34 = ActiveStorage::Blob.create_and_upload!(
+  io: URI.open(cloudinary_image['secure_url']),
+  filename: 'blablasport24.jpeg',
+  content_type: 'image/jpeg'
+)
 # image_path = Rails.root.join("app/assets/images/background/blablasport25.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture30 = ActiveStorage::Blob.create_and_upload!(
@@ -306,4 +306,11 @@ p "16 Events created"
 #   filename: 'blablasport28.jpg',
 #   content_type: 'image/jpg'
 # )
+image_path = Rails.root.join("app/assets/images/background/blablasport29.jpg")
+cloudinary_image = Cloudinary::Uploader.upload(image_path)
+picture35 = ActiveStorage::Blob.create_and_upload!(
+  io: URI.open(cloudinary_image['secure_url']),
+  filename: 'blablasport28.jpg',
+  content_type: 'image/jpg'
+)
 # puts "images uploaded..."
