@@ -18,8 +18,8 @@
     <% unless action_name == "home" %>
       <%= render "shared/navbar" %>
       <%= render "shared/flashes" %>
-      <%# < class="notice"><%= notice %>
-      <%# < class="alert"><%= alert %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
     <% end %>
     <%= yield %>
   </body>

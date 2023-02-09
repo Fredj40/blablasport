@@ -38,11 +38,11 @@
         </li>
       </ul>
 
-      <div class="form_search">
+      <%# <div class="form_search">
         <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
-          <%= f.input :"", label: "", placeholder: "Je cherche une partie ", input_html: { name: 'search', value: params.dig(:search) } %>
-        <% end %>
-      </div>
+          <%# <%= f.input :"", label: "", placeholder: "Je cherche une partie ", input_html: { name: 'search', value: params.dig(:search) } %>
+        <%# <% end %>
+      <%# </div> %>
 
     </div>
 

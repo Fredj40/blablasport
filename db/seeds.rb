@@ -306,11 +306,11 @@ picture34 = ActiveStorage::Blob.create_and_upload!(
 #   filename: 'blablasport28.jpg',
 #   content_type: 'image/jpg'
 # )
-image_path = Rails.root.join("app/assets/images/background/blablasport29.jpg")
+image_path = Rails.root.join("app/assets/images/background/blablasport29.png")
 cloudinary_image = Cloudinary::Uploader.upload(image_path)
 picture35 = ActiveStorage::Blob.create_and_upload!(
   io: URI.open(cloudinary_image['secure_url']),
-  filename: 'blablasport28.jpg',
+  filename: 'blablasport29.png',
   content_type: 'image/jpg'
 )
 # puts "images uploaded..."
