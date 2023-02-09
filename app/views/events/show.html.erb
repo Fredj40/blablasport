@@ -35,7 +35,9 @@
       <% end %>
 
       <span>Le <%= @event.date.strftime("%d/%m/%Y") %> à <%= @event.time.strftime("%kh%M") %></span><br>
-      <span>Lieu de rendez-vous : <%= @event.address %></span>
+      <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
+
+      <%= link_to "Je m'inscris !", booking_path(@event), class: "btn btn-outline-success" %><br><br>
 
       <div class="d-flex" style="width: 30% ; height: 190px;"
         data-controller="map"
@@ -43,10 +45,37 @@
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div><br>
 
-      <%= link_to "Je m'inscris !", booking_path, class: "btn btn-outline-primary" %>
-      <%= link_to "Modifier", edit_event_path, class: "btn btn-outline-warning" %>
+      <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning" %>
       <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
-      <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %>
+      <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br><br><br>
+
+<%# à déplacer dans bookings_path %>
+
+      <div class="second-container">
+        <h3><%= pluralize @event.reviews.size, "commentaire" %><span></h3>
+        <h4> Note :
+        <% if @event.reviews.blank? %>
+            <i> -- </i></h4><br><br>
+          <% else %>
+            <%= @event.reviews.average(:rating).round(1) %><span>/5</span></h4><br>
+          <% end %>
+
+        <% if @event.reviews.blank? %>
+          <p>Sois le 1er à laisser un commentaire</p>
+        <% else %>
+          <% @event.reviews.each do |review| %>
+            <%= review.rating %>
+            <span>/ 5  -   </span>
+            <%= review.comment %><br>
+          <% end %>
+        <% end %><br>
+        <%= simple_form_for([@event, @review]) do |f| %>
+        <%= f.input :comment, placeholder: "Laisse un commentaire" %>
+        <%= f.input :rating, placeholder: "Donne une note entre 1 et 5" %>
+        <%= f.button :submit, class: "btn btn-outline-warning" %><br><br>
+        <% end %>
+        </div>
+      </div>
 
     </div>
   </div>

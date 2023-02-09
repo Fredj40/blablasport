@@ -7,4 +7,11 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:show, :destroy]
+
+  get "dashboard", to: "pages#dashboard"
+  get "profile", to: "pages#profile"
+  get "settings", to: "pages#settings"
+  patch "settings", to: "pages#update"
+  get "contact", to: "pages#contact"
+
 end

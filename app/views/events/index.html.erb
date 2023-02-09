@@ -23,7 +23,7 @@
            </div>
 
           <div class="d-flex align-items-center">
-            <%= link_to "J'ajoute une partie", new_event_path, class: "btn btn-warning" %>
+            <%= link_to "J'ajoute une partie", new_event_path, class: "btn btn-outline-warning" %>
           </div>
         </div>
 
@@ -44,6 +44,19 @@
           <% end %>
 
           <h6>Créé par <strong><%= event.user.first_name %></strong><span> le <%= event.created_at.strftime("%d/%m/%Y") %></span></h6>
+
+          <%# <div class="review">
+            <% unless @event.reviews.blank? %>
+            <%# <% starfull = @event.reviews.sum(:rating)/ @event.reviews.count %>
+            <%# <% starfull.times do %>
+              <%# <i class="fa-solid fa-star"></i> %>
+            <%# <% end %>
+            <%# <% (5-starfull).times do %>
+              <%# <i class="fa-regular fa-star"></i> %>
+            <%# <% end %>
+            <%# <% end %>
+          <%# </div> %>
+
           <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-secondary" %><br><br>
         <% end %>
 

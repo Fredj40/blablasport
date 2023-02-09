@@ -1,6 +1,6 @@
 
 
-<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" style="background-color: #E2E3E3;">
+<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" style="background-color: #d09d76;">
   <div class="container-fluid">
     <div>
       <%= link_to events_path, class: "navbar-brand" do %>
@@ -48,9 +48,6 @@
           <a class="nav-link active" <%= link_to "Ajouter un événement", new_event_path %></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" <%= link_to "Consulter mon historique", bookings_path %></a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active" <%= link_to "Mes amis", events_path %></a>
         </li>
       </ul>
@@ -62,10 +59,10 @@
               <%=current_user.full_name %>
               <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Profile", events_path, class: "dropdown-item" %>
-                <%= link_to "Bookings", bookings_path, class: "dropdown-item" %>
-                <%= link_to "Setting", "#", class: "dropdown-item" %>
-                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+                <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
+                <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
+                <%= link_to "Settings", settings_path, class: "dropdown-item" %>
+                <%= link_to "Me deconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
               </div>
             </li>
           <% else %>
