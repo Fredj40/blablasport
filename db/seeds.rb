@@ -77,9 +77,9 @@ p "16 Events created"
 
 # image_path = Rails.root.join("app/assets/images/Blablasport_logo_transparent.png")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
-# picture1 = ActiveStorage::Blob.create_and_upload!(
+# picture6 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
-#   filename: 'blablasport.png',
+#   filename: 'blablasport2.png',
 #   content_type: 'image/png'
 # )
 # image_path = Rails.root.join("app/assets/images/marker2.png")
@@ -103,13 +103,13 @@ p "16 Events created"
 #   filename: 'marker.png',
 #   content_type: 'image/png'
 # )
-image_path = Rails.root.join("app/assets/images/marker3.png")
-cloudinary_image = Cloudinary::Uploader.upload(image_path)
-picture5 = ActiveStorage::Blob.create_and_upload!(
-  io: URI.open(cloudinary_image['secure_url']),
-  filename: 'marker3.png',
-  content_type: 'image/png'
-)
+# image_path = Rails.root.join("app/assets/images/marker3.png")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture5 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'marker3.png',
+#   content_type: 'image/png'
+# )
 # puts "images uploaded..."
 
 # campnou = Stadium.create!(user_id: @user.id, name: "Camp Nou", location: "Barcelona", energy_class: "C", stadium_description: "zzz", capacity: 99354, price: 49000)
