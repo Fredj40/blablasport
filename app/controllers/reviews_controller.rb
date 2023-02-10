@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_event, only: %i[new create]
+  before_action :set_event, only: %i[new create destroy]
 
   def new
   end
@@ -15,6 +15,13 @@ class ReviewsController < ApplicationController
       render 'events/show', status: :unprocessable_entity
     end
   end
+
+  # def destroy
+  #   @user = current_user
+  #   @review.user = @event
+  #   @review.destroy
+  #   redirect_to event_path(@event), status: :see_other
+  # end
 
   private
 

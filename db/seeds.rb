@@ -8,11 +8,11 @@ p "Creating Users..."
 @user1 = User.create!(email: "test@test.com", first_name: "Romain", last_name: "Weyrich", password: "123456", password_confirmation: "123456", age: "32", phone_number: "0606060606", sex: "Homme", address: "rue de la Paix", zip_code: "1018", city: "Lausanne", user_description: "fan de foot")
 @user2 = User.create!(email: "test1@test.com", first_name: "Alex", last_name: "Dionisio", password: "123456", password_confirmation: "123456", age: "32", phone_number: "0606060607", sex:"Homme", address: "rue Victor Hugo", zip_code: "13005", city: "Marseille", user_description: "fan de tennis")
 @user3 = User.create!(email: "test2@test.com", first_name: "Fred", last_name: "Jeanne", password: "123456", password_confirmation: "123456", age: "40", phone_number: "0606060608", sex:"Homme", address: "rue Romain Weyrich", zip_code: "40100", city: "Dax", user_description: "fan de badminton")
-@user4 = User.create!(email: "test3@test.com", first_name: "Natacha", last_name: "Kusnova", password: "123456", password_confirmation: "123456", age: "25", phone_number: "0606060609", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
-@user5 = User.create!(email: "test4@test.com", first_name: "Corine", last_name: "Tuche", password: "123456", password_confirmation: "123456", age: "58", phone_number: "0606060610", sex: "Femme", address: "rue de la Paix", zip_code: "75001", city: "Paris", user_description: "fan de foot")
-@user6 = User.create!(email: "test5@test.com", first_name: "John", last_name: "Smith", password: "123456", password_confirmation: "123456", age: "40", phone_number: "0606060611", sex:"Homme", address: "rue Victor Hugo", zip_code: "1018", city: "Lausanne", user_description: "fan de tennis")
-@user7 = User.create!(email: "test6@test.com", first_name: "Gégé", last_name: "Depardieu", password: "123456", password_confirmation: "123456", age: "75", phone_number: "0606060612", sex:"Homme", address: "rue Romain Weyrich", zip_code: "13005", city: "Marseille", user_description: "fan de badminton")
-@user8 = User.create!(email: "test7@test.com", first_name: "Léa", last_name: "Martin", password: "123456", password_confirmation: "123456", age: "7", phone_number: "0606060613", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
+@user4 = User.create!(email: "test3@test.com", first_name: "Jeff", last_name: "Tuche", password: "123456", password_confirmation: "123456", age: "25", phone_number: "0606060609", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
+@user5 = User.create!(email: "test4@test.com", first_name: "Mickey", last_name: "Mouse", password: "123456", password_confirmation: "123456", age: "58", phone_number: "0606060610", sex: "Femme", address: "rue de la Paix", zip_code: "75001", city: "Paris", user_description: "fan de foot")
+@user6 = User.create!(email: "test5@test.com", first_name: "François", last_name: "Pignon", password: "123456", password_confirmation: "123456", age: "40", phone_number: "0606060611", sex:"Homme", address: "rue Victor Hugo", zip_code: "1018", city: "Lausanne", user_description: "fan de tennis")
+@user7 = User.create!(email: "test6@test.com", first_name: "Kylian", last_name: "Mbappé", password: "123456", password_confirmation: "123456", age: "75", phone_number: "0606060612", sex:"Homme", address: "rue Romain Weyrich", zip_code: "13005", city: "Marseille", user_description: "fan de badminton")
+@user8 = User.create!(email: "test7@test.com", first_name: "Scarlett", last_name: "Johansson", password: "123456", password_confirmation: "123456", age: "7", phone_number: "0606060613", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
 p "8 users created"
 
 p "Creating Sports..."
@@ -271,13 +271,13 @@ p "16 Events created"
 #   filename: 'blablasport23.jpeg',
 #   content_type: 'image/jpeg'
 # )
-image_path = Rails.root.join("app/assets/images/background/blablasport24.jpeg")
-cloudinary_image = Cloudinary::Uploader.upload(image_path)
-picture34 = ActiveStorage::Blob.create_and_upload!(
-  io: URI.open(cloudinary_image['secure_url']),
-  filename: 'blablasport24.jpeg',
-  content_type: 'image/jpeg'
-)
+# image_path = Rails.root.join("app/assets/images/background/blablasport24.jpeg")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture34 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'blablasport24.jpeg',
+#   content_type: 'image/jpeg'
+# )
 # image_path = Rails.root.join("app/assets/images/background/blablasport25.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture30 = ActiveStorage::Blob.create_and_upload!(
@@ -306,11 +306,47 @@ picture34 = ActiveStorage::Blob.create_and_upload!(
 #   filename: 'blablasport28.jpg',
 #   content_type: 'image/jpg'
 # )
-image_path = Rails.root.join("app/assets/images/background/blablasport29.png")
-cloudinary_image = Cloudinary::Uploader.upload(image_path)
-picture35 = ActiveStorage::Blob.create_and_upload!(
-  io: URI.open(cloudinary_image['secure_url']),
-  filename: 'blablasport29.png',
-  content_type: 'image/jpg'
-)
+# image_path = Rails.root.join("app/assets/images/background/blablasport29.png")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture35 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'blablasport29.png',
+#   content_type: 'image/jpg'
+# )
+# image_path = Rails.root.join("app/assets/images/background/blablasportlongorange.jpg")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture36 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'blablasportlongorange.jpg',
+#   content_type: 'image/jpg'
+# )
+# image_path = Rails.root.join("app/assets/images/background/blablasportlongorangefort.jpg")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture37 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'blablasportlongorangefort.jpg',
+#   content_type: 'image/jpg'
+# )
+# image_path = Rails.root.join("app/assets/images/background/blablasportlongrouge.jpg")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture38 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'blablasportlongrouge.jpg',
+#   content_type: 'image/jpg'
+# # )
+# image_path = Rails.root.join("app/assets/images/background/blablasportcourtorangefort.jpg")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture39 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'blablasportcourtorangefort.jpg',
+#   content_type: 'image/jpg'
+# )
+# # )
+# image_path = Rails.root.join("app/assets/images/background/pelouse.jpg")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture40 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'pelouse.jpg',
+#   content_type: 'image/jpg'
+# )
 # puts "images uploaded..."
