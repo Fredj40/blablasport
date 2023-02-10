@@ -1,70 +1,39 @@
-
-<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" style="background-color: #d09d76;">
-  <div class="container">
-    <div>
-      <%= link_to events_path, class: "navbar-brand" do %>
-        <%= image_tag "logo_split2.png", height: 40, width: 40, alt: "Logo blablasport" %>
-      <% end %>
-    </div>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Page d'accueil</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Sélectionner une ville
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" <%= link_to "Paris", events_path(search:"Paris") %></a></li>
-            <li><a class="dropdown-item" <%= link_to "Marseille", events_path(search:"Marseille") %></a></li>
-            <li><a class="dropdown-item" <%= link_to "Strasbourg", events_path(search:"Strasbourg") %></a></li>
-            <li><a class="dropdown-item" <%= link_to "Lausanne", events_path(search:"Lausanne") %></a></li>
-            <li><a class="dropdown-item" <%= link_to "Peyrehorade", events_path(search:"Peyrehorade") %></a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active" <%= link_to "Ajouter un événement", new_event_path %></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" <%= link_to "Mes amis", events_path %></a>
-        </li>
-      </ul>
-
-      <div class="form_search">
-        <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
-          <%= f.input :"", label: "", placeholder: "Je cherche une partie ", input_html: { name: 'search', value: params.dig(:search) } %>
+<section id="navigation">
+  <nav class="navbar sticky-top navbar-expand-lg" style ="background-image: url('https://res.cloudinary.com/di7k88pkv/image/upload/v1676036360/jezuvnidzu3280wr1aqi.jpg'); width: 100%; height: 12vh;">
+    <div class="container">
+      <div>
+        <%= link_to events_path, class: "navbar-brand" do %>
+          <%= image_tag "", height: 40, width: 40, alt: "Logo blablasport" %>
         <% end %>
       </div>
 
-    </div>
+      <button class="navbar-toggler" style ="color: white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span></button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item dropdown">
-              <%=current_user.full_name %>
-              <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
-                <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
-                <%= link_to "Settings", settings_path, class: "dropdown-item" %>
-                <%= link_to "Me deconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-              </div>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-            </li>
-          <% end %>
-        </ul>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="nav-item">
+        <%= link_to "Ajouter un événement", new_event_path %>
+
+        <%# <%= link_to "Paris", events_path(search:"Paris") %>
+        <%# <%= link_to "Marseille", events_path(search:"Marseille") %>
+        <%# <%= link_to "Strasbourg", events_path(search:"Strasbourg") %>
+        <%# <%= link_to "Lausanne", events_path(search:"Lausanne") %>
+        <%# <%= link_to "Peyrehorade", events_path(search:"Peyrehorade") %>
+        <% if user_signed_in? %>
+          <div class="nav-item dropdown">
+            <%=current_user.full_name %>
+            <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
+              <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
+              <%= link_to "Settings", settings_path, class: "dropdown-item" %>
+              <%= link_to "Me deconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+          </div>
+        <% else %>
+          <%= link_to "Connextion", new_user_session_path, class: "nav-link" %>
+        <% end %>
       </div>
-  </div>
-</nav>
+    </div>
+  </nav>
+</section>
