@@ -30,7 +30,7 @@ class EventsController < ApplicationController
       # end
     end
     # calculer la moyenne des notes de l'user
-    @average_rating = @ratings.sum / @ratings.size
+    # @ratings = @ratings.sum / @ratings.size !!!!!!!!!!!!!!
 
     # Récuperer les reviews de l'événement
     @reviews = @event.reviews

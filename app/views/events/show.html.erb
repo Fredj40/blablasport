@@ -30,7 +30,7 @@
 
       <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
 
-      <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-outline-success" %><br><br>
+
 
       <div class="d-flex" style="width: 30% ; height: 190px;"
         data-controller="map"
@@ -44,7 +44,7 @@
       <span>Prix : <strong><%= @event.price %></strong> €</span>
       <% end %><br><br>
 
-      <%= link_to "Je m'inscris !", booking_path(@event), class: "btn btn-outline-success" %>
+      <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-outline-success" %>
       <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br>
 
       <% unless @event.user != current_user %>
@@ -55,7 +55,7 @@
       <% end %><br>
 
       <div class="container chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-        <h1>#<%= @chatroom.event.title %></h1>
+        <h1>Chatroom</h1>
 
         <div class="messages" data-chatroom-subscription-target="messages">
           <% @chatroom.messages.each do |message| %>
