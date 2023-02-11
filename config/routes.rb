@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   patch "settings", to: "pages#update"
   get "contact", to: "pages#contact"
 
+  resources :chatrooms, only: [:show] do
+    resources :messages, only: :create
+  end
+
 end
