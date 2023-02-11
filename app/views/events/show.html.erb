@@ -37,7 +37,7 @@
       <span>Le <%= @event.date.strftime("%d/%m/%Y") %> à <%= @event.time.strftime("%kh%M") %></span><br>
       <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
 
-      <%= link_to "Je m'inscris !", booking_path(@event), class: "btn btn-outline-success" %><br><br>
+      <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-outline-success" %><br><br>
 
       <div class="d-flex" style="width: 30% ; height: 190px;"
         data-controller="map"
