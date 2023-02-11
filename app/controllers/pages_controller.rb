@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home contact]
 
   def home
+
   end
 
   def dashboard
@@ -10,12 +11,13 @@ class PagesController < ApplicationController
     @user = current_user
   end
 
-  def profile
-    @user = current_user
-  end
-
   def booking
     @booking = Booking.find(params[:id])
+  end
+
+  def profile
+    @user = current_user
+    @activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
   end
 
   def settings
@@ -34,6 +36,6 @@ class PagesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :email, :activity)
   end
 end

@@ -1,0 +1,7 @@
+<% @activities.each do |a| %>
+<li>
+<%= a.created_at %>
+<%= link_to "#{a.trackable.user_id} a posté un nouvel événement à #{a.trackable.address} le #{a.trackable.date}" if a.trackable_type == "Event"%>
+<%= "#{a.trackable.firstname} a rejoint la famille blabla sport" if a.trackable_type == "User" %>
+</li>
+<% end %>
