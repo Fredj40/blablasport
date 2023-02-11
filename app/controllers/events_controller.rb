@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -15,7 +16,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @user = current_user
     @review = Review.new
+    @reviews = Review.all
     @markers = [{
       lat: @event.latitude,
       lng: @event.longitude,

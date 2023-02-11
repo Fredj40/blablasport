@@ -1,0 +1,44 @@
+// #nav {
+//   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676033780/s6cd3hqepdwdopuru8az.jpg");
+//   background-size: cover;
+//   background-color: #e98b2a;
+//   height: 10vh;
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   text-align: center;
+//   color: white;
+//   font-family: 'PT Sans', sans-serif;
+//   font-size: 1.5rem;
+//   font-weight: 300;
+//   letter-spacing: 0.1rem;
+//   text-transform: uppercase;
+//   text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+// }
+// #nav li {
+//   display: inline;
+// }
+// .nav__links {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+//   color: white;
+//   text-decoration: none;
+//   margin-bottom: 1rem;
+//   .hover {
+//     color: black;
+//   }
+// }
+#navigation {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "PT Sans", sans-serif;
+  text-decoration: none;
+}
+.link {
+  color: white;
+}

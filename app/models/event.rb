@@ -15,6 +15,13 @@ class Event < ApplicationRecord
   validates :address, presence: true
   validates :duration, presence: true, inclusion: { in: 1..120 }
 
+  include PublicActivity::Model
+  tracked
+
+  def to_s
+    title
+  end
+
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
