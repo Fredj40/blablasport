@@ -16,9 +16,29 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    # User qui a créé l'événement
+    @user = @event.user
+    # recupérer les events de l'user
+    @user_events = @user.events
+    # calculer la moyenne des notes de chaque event de l'user
+    @ratings = []
+    @user_events.each do |event|
+      # recuperer les notes de l'event sur lequel tu itères
+      @ratings << event.reviews.average(:rating)
+      # event.reviews.each do |review|
+      #   @ratings << review.ratings
+      # end
+    end
+    # calculer la moyenne des notes de l'user
+    @average_rating = @ratings.sum / @ratings.size
+
+    # Récuperer les reviews de l'événement
+    @reviews = @event.reviews
+
     @user = current_user
     @review = Review.new
     @reviews = Review.all
+    @has_already_reviewed = @reviews.where(user_id: @user.id, event_id: @event.id).exists?
     @markers = [{
       lat: @event.latitude,
       lng: @event.longitude,

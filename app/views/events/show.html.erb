@@ -31,7 +31,7 @@
       <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
 
       <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-outline-success" %><br><br>
-      
+
       <div class="d-flex" style="width: 30% ; height: 190px;"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
@@ -82,10 +82,10 @@
         <% end %>
       <% end %>
 
-      <% if @reviews.find_by(user_id:current_user) %>
+      <% if @has_already_reviewed %>
         <h5>Vous avez déjà laissé un avis</h5>
       <% else %>
-      <%# <% elsif current_user.events.include?(@event) && @event.bookings.find_by(user:current_user) == "accepté" && Date.today > @event.date %> %>
+      <%# <% elsif current_user.events.include?(@event) && @event.bookings.find_by(user:current_user) == "accepté" && Date.today > @event.date %>
         <h5>Comment s'est passée cette séance ?</h5>
         <div class="col-12 col-sm-4">
           <%= simple_form_for([@event, @review]) do |f| %>
@@ -93,9 +93,9 @@
           <%= f.input :rating, label: "Note", placeholder: "La note doit être comprise en 1 et 5)" %>
           <%= f.button :submit, "Valider", class: "btn btn-outline-warning" %><br>
           <% end %><br>
-        <%# <% else %> %>
+        <%# <% else %>
           <%# <i>Vous devez avoir participé à cet événement pour laisser un avis</i>
-        <% end %> %>
+        <% end %>
         </div>
       <% end %>
     </div>
