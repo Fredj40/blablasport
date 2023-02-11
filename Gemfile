@@ -14,6 +14,8 @@ gem "pg_search"
 
 gem "cloudinary"
 
+gem "redis", "~> 4.0"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
