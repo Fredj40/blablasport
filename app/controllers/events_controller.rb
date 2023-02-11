@@ -17,8 +17,10 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @user = current_user
+    @chatroom = Chatroom.find_by(event_id: @event.id)
     @review = Review.new
     @reviews = Review.all
+    @message = Message.new
     @markers = [{
       lat: @event.latitude,
       lng: @event.longitude,
@@ -36,6 +38,8 @@ class EventsController < ApplicationController
     @event.user = current_user
     @user_id = current_user.id
     if @event.save
+      @chatroom = Chatroom.new(event_id: @event.id)
+      @chatroom.save
       redirect_to event_path(@event)
     else
       render :new
@@ -58,11 +62,12 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :date, :time, :price, :level, :players_number, :duration, :address, :user_id, :sport_id)
+    params.require(:event).permit(:title, :description, :date, :time, :price, :level, :players_number, :duration, :address, :user_id, :sport_id, messages_attributes: [:content, :user_id, :chatroom_id], chatrooms_attributes: [:event_id], reviews_attributes: [:comment, :rating, :event_id])
   end
 
   def set_event
     @event = Event.find(params[:id])
+
   end
 
   def set_markers

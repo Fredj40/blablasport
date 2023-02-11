@@ -1,6 +1,7 @@
 p "Cleaning database..."
 User.destroy_all
 Event.destroy_all
+Chatroom.destroy_all
 Sport.destroy_all
 p 'Database cleaned'
 
@@ -58,23 +59,43 @@ p "Creating Sports..."
 p "39 Sports created"
 
 p "Creating Events..."
-Event.create!(title: "5vs5", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, ", date: "20-02-2023", time: "10:00:00", price: "8", address: "rue Oberkampf, Paris", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport1, age_mini: "7", age_maxi: "")
-Event.create!(title: "Entre filles", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "11:00:00", price: "0", address: "Route des Plaines du Loup 7, Lausanne", level: "ATP", players_number: "3", duration: "120", user: @user2, sport: @sport2, age_mini: "16", age_maxi: "")
-Event.create!(title: "1vs1 minimum", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "12:00:00", price: "7", address: "3 Bd Michelet, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport39, age_mini: "18", age_maxi: "")
-Event.create!(title: "3vs3 ou plus", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "13:00:00", price: "0", address: "12 Rue de l'Extenwoerth, Strasbourg", level: "Débutant", players_number: "6", duration: "60", user: @user4, sport: @sport4, age_mini: "7", age_maxi: "")
-Event.create!(title: "4vs4", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "10:00:00", price: "8", address: "35 Rue du Chevalier de la Barre, Paris", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport4, age_mini: "", age_maxi: "")
-Event.create!(title: "1vs1 minimum", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "11:00:00", price: "0", address: "Allée des Evadés, Peyrehorade", level: "ATP", players_number: "3", duration: "120", user: @user2, sport: @sport3, age_mini: "18", age_maxi: "30")
-Event.create!(title: "A mon domicile", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "12:00:00", price: "7", address: "Quatre Chemins de Montolivet, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport17)
-Event.create!(title: "5vs5", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "13:00:00", price: "0", address: "Petite Rue d'Austerlitz, Strasbourg", level: "Débutant", players_number: "6", duration: "60", user: @user4, sport: @sport1, age_mini: "", age_maxi: "40")
-Event.create!(title: "Très Urgent", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "10:00:00", price: "8", address: "rue Danielle Casanova, Saint-Denis", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport30, age_mini: "16", age_maxi: "25")
-Event.create!(title: "En salle", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "11:00:00", price: "0", address: "Avenue 8 Mai 1945, Bayonne", level: "Intermédiaire", players_number: "3", duration: "120", user: @user2, sport: @sport20, age_mini: "", age_maxi: "")
-Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "12:00:00", price: "7", address: "225 avenue Ibrahim Ali, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport15, age_mini: "", age_maxi: "50")
-Event.create!(title: "En salle", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "13:00:00", price: "0", address: "2 rue de Zurich, Colmar", level: "Débutant", players_number: "3", duration: "60", user: @user4, sport: @sport10, age_mini: "", age_maxi: "")
-Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "10:00:00", price: "8", address: "route de trompe, Peyrehorade", level: "Normal", players_number: "2", duration: "80", user: @user5, sport: @sport32, age_mini: "16", age_maxi: "50")
-Event.create!(title: "Tous les lundis", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "11:00:00", price: "0", address: "Place de la Concorde, Paris", level: "Professionel", players_number: "1", duration: "120", user: @user6, sport: @sport34, age_mini: "", age_maxi: "")
-Event.create!(title: "Bières offertes !", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "12:00:00", price: "7", address: "Champs Elysées, Paris", level: "Expérimenté", players_number: "1", duration: "60", user: @user7, sport: @sport16, age_mini: "", age_maxi: "45")
-Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "13:00:00", price: "0", address: "197 ancienne route du Grès, Orange", level: "Débutant", players_number: "4", duration: "60", user: @user8, sport: @sport19, age_mini: "3", age_maxi: "")
+event1 = Event.create!(title: "5vs5", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, ", date: "20-02-2023", time: "10:00:00", price: "8", address: "rue Oberkampf, Paris", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport1, age_mini: "7", age_maxi: "")
+event2 = Event.create!(title: "Entre filles", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "11:00:00", price: "0", address: "Route des Plaines du Loup 7, Lausanne", level: "ATP", players_number: "3", duration: "120", user: @user2, sport: @sport2, age_mini: "16", age_maxi: "")
+event3 = Event.create!(title: "1vs1 minimum", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "12:00:00", price: "7", address: "3 Bd Michelet, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport39, age_mini: "18", age_maxi: "")
+event4 = Event.create!(title: "3vs3 ou plus", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "13:00:00", price: "0", address: "12 Rue de l'Extenwoerth, Strasbourg", level: "Débutant", players_number: "6", duration: "60", user: @user4, sport: @sport4, age_mini: "7", age_maxi: "")
+event5 = Event.create!(title: "4vs4", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "10:00:00", price: "8", address: "35 Rue du Chevalier de la Barre, Paris", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport4, age_mini: "", age_maxi: "")
+event6 = Event.create!(title: "1vs1 minimum", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "11:00:00", price: "0", address: "Allée des Evadés, Peyrehorade", level: "ATP", players_number: "3", duration: "120", user: @user2, sport: @sport3, age_mini: "18", age_maxi: "30")
+event7 = Event.create!(title: "A mon domicile", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "12:00:00", price: "7", address: "Quatre Chemins de Montolivet, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport17)
+event8 = Event.create!(title: "5vs5", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "13:00:00", price: "0", address: "Petite Rue d'Austerlitz, Strasbourg", level: "Débutant", players_number: "6", duration: "60", user: @user4, sport: @sport1, age_mini: "", age_maxi: "40")
+event9 = Event.create!(title: "Très Urgent", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "10:00:00", price: "8", address: "rue Danielle Casanova, Saint-Denis", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport30, age_mini: "16", age_maxi: "25")
+event10 = Event.create!(title: "En salle", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "11:00:00", price: "0", address: "Avenue 8 Mai 1945, Bayonne", level: "Intermédiaire", players_number: "3", duration: "120", user: @user2, sport: @sport20, age_mini: "", age_maxi: "")
+event11 = Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "12:00:00", price: "7", address: "225 avenue Ibrahim Ali, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport15, age_mini: "", age_maxi: "50")
+event12 = Event.create!(title: "En salle", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "13:00:00", price: "0", address: "2 rue de Zurich, Colmar", level: "Débutant", players_number: "3", duration: "60", user: @user4, sport: @sport10, age_mini: "", age_maxi: "")
+event13 = Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "10:00:00", price: "8", address: "route de trompe, Peyrehorade", level: "Normal", players_number: "2", duration: "80", user: @user5, sport: @sport32, age_mini: "16", age_maxi: "50")
+event14 = Event.create!(title: "Tous les lundis", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "11:00:00", price: "0", address: "Place de la Concorde, Paris", level: "Professionel", players_number: "1", duration: "120", user: @user6, sport: @sport34, age_mini: "", age_maxi: "")
+event15 = Event.create!(title: "Bières offertes !", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "12:00:00", price: "7", address: "Champs Elysées, Paris", level: "Expérimenté", players_number: "1", duration: "60", user: @user7, sport: @sport16, age_mini: "", age_maxi: "45")
+event16 = Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-20", time: "13:00:00", price: "0", address: "197 ancienne route du Grès, Orange", level: "Débutant", players_number: "4", duration: "60", user: @user8, sport: @sport19, age_mini: "3", age_maxi: "")
 p "16 Events created"
+
+p "Creating chatrooms..."
+Chatroom.create!(event_id: event1.id)
+Chatroom.create!(event_id: event2.id)
+Chatroom.create!(event_id: event3.id)
+Chatroom.create!(event_id: event4.id)
+Chatroom.create!(event_id: event5.id)
+Chatroom.create!(event_id: event6.id)
+Chatroom.create!(event_id: event7.id)
+Chatroom.create!(event_id: event8.id)
+Chatroom.create!(event_id: event9.id)
+Chatroom.create!(event_id: event10.id)
+Chatroom.create!(event_id: event11.id)
+Chatroom.create!(event_id: event12.id)
+Chatroom.create!(event_id: event13.id)
+Chatroom.create!(event_id: event14.id)
+Chatroom.create!(event_id: event15.id)
+Chatroom.create!(event_id: event16.id)
+p "16 Chatrooms created"
+
 
 
 # campnou = Stadium.create!(user_id: @user.id, name: "Camp Nou", location: "Barcelona", energy_class: "C", stadium_description: "zzz", capacity: 99354, price: 49000)

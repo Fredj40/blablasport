@@ -31,7 +31,7 @@
       <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
 
       <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-outline-success" %><br><br>
-      
+
       <div class="d-flex" style="width: 30% ; height: 190px;"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
@@ -53,6 +53,28 @@
       <% if @event.user == current_user && Date.today < @event.date %>
         <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
       <% end %><br>
+
+      <div class="container chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+        <h1>#<%= @chatroom.event.title %></h1>
+
+        <div class="messages" data-chatroom-subscription-target="messages">
+          <% @chatroom.messages.each do |message| %>
+            <%= render "messages/message", message: message %>
+          <% end %>
+        </div>
+        <div class="messages" data-chatroom-subscription-target="messages">
+          <%= simple_form_for [@chatroom, @message],
+            html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f|
+          %>
+          <%= f.input :content,
+          label: false,
+          placeholder: "Nouveau message",
+          wrapper_html: {class: "flex-grow-1"}
+          %>
+          <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+          <% end %>
+        </div>
+      </div>
 
       <% if @event.reviews.blank? %>
         <h5>Aucun avis</h5>
