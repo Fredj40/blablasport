@@ -82,7 +82,7 @@
         <% end %>
       <% end %>
 
-      <% if @reviews.find_by(user_id:current_user) %>
+      <% if @has_already_reviewed %>
         <h5>Vous avez déjà laissé un avis</h5>
       <% else %>
       <%# <% elsif current_user.events.include?(@event) && @event.bookings.find_by(user:current_user) == "accepté" && Date.today > @event.date %>

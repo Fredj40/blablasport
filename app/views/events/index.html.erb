@@ -23,20 +23,35 @@
         <h1>A venir : </h1><br>
 
         <% @events.each do |event| %>
-          <h4><strong><%= event.sport.sport_name %></strong>
-          <span> - <strong><%= event.address.split.last %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
+          <% unless Date.today > event.date %>
+            <h4><strong><%= event.sport.sport_name %></strong>
+            <span> - <strong><%= event.address.split.last %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
 
-          <% if event.players_number == 1 %>
-            <span><strong><%= event.players_number %></strong> place disponible</span><br>
-          <% else %>
-            <span><strong><%= event.players_number %></strong> places disponibles</span><br>
+            <% if event.players_number == 1 %>
+              <span><strong><%= event.players_number %></strong> place disponible</span><br>
+            <% else %>
+              <span><strong><%= event.players_number %></strong> places disponibles</span><br>
+            <% end %>
+
+            <h6>Créé par <strong><%= event.user.first_name %></strong><span> le <%= event.created_at.strftime("%d/%m/%Y") %></span></h6>
+
+            <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-secondary" %><br><br>
           <% end %>
-
-          <h6>Créé par <strong><%= event.user.first_name %></strong><span> le <%= event.created_at.strftime("%d/%m/%Y") %></span></h6>
-
-          <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-secondary" %><br><br>
         <% end %>
+      </div>
 
+      <div>
+        <h1>Evénements passés : </h1><br>
+
+        <% @events.each do |event| %>
+          <% unless Date.today < event.date %>
+            <h4><strong><%= event.sport.sport_name %></strong>
+            <span> - <strong><%= event.address.split.last %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
+            <h6>Créé par <strong><%= event.user.first_name %></strong><span> le <%= event.created_at.strftime("%d/%m/%Y") %></span></h6>
+
+            <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-secondary" %><br><br>
+          <% end %>
+        <% end %>
       </div>
 
     </div>
