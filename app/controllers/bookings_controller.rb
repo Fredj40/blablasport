@@ -1,12 +1,11 @@
 class BookingsController < ApplicationController
   def create
-    @booking = Booking.new(booking_params)
-    @booking.event = Event.find(params[:event_id])
-    @booking.user = current_user
-    if @booking.save
-      redirect_to event_path(@booking.event)
+    @event = Event.find(params[:event_id])
+    if @event.players_number > @event.bookings.count
+      @booking = @event.bookings.create(user: current_user, booking_status: "En attente de validation")
+      redirect_to event_path(@event), notice: "Votre demande de réservation a bien été prise en compte"
     else
-      render 'events/show'
+      redirect_to event_path(@event), alert: "Il n'y a plus de place disponible pour cet événement"
     end
   end
 
@@ -16,7 +15,7 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @bookings = Booking.all
+    @bookings = Booking.where(user: current_user)
   end
 
   def edit
@@ -24,8 +23,9 @@ class BookingsController < ApplicationController
 
   def update
     @booking = Booking.find(params[:id])
-    @booking.update(booking_params)
-    redirect_to booking_path(@booking)
+    @booking.update(booking_status: params[:booking_status])
+    redirect_to events_path if @booking.booking_status == "Acceptée"
+    redirect_to bookings_path if @booking.booking_status == "Refusée"
   end
 
   def destroy
