@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   get "settings", to: "pages#settings"
   patch "settings", to: "pages#update"
   get "contact", to: "pages#contact"
+  get "bookings", to: "bookings#index"
 
 end

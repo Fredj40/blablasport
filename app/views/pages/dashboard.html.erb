@@ -12,20 +12,36 @@
   <h2>Mes séances à venir</h2>
 </div>
 
-<div>
-  <ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Event Title</th>
+      <th>Event Date</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
     <% @bookings.each do |booking| %>
-      <%if booking.start_date >= Date.today %>
-        <ul>
-          <p>Séance : <%= booking.event.sport_name %></p>
-          <p>Date : <%= booking.date %></p>
-          <p><%= link_to "Voir details", booking_path(booking), class: "btn btn-outline-warning" %></p>
-        </ul>
+      <% if booking.event.date >= Date.today %>
+        <tr>
+          <td><%= booking.event.title %></td>
+          <td><%= booking.event.date %></td>
+          <td>
+            <% if booking.booking_status == "Rejetée" %>
+              <span class="badge-danger">Rejected</span>
+            <% elsif booking.booking_status == "Acceptée" %>
+              <span class="badge-success">Acceptée</span>
+            <% else %>
+              <span class="badge-warning">En attente de validation</span>
+            <% end %>
+          </td>
+          <td><%= link_to "Afficher", event_path(booking), class: "btn btn-outline-warning" %></td>
+        </tr>
       <% end %>
     <% end %>
-  </ul>
-</div>
-
+  </tbody>
+</table>
 
 <div>
   <h2>Mes séances passées</h2>
@@ -34,7 +50,7 @@
 <div>
   <ul>
     <% @bookings.each do |booking| %>
-      <%if booking.start_date < Date.today %>
+      <%if booking.event.date < Date.today %>
         <ul>
           <p>Séance : <%= booking.event.sport_name %></p>
           <p>date: <%= booking.date %></p>

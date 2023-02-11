@@ -15,7 +15,7 @@
     <li><p><strong>Email :</strong> <%= current_user.email %></p></li>
   </ul>
 
-<%= form_with(model: @booking) do |form| %>
+<%= form_with(model: [@event, @booking]) do |form| %>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <%= form.hidden_field :event_id, value: @event.id %>
   <%= form.submit "Book Event", class: "btn btn-outline-warning" %>

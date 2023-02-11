@@ -1,14 +1,12 @@
 <h1>Ta place est réservée !</h1>
-<%= form_with(model: @booking, url: event_bookings_path(@event), local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :event_id %>
-    <%= form.text_field :event_id, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.submit "Book Event", class: "btn btn-primary" %>
-  </div>
-<% end %>
+
+<h2>Informations sur l'événement</h2>
+  <ul>
+    <li><p><strong>Événement :</strong> <%= @event.title %></p></li>
+    <li><p><strong>Date :</strong> <%= @event.date %></p></li>
+    <li><p><strong>Adresse :</strong> <%= @event.address %></p></li>
+    <li><p><strong>Prix :</strong> <%= @event.price %> €</p></li>
+  </ul>
+
+<%= link_to "Evénements", events_path, class: "btn btn-outline-warning" %>
+<%= link_to "Dashboard", dashboard_path, class: "btn btn-outline-warning" %>

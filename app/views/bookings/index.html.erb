@@ -1,2 +1,21 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<h1>Réservations en attente</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.event.name %></td>
+        <td><%= booking.user.email %></td>
+        <td><%= link_to "Show", booking_path(booking) %></td>
+        <td><%= link_to "Edit", edit_booking_path(booking) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
