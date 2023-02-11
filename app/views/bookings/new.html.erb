@@ -1,4 +1,4 @@
-<h1>Réserve ta place pour <%= @event.title %></h1>
+<h1>Je réserve ma place</h1>
 
 <h2>Informations sur l'événement</h2>
   <ul>
@@ -8,7 +8,7 @@
     <li><p><strong>Prix :</strong> <%= @event.price %> €</p></li>
   </ul>
 
-<h2>Tes informations personnelles</h2>
+<h2>Mes informations personnelles</h2>
   <ul>
     <li><p><strong>Nom :</strong> <%= current_user.first_name %></p></li>
     <li><p><strong>Prénom :</strong> <%= current_user.last_name %></p></li>
@@ -18,5 +18,6 @@
 <%= form_with(model: [@event, @booking]) do |form| %>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <%= form.hidden_field :event_id, value: @event.id %>
-  <%= form.submit "Book Event", class: "btn btn-outline-warning" %>
+  <%= form.submit "Je m'inscris", class: "btn btn-outline-warning" %>
+  <%= link_to "Retour", event_path(@event), class: "btn btn-outline-secondary" %>
 <% end %>
