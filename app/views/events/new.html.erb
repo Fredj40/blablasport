@@ -8,7 +8,7 @@
           <%= f.input :sport_id, collection: Sport.all.map { |sport| [sport.sport_name, sport.id] }, label: "Choisis ton sport" %>
           <%# <%= f.input :title, label: "Titre" %>
           <%= f.input :players_number, label: "Place(s) disponible(s)" %>
-          <%= f.input :level, label: "Niveau minimum" %>
+          <%= f.input :level,  collection: ['Débutant','Intermédiaire','Confirmé'], label: "Niveau minimum requis" %>
           <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
           <%= f.input :price, label: "Prix" %>
           <%= f.input :date %>

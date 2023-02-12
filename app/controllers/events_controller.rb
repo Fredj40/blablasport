@@ -11,62 +11,58 @@ class EventsController < ApplicationController
     else
       @events = Event.all.order("date ASC, time ASC")
 
-    # User qui a créé des événements
-    @events.each do |event|
-      @user = event.user
-    end
-    # calculer la moyenne des notes de chaque event de l'user
-    @ratings = []
-    # # recuperer les notes de l'event sur lequel tu itères
-    @events.each do |event|
-      event.reviews.each do |review|
-        @ratings << review.rating # équivalent à @ratings << event.reviews.average(:rating)
+      # calculer la moyenne des notes de chaque user
+      @users = User.all
+      @ratings = []
+      @users.each do |user|
+        user.events.each do |event|
+          event.reviews.each do |review|
+            @ratings << review.rating
+          end
+        end
       end
-    end
-    # # calculer la moyenne des notes de l'user
-    @ratings = @ratings.compact
-    if @ratings.empty?
-      @user_rating = "Pas de note"
-    else
-      @user_rating = @ratings.sum / @ratings.size
-    end
+      @ratings = @ratings.compact
+      if @ratings.empty?
+        @user_rating = "Pas de note"
+      else
+        @user_rating = @ratings.sum / @ratings.size
+      end
 
     end
   end
 
   def show
     @event = Event.find(params[:id])
-
-    # User qui a créé l'événement
-    @user = @event.user
-    # calculer la moyenne des notes de chaque event de l'user
-    @ratings = []
-    # recuperer les notes de l'event sur lequel tu itères
-    @user.events.each do |event|
-      event.reviews.each do |review|
-        @ratings << review.rating # équivalent à @ratings << event.reviews.average(:rating)
-      end
-    end
-    # calculer la moyenne des notes de l'user
-    @ratings = @ratings.compact
-    if @ratings.empty?
-      @user_rating = "Pas de note"
-    else
-      @user_rating = @ratings.sum / @ratings.size
-    end
-
     @user = current_user
     @chatroom = Chatroom.find_by(event_id: @event.id)
     @review = Review.new
     @reviews = Review.all
     @message = Message.new
-    @has_already_reviewed = @reviews.where(user_id: @user.id, event_id: @event.id).exists?
     @markers = [{
       lat: @event.latitude,
       lng: @event.longitude,
       info_window_html: render_to_string(partial: "events/info_window_html", locals: {event: @event}),
       marker_html: render_to_string(partial: "marker")
     }]
+
+        # User qui a créé l'événement
+        @user = @event.user
+        # calculer la moyenne des notes de chaque event de l'user
+        @ratings = []
+        # recuperer les notes de l'event sur lequel tu itères
+        @user.events.each do |event|
+          event.reviews.each do |review|
+            @ratings << review.rating # équivalent à @ratings << event.reviews.average(:rating)
+          end
+        end
+        # calculer la moyenne des notes de l'user
+        @ratings = @ratings.compact
+        if @ratings.empty?
+          @user_rating = "Pas de note"
+        else
+          @user_rating = @ratings.sum / @ratings.size
+        end
+
   end
 
   def new
