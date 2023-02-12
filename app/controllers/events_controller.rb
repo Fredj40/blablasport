@@ -10,30 +10,50 @@ class EventsController < ApplicationController
       set_markers
     else
       @events = Event.all.order("date ASC, time ASC")
-      set_markers
+
+    # User qui a créé des événements
+    @events.each do |event|
+      @user = event.user
+    end
+    # calculer la moyenne des notes de chaque event de l'user
+    @ratings = []
+    # # recuperer les notes de l'event sur lequel tu itères
+    @events.each do |event|
+      event.reviews.each do |review|
+        @ratings << review.rating # équivalent à @ratings << event.reviews.average(:rating)
+      end
+    end
+    # # calculer la moyenne des notes de l'user
+    @ratings = @ratings.compact
+    if @ratings.empty?
+      @user_rating = "Pas de note"
+    else
+      @user_rating = @ratings.sum / @ratings.size
+    end
+
     end
   end
 
   def show
     @event = Event.find(params[:id])
+
     # User qui a créé l'événement
     @user = @event.user
-    # recupérer les events de l'user
-    @user_events = @user.events
     # calculer la moyenne des notes de chaque event de l'user
     @ratings = []
-    @user_events.each do |event|
-      # recuperer les notes de l'event sur lequel tu itères
-      @ratings << event.reviews.average(:rating)
-      # event.reviews.each do |review|
-      #   @ratings << review.ratings
-      # end
+    # recuperer les notes de l'event sur lequel tu itères
+    @user.events.each do |event|
+      event.reviews.each do |review|
+        @ratings << review.rating # équivalent à @ratings << event.reviews.average(:rating)
+      end
     end
     # calculer la moyenne des notes de l'user
-    # @ratings = @ratings.sum / @ratings.size !!!!!!!!!!!!!!
-
-    # Récuperer les reviews de l'événement
-    @reviews = @event.reviews
+    @ratings = @ratings.compact
+    if @ratings.empty?
+      @user_rating = "Pas de note"
+    else
+      @user_rating = @ratings.sum / @ratings.size
+    end
 
     @user = current_user
     @chatroom = Chatroom.find_by(event_id: @event.id)

@@ -4,7 +4,7 @@
 
       <h4><strong><%= @event.sport.sport_name.upcase %></strong>
       <span> - <%= @event.address.split.last %>, le <%= @event.date.strftime("%d/%m/%Y") %> à <%= @event.time.strftime("%kh%M") %></span><br></h4>
-      <h5>Créé par <strong><%= @event.user.first_name %></strong> (<%= @event.user.age %> ans, <%= @event.user.city %>) le <%=@event.created_at.strftime("%d/%m/%Y à %kh%M")%></h5>
+      <h5>Créé par <strong><%= @event.user.first_name %><%= @user_rating %></strong> (<%= @event.user.age %> ans, <%= @event.user.city %>) le <%=@event.created_at.strftime("%d/%m/%Y à %kh%M")%></h5>
       <%= @event.description %><br><br>
 
       <% if @event.players_number == 1 %>
@@ -102,7 +102,7 @@
             <% end %><br>
           <%= review.comment %><br><br>
         <% end %>
-      <% end %>
+      <% end %><br>s
 
       <% if @has_already_reviewed %>
         <h5>Vous avez déjà laissé un avis</h5>
