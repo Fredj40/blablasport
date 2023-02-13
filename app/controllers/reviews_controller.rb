@@ -16,12 +16,11 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @user = current_user
-  #   @review.user = @event
-  #   @review.destroy
-  #   redirect_to event_path(@event), status: :see_other
-  # end
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to event_path(@event)
+  end
 
   private
 

@@ -10,47 +10,68 @@ class EventsController < ApplicationController
       set_markers
     else
       @events = Event.all.order("date ASC, time ASC")
-      set_markers
+
+      # calculer la moyenne des notes de chaque user
+      @ratings = []
+      @events.each do |event|
+        @user_owner = event.user
+        @user_owner.reviews.each do |review|
+          @ratings << review.rating
+        end
+      end
+      @ratings = @ratings.compact
+      if @ratings.empty?
+        @user_rating = "Pas de note"
+      else
+        @user_rating = @ratings.sum / @ratings.size
+      end
+
     end
   end
 
   def show
     @event = Event.find(params[:id])
-    # User qui a créé l'événement
-    @user = @event.user
-    # recupérer les events de l'user
-    @user_events = @user.events
-    # calculer la moyenne des notes de chaque event de l'user
-    @ratings = []
-    @user_events.each do |event|
-      # recuperer les notes de l'event sur lequel tu itères
-      @ratings << event.reviews.average(:rating)
-      # event.reviews.each do |review|
-      #   @ratings << review.ratings
-      # end
-    end
-    # calculer la moyenne des notes de l'user
-    # @ratings = @ratings.sum / @ratings.size !!!!!!!!!!!!!!
-
-    # Récuperer les reviews de l'événement
-    @reviews = @event.reviews
-
     @user = current_user
     @chatroom = Chatroom.find_by(event_id: @event.id)
     @review = Review.new
     @reviews = Review.all
     @message = Message.new
-    @has_already_reviewed = @reviews.where(user_id: @user.id, event_id: @event.id).exists?
     @markers = [{
       lat: @event.latitude,
       lng: @event.longitude,
       info_window_html: render_to_string(partial: "events/info_window_html", locals: {event: @event}),
       marker_html: render_to_string(partial: "marker")
     }]
+
+        # User qui a créé l'événement
+        @user = @event.user
+        # calculer la moyenne des notes de chaque event de l'user
+        @ratings = []
+        # recuperer les notes de l'event sur lequel tu itères
+        @user.events.each do |event|
+          event.reviews.each do |review|
+            @ratings << review.rating # équivalent à @ratings << event.reviews.average(:rating)
+          end
+        end
+        # calculer la moyenne des notes de l'user
+        @ratings = @ratings.compact
+        if @ratings.empty?
+          @user_rating = "Pas de note"
+        else
+          @user_rating = @ratings.sum / @ratings.size
+        end
+        # calculer le nombre de notes de l'user
+        @user_reviews = @user.events.map { |event| event.reviews.count }.sum
+        # calculer le nombre d'événements de l'user
+        @user_events = @user.events.count
   end
 
   def new
     @event = Event.new
+    # récupérer les sports
+    @list = Sport.all.map { |sport| [sport.sport_name, sport.id] }
+    # classer les sports par ordre alphabétique
+    @ordered_list = @list.sort_by! { |sport| sport[0] }
   end
 
   def create

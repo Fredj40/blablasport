@@ -6,15 +6,18 @@ Sport.destroy_all
 p 'Database cleaned'
 
 p "Creating Users..."
-@user1 = User.create!(email: "test@test.com", first_name: "Romain", last_name: "Weyrich", password: "123456", password_confirmation: "123456", age: "32", phone_number: "0606060606", sex: "Homme", address: "rue de la Paix", zip_code: "1018", city: "Lausanne", user_description: "fan de foot")
-@user2 = User.create!(email: "test1@test.com", first_name: "Alex", last_name: "Dionisio", password: "123456", password_confirmation: "123456", age: "32", phone_number: "0606060607", sex:"Homme", address: "rue Victor Hugo", zip_code: "13005", city: "Marseille", user_description: "fan de tennis")
-@user3 = User.create!(email: "test2@test.com", first_name: "Fred", last_name: "Jeanne", password: "123456", password_confirmation: "123456", age: "40", phone_number: "0606060608", sex:"Homme", address: "rue Romain Weyrich", zip_code: "40100", city: "Dax", user_description: "fan de badminton")
-@user4 = User.create!(email: "test3@test.com", first_name: "Jeff", last_name: "Tuche", password: "123456", password_confirmation: "123456", age: "25", phone_number: "0606060609", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
-@user5 = User.create!(email: "test4@test.com", first_name: "Mickey", last_name: "Mouse", password: "123456", password_confirmation: "123456", age: "58", phone_number: "0606060610", sex: "Femme", address: "rue de la Paix", zip_code: "75001", city: "Paris", user_description: "fan de foot")
-@user6 = User.create!(email: "test5@test.com", first_name: "François", last_name: "Pignon", password: "123456", password_confirmation: "123456", age: "40", phone_number: "0606060611", sex:"Homme", address: "rue Victor Hugo", zip_code: "1018", city: "Lausanne", user_description: "fan de tennis")
-@user7 = User.create!(email: "test6@test.com", first_name: "Kylian", last_name: "Mbappé", password: "123456", password_confirmation: "123456", age: "75", phone_number: "0606060612", sex:"Homme", address: "rue Romain Weyrich", zip_code: "13005", city: "Marseille", user_description: "fan de badminton")
-@user8 = User.create!(email: "test7@test.com", first_name: "Scarlett", last_name: "Johansson", password: "123456", password_confirmation: "123456", age: "7", phone_number: "0606060613", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
-p "8 users created"
+@user1 = User.create!(email: "test1@test.com", first_name: "Romain", last_name: "Weyrich", password: "123456", password_confirmation: "123456", age: "32", phone_number: "0606060606", sex: "Homme", address: "rue de la Paix", zip_code: "1018", city: "Lausanne", user_description: "fan de foot")
+@user2 = User.create!(email: "test2@test.com", first_name: "Alex", last_name: "Dionisio", password: "123456", password_confirmation: "123456", age: "32", phone_number: "0606060607", sex:"Homme", address: "rue Victor Hugo", zip_code: "13005", city: "Marseille", user_description: "fan de tennis")
+@user3 = User.create!(email: "test3@test.com", first_name: "Fred", last_name: "Jeanne", password: "123456", password_confirmation: "123456", age: "40", phone_number: "0606060608", sex:"Homme", address: "rue Romain Weyrich", zip_code: "40100", city: "Dax", user_description: "fan de badminton")
+@user4 = User.create!(email: "test4@test.com", first_name: "Jeff", last_name: "Tuche", password: "123456", password_confirmation: "123456", age: "42", phone_number: "0606060609", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
+@user5 = User.create!(email: "test5@test.com", first_name: "Mickey", last_name: "Mouse", password: "123456", password_confirmation: "123456", age: "95", phone_number: "0606060610", sex: "Femme", address: "rue de la Paix", zip_code: "75001", city: "Paris", user_description: "fan de foot")
+@user6 = User.create!(email: "test6@test.com", first_name: "François", last_name: "Pignon", password: "123456", password_confirmation: "123456", age: "60", phone_number: "0606060611", sex:"Homme", address: "rue Victor Hugo", zip_code: "1018", city: "Lausanne", user_description: "fan de tennis")
+@user7 = User.create!(email: "test7@test.com", first_name: "Kylian", last_name: "Mbappé", password: "123456", password_confirmation: "123456", age: "23", phone_number: "0606060612", sex:"Homme", address: "rue Romain Weyrich", zip_code: "13005", city: "Marseille", user_description: "fan de badminton")
+@user8 = User.create!(email: "test8@test.com", first_name: "Scarlett", last_name: "Johansson", password: "123456", password_confirmation: "123456", age: "30", phone_number: "0606060613", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
+@user9 = User.create!(email: "test9@test.com", first_name: "James", last_name: "Bond", password: "123456", password_confirmation: "123456", age: "35", phone_number: "0606060614", sex:"Homme", address: "rue ", zip_code: "14000", city: "Caen", user_description: "fan d'espionnage")
+@user10 = User.create!(email: "test10@test.com", first_name: "Brigitte", last_name: "Macron", password: "123456", password_confirmation: "123456", age: "71", phone_number: "0606060615", sex:"Homme", address: "rue ", zip_code: "35000", city: "Rennes", user_description: "fan d'Ultimate")
+@user11 = User.create!(email: "test11@test.com", first_name: "Max", last_name: "Verstappen", password: "123456", password_confirmation: "123456", age: "22", phone_number: "0606060616", sex:"Homme", address: "rue ", zip_code: "44000", city: "Nantes", user_description: "fan de voiture")
+p "#{User.count} users created"
 
 p "Creating Sports..."
 @sport1 = Sport.create!(sport_name: "Football")
@@ -56,26 +59,26 @@ p "Creating Sports..."
 @sport37 = Sport.create!(sport_name: "Jeu de paume")
 @sport38 = Sport.create!(sport_name: "Danse")
 @sport39 = Sport.create!(sport_name: "Squash")
-p "39 Sports created"
+p "#{Sport.count} Sports created"
 
 p "Creating Events..."
-event1 = Event.create!(title: "5vs5", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, ", date: "2023-02-08", time: "10:00:00", price: "8", address: "rue Oberkampf, Paris", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport1, age_mini: "7", age_maxi: "")
-event2 = Event.create!(title: "Entre filles", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-09", time: "11:00:00", price: "0", address: "Route des Plaines du Loup 7, Lausanne", level: "ATP", players_number: "3", duration: "120", user: @user2, sport: @sport2, age_mini: "16", age_maxi: "")
-event3 = Event.create!(title: "1vs1 minimum", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-10", time: "12:00:00", price: "7", address: "3 Bd Michelet, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport39, age_mini: "18", age_maxi: "")
-event4 = Event.create!(title: "3vs3 ou plus", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-02-11", time: "13:00:00", price: "0", address: "12 Rue de l'Extenwoerth, Strasbourg", level: "Débutant", players_number: "6", duration: "60", user: @user4, sport: @sport4, age_mini: "7", age_maxi: "")
-event5 = Event.create!(title: "4vs4", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-11", time: "10:00:00", price: "8", address: "35 Rue du Chevalier de la Barre, Paris", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport4, age_mini: "", age_maxi: "")
-event6 = Event.create!(title: "1vs1 minimum", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-12", time: "11:00:00", price: "0", address: "Allée des Evadés, Peyrehorade", level: "ATP", players_number: "3", duration: "120", user: @user2, sport: @sport3, age_mini: "18", age_maxi: "30")
-event7 = Event.create!(title: "A mon domicile", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-13", time: "12:00:00", price: "7", address: "Quatre Chemins de Montolivet, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport17)
-event8 = Event.create!(title: "5vs5", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-14", time: "13:00:00", price: "0", address: "Petite Rue d'Austerlitz, Strasbourg", level: "Débutant", players_number: "6", duration: "60", user: @user4, sport: @sport1, age_mini: "", age_maxi: "40")
-event9 = Event.create!(title: "Très Urgent", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-16", time: "10:00:00", price: "8", address: "rue Danielle Casanova, Saint-Denis", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport30, age_mini: "16", age_maxi: "25")
-event10 = Event.create!(title: "En salle", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-15", time: "11:00:00", price: "0", address: "Avenue 8 Mai 1945, Bayonne", level: "Intermédiaire", players_number: "3", duration: "120", user: @user2, sport: @sport20, age_mini: "", age_maxi: "")
-event11 = Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-17", time: "12:00:00", price: "7", address: "225 avenue Ibrahim Ali, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport15, age_mini: "", age_maxi: "50")
-event12 = Event.create!(title: "En salle", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-18", time: "13:00:00", price: "0", address: "2 rue de Zurich, Colmar", level: "Débutant", players_number: "3", duration: "60", user: @user4, sport: @sport10, age_mini: "", age_maxi: "")
-event13 = Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-17", time: "10:00:00", price: "8", address: "route de trompe, Peyrehorade", level: "Normal", players_number: "2", duration: "80", user: @user5, sport: @sport32, age_mini: "16", age_maxi: "50")
-event14 = Event.create!(title: "Tous les lundis", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-20", time: "11:00:00", price: "0", address: "Place de la Concorde, Paris", level: "Professionel", players_number: "1", duration: "120", user: @user6, sport: @sport34, age_mini: "", age_maxi: "")
-event15 = Event.create!(title: "Bières offertes !", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-20", time: "12:00:00", price: "7", address: "Champs Elysées, Paris", level: "Expérimenté", players_number: "1", duration: "60", user: @user7, sport: @sport16, age_mini: "", age_maxi: "45")
-event16 = Event.create!(title: "En extérieur", description: "Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500", date: "2023-03-20", time: "13:00:00", price: "0", address: "197 ancienne route du Grès, Orange", level: "Débutant", players_number: "4", duration: "60", user: @user8, sport: @sport19, age_mini: "3", age_maxi: "")
-p "16 Events created"
+event1 = Event.create!(title: "5vs5", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-02-08", time: "10:00:00", price: "8", address: "rue Oberkampf, Paris", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport1, age_mini: "7", age_maxi: "")
+event2 = Event.create!(title: "Entre filles", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-02-09", time: "11:00:00", price: "0", address: "Route des Plaines du Loup 7, Lausanne", level: "ATP", players_number: "3", duration: "120", user: @user2, sport: @sport2, age_mini: "16", age_maxi: "")
+event3 = Event.create!(title: "1vs1 minimum", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-02-10", time: "12:00:00", price: "7", address: "3 Bd Michelet, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport39, age_mini: "18", age_maxi: "")
+event4 = Event.create!(title: "3vs3 ou plus", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-02-11", time: "13:00:00", price: "0", address: "12 Rue de l'Extenwoerth, Strasbourg", level: "Débutant", players_number: "6", duration: "60", user: @user4, sport: @sport4, age_mini: "7", age_maxi: "")
+event5 = Event.create!(title: "4vs4", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-02-12", time: "10:00:00", price: "8", address: "35 Rue du Chevalier de la Barre, Paris", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport4, age_mini: "", age_maxi: "")
+event6 = Event.create!(title: "1vs1 minimum", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-12", time: "11:00:00", price: "0", address: "Allée des Evadés, Peyrehorade", level: "ATP", players_number: "3", duration: "120", user: @user2, sport: @sport3, age_mini: "18", age_maxi: "30")
+event7 = Event.create!(title: "A mon domicile", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-13", time: "12:00:00", price: "7", address: "Quatre Chemins de Montolivet, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport17)
+event8 = Event.create!(title: "5vs5", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-14", time: "13:00:00", price: "0", address: "Petite Rue d'Austerlitz, Strasbourg", level: "Débutant", players_number: "6", duration: "60", user: @user4, sport: @sport1, age_mini: "", age_maxi: "40")
+event9 = Event.create!(title: "Très Urgent", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-16", time: "10:00:00", price: "8", address: "rue Danielle Casanova, Saint-Denis", level: "Normal", players_number: "8", duration: "80", user: @user1, sport: @sport30, age_mini: "16", age_maxi: "25")
+event10 = Event.create!(title: "En salle", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-15", time: "11:00:00", price: "0", address: "Avenue 8 Mai 1945, Bayonne", level: "Intermédiaire", players_number: "3", duration: "120", user: @user2, sport: @sport20, age_mini: "", age_maxi: "")
+event11 = Event.create!(title: "En extérieur", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-17", time: "12:00:00", price: "7", address: "225 avenue Ibrahim Ali, Marseille", level: "Expérimenté", players_number: "1", duration: "60", user: @user3, sport: @sport15, age_mini: "", age_maxi: "50")
+event12 = Event.create!(title: "En salle", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-18", time: "13:00:00", price: "0", address: "2 rue de Zurich, Colmar", level: "Débutant", players_number: "3", duration: "60", user: @user4, sport: @sport10, age_mini: "", age_maxi: "")
+event13 = Event.create!(title: "En extérieur", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-17", time: "10:00:00", price: "8", address: "route de trompe, Peyrehorade", level: "Normal", players_number: "2", duration: "80", user: @user5, sport: @sport32, age_mini: "16", age_maxi: "50")
+event14 = Event.create!(title: "Tous les lundis", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-20", time: "11:00:00", price: "0", address: "Place de la Concorde, Paris", level: "Professionel", players_number: "1", duration: "120", user: @user6, sport: @sport34, age_mini: "", age_maxi: "")
+event15 = Event.create!(title: "Bières offertes !", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-20", time: "12:00:00", price: "7", address: "Champs Elysées, Paris", level: "Expérimenté", players_number: "1", duration: "60", user: @user7, sport: @sport16, age_mini: "", age_maxi: "45")
+event16 = Event.create!(title: "En extérieur", description: "Nouveau dans la région, je cherche des joueurs pour continuer à pratiquer ce sport que j'adore !", date: "2023-03-20", time: "13:00:00", price: "0", address: "197 ancienne route du Grès, Orange", level: "Débutant", players_number: "4", duration: "60", user: @user8, sport: @sport19, age_mini: "3", age_maxi: "")
+p "#{Event.count} Events created"
 
 p "Creating chatrooms..."
 Chatroom.create!(event_id: event1.id)
@@ -94,9 +97,67 @@ Chatroom.create!(event_id: event13.id)
 Chatroom.create!(event_id: event14.id)
 Chatroom.create!(event_id: event15.id)
 Chatroom.create!(event_id: event16.id)
-p "16 Chatrooms created"
+p "#{Chatroom.count} Chatrooms created"
 
+p 'Creating bookings...'
+Booking.create!(event_id: event1.id, user_id: @user6.id, booking_status: "Acceptée")
+Booking.create!(event_id: event1.id, user_id: @user2.id, booking_status: "Acceptée")
+Booking.create!(event_id: event1.id, user_id: @user3.id, booking_status: "Refusée")
+Booking.create!(event_id: event1.id, user_id: @user4.id, booking_status: "Acceptée")
+Booking.create!(event_id: event1.id, user_id: @user5.id, booking_status: "Acceptée")
+Booking.create!(event_id: event1.id, user_id: @user7.id, booking_status: "Acceptée")
+Booking.create!(event_id: event1.id, user_id: @user8.id, booking_status: "Acceptée")
+Booking.create!(event_id: event1.id, user_id: @user9.id, booking_status: "Acceptée")
+Booking.create!(event_id: event1.id, user_id: @user10.id, booking_status: "Acceptée")
 
+Booking.create!(event_id: event2.id, user_id: @user5.id, booking_status: "Acceptée")
+Booking.create!(event_id: event2.id, user_id: @user3.id, booking_status: "Acceptée")
+Booking.create!(event_id: event2.id, user_id: @user4.id, booking_status: "Acceptée")
+Booking.create!(event_id: event2.id, user_id: @user1.id, booking_status: "Refusée")
+
+Booking.create!(event_id: event3.id, user_id: @user1.id, booking_status: "Acceptée")
+Booking.create!(event_id: event3.id, user_id: @user2.id, booking_status: "Refusée")
+
+Booking.create!(event_id: event4.id, user_id: @user1.id, booking_status: "Acceptée")
+Booking.create!(event_id: event4.id, user_id: @user2.id, booking_status: "Acceptée")
+Booking.create!(event_id: event4.id, user_id: @user3.id, booking_status: "Refusée")
+Booking.create!(event_id: event4.id, user_id: @user7.id, booking_status: "Acceptée")
+Booking.create!(event_id: event4.id, user_id: @user5.id, booking_status: "Acceptée")
+Booking.create!(event_id: event4.id, user_id: @user6.id, booking_status: "Acceptée")
+Booking.create!(event_id: event4.id, user_id: @user8.id, booking_status: "Acceptée")
+
+Booking.create!(event_id: event5.id, user_id: @user3.id, booking_status: "Acceptée")
+Booking.create!(event_id: event5.id, user_id: @user4.id, booking_status: "Refusée")
+Booking.create!(event_id: event5.id, user_id: @user1.id, booking_status: "Acceptée")
+Booking.create!(event_id: event5.id, user_id: @user6.id, booking_status: "Acceptée")
+Booking.create!(event_id: event5.id, user_id: @user7.id, booking_status: "Acceptée")
+Booking.create!(event_id: event5.id, user_id: @user8.id, booking_status: "Acceptée")
+Booking.create!(event_id: event5.id, user_id: @user9.id, booking_status: "Acceptée")
+Booking.create!(event_id: event5.id, user_id: @user10.id, booking_status: "Acceptée")
+Booking.create!(event_id: event5.id, user_id: @user2.id, booking_status: "Acceptée")
+
+Booking.create!(event_id: event6.id, user_id: @user1.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event7.id, user_id: @user2.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event8.id, user_id: @user3.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event9.id, user_id: @user4.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event10.id, user_id: @user5.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event11.id, user_id: @user6.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event12.id, user_id: @user7.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event13.id, user_id: @user8.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event14.id, user_id: @user9.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event15.id, user_id: @user10.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event16.id, user_id: @user11.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event6.id, user_id: @user2.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event7.id, user_id: @user3.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event8.id, user_id: @user4.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event9.id, user_id: @user5.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event10.id, user_id: @user6.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event11.id, user_id: @user7.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event12.id, user_id: @user8.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event13.id, user_id: @user9.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event14.id, user_id: @user10.id, booking_status: "En attente de validation")
+Booking.create!(event_id: event15.id, user_id: @user11.id, booking_status: "En attente de validation")
+p "#{Booking.count} bookings created "
 
 # campnou = Stadium.create!(user_id: @user.id, name: "Camp Nou", location: "Barcelona", energy_class: "C", stadium_description: "zzz", capacity: 99354, price: 49000)
 # campnou.pictures.attach(picture1)
