@@ -1,23 +1,29 @@
-<h1>Je réserve ma place</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <h1>Je réserve ma place</h1>
 
-<h2>Informations sur l'événement</h2>
-  <ul>
-    <li><p><strong>Événement :</strong> <%= @event.title %></p></li>
-    <li><p><strong>Date :</strong> <%= @event.date %></p></li>
-    <li><p><strong>Adresse :</strong> <%= @event.address %></p></li>
-    <li><p><strong>Prix :</strong> <%= @event.price %> €</p></li>
-  </ul>
+      <h2>Informations sur l'événement</h2>
+        <ul>
+          <li><p><strong>Événement :</strong> <%= @event.title %></p></li>
+          <li><p><strong>Date :</strong> <%= @event.date %></p></li>
+          <li><p><strong>Adresse :</strong> <%= @event.address %></p></li>
+          <li><p><strong>Prix :</strong> <%= @event.price %> €</p></li>
+        </ul>
 
-<h2>Mes informations personnelles</h2>
-  <ul>
-    <li><p><strong>Nom :</strong> <%= current_user.first_name %></p></li>
-    <li><p><strong>Prénom :</strong> <%= current_user.last_name %></p></li>
-    <li><p><strong>Email :</strong> <%= current_user.email %></p></li>
-  </ul>
+      <h2>Mes informations personnelles</h2>
+        <ul>
+          <li><p><strong>Nom :</strong> <%= current_user.first_name %></p></li>
+          <li><p><strong>Prénom :</strong> <%= current_user.last_name %></p></li>
+          <li><p><strong>Email :</strong> <%= current_user.email %></p></li>
+        </ul>
 
-<%= form_with(model: [@event, @booking]) do |form| %>
-  <%= form.hidden_field :user_id, value: current_user.id %>
-  <%= form.hidden_field :event_id, value: @event.id %>
-  <%= form.submit "Je m'inscris", class: "btn btn-outline-warning" %>
-  <%= link_to "Retour", event_path(@event), class: "btn btn-outline-secondary" %>
-<% end %>
+      <%= form_with(model: [@event, @booking]) do |form| %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.hidden_field :event_id, value: @event.id %>
+        <%= form.submit "Je m'inscris", class: "btn btn-outline-warning" %>
+        <%= link_to "Retour", event_path(@event), class: "btn btn-outline-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

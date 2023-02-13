@@ -1,91 +1,99 @@
-<h1>Mon tableau de bord</h1><br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <h1>Mon tableau de bord</h1><br>
 
-<% if @bookings.empty?  %>
-  <p>Tu n'es inscrit à aucun événement</p>
-<%else%>
-  <h4>Vous avez <%= @bookings.count %> réservation(s)</h4><br>
-<% end %>
-
-<div>
-  <h1>Toutes mes inscriptions</h1><br>
-</div>
-
-<div>
-  <h2>Mes séances à venir</h2>
-</div>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Séance</th>
-      <th>Lieu</th>
-      <th>Date</th>
-      <th>Heure</th>
-      <th>Statut</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <% if booking.event.date >= Date.today %>
-        <tr>
-          <td><%= booking.event.sport.sport_name %></td>
-          <td><%= booking.event.address.split.last %></td>
-          <td><%= booking.event.date.strftime("%d/%m/%Y") %></td>
-          <td><%= booking.event.time.strftime("%kh%M") %></td>
-          <td>
-            <% if booking.booking_status == "Rejetée" %>
-              <span class="badge-danger">Rejetée</span>
-            <% elsif booking.booking_status == "Acceptée" %>
-              <span class="badge-success">Acceptée</span>
-            <% else %>
-              <span class="badge-warning">En attente de validation</span>
-            <% end %>
-          </td>
-          <td><%= link_to "Afficher", event_path(booking), class: "btn btn-outline-warning" %></td>
-        </tr>
+      <% if @bookings.empty?  %>
+        <p>Tu n'es inscrit à aucun événement</p>
+      <% elsif @bookings.count == 1 %>
+        <h4>Tu t'es inscrit à 1 événement</h4><br>
+      <% else %>
+        <h4>Tu t'es inscrit à <%= @bookings.count %> événements</h4><br>
       <% end %>
-    <% end %>
-  </tbody>
-</table><br>
 
-<div>
-  <h2>Mes séances passées</h2>
-</div>
+      <div>
+        <h2>Toutes mes inscriptions</h2><br>
+      </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Séance</th>
-      <th>Lieu</th>
-      <th>Date</th>
-      <th>Heure</th>
-      <th>Statut</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <% if booking.event.date < Date.today %>
-        <tr>
-          <td><%= booking.event.sport.sport_name %></td>
-          <td><%= booking.event.address.split.last %></td>
-          <td><%= booking.event.date.strftime("%d/%m/%Y") %></td>
-          <td><%= booking.event.time.strftime("%kh%M") %></td>
-          <td>
-            <% if booking.booking_status == "Rejetée" %>
-              <span class="badge-danger">Rejetée</span>
-            <% elsif booking.booking_status == "Acceptée" %>
-              <span class="badge-success">Acceptée</span>
-            <% else %>
-              <span class="badge-warning">En attente de validation</span>
+      <div>
+        <h3>Mes séances à venir</h3>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Séance</th>
+            <th>Lieu</th>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Statut</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bookings.each do |booking| %>
+            <% if booking.event.date >= Date.today %>
+              <tr>
+                <td><%= booking.event.sport.sport_name %></td>
+                <td><%= booking.event.address.split.last %></td>
+                <td><%= booking.event.date.strftime("%d/%m/%Y") %></td>
+                <td><%= booking.event.time.strftime("%kh%M") %></td>
+                <td>
+                  <% if booking.booking_status == "Rejetée" %>
+                    <span class="badge-danger">Rejetée</span>
+                  <% elsif booking.booking_status == "Acceptée" %>
+                    <span class="badge-success">Acceptée</span>
+                  <% else %>
+                    <span class="badge-warning">En attente de validation</span>
+                  <% end %>
+                </td>
+                <td><%= link_to "Afficher", event_path(booking), class: "btn btn-outline-warning" %></td>
+              </tr>
             <% end %>
-          </td>
-          <td><%= link_to "Afficher", event_path(booking), class: "btn btn-outline-warning" %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+          <% end %>
+        </tbody>
+      </table><br>
 
-<div><%= link_to "Retourner à mon profil", events_path, class: "btn btn-outline-warning" %></h3></div><br>
+      <div>
+        <h3>Mes séances passées</h3>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Séance</th>
+            <th>Lieu</th>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Statut</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bookings.each do |booking| %>
+            <% if booking.event.date < Date.today %>
+              <tr>
+                <td><%= booking.event.sport.sport_name %></td>
+                <td><%= booking.event.address.split.last %></td>
+                <td><%= booking.event.date.strftime("%d/%m/%Y") %></td>
+                <td><%= booking.event.time.strftime("%kh%M") %></td>
+                <td>
+                  <% if booking.booking_status == "Rejetée" %>
+                    <span class="badge-danger">Rejetée</span>
+                  <% elsif booking.booking_status == "Acceptée" %>
+                    <span class="badge-success">Acceptée</span>
+                  <% else %>
+                    <span class="badge-warning">En attente de validation</span>
+                  <% end %>
+                </td>
+                <td><%= link_to "Afficher", event_path(booking), class: "btn btn-outline-warning" %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div><%= link_to "Retour", events_path, class: "btn btn-outline-warning" %></h3></div><br>
+    </div>
+  </div>
+</div>

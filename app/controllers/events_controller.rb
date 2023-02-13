@@ -10,6 +10,7 @@ class EventsController < ApplicationController
       set_markers
     else
       @events = Event.all.order("date ASC, time ASC")
+      set_markers
 
       # calculer la moyenne des notes de chaque user
       @ratings = []

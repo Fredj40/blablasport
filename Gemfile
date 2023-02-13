@@ -16,6 +16,18 @@ gem "cloudinary"
 
 gem "redis", "~> 4.0"
 
+gem 'activeadmin'
+# Plus integrations with:
+gem 'active_admin_theme'
+gem 'active_skin'
+gem 'active-admin-skin'
+gem 'active_admin_flat_skin'
+gem 'bootstrap-sass'
+gem 'active_bootstrap_skin'
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

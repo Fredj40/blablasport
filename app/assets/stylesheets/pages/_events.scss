@@ -1,10 +1,13 @@
 .banner {
-  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1675980887/ijft0rfuguveonmh1ypd.png");
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676307770/e9exsyio6mgbv2sraswe.jpg");
   background-size: cover;
-
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 500px;
+  border-bottom: 1px solid #e98b2a;
 }
 .banner img {
-  margin-top: 1em;
+  margin-top: 9em;
 }
 .form_search {
   font-family: 'PT Sans', sans-serif;
@@ -28,4 +31,9 @@
 .h5-star {
   color: #d09d76;
   font-size: 12px;
+}
+#map {
+  border: 1px solid #e98b2a;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
