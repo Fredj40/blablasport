@@ -12,13 +12,11 @@ class EventsController < ApplicationController
       @events = Event.all.order("date ASC, time ASC")
 
       # calculer la moyenne des notes de chaque user
-      @users = User.all
       @ratings = []
-      @users.each do |user|
-        user.events.each do |event|
-          event.reviews.each do |review|
-            @ratings << review.rating
-          end
+      @events.each do |event|
+        @user_owner = event.user
+        @user_owner.reviews.each do |review|
+          @ratings << review.rating
         end
       end
       @ratings = @ratings.compact
@@ -62,11 +60,18 @@ class EventsController < ApplicationController
         else
           @user_rating = @ratings.sum / @ratings.size
         end
-
+        # calculer le nombre de notes de l'user
+        @user_reviews = @user.events.map { |event| event.reviews.count }.sum
+        # calculer le nombre d'événements de l'user
+        @user_events = @user.events.count
   end
 
   def new
     @event = Event.new
+    # récupérer les sports
+    @list = Sport.all.map { |sport| [sport.sport_name, sport.id] }
+    # classer les sports par ordre alphabétique
+    @ordered_list = @list.sort_by! { |sport| sport[0] }
   end
 
   def create
