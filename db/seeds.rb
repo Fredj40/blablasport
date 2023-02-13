@@ -3,6 +3,7 @@ User.destroy_all
 Event.destroy_all
 Chatroom.destroy_all
 Sport.destroy_all
+AdminUser.destroy_all
 p 'Database cleaned'
 
 p "Creating Users..."
@@ -18,6 +19,11 @@ p "Creating Users..."
 @user10 = User.create!(email: "test10@test.com", first_name: "Brigitte", last_name: "Macron", password: "123456", password_confirmation: "123456", age: "71", phone_number: "0606060615", sex:"Homme", address: "rue ", zip_code: "35000", city: "Rennes", user_description: "fan d'Ultimate")
 @user11 = User.create!(email: "test11@test.com", first_name: "Max", last_name: "Verstappen", password: "123456", password_confirmation: "123456", age: "22", phone_number: "0606060616", sex:"Homme", address: "rue ", zip_code: "44000", city: "Nantes", user_description: "fan de voiture")
 p "#{User.count} users created"
+
+AdminUser.create!(email: 'romainweyrich90@gmail.com',password: "admini", password_confirmation: "admini")
+AdminUser.create!(email: 'alx.dionisio@gmail.com', password: "admini", password_confirmation: "admini")
+AdminUser.create!(email: 'fredericjeanne@gmail.com ', password: "admini", password_confirmation: "admini")
+p "3 administators created"
 
 p "Creating Sports..."
 @sport1 = Sport.create!(sport_name: "Football")
@@ -429,6 +435,13 @@ p "#{Booking.count} bookings created "
 # picture40 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'pelouse.jpg',
+#   content_type: 'image/jpg'
+# )
+# image_path = Rails.root.join("app/assets/images/background/blablasport30.jpg")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture41 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'blablasport30.jpg',
 #   content_type: 'image/jpg'
 # )
 # puts "images uploaded..."

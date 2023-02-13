@@ -1,14 +1,15 @@
 
 <div class="banner">
-  <div class="d-flex justify-content-center"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 115, width: 210, alt: "Logo blablasport" %></div>
+  <div class="d-flex justify-content-center"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 200, alt: "Logo blablasport" %></div>
   <div class="d-flex justify-content-center"><h1>LE RESEAU SPORTIF</h1></div><br><br>
-  <div class="d-flex justify-content-center"><%= link_to "J'ajoute une partie", new_event_path, class: "btn btn-warning" %></div><br>
-</div>
+  <div class="d-flex justify-content-center"><h6>L'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs !</h6></div>
+</div><br>
 
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
 
+      <div class="d-flex justify-content-center"><%= link_to "Je cherche des joueurs", new_event_path, class: "btn btn-outline-warning" %></div>
       <div class="d-flex justify-content-center">
         <div class="form_search">
           <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
@@ -17,7 +18,7 @@
         </div>
       </div>
 
-      <div class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div><br>
+      <div id="map" class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div><br>
 
       <div>
         <h1>A venir : </h1><br>

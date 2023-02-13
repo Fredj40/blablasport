@@ -1,0 +1,79 @@
+#nav {
+  background-color: white;
+  border-bottom: 1px solid #e98b2a;
+  border-top: 1px solid #e98b2a;
+  padding: 0;
+  font-family: "PT sans", sans-serif;
+  font-weight: bold;
+}
+
+.nav_left {
+  background-color: #d09d76;
+  color: white;
+  border-top-left-radius: 48px;
+  border-bottom-left-radius: 48px;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: transparent;
+  border-color: transparent;
+  border-top: 4px solid #C95014;
+  color: #C95014;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin: 0 30px 0 40px;
+  color: white;
+}
+
+.nav-tabs {
+  border-bottom: none;
+}
+
+.nav-link {
+  padding: 1rem 0.5rem;
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: #C95014;
+}
+
+.search_input {
+  width:100%;
+  border-radius: 10px;
+  border: none;
+  line-height: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: #d09d76;
+}
+
+.search_input:focus-visible {
+  outline: none;
+}
+
+input.search_input::placeholder {
+  color: #cfd2ec;
+  vertical-align: middle;
+}
+
+.search_img {
+  top: 7px;
+  right: 8px;
+}
+
+.navbar-toggler {
+  border: 3px solid #d09d76;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(35, 76, 203, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}

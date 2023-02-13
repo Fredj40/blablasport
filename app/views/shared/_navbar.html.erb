@@ -1,53 +1,45 @@
-<nav class="navbar navbar-expand-lg sticky-top" style="background-color: #d09d76;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/events">BlaBlaSport</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<nav id="nav" class="navbar sticky-top navbar-expand-lg py-2 ">
+  <div class="pe-lg-0 ps-lg-5 container-fluid justify-content-between">
+    <a class="navbar-brand" href="/events">
+        <img src="https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png" height="70" alt="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-        <%# <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Page d'accueil</a>
-        </li> %>
-        <li class="nav-item">
-          <a class="nav-link" <%= link_to "Paris", events_path(search:"Paris") %></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" <%= link_to "Marseille", events_path(search:"Marseille") %></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" <%= link_to "Strasbourg", events_path(search:"Strasbourg") %></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" <%= link_to "Lausanne", events_path(search:"Lausanne") %></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" <%= link_to "Peyrehorade", events_path(search:"Peyrehorade") %></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" <%= link_to "J'ajoute une partie", new_event_path %></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href=""></a>
-        </li>
-      </ul>
-      <% if user_signed_in? %>
-        <div class="nav-item dropdown">
-          <%=current_user.full_name %>
-          <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
-            <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
-            <%= link_to "Mes paramètres", settings_path, class: "dropdown-item" %>
-            <%= link_to "Mes amis", settings_path, class: "dropdown-item" %>
-            <%= link_to "Contacts", settings_path, class: "dropdown-item" %>
-            <%= link_to "Me deconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <div class="nav_left d-lg-flex align-items-center">
+        <div class="nav d-block d-lg-flex nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+            type="button" role="tab" aria-controls="home" aria-selected="true">Accueil</button>
+          <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
+            type="button" role="tab" aria-controls="about" aria-selected="false">Nouvelle Partie</button>
+          <button class="nav-link" id="timing-tab" data-bs-toggle="tab" data-bs-target="#timing"
+            type="button" role="tab" aria-controls="timing" aria-selected="false">Recherche Ville</button>
+          <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
+            type="button" role="tab" aria-controls="courses" aria-selected="false">Mes Amis</button>
+          <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
+            type="button" role="tab" aria-controls="courses" aria-selected="false">Nous Contacter</button>
+          <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
+            type="button" role="tab" aria-controls="courses" aria-selected="false">A propos de nous</button>
+          <% if user_signed_in? %>
+            <div class="nav-link">
+              <%=current_user.full_name %>
+              <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
+                <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
+                <%= link_to "Mes paramètres", settings_path, class: "dropdown-item" %>
+                <%= link_to "Mes amis", settings_path, class: "dropdown-item" %>
+                <%= link_to "Contacts", settings_path, class: "dropdown-item" %>
+                <%= link_to "Me deconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              </div>
+            </div>
+          <% else %>
+            <%= link_to "CONNEXION", new_user_session_path, class: "nav-link" %>
+          <% end %>
           </div>
-        </div>
-      <% else %>
-        <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
-      <% end %>
+      </div>
     </div>
   </div>
 </nav>
