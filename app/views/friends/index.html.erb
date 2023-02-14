@@ -11,6 +11,14 @@
   <p>You have no friends yet</p>
 <% end %>
 
+<div class="d-flex justify-content-center">
+        <div class="form_search">
+          <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
+            <%= f.input :"", label: "", placeholder: "Je cherche une personne ", input_html: { name: 'search', value: params.dig(:search) } %>
+          <% end %>
+        </div>
+      </div>
+
 <h2>Search for users</h2>
 <%= form_tag search_friends_path, method: :get do %>
   <%= label_tag :first_name %>
