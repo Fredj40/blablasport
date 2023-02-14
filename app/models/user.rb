@@ -46,7 +46,7 @@ class User < ApplicationRecord
     if ratings.empty?
       "Pas de note"
     else
-      ratings.sum / ratings.size
+      (ratings.sum / ratings.size).round(0)
     end
   end
 
