@@ -147,7 +147,7 @@
         <% end %>
 
         <%# le statut de la réservation est-elle validée ? %>
-        <% if @event.bookings.where(booking_status:"Acceptée", user:current_user) %>
+        <% if @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
           <p>accepté</p>
         <% else %>
           <p>pas ok</p>

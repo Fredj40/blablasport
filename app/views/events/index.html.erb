@@ -34,7 +34,7 @@
                 <span><strong><%= event.players_number %></strong> places disponibles</span><br>
               <% end %>
 
-              <h6>Créé par <strong><%= event.user.first_name %> test :<%= @user_rating %></strong><span> le <%= event.created_at.strftime("%d/%m/%Y") %></span></h6>
+              <h6>Créé par <strong><%= event.user.first_name %>test :<%= event.user.average_rating %></strong><span> le <%= event.created_at.strftime("%d/%m/%Y") %></span></h6>
 
               <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-secondary" %><br><br>
             <% end %>
@@ -48,7 +48,7 @@
           <% unless Date.today < event.date %>
             <h4><strong><%= event.sport.sport_name %></strong>
             <span> - <strong><%= event.address.split.last %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
-            <h6>Créé par <strong><%= event.user.first_name %> test :<%= @user_rating %></strong><span> le <%= event.created_at.strftime("%d/%m/%Y") %></span></h6>
+            <h6>Créé par <strong><%= event.user.first_name %> test :<%= event.user.average_rating %><%= @user_rating %></strong><span> le <%= event.created_at.strftime("%d/%m/%Y") %></span></h6>
             <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-secondary" %><br><br>
           <% end %>
         <% end %>
