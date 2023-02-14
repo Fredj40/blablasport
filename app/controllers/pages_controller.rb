@@ -17,7 +17,8 @@ class PagesController < ApplicationController
 
   def profile
     @user = current_user
-    @activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
+    @events = @user.events
+    #@activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
   end
 
   def settings
