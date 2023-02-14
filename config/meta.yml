@@ -1,0 +1,5 @@
+meta_name: "BlaBlaSport"
+meta_title: "BlaBlaSport - Le réseau sportif"
+meta_description: "L'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs !"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: ""   # required for Twitter Cards

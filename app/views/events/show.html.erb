@@ -1,167 +1,177 @@
+<% content_for :meta_title, "#{@event.sport.sport_name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @event.description %>
+<%# <% content_for :meta_image, cl_image_path(@event.photo.key) if @event.photo.attached? %>
+
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12">
-      <br>
-      <h3><strong><%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last %></h3>
-      <h4><strong>Séance le <%= @event.date.strftime("%d/%m/%Y") %> à <%= @event.time.strftime("%kh%M") %></strong><br></h4>
-      <h5>Créé le <%=@event.created_at.strftime("%d/%m/%Y")%> par <strong><%= @event.user.first_name %></strong>, <%= @event.user.age %> ans - <%= @event.user.city %></h5>
+    <div class="col-12"><br>
 
-      <div class = "h5-star">
-        <% unless @ratings.empty? %>
-          <% starfull= @user_rating.round(0) %>
-          <% starfull.times do %>
-            <i class="fa-solid fa-star"></i>
-          <% end %>
-          <% (5-starfull).times do %>
-            <i class="fa-regular fa-star"></i>
-          <% end %>
-        <% end %>
-          <span> (<%= @user_reviews %> avis - </span>
-          <% if @user_events < 2 %>
-            <span> <%= @user_events %> évenement organisé)</span>
+      <div class="d-flex justfify-content-between">
+        <div class= "events_card col-lg-5 col-sm-12">
+          <h3><strong><%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last %></h3>
+          <h4><strong>Séance le <%= @event.date.strftime("%d/%m/%Y") %> à <%= @event.time.strftime("%kh%M") %></strong><br></h4>
+          <h5>Créé le <%=@event.created_at.strftime("%d/%m/%Y")%> par <strong><%= @event.user.first_name %></strong>, <%= @event.user.age %> ans - <%= @event.user.city %></h5>
+
+          <div class = "h5-star">
+            <% unless @ratings.empty? %>
+              <% starfull= @user_rating.round(0) %>
+              <% starfull.times do %>
+                <i class="fa-solid fa-star"></i>
+              <% end %>
+              <% (5-starfull).times do %>
+                <i class="fa-regular fa-star"></i>
+              <% end %>
+            <% end %>
+              <span> (<%= @user_reviews %> avis - </span>
+              <% if @user_events < 2 %>
+                <span> <%= @user_events %> évenement organisé)</span>
+              <% else %>
+              <span> <%= @user_events %> évenements organisés)</span>
+              <% end %>
+          </div><br>
+
+          <%= @event.description %><br><br>
+
+          <% if @event.players_number == 1 %>
+            <span>Place disponible : <strong><%= @event.players_number %></strong></span><br>
           <% else %>
-          <span> <%= @user_events %> évenements organisés)</span>
+            <span>Places disponibles : <strong><%= @event.players_number %></strong></span><br>
           <% end %>
-      </div><br>
 
-      <%= @event.description %><br><br>
+          <% if @event.level.nil? %>
+          <span>Tout niveau accepté</span><br>
+          <% else %>
+          <span>Niveau minimum requis : <strong><%= @event.level %></strong></span><br>
+          <% end %>
 
-      <% if @event.players_number == 1 %>
-        <span>Place disponible : <strong><%= @event.players_number %></strong></span><br>
-      <% else %>
-        <span>Places disponibles : <strong><%= @event.players_number %></strong></span><br>
-      <% end %>
+          <% if @event.age_mini.nil? %>
+          <% else %>
+          <span>Age mini : <strong><%= @event.age_mini %> ans</strong></span>
+          <% end %><br>
+          <% if @event.age_maxi.nil? %>
+          <% else %>
+          <span>Age maxi : <strong><%= @event.age_maxi %> ans</strong></span>
+          <% end %><br>
 
-      <% if @event.level.nil? %>
-      <span>Tout niveau accepté</span><br>
-      <% else %>
-      <span>Niveau minimum requis : <strong><%= @event.level %></strong></span><br>
-      <% end %>
+          <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
 
-      <% if @event.age_mini.nil? %>
-      <% else %>
-      <span>Age mini : <strong><%= @event.age_mini %> ans</strong></span>
-      <% end %><br>
-      <% if @event.age_maxi.nil? %>
-      <% else %>
-      <span>Age maxi : <strong><%= @event.age_maxi %> ans</strong></span>
-      <% end %><br>
+          <div id="map" class="d-flex" style="width: 50% ; height: 190px;"
+            data-controller="map"
+            data-map-markers-value="<%= @markers.to_json %>"
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+          </div><br>
 
-      <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
+          <% if @event.price.nil? || @event.price == 0 %>
+          <span>Gratuit</span><br>
+          <% else %>
+          <span>Prix : <strong><%= @event.price %></strong> €</span>
+          <% end %><br>
 
-      <div id="map" class="d-flex" style="width: 50% ; height: 190px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div><br>
+          <p>Participants déjà inscrits :</p><br>
 
-      <% if @event.price.nil? || @event.price == 0 %>
-      <span>Gratuit</span><br>
-      <% else %>
-      <span>Prix : <strong><%= @event.price %></strong> €</span>
-      <% end %><br>
+          <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-outline-success" %>
+          <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br>
 
-      <p>Participants déjà inscrits :</p><br>
+          <% unless @event.user != current_user %>
+            <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning" %>
+          <% end %>
+          <% if @event.user == current_user && Date.today < @event.date %>
+            <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
+          <% end %><br>
+        </div><br><br>
 
-      <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-outline-success" %>
-      <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br>
-
-      <% unless @event.user != current_user %>
-        <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning" %>
-      <% end %>
-      <% if @event.user == current_user && Date.today < @event.date %>
-        <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
-      <% end %><br>
-
-      <div class="col-12 col-sm-6">
-        <div class="container chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-          <h4>Chatroom</h4>
-          <div class="messages" data-chatroom-subscription-target="messages">
-            <% @chatroom.messages.each do |message| %>
-              <%= render "messages/message", message: message %>
-            <% end %>
-          </div>
-          <div class="messages" data-chatroom-subscription-target="messages">
-            <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f| %>
-            <%= f.input :content, label: false, placeholder: "Nouveau message", wrapper_html: {class: "flex-grow-1"} %>
-            <%= f.submit "Envoyer", class: "btn btn-outline-warning mb-3" %>
-            <% end %>
+        <div class= "events_card col-lg-5 col-sm-12">
+          <div class="container chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+            <h4>Chatroom</h4>
+            <div class="messages" data-chatroom-subscription-target="messages">
+              <% @chatroom.messages.each do |message| %>
+                <%= render "messages/message", message: message %>
+              <% end %>
+            </div>
+            <div class="messages" data-chatroom-subscription-target="messages">
+              <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f| %>
+              <%= f.input :content, label: false, placeholder: "Nouveau message", wrapper_html: {class: "flex-grow-1"} %>
+              <%= f.submit "Envoyer", class: "btn btn-outline-warning mb-3" %>
+              <% end %>
+            </div>
           </div>
         </div>
+      </div><br><br>
 
-      </div><br>
-
-      <h3><strong><%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last %><span> (<%= @event.date.strftime("%d/%m/%Y") %>) </span></h3>
-      <% if @event.reviews.blank? %>
-        <h5>Aucun avis</h5>
-      <% else %>
-        <%# @event.reviews.average(:rating).round(0) équivalent à : %>
-        <h4><% starfull= @event.reviews.sum(:rating).round(0) / @event.reviews.count %>
-          <% starfull.times do %>
-            <i class="fa-solid fa-star"></i>
-          <% end %>
-          <% (5-starfull).times do %>
-            <i class="fa-regular fa-star"></i>
-          <% end %>
-        <strong><span> - </span><%= @event.reviews.size %><span> avis :</span></strong></h4>
-      <% end %><br>
-
-      <% unless @event.reviews.blank? %>
-        <% @event.reviews.each do |review| %>
-          <strong><%= review.user.first_name %></strong> (<%= review.user.age %> ans, <%= review.user.city %>)<br>
-          <% starfull= review.rating.round(0) %>
+      <div class= "events_card col-lg-12 col-sm-12">
+        <h3><strong><%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last %><span> (<%= @event.date.strftime("%d/%m/%Y") %>) </span></h3>
+        <% if @event.reviews.blank? %>
+          <h5>Aucun avis</h5>
+        <% else %>
+          <%# @event.reviews.average(:rating).round(0) équivalent à : %>
+          <h4><% starfull= @event.reviews.sum(:rating).round(0) / @event.reviews.count %>
             <% starfull.times do %>
               <i class="fa-solid fa-star"></i>
             <% end %>
             <% (5-starfull).times do %>
               <i class="fa-regular fa-star"></i>
-            <% end %><br>
-          <%= review.comment %><br><br>
-        <% end %>
-      <% end %><br>
-
-# A REVOIR
-
-      <%# @has_already_reviewed = @reviews.where(user_id: @user.id, event_id: @event.id).exists? %>
-
-      <%# le user a-t-il déjà laissé une review ? %>
-      <% if @event.reviews.find_by(user:current_user) == nil %>
-        <p>n'a pas laissé de review</p>
-      <% else %>
-        <p>déjà laissé une review : OUI</p>
-      <% end %>
-
-      <%# le user est-il inscrit à la séance ? %>
-      <% if @event.bookings.find_by(user:current_user) == nil %>
-        <p>non inscrit</p>
-      <% else %>
-        <p>inscrit à la séance</p>
-      <% end %>
-
-      <%# le statut de la réservation est-elle validée ? %>
-      <% if @event.bookings.where(booking_status:"Acceptée", user:current_user) %>
-        <p>accepté</p>
-      <% else %>
-        <p>pas ok</p>
-      <% end %>
-
-      <% if Date.today > @event.date %>
-      <p>ok</p>
-      <% else %>
-      <p>pas ok</p>
-      <% end %>
-
-      <h5>Comment s'est passée cette séance ?</h5>
-      <div class="col-12 col-sm-4">
-        <%= simple_form_for([@event, @review]) do |f| %>
-        <%= f.input :comment, label: "Avis", placeholder: "10 caractères minimum" %>
-        <%= f.input :rating, label: "Note", placeholder: "La note doit être comprise en 1 et 5)" %>
-        <%= f.button :submit, "Valider", class: "btn btn-outline-warning" %><br>
+            <% end %>
+          <strong><span> - </span><%= @event.reviews.size %><span> avis :</span></strong></h4>
         <% end %><br>
-      <%# <% else %> %>
-        <%# <i>Vous devez avoir participé à cet événement pour laisser un avis</i> %>
-      <%# <% end %> %>
-      </div>
+
+        <% unless @event.reviews.blank? %>
+          <% @event.reviews.each do |review| %>
+            <strong><%= review.user.first_name %></strong> (<%= review.user.age %> ans, <%= review.user.city %>)<br>
+            <% starfull= review.rating.round(0) %>
+              <% starfull.times do %>
+                <i class="fa-solid fa-star"></i>
+              <% end %>
+              <% (5-starfull).times do %>
+                <i class="fa-regular fa-star"></i>
+              <% end %><br>
+            <%= review.comment %><br><br>
+          <% end %>
+        <% end %><br>
+
+        # A REVOIR
+
+        <%# @has_already_reviewed = @reviews.where(user_id: @user.id, event_id: @event.id).exists? %>
+
+        <%# le user a-t-il déjà laissé une review ? %>
+        <% if @event.reviews.find_by(user:current_user) == nil %>
+          <p>n'a pas laissé de review</p>
+        <% else %>
+          <p>déjà laissé une review : OUI</p>
+        <% end %>
+
+        <%# le user est-il inscrit à la séance ? %>
+        <% if @event.bookings.find_by(user:current_user) == nil %>
+          <p>non inscrit</p>
+        <% else %>
+          <p>inscrit à la séance</p>
+        <% end %>
+
+        <%# le statut de la réservation est-elle validée ? %>
+        <% if @event.bookings.where(booking_status:"Acceptée", user:current_user) %>
+          <p>accepté</p>
+        <% else %>
+          <p>pas ok</p>
+        <% end %>
+
+        <% if Date.today > @event.date %>
+        <p>ok</p>
+        <% else %>
+        <p>pas ok</p>
+        <% end %>
+
+        <h5>Comment s'est passée cette séance ?</h5>
+        <div class="col-12 col-sm-4">
+          <%= simple_form_for([@event, @review]) do |f| %>
+          <%= f.input :comment, label: "Avis", placeholder: "10 caractères minimum" %>
+          <%= f.input :rating, label: "Note", placeholder: "La note doit être comprise en 1 et 5)" %>
+          <%= f.button :submit, "Valider", class: "btn btn-outline-warning" %><br>
+          <% end %><br>
+        <%# <% else %> %>
+          <%# <i>Vous devez avoir participé à cet événement pour laisser un avis</i> %>
+        <%# <% end %> %>
+        </div>
+      </div><br><br>
+
     </div>
   </div>
 </div>
