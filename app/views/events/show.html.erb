@@ -55,7 +55,7 @@
 
           <span>Lieu de rendez-vous : <%= @event.address %></span><br><br>
 
-          <div id="map" class="d-flex" style="width: 50% ; height: 190px;"
+          <div id="map" class="d-flex" style="width: 100% ; height: 190px;"
             data-controller="map"
             data-map-markers-value="<%= @markers.to_json %>"
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -128,50 +128,18 @@
           <% end %>
         <% end %><br>
 
-        # A REVOIR
-
-        <%# @has_already_reviewed = @reviews.where(user_id: @user.id, event_id: @event.id).exists? %>
-
-        <%# le user a-t-il déjà laissé une review ? %>
-        <% if @event.reviews.find_by(user:current_user) == nil %>
-          <p>n'a pas laissé de review</p>
+        <% if @event.reviews.find_by(user:current_user) == nil && @event.bookings.find_by(user:current_user) != nil && @event.bookings.exists?(booking_status:"Acceptée", user:current_user) && Date.today > @event.date %>
+          <h5>Comment s'est passée cette séance ?</h5>
+          <div class="col-12 col-sm-4">
+            <%= simple_form_for([@event, @review]) do |f| %>
+            <%= f.input :comment, label: "Avis", placeholder: "10 caractères minimum" %>
+            <%= f.input :rating, label: "Note", placeholder: "La note doit être comprise en 1 et 5)" %>
+            <%= f.button :submit, "Valider", class: "btn btn-outline-warning" %><br>
+            <% end %><br>
+          </div>
         <% else %>
-          <p>déjà laissé une review : OUI</p>
+            <i>Vous devez avoir participé à cet événement pour laisser un avis</i>
         <% end %>
-
-        <%# le user est-il inscrit à la séance ? %>
-        <% if @event.bookings.find_by(user:current_user) == nil %>
-          <p>non inscrit</p>
-        <% else %>
-          <p>inscrit à la séance</p>
-        <% end %>
-
-        <%# le statut de la réservation est-elle validée ? %>
-        <% if @event.bookings.where(booking_status:"Acceptée", user:current_user) %>
-          <p>accepté</p>
-        <% else %>
-          <p>pas ok</p>
-        <% end %>
-
-        <% if Date.today > @event.date %>
-        <p>ok</p>
-        <% else %>
-        <p>pas ok</p>
-        <% end %>
-
-        <h5>Comment s'est passée cette séance ?</h5>
-        <div class="col-12 col-sm-4">
-          <%= simple_form_for([@event, @review]) do |f| %>
-          <%= f.input :comment, label: "Avis", placeholder: "10 caractères minimum" %>
-          <%= f.input :rating, label: "Note", placeholder: "La note doit être comprise en 1 et 5)" %>
-          <%= f.button :submit, "Valider", class: "btn btn-outline-warning" %><br>
-          <% end %><br>
-        <%# <% else %> %>
-          <%# <i>Vous devez avoir participé à cet événement pour laisser un avis</i> %>
-        <%# <% end %> %>
-        </div>
       </div><br><br>
-
-    </div>
   </div>
 </div>

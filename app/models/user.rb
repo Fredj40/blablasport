@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
   has_many :sports, through: :favorite_sports, dependent: :destroy
+  has_many :players, through: :bookings, dependent: :destroy
+  has_many :events, through: :players
   has_many :events, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :chatrooms, through: :events, dependent: :destroy
@@ -37,7 +39,6 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-
   def add_friend(friend)
     friendships.create(friend_id: friend.id)
   end
@@ -45,4 +46,24 @@ class User < ApplicationRecord
   def remove_friend(friend)
     friendships.find_by(friend_id: friend.id).destroy
   end
+
+def average_rating
+    ratings = []
+    events.each do |event|
+      event.reviews.each do |review|
+        ratings << review.rating
+      end
+    end
+    ratings = ratings.compact
+    if ratings.empty?
+      "Pas de note"
+    else
+      (ratings.sum / ratings.size).round(0)
+    end
+  end
+
+  def number_of_events
+    events.count
+  end
+
 end

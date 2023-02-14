@@ -11,22 +11,6 @@ class EventsController < ApplicationController
     else
       @events = Event.all.order("date ASC, time ASC")
       set_markers
-
-      # calculer la moyenne des notes de chaque user
-      @ratings = []
-      @events.each do |event|
-        @user_owner = event.user
-        @user_owner.reviews.each do |review|
-          @ratings << review.rating
-        end
-      end
-      @ratings = @ratings.compact
-      if @ratings.empty?
-        @user_rating = "Pas de note"
-      else
-        @user_rating = @ratings.sum / @ratings.size
-      end
-
     end
   end
 
