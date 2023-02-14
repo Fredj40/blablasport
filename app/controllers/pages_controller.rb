@@ -18,7 +18,12 @@ class PagesController < ApplicationController
   def profile
     @user = current_user
     @events = @user.events
-    #@activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
+    if params[:search].present?
+      @users = User.where("first_name ILIKE :search OR last_name ILIKE :search", search: "%#{params[:search]}%")
+    else
+      @users = User.all
+    end
+    @activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
   end
 
   def settings

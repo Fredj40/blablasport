@@ -1,6 +1,5 @@
-<!-- HTML -->
-<div class="profile-container" style="display: flex;">
-  <div class="user-info-container" style="flex: 1; display: flex; flex-direction: column; align-items: center; background-color: #DBDADB; padding: 30px;">
+<div class="profile" style="display: flex;">
+  <div class="user-info" style="flex: 1; display: flex; flex-direction: column; background-color: #DBDADB; padding: 30px;">
     <h1 style="margin-top: 30px; color: #E98B2A;">Profil de <%= @user.first_name %></h1>
     <p style="margin-bottom: 10px; color: #7B8AA2;">Prénom: <%= @user.first_name %></p>
     <p style="margin-bottom: 10px; color: #7B8AA2;">Age: <%= @user.age %></p>
@@ -12,7 +11,7 @@
       <p style="color: #7B8AA2; margin-bottom: 10px;">Ce joueur n'a pas encore ajouté de description</p>
     <% end %>
   </div>
-  <div class="events-list-container" style="flex: 1; display: flex; flex-direction: column; align-items: center; background-color: #DBDADB; padding: 30px;">
+  <div class="events-list" style="flex: 1; display: flex; flex-direction: column; background-color: #DBDADB; padding: 30px;">
     <h2 style="margin-top: 30px; color: #E98B2A;">Evénements créés ou participés</h2>
     <% @user.events.each do |event| %>
       <div class="event-item" style="background-color: #fff; padding: 20px; border-radius: 10px; margin-top: 30px; text-align: center;">
@@ -22,4 +21,71 @@
       </div>
     <% end %>
   </div>
+
+<div class="profile" style="display: flex;">
+  <div class="user-info" style="flex: 1; display: flex; flex-direction: column; align-items: center; background-color: #DBDADB; padding: 30px;">
+    <!-- Les informations de profil de l'utilisateur -->
+  </div>
+  <div class="events-list" style="flex: 1; display: flex; flex-direction: column; align-items: center; background-color: #DBDADB; padding: 30px;">
+    <!-- La liste des événements de l'utilisateur -->
+  </div>
+  <div class="activity-feed" style="flex: 1; display: flex; flex-direction: column; align-items: center; background-color: #DBDADB; padding: 30px;">
+    <h2 style="margin-top: 30px; color: #E98B2A;">Fil d'actualités</h2>
+    <% @activities.each do |activity| %>
+      <div class="activity" style="display: flex; flex-direction: column; align-items: center; margin-top: 30px; background-color: #fff; padding: 20px; border-radius: 10px;">
+        <% if activity.trackable_type == "Event" %>
+          <p style="margin-bottom: 10px; color: #7B8AA2;">
+            <%= "#{activity.trackable.user_id} a posté un nouvel événement à #{activity.trackable.address} le #{activity.trackable.date}" %>
+          </p>
+        <% elsif activity.trackable_type == "User" %>
+          <p style="margin-bottom: 10px; color: #7B8AA2;">
+            <%= "#{activity.trackable.firstname} a rejoint la famille blabla sport" %>
+          </p>
+        <% end %>
+        <p class="text-muted" style="font-size: 12px; margin-top: 10px;">
+          <%= activity.created_at %>
+        </p>
+      </div>
+    <% end %>
+  </div>
 </div>
+<!-- HTML -->
+<div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="activityModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="activityModalLabel">Fil d'actualités</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% @activities.each do |activity| %>
+          <% if activity.trackable_type == "Event" %>
+            <p style="margin-bottom: 10px; color: #7B8AA2;">
+              <%= "#{activity.trackable.user_id} a posté un nouvel événement à #{activity.trackable.address} le #{activity.trackable.date}" %>
+            </p>
+          <% elsif activity.trackable_type == "User" %>
+            <p style="margin-bottom: 10px; color: #7B8AA2;">
+              <%= "#{activity.trackable.firstname} a rejoint la famille blabla sport" %>
+            </p>
+          <% end %>
+          <p class="text-muted" style="font-size: 12px; margin-top: 10px;">
+            <%= activity.created_at %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  $('#activityModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // Update the modal's content.
+    var modal = $(this)
+    modal.find('.modal-title').text('Fil d'actualités')
+  })
+</script>
