@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :sport
-  has_many :players, dependent: :destroy
+  # has_many :players, dependent: :destroy
   has_many :users, through: :players
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy

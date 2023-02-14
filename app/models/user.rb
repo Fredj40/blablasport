@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
   has_many :sports, through: :favorite_sports, dependent: :destroy
-  has_many :players, through: :bookings, dependent: :destroy
+  # has_many :players, through: :bookings, dependent: :destroy
   has_many :events, through: :players
   has_many :events, dependent: :destroy
   has_many :reviews, dependent: :destroy
