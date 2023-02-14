@@ -21,4 +21,11 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
+  resources :friends, only: [:index] do
+    collection do
+      get :search
+      post :add, path: 'add/:id'
+    end
+  end
+
 end

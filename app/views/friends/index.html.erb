@@ -1,0 +1,30 @@
+<h1>Friendlist</h1>
+
+<% if @user.friends.any? %>
+  <h2>Your friends</h2>
+  <ul>
+    <% @user.friends.each do |friend| %>
+      <li><%= friend.first_name %> <%= friend.last_name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no friends yet</p>
+<% end %>
+
+<h2>Search for users</h2>
+<%= form_tag search_friends_path, method: :get do %>
+  <%= label_tag :first_name %>
+  <%= text_field_tag :first_name %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<% if @search_results.any? %>
+  <h2>Search results</h2>
+  <ul>
+    <% @search_results.each do |user| %>
+      <% unless user == @user || @users.include?(user) %>
+        <li><%= user.first_name %> - <%= link_to 'Add as friend', add_friend_path(user), method: :post %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
