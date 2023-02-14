@@ -1,13 +1,25 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-6">
-      <% @activities.each do |a| %>
-      <li>
-      <%= a.created_at %>
-      <%= link_to "#{a.trackable.user_id} a posté un nouvel événement à #{a.trackable.address} le #{a.trackable.date}" if a.trackable_type == "Event"%>
-      <%= "#{a.trackable.firstname} a rejoint la famille blabla sport" if a.trackable_type == "User" %>
-      </li>
-      <% end %>
-    </div>
+<!-- HTML -->
+<div class="profile-container" style="display: flex;">
+  <div class="user-info-container" style="flex: 1; display: flex; flex-direction: column; align-items: center; background-color: #DBDADB; padding: 30px;">
+    <h1 style="margin-top: 30px; color: #E98B2A;">Profil de <%= @user.first_name %></h1>
+    <p style="margin-bottom: 10px; color: #7B8AA2;">Prénom: <%= @user.first_name %></p>
+    <p style="margin-bottom: 10px; color: #7B8AA2;">Age: <%= @user.age %></p>
+    <p style="margin-bottom: 10px; color: #7B8AA2;">Ville d'habitation: <%= @user.city %></p>
+    <h2 style="margin-top: 30px; color: #E98B2A;">Description</h2>
+    <% if @user_description.present? %>
+      <p style="color: #7B8AA2; margin-bottom: 10px;"><%= @user.description %></p>
+    <% else %>
+      <p style="color: #7B8AA2; margin-bottom: 10px;">Ce joueur n'a pas encore ajouté de description</p>
+    <% end %>
+  </div>
+  <div class="events-list-container" style="flex: 1; display: flex; flex-direction: column; align-items: center; background-color: #DBDADB; padding: 30px;">
+    <h2 style="margin-top: 30px; color: #E98B2A;">Evénements créés ou participés</h2>
+    <% @user.events.each do |event| %>
+      <div class="event-item" style="background-color: #fff; padding: 20px; border-radius: 10px; margin-top: 30px; text-align: center;">
+        <p style="color: #7B8AA2; margin-bottom: 10px;">Nom de l'événement: <%= event.sport.sport_name %></p>
+        <p style="color: #7B8AA2; margin-bottom: 10px;">Lieu: <%= event.address %></p>
+        <p style="color: #7B8AA2; margin-bottom: 10px;">Date: <%= event.date %></p>
+      </div>
+    <% end %>
   </div>
 </div>
