@@ -7,11 +7,24 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+<%= link_to "Paris", events_path(search:"Paris"), class: "dropdown-item" %>
+<%= link_to "Marseille", events_path(search:"Marseille"), class: "dropdown-item" %>
+<%= link_to "Strasbourg", events_path(search:"Strasbourg"), class: "dropdown-item" %>
+<%= link_to "Lausanne", events_path(search:"Lausanne"), class: "dropdown-item" %>
+<%= link_to "Peyrehorade", events_path(search:"Peyrehorade"), class: "dropdown-item" %>
+</div>
+
+              <%= link_to "Bookings", bookings_path, class: "dropdown-item" %>
+              <%= link_to "Setting", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Page d'accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" <%= link_to "Paris", events_path(search:"Paris") %></a>
+          <a class="nav-link" </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" <%= link_to "Marseille", events_path(search:"Marseille") %></a>

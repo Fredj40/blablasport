@@ -37,4 +37,23 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def average_rating
+    ratings = []
+    events.each do |event|
+      event.reviews.each do |review|
+        ratings << review.rating
+      end
+    end
+    ratings = ratings.compact
+    if ratings.empty?
+      "Pas de note"
+    else
+      (ratings.sum / ratings.size).round(0)
+    end
+  end
+
+  def number_of_events
+    events.count
+  end
+
 end

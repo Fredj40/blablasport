@@ -445,3 +445,17 @@ p "#{Booking.count} bookings created "
 #   content_type: 'image/jpg'
 # )
 # puts "images uploaded..."
+# image_path = Rails.root.join("app/assets/images/cover.png")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture42 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'cover.png',
+#   content_type: 'image/jpg'
+# )
+# image_path = Rails.root.join("app/assets/images/favicon.png")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture43 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'favicon.png',
+#   content_type: 'image/jpg'
+# )
