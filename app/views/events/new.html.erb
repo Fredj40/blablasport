@@ -15,10 +15,10 @@
           <%= f.input :duration, label: "Durée en minutes" %>
           <%= f.input :description, label: "Eventuel commentaire" %>
           <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-          <%= f.submit "Publier", class: "btn btn-warning" %>
+          <%= f.submit "Publier", class: "btn btn-outline-warning" %>
         <% end %>
-        <%= link_to "Retour au menu", events_path, class: "btn btn-secondary" %>
-      </div>
+        <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %>
+      </div><br>
     </div>
   </div>
 </div>
