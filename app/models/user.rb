@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :chatrooms, through: :events, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :sports, through: :events, dependent: :destroy
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -37,7 +39,15 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def average_rating
+  def add_friend(friend)
+    friendships.create(friend_id: friend.id)
+  end
+
+  def remove_friend(friend)
+    friendships.find_by(friend_id: friend.id).destroy
+  end
+
+def average_rating
     ratings = []
     events.each do |event|
       event.reviews.each do |review|
