@@ -21,41 +21,49 @@
       <div id="map" class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div><br>
 
       <div class= "events_card col-lg-5 col-sm-12">
-        <h1>A venir : </h1><br>
+
+        <h1>Evénements à venir : </h1><br>
 
           <% @events.each do |event| %>
+
             <% unless Date.today > event.date %>
-              <h4><strong><%= event.sport.sport_name %></strong>
-              <span> - <strong><%= event.address.split.last %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
+              <div class="event-card" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
 
-              <% if event.players_number == 1 %>
-                <span><strong><%= event.players_number %></strong> place disponible</span><br>
-              <% else %>
-                <span><strong><%= event.players_number %></strong> places disponibles</span><br>
-              <% end %>
+                <h4><strong><%= event.sport.sport_name %></strong> - <strong><%= event.address.split.last %></strong><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %>
 
-              <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %> par <strong><%= event.user.first_name %></strong>
-                <% starfull = event.user.average_rating %>
-                <% unless starfull == "Pas de note" %>
-                  <% starfull.times do %>
-                    <i class="fa-solid fa-star"></i>
-                  <% end %>
-                  <% (5-starfull).times do %>
-                    <i class="fa-regular fa-star"></i>
-                  <% end %>
-                <% end %>
-                <% unless event.user.number_of_events == nil %>
-                  <% if event.user.number_of_events == 1 %>
-                    <span> (1 partie organisée)</span>
-                  <% else %>
-                    <span> (<%= event.user.number_of_events %> parties organisées)</span>
-                  <% end %>
-                <% end %>
-              </h6>
+                <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true"
+                title="Niveau minimum requis: <%= event.level %><% if event.age_mini.nil? %><% else %> - Age mini : <%= event.age_mini %><% end %>
+                <% if event.age_maxi.nil? %><% else %> - Age maxi : <%= event.age_maxi %> ans<% end %>"></i></h4>
 
-              <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-secondary" %><br><br>
+                <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %> par <strong><%= event.user.first_name %></strong>
+                  <% starfull = event.user.average_rating %>
+                  <% unless starfull == "Pas de note" %>
+                    <% starfull.times do %>
+                      <i class="fa-solid fa-star"></i>
+                    <% end %>
+                    <% (5-starfull).times do %>
+                      <i class="fa-regular fa-star"></i>
+                    <% end %>
+                  <% end %>
+                  <% unless event.user.number_of_events == nil %>
+                    <% if event.user.number_of_events == 1 %>
+                      <span> (1 partie organisée)</span>
+                    <% else %>
+                      <span> (<%= event.user.number_of_events %> parties organisées) </span>
+                    <% end %><br>
+                </h6>
+                <h5>
+                    <% if event.players_number == 1 %>
+                      <span><strong><%= event.players_number %></strong> place disponible</span>
+                    <% else %>
+                      <span><strong><%= event.players_number %></strong> places disponibles</span>
+                    <% end %><br><br>
+                  <% end %>
+                  <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-warning" %>
+                </h5>
+              </div>
             <% end %>
-        <% end %>
+          <% end %>
       </div><br><br>
 
       <div class= "events_card col-lg-5 col-sm-12">
@@ -83,7 +91,7 @@
                   <% end %>
                 <% end %>
               </h6>
-            <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-secondary" %><br><br>
+            <%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %><br><br>
           <% end %>
         <% end %>
       </div><br><br>

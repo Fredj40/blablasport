@@ -10,8 +10,17 @@ application.register("address-autocomplete", AddressAutocompleteController)
 import ChatroomSubscriptionController from "./chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
 
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import PopoverController from "./popover_controller"
+application.register("popover", PopoverController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)

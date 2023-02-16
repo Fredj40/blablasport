@@ -23,7 +23,30 @@
   border: 1px solid #e98b2a;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding : 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+.event-card {
+  border: 1px solid #8292AA;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding : 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.event-card-list {
+  text-align: left;
+}
+
+.review_card {
+  border: 1px solid #8292AA;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding : 10px;
+  margin-bottom: 20px;
 }
 
 .form_search {
