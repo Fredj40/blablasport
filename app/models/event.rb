@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :sport
-  # has_many :players, dependent: :destroy
+  has_many :players, dependent: :destroy
   has_many :users, through: :players
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
@@ -13,7 +13,7 @@ class Event < ApplicationRecord
   validates :sport, presence: true
   validates :user, presence: true
   validates :level, presence: true
-  validates :players_number, presence: true, inclusion: { in: 1..30 }
+ # validates :players_number, presence: true, inclusion: { in: 1..30 }
   validates :address, presence: true
   validates :duration, presence: true, inclusion: { in: 1..120 }
 

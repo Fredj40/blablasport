@@ -4,14 +4,5 @@ class Friendship < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :global_search,
-  against:
-
-  [ :first_name, :last_name ],
-  associated_against: {
-    sport: [:sport_name]
-  },
-  using: {
-    tsearch: { prefix: true }
-  }
-
+    against: [:first_name, :last_name]
 end

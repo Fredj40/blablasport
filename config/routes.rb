@@ -16,16 +16,12 @@ Rails.application.routes.draw do
   patch "settings", to: "pages#update"
   get "contact", to: "pages#contact"
   get "bookings", to: "bookings#index"
+  get '/users/search', to: 'friendships#search'
 
   resources :chatrooms, only: [:show] do
     resources :messages, only: :create
   end
 
-  resources :friends, only: [:index] do
-    collection do
-      get :search
-      post :add, path: 'add/:id'
-    end
-  end
-
+  resources :friendships, only: [:create, :update]
+  get 'friendships/search', to: 'friendships#search'
 end
