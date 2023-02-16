@@ -4,6 +4,7 @@ Event.destroy_all
 Chatroom.destroy_all
 Sport.destroy_all
 AdminUser.destroy_all
+Review.destroy_all
 p 'Database cleaned'
 
 p "Creating Users..."
@@ -193,6 +194,24 @@ Booking.create!(event_id: event14.id, user_id: @user10.id, booking_status: "En a
 Booking.create!(event_id: event15.id, user_id: @user11.id, booking_status: "En attente de validation")
 p "#{Booking.count} bookings created "
 
+p "Creating Reviews..."
+@review1 = Review.create!(rating: 5, comment: "Superbe expérience, je recommande !", user_id: @user2.id, event_id: event1.id)
+@review2 = Review.create!(rating: 4, comment: "Très bon match, je recommande !", user_id: @user3.id, event_id: event1.id)
+@review3 = Review.create!(rating: 4, comment: "Match sympa, je recommande !", user_id: @user4.id, event_id: event1.id)
+@review4 = Review.create!(rating: 5, comment: "Super ambiance, je recommande !", user_id: @user5.id, event_id: event1.id)
+@review5 = Review.create!(rating: 5, comment: "c'était top, je recommande !", user_id: @user6.id, event_id: event1.id)
+@review6 = Review.create!(rating: 5, comment: "Superbe expérience, je recommande !", user_id: @user1.id, event_id: event2.id)
+@review7 = Review.create!(rating: 4, comment: "Très bon match, je recommande !", user_id: @user4.id, event_id: event2.id)
+@review8 = Review.create!(rating: 1, comment: "Ennuyeux à mourir !", user_id: @user3.id, event_id: event2.id)
+@review9 = Review.create!(rating: 3, comment: "Match moyen...", user_id: @user1.id, event_id: event3.id)
+@review10 = Review.create!(rating: 2, comment: "Bof...........", user_id: @user6.id, event_id: event4.id)
+@review11 = Review.create!(rating: 5, comment: "Incroyable !!!!", user_id: @user7.id, event_id: event4.id)
+@review12 = Review.create!(rating: 4, comment: "A refaire !!!!", user_id: @user8.id, event_id: event4.id)
+@review13 = Review.create!(rating: 5, comment: "Amazing !!!!!", user_id: @user4.id, event_id: event5.id)
+@review14 = Review.create!(rating: 5, comment: "vraiment cool ", user_id: @user6.id, event_id: event5.id)
+@review15 = Review.create!(rating: 2, comment: "Peut mieux faire", user_id: @user7.id, event_id: event5.id)
+p "#{Review.count} Reviews created"
+
 # campnou = Stadium.create!(user_id: @user.id, name: "Camp Nou", location: "Barcelona", energy_class: "C", stadium_description: "zzz", capacity: 99354, price: 49000)
 # campnou.pictures.attach(picture1)
 # campnou.pictures.attach(picture2)
@@ -203,259 +222,259 @@ p "#{Booking.count} bookings created "
 # picture6 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport2.png',
-#   content_type: 'image/png'
+#   comment_type: 'image/png'
 # )
 # image_path = Rails.root.join("app/assets/images/marker2.png")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture5 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'marker.png',
-#   content_type: 'image/png'
+#   comment_type: 'image/png'
 # )
 # image_path = Rails.root.join("app/assets/images/logo_split.png")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture3 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'marker.png',
-#   content_type: 'image/png'
+#   comment_type: 'image/png'
 # )
 # image_path = Rails.root.join("app/assets/images/ball.png")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture4 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'marker.png',
-#   content_type: 'image/png'
+#   comment_type: 'image/png'
 # )
 # image_path = Rails.root.join("app/assets/images/marker3.png")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture5 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'marker3.png',
-#   content_type: 'image/png'
+#   comment_type: 'image/png'
 # # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport1.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture6 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport1.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport2.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture7 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport2.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport3.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture8 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport3.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport4.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture9 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport4.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport5.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture10 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport5.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport7.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture12 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport7.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport8.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture13 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport8.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport9.jpeg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture14 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport9.jpeg',
-#   content_type: 'image/jpeg'
+#   comment_type: 'image/jpeg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport10.png")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture15 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport10.png',
-#   content_type: 'image/png'
+#   comment_type: 'image/png'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport11.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture16 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport11.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport12.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture17 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport12.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport13.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture18 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablaspor13.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport14.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture19 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport14.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport15.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture20 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport15.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport16.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture21 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport16.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport17.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture22 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport17.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport18.png")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture23 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport18.png',
-#   content_type: 'image/png'
+#   comment_type: 'image/png'
 # )
 # # image_path = Rails.root.join("app/assets/images/background/blablasport19.png")
 # # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # # picture24 = ActiveStorage::Blob.create_and_upload!(
 # #   io: URI.open(cloudinary_image['secure_url']),
 # #   filename: 'blablasport19.png',
-# #   content_type: 'image/png'
+# #   comment_type: 'image/png'
 # # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport20.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture25 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport20.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport21.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture26 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport21.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport22.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture27 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport22.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport23.jpeg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture28 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport23.jpeg',
-#   content_type: 'image/jpeg'
+#   comment_type: 'image/jpeg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport24.jpeg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture34 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport24.jpeg',
-#   content_type: 'image/jpeg'
+#   comment_type: 'image/jpeg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport25.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture30 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport25.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport26.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture31 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport26.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport27.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture32 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport27.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport28.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture33 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport28.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport29.png")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture35 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport29.png',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasportlongorange.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture36 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasportlongorange.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasportlongorangefort.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture37 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasportlongorangefort.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasportlongrouge.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture38 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasportlongrouge.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # # )
 # image_path = Rails.root.join("app/assets/images/background/blablasportcourtorangefort.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture39 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasportcourtorangefort.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # # )
 # image_path = Rails.root.join("app/assets/images/background/pelouse.jpg")
@@ -463,14 +482,14 @@ p "#{Booking.count} bookings created "
 # picture40 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'pelouse.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/background/blablasport30.jpg")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture41 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'blablasport30.jpg',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # puts "images uploaded..."
 # image_path = Rails.root.join("app/assets/images/cover.png")
@@ -478,12 +497,12 @@ p "#{Booking.count} bookings created "
 # picture42 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'cover.png',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
 # image_path = Rails.root.join("app/assets/images/favicon.png")
 # cloudinary_image = Cloudinary::Uploader.upload(image_path)
 # picture43 = ActiveStorage::Blob.create_and_upload!(
 #   io: URI.open(cloudinary_image['secure_url']),
 #   filename: 'favicon.png',
-#   content_type: 'image/jpg'
+#   comment_type: 'image/jpg'
 # )
