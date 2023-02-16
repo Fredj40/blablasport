@@ -6,14 +6,14 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
   has_many :sports, through: :favorite_sports, dependent: :destroy
-  # has_many :players, through: :bookings, dependent: :destroy
+  #has_many :players, through: :bookings, dependent: :destroy
   has_many :events, through: :players
   has_many :events, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :chatrooms, through: :events, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :sports, through: :events, dependent: :destroy
-  has_many :friendships, dependent: :destroy
+  has_many :friendships
   has_many :friends, through: :friendships
 
   validates :first_name, presence: true
@@ -41,6 +41,11 @@ class User < ApplicationRecord
 
   def add_friend(friend)
     friendships.create(friend_id: friend.id)
+  end
+
+  def accept_friend_request_from(other_user)
+    friendship = Friendship.find_by(user_id: other_user.id, friend_id: self.id)
+    friendship.update(accepted: true)
   end
 
   def remove_friend(friend)

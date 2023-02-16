@@ -1,0 +1,19 @@
+success: function handleSuccess(data) {
+  $("#search-results").html("");
+
+  for (var i in data) {
+    var user = data[i];
+    $("#search-results").append(
+      "<div class='card'>" +
+        "<div class='card-body'>" +
+          "<h5 class='card-title'>" + user.username + "</h5>" +
+          "<button class='btn btn-primary add-friend-button' data-user-id='" + user.id + "'>Ajouter en ami</button>" +
+        "</div>" +
+      "</div>"
+    );
+  }
+
+  $(".add-friend-button").click(function() {
+    addFriend($(this).data("userId"));
+  });
+}
