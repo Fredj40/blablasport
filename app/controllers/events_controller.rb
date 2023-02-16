@@ -19,6 +19,7 @@ class EventsController < ApplicationController
     @user = current_user
     @chatroom = Chatroom.find_by(event_id: @event.id)
     @review = Review.new
+    @actual_review = @event.reviews.find_by(user: current_user)
     @reviews = Review.all
     @message = Message.new
     @markers = [{

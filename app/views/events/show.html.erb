@@ -33,6 +33,7 @@
 
           <ul class="event-card-list">
             <% if @event.players_number == 1 %>
+
               <li>Place disponible : <strong><%= @event.players_number %></strong></li>
             <% else %>
               <li>Places disponibles : <strong><%= @event.players_number %></strong></li>
@@ -60,27 +61,48 @@
               <li>Gratuit</li>
             <% else %>
               <li>Prix : <strong><%= @event.price %></strong> €</li>
-            <% end %>
-            <li><strong>!!! à coder : Participants : !!!</strong></li>
-          </ul><br>
+            <% end %><br><br>
 
-          <% unless @event.user == current_user %>
-            <% unless Date.today > @event.date %>
-              <% if @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
-                <div class="badge-success">Iscription validée : tu vas participer à cette partie</div><br>
-              <% elsif @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) %>
-                <div class="badge-warning">Tu as postulé à cette partie - Demande en attente de traitement</div><br>
-              <% elsif @event.bookings.exists?(booking_status: "Refusée", user:current_user) %>
-                <div class="badge-danger">Ta demande a été refusée</div><br><br>
-              <% else %>
-                <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-outline-success" %>
+            <h5>
+              <% if @event.bookings.count == 0 %>
+                <i>Pas encore d'inscrits</i><br>
+              <% elsif @event.bookings.count == 1 %>
+                <%= @event.bookings.count %><span> participant inscrit</span><br>
+              <% elsif @event.bookings.count %><span>Participants inscrits :</span><br>
+            </h5><br>
+
+              <% @event.bookings.each do |booking| %>
+                <li><%= booking.user.first_name %></li>
+              <% end %>
+            <% end %><br>
+
+            <% if @event.players_number - @event.bookings.count > 1 %>
+              <div class="badge-success">Il reste <%= @event.players_number - @event.bookings.count %> places disponibles</div>
+            <% elsif @event.players_number - @event.bookings.count == 1 %>
+              <div class="badge-warning">Il reste 1 place disponible</div>
+            <% elsif @event.players_number - @event.bookings.count == 0 %>
+              <div class="badge-danger">Cette partie est complète</div>
+            <% end %><br>
+
+            <% unless @event.user == current_user %>
+              <% unless Date.today > @event.date %>
+                <% if @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
+                  <div class="badge-success">Iscription validée : tu vas participer à cette partie</div><br>
+                <% elsif @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) %>
+                  <div class="badge-warning">Tu as postulé à cette partie - Demande en attente de traitement</div><br>
+                <% elsif @event.bookings.exists?(booking_status: "Refusée", user:current_user) %>
+                  <div class="badge-danger">Ta demande a été refusée</div><br><br>
+                <% else %>
+                  <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success" %>
+                <% end %>
               <% end %>
             <% end %>
-          <% end %>
+          </ul><br><br>
+
           <% if @event.user == current_user && Date.today < @event.date %>
             <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning" %>
             <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
-          <% end %>
+          <% end %><br>
           <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br>
 
         </div>
@@ -135,10 +157,11 @@
               <% end %>
             <% end %><br>
 
-            <% if @event.reviews.find_by(user:current_user) != nil %>
+            <% if @actual_review != nil %>
               <h5>Tu as déjà donné ton avis</h5>
+              <h5><%= link_to "Supprimer mon avis", event_review_path(@event.id, @actual_review), data: { turbo_method: :delete }, class: "btn btn-outline-warning" %></h5>
             <% elsif @event.bookings.find_by(user:current_user) != nil && @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
-              <h5>Comment s'est passée cette séance ?</h5>
+              <h5>Comment s'est passée ta séance ?</h5>
               <div class="col-12 col-sm-4">
                 <%= simple_form_for([@event, @review]) do |f| %>
                 <div data-controller="character-counter">

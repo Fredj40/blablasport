@@ -51,16 +51,19 @@
                     <% else %>
                       <span> (<%= event.user.number_of_events %> parties organisées) </span>
                     <% end %><br>
-                </h6>
-                <h5>
-                    <% if event.players_number == 1 %>
-                      <span><strong><%= event.players_number %></strong> place disponible</span>
-                    <% else %>
-                      <span><strong><%= event.players_number %></strong> places disponibles</span>
-                    <% end %><br><br>
                   <% end %>
+                </h6>
+
+                <h5>
+                  <% if event.players_number - event.bookings.count > 1 %>
+                    <div class="badge-success">Il reste <%= event.players_number - event.bookings.count %> places disponibles</div>
+                  <% elsif event.players_number - event.bookings.count == 1 %>
+                    <div class="badge-warning">Plus qu'une place !</div>
+                  <% else event.players_number - event.bookings.count == 0 %>
+                    <div class="badge-danger">Cette partie est complète</div>
+                  <% end %><br>
                   <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-warning" %>
-                </h5>
+                  </h5>
               </div>
             <% end %>
           <% end %>
