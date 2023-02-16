@@ -3,7 +3,7 @@ class Booking < ApplicationRecord
 
   belongs_to :user
   belongs_to :event
-  has_many :players, :through => :bookings, :source => :user
+  # has_many :players, :through => :bookings, :source => :user
   validates :user, presence: true
   validates :event, presence: true
   validates :event, uniqueness: { scope: :user, message: "Tu as déjà une réservation pour cet événement" }

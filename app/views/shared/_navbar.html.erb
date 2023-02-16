@@ -22,23 +22,26 @@
             type="button" role="tab" aria-controls="courses" aria-selected="false">Nous Contacter</button>
           <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
             type="button" role="tab" aria-controls="courses" aria-selected="false">A propos de nous</button>
-          <% if user_signed_in? %>
-            <div class="nav-link">
-              <%=current_user.full_name %>
-              <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
-                <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
-                <%= link_to "Mes paramètres", settings_path, class: "dropdown-item" %>
-                <%= link_to "Mes amis", settings_path, class: "dropdown-item" %>
-                <%= link_to "Contacts", settings_path, class: "dropdown-item" %>
-                <%= link_to "Me deconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+
+          <div class="nav-link">
+            <% if user_signed_in? %>
+              <div class="nav-item dropdown">
+                <%=current_user.full_name %>
+                <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
+                  <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
+                  <%= link_to "Mes paramètres", settings_path, class: "dropdown-item" %>
+                  <%= link_to "Mes amis", settings_path, class: "dropdown-item" %>
+                  <%= link_to "Contacts", settings_path, class: "dropdown-item" %>
+                  <%= link_to "Me deconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+                </div>
               </div>
-            </div>
-          <% else %>
-            <%= link_to "CONNEXION", new_user_session_path, class: "nav-link" %>
-          <% end %>
+            <% else %>
+              <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
+            <% end %>
           </div>
+        </div>
       </div>
     </div>
   </div>

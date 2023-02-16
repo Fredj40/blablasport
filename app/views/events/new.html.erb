@@ -7,11 +7,14 @@
         <%= simple_form_for @event do |f| %>
           <%= f.input :sport_id, collection: @ordered_list, label: "Choisis ton sport" %>
           <%= f.input :players_number, label: "Place(s) disponible(s)" %>
-          <%= f.input :level,  collection: ['Débutant (pour tous)','Intermédiaire','Confirmé'], label: "Niveau minimum requis" %>
+          <%= f.input :level,  collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum requis" %>
           <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
           <%= f.input :price, label: "Prix" %>
-          <%= f.input :date %>
-          <%= f.input :time, label: "Heure de début" %>
+          <%= f.input :date, as: :string,
+                      wrapper_html: { class: "mb-4" },
+                      label_html: { class: "form-label text-secondary fw-bold" },
+                      input_html: { data: { controller: "flatpickr" } } %>
+          <%= f.input :time, label: "Heure de début", as: :time, :minute_step => 10 %>
           <%= f.input :duration, label: "Durée en minutes" %>
           <%= f.input :description, label: "Eventuel commentaire" %>
           <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
