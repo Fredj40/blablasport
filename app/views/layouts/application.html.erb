@@ -7,9 +7,9 @@
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%# <meta name="apple-mobile-web-app-capable" content="no">
-    <meta name="mobile-web-app-capable" content="no"> %>
-    <%# <link rel="manifest" href="<%= asset_path 'manifest.json' %>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
 
     <!-- Facebook Open Graph data -->
     <meta property="og:title" content="<%= meta_title %>">
@@ -27,7 +27,7 @@
     <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
     <meta name="twitter:image:src" content="<%= meta_image %>">
 
-    <%# <%= render 'shared/ios_pwa_links' %>
+    <%= render 'shared/ios_pwa_links' %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
