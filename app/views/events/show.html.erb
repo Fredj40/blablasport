@@ -134,7 +134,7 @@
             <% end %><br>
 
             <% if @event.reviews.find_by(user:current_user) != nil %>
-              <h5>Tu as déjà donné votre avis</h5>
+              <h5>Tu as déjà donné ton avis</h5>
             <% elsif @event.bookings.find_by(user:current_user) != nil && @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
               <h5>Comment s'est passée cette séance ?</h5>
               <div class="col-12 col-sm-4">
