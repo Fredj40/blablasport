@@ -16,7 +16,11 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def destroy
+    @event = Event.find(params[:event_id])
     @review = Review.find(params[:id])
     @review.destroy
     redirect_to event_path(@event)

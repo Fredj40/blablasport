@@ -28,6 +28,7 @@
               <div class="nav-item dropdown">
                 <%=current_user.full_name %>
                 <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <p class="avatar dropdown-toggle" id="navbarDropdown" >OUVRE MOI</p>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
                   <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
