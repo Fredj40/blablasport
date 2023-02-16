@@ -67,9 +67,11 @@
           <% unless @event.user == current_user %>
             <% unless Date.today > @event.date %>
               <% if @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
-                <i>Vous allez participé à cette partie</i><br>
-              <% elsif @event.bookings.exists?(booking_status:"En attente de validation" || "Refusée", user:current_user) %>
-                <i>Vous avez postulé à cette partie</i><br><br>
+                <div class="badge-success">Iscription validée : tu vas participer à cette partie</div><br>
+              <% elsif @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) %>
+                <div class="badge-warning">Tu as postulé à cette partie - Demande en attente de traitement</div><br>
+              <% elsif @event.bookings.exists?(booking_status: "Refusée", user:current_user) %>
+                <div class="badge-danger">Ta demande a été refusée</div><br><br>
               <% else %>
                 <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-outline-success" %>
               <% end %>
