@@ -22,7 +22,7 @@
 
       <div class= "events_card col-lg-7 col-sm-12">
 
-        <h1>Evénements à venir : </h1><br>
+        <h1>EVENEMENTS A VENIR</h1><br>
 
           <% @events.each do |event| %>
 
@@ -72,16 +72,16 @@
 
       <div class= "events_card col-lg-3 col-sm-3">
         <div class="activity-feed" style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-          <h1>Fil d'actualités</h1>
+          <h1>ACTUALITE</h1>
           <% @activities.each do |activity| %>
             <div class="activity" style="display: flex; flex-direction: column; align-items: center; margin-top: 10px; background-color: #fff; padding: 10px; border-radius: 10px;">
-              <i style="margin-bottom: 10px; color: #7B8AA2;"><%= activity.created_at.strftime("%d/%m/%Y") %> à <%=activity.created_at.time.strftime("%kh%M") %> : </i>
+              <h6 style="margin-bottom: 10px"><%= activity.created_at.strftime("%d/%m/%Y") %> à <%=activity.created_at.time.strftime("%kh%M") %> : </h6>
               <% if activity.trackable_type == "Event" %>
-                <%= "#{activity.trackable.user.first_name} a posté un nouvel événement qui aura lieu à #{activity.trackable.address.split.last} le #{activity.trackable.date.strftime("%d/%m/%Y")} à #{activity.trackable.time.strftime("%kh%M")}" %>
+                <span><strong><%= activity.trackable.user.first_name %></strong> a posté un nouvel événement qui aura lieu à <%= activity.trackable.address.split.last %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %></span>
               <% elsif activity.trackable_type == "User" %>
-                <%= "#{activity.trackable.user.first_name}} a rejoint la famille blabla sport" %>
+                <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint la famille blabla sport"</span>
               <% elsif activity.trackable_type == "Booking" %>
-                <%= "#{activity.trackable.user.first_name} a rejoint l'événement #{activity.trackable.event.sport.sport_name} qui aura lieu à #{activity.trackable.event.address.split.last} le #{activity.trackable.event.date.strftime("%d/%m/%Y")} à #{activity.trackable.event.time.strftime("%kh%M")}" %>
+                <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint l'événement <%= activity.trackable.event.sport.sport_name %> qui aura lieu à <%= activity.trackable.event.address.split.last %> le <%= activity.trackable.event.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.event.time.strftime("%kh%M") %></span>
               <% end %>
             </div>
           <% end %><br>
@@ -99,7 +99,7 @@
       </div><br><br>
 
       <div class= "events_card col-lg-5 col-sm-12">
-        <h1>Evénements passés : </h1><br>
+        <h1>EVENEMENTS PASSES</h1><br>
 
         <% @events.each do |event| %>
           <% unless Date.today < event.date %>
