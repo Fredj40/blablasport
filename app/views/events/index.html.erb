@@ -1,9 +1,28 @@
 
-<div class="banner">
-  <div class="d-flex justify-content-center"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 200, alt: "Logo blablasport" %></div>
-  <div class="d-flex justify-content-center"><h1>LE RESEAU SPORTIF</h1></div><br>
-  <div class="d-flex justify-content-center"><h6>L'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs !</h6></div><br>
+<div class="banner-video">
+  <video id="background-video" autoplay muted loop id="myVideo">
+    <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656463/production_ID_4440937_yjqeyx.mp4" type="video/mp4">
+  </video>
+
+  <div id="logo-index" class="d-flex justify-content-center"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", alt: "Logo blablasport" %></div>
+  <div class="d-flex justify-content-center"><h8>LE RESEAU SPORTIF</h8></div><br>
+  <div class="d-flex justify-content-center"><h7>L'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs !</h7></div><br>
+  <button id="btnVideo" onclick="playAndPause()">Pause</button>
   <div class="d-flex justify-content-center"><%= link_to "Je cherche des joueurs", new_event_path, class: "btn btn-warning" %></div>
+
+  <script>
+    var video = document.getElementById("background-video");
+    var btn = document.getElementById("btnVideo");
+    function playAndPause () {
+      if (video.paused) {
+        video.play();
+        btn.innerHTML = "Pause";
+      } else {
+        video.pause();
+        btn.innerHTML = "Play ▶";
+      }
+    }
+  </script>
 </div>
 
 <div class="container">
@@ -16,7 +35,9 @@
       </div>
     </div>
 
-    <div id="map" class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div><br><br>
+    <div class="col-12 col-lg-12">
+      <div id="map" class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div><br><br>
+    </div>
 
     <div class= "events_card events_card col-12 col-lg-7">
 
@@ -99,7 +120,7 @@
   </div>
 </div>
 
-<div class= "events_card col-lg-5 col-sm-12">
+<div class= "events_card col-12 col-lg-12">
   <h1>EVENEMENTS PASSES</h1><br>
 
   <% @events.each do |event| %>
