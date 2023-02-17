@@ -1,34 +1,47 @@
 <nav id="nav" class="navbar sticky-top navbar-expand-lg py-2 ">
   <div class="pe-lg-0 ps-lg-5 container-fluid justify-content-between">
     <a class="navbar-brand" href="/events">
-        <img src="https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png" height="70" alt="logo">
+      <img src="https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png" height="70" alt="logo">
     </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <div class="nav_left d-lg-flex align-items-center">
-                <nav>
-                    <div class="nav d-block d-lg-flex nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                            type="button" role="tab" aria-controls="home" aria-selected="true"><%= link_to "Page d'accueil", events_path, class: "nav-link-to" %></button>
-                        <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                            type="button" role="tab" aria-controls="home" aria-selected="true"><%= link_to "Ajouter une activité", new_event_path, class: "nav-link-to" %></button>
-                        <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
-                            type="button" role="tab" aria-controls="about" aria-selected="false"><%= link_to "Mon tableau de Bord", dashboard_path, class: "nav-link-to" %></button>
-                        <button class="nav-link" id="timing-tab" data-bs-toggle="tab" data-bs-target="#timing"
-                            type="button" role="tab" aria-controls="timing" aria-selected="false"><%= link_to "Mes amis", friendships_path, class: "nav-link-to" %></button>
-                        <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
-                            type="button" role="tab" aria-controls="courses" aria-selected="false"><%= link_to "Nous contacter", contact_path, class: "nav-link-to" %></button>
-                        <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
-                            type="button" role="tab" aria-controls="courses" aria-selected="false"><% if user_signed_in? %><%= link_to current_user.full_name, profile_path, class: "nav-link-to" %><% else %><%= link_to "Login", new_user_session_path, class: "nav-link-to" %><% end %></button>
-                        <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
-                            type="button" role="tab" aria-controls="courses" aria-selected="false"><%= link_to "Deconnexion", destroy_user_session_path, class: "nav-link-to", data: {turbo_method: :delete} %></button>
-                    </div>
-                </nav>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <div class="nav_left d-lg-flex align-items-center">
+        <nav>
+          <div class="nav d-block d-lg-flex nav-tabs" id="nav-tab" role="tablist">
 
-            </div>
-        </div>
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+              type="button" role="tab" aria-controls="home" aria-selected="true"><%= link_to "Page d'accueil", events_path, class: "nav-link-to" %></button>
+            <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+              type="button" role="tab" aria-controls="home" aria-selected="true"><%= link_to "Ajouter une activité", new_event_path, class: "nav-link-to" %></button>
+            <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
+              type="button" role="tab" aria-controls="about" aria-selected="false"><%= link_to "Mon tableau de Bord", dashboard_path, class: "nav-link-to" %></button>
+            <button class="nav-link" id="timing-tab" data-bs-toggle="tab" data-bs-target="#timing"
+              type="button" role="tab" aria-controls="timing" aria-selected="false"><%= link_to "Recherche ami", friendships_search_path, class: "nav-link-to" %></button>
+            <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
+              type="button" role="tab" aria-controls="courses" aria-selected="false"><%= link_to "Nous contacter", contact_path, class: "nav-link-to" %></button>
+
+            <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
+              type="button" role="tab" aria-controls="courses" aria-selected="false">
+              <% if user_signed_in? %>
+                <%= link_to current_user.full_name, profile_path, class: "nav-link-to" %>
+              <% else %>
+                <%= link_to "Connexion", new_user_session_path, class: "nav-link-to" %>
+              <% end %>
+            </button>
+
+            <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses" type="button" role="tab" aria-controls="courses" aria-selected="false">
+              <% if user_signed_in? %>
+                <%= link_to "Deconnexion", destroy_user_session_path, class: "nav-link-to", data: {turbo_method: :delete} %>
+              <% else %>
+              <% end %>
+            </button>
+
+          </div>
+        </nav>
+      </div>
     </div>
+  </div>
 </nav>

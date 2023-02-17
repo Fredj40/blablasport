@@ -20,10 +20,10 @@
 
       <%= form_with(model: [@event, @booking]) do |form| %>
         <%= form.hidden_field :user_id, value: current_user.id %>
-        <%= form.hidden_field :event_id, value: @event.id %>
+        <%= form.hidden_field :event_id, value: @event.id %><br>
         <%= form.submit "Je m'inscris", class: "btn btn-outline-success" %>
-        <%= link_to "Retour", event_path(@event), class: "btn btn-outline-secondary" %>
-      <% end %>
+      <% end %><br><br>
+      <%= link_to "Retour", event_path(@event), class: "btn btn-outline-secondary" %>
     </div>
   </div>
 </div>

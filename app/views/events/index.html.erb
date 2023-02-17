@@ -20,7 +20,7 @@
 
       <div id="map" class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div><br>
 
-      <div class= "events_card col-lg-5 col-sm-12">
+      <div class= "events_card col-lg-7 col-sm-12">
 
         <h1>Evénements à venir : </h1><br>
 
@@ -55,18 +55,47 @@
                 </h6>
 
                 <h5>
-                  <% if event.players_number - event.bookings.count > 1 %>
-                    <div class="badge-success">Il reste <%= event.players_number - event.bookings.count %> places disponibles</div>
-                  <% elsif event.players_number - event.bookings.count == 1 %>
+                  <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-warning" %><br><br>
+                  <% if event.players_number - event.bookings.where(booking_status: "Acceptée").count > 1 %>
+                    <div class="badge-success">Il reste <%= event.players_number - event.bookings.where(booking_status: "Acceptée").count %> places disponibles</div>
+                  <% elsif event.players_number - event.bookings.where(booking_status: "Acceptée").count == 1 %>
                     <div class="badge-warning">Plus qu'une place !</div>
-                  <% else event.players_number - event.bookings.count == 0 %>
+                  <% else event.players_number - event.bookings.where(booking_status: "Acceptée").count == nil %>
                     <div class="badge-danger">Cette partie est complète</div>
-                  <% end %><br>
-                  <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-warning" %>
-                  </h5>
+                  <% end %>
+                </h5>
               </div>
             <% end %>
           <% end %>
+      </div><br><br>
+
+
+      <div class= "events_card col-lg-3 col-sm-3">
+        <div class="activity-feed" style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+          <h1>Fil d'actualités</h1>
+          <% @activities.each do |activity| %>
+            <div class="activity" style="display: flex; flex-direction: column; align-items: center; margin-top: 10px; background-color: #fff; padding: 10px; border-radius: 10px;">
+              <i style="margin-bottom: 10px; color: #7B8AA2;"><%= activity.created_at.strftime("%d/%m/%Y") %> à <%=activity.created_at.time.strftime("%kh%M") %> : </i>
+              <% if activity.trackable_type == "Event" %>
+                <%= "#{activity.trackable.user.first_name} a posté un nouvel événement qui aura lieu à #{activity.trackable.address.split.last} le #{activity.trackable.date.strftime("%d/%m/%Y")} à #{activity.trackable.time.strftime("%kh%M")}" %>
+              <% elsif activity.trackable_type == "User" %>
+                <%= "#{activity.trackable.user.first_name}} a rejoint la famille blabla sport" %>
+              <% elsif activity.trackable_type == "Booking" %>
+                <%= "#{activity.trackable.user.first_name} a rejoint l'événement #{activity.trackable.event.sport.sport_name} qui aura lieu à #{activity.trackable.event.address.split.last} le #{activity.trackable.event.date.strftime("%d/%m/%Y")} à #{activity.trackable.event.time.strftime("%kh%M")}" %>
+              <% end %>
+            </div>
+          <% end %><br>
+          <!-- JavaScript -->
+          <script>
+            $('#activityModal').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) // Button that triggered the modal
+              var recipient = button.data('whatever') // Extract info from data-* attributes
+              // Update the modal's content.
+              var modal = $(this)
+              modal.find('.modal-title').text("Fil d'actualités")
+            })
+          </script>
+        </div>
       </div><br><br>
 
       <div class= "events_card col-lg-5 col-sm-12">

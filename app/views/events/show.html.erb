@@ -53,37 +53,44 @@
               <li>Prix : <strong><%= @event.price %></strong> €</li>
             <% end %><br>
 
-            <h5>Lieu de rendez-vous : <%= @event.address %></h5>
-
             <div id="map" class="d-flex" style="width: 100% ; height: 190px;"
               data-controller="map"
               data-map-markers-value="<%= @markers.to_json %>"
               data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-            </div><br><br>
+            </div>
+            <i>Lieu de rendez-vous : <%= @event.address %></i><br><br>
 
-            <h5>
-              <% if @event.bookings.count == 0 %>
-                <i>Pas encore d'inscrits</i><br>
-              <% elsif @event.bookings.count == 1 %>
-                <%= @event.bookings.count %><span> participant inscrit</span><br>
-              <% elsif @event.bookings.count %><span>Participants inscrits :</span><br>
-            </h5>
-
-              <% @event.bookings.each do |booking| %>
-                <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= ls booking.user.city %></li>
-              <% end %>
+            <% if @event.bookings.where(booking_status: "Acceptée").empty? %>
+              <h5>Pas encore d'inscriptions validées</h5>
+            <% elsif @event.bookings.where(booking_status: "Acceptée").count == 1 %>
+              <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> inscriptions validée :</h5>
+                <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
+                  <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
+                <% end %>
+            <% elsif %>
+              <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> inscriptions validées:</h5>
+                <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
+                  <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
+                <% end %>
             <% end %><br>
-          </ul><br><br>
 
-            <% if @event.players_number - @event.bookings.count > 1 %>
-              <div class="badge-success">Il reste <%= @event.players_number - @event.bookings.count %> places disponibles</div><br>
-              <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success" %>
-            <% elsif @event.players_number - @event.bookings.count == 1 %>
+            <% if @event.bookings.where(booking_status: "En attente de validation").empty? %> <i>Aucune inscription en attente</i>
+            <% elsif @event.bookings.where(booking_status: "En attente de validation").count == 1 %> <i>1 autre inscription en attente de validation</i>
+            <% else %> <i><%= @event.bookings.where(booking_status: "En attente de validation").count %> autres inscriptions en attente de validation</i>
+            <% end %>
+          </ul>
+
+            <% if @event.players_number - @event.bookings.where(booking_status: "Acceptée").count > 1 %>
+              <div class="badge-success">Il reste <%= @event.players_number - @event.bookings.where(booking_status: "Acceptée").count %> places disponibles</div><br>
+              <% unless @event.user == current_user || @event.bookings.exists?(user:current_user) %><%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success" %>
+              <% end %>
+            <% elsif @event.players_number - @event.bookings.where(booking_status: "Acceptée").count == 1 %>
               <div class="badge-warning">Il reste 1 place disponible</div><br>
-              <%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success" %>
-            <% elsif @event.players_number - @event.bookings.count == 0 %>
-              <div class="badge-danger">Cette partie est complète</div>
-            <% end %><br><br><br>
+              <% unless @event.user == current_user  || @event.bookings.exists?(user:current_user) %><%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success" %>
+              <% end %>
+            <% elsif @event.players_number - @event.bookings.where(booking_status: "Acceptée").count == nil %>
+              <div class="badge-danger">Cette partie est complète</div><br>
+            <% end %><br>
 
             <% unless @event.user == current_user %>
               <% unless Date.today > @event.date %>
@@ -107,7 +114,7 @@
 
         <div class= "events_card col-lg-6 col-sm-12">
           <div class="container chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-            <h4>Chatroom</h4>
+            <h4><strong>Chatroom : </strong></h4><span><i>Discute avec les autres joueurs !</i></span>
             <div class="messages" data-chatroom-subscription-target="messages">
               <% @chatroom.messages.each do |message| %>
                 <%= render "messages/message", message: message %>
@@ -130,8 +137,7 @@
             <% if @event.reviews.blank? %>
               <h5>Aucun avis</h5>
             <% else %>
-              <%# @event.reviews.average(:rating) équivalent à : %>
-              <h4><% starfull= @event.reviews.sum(:rating) / @event.reviews.count %>
+              <h4><% starfull= @event.reviews.sum(:rating) / @event.reviews.count %> <%# équivalent à : @event.reviews.average(:rating) %>
                 <% starfull.times do %>
                   <i class="fa-solid fa-star"></i>
                 <% end %>

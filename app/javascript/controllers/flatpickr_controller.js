@@ -6,7 +6,9 @@ export default class extends Controller {
   connect() {
     new flatpickr(this.element, {
       enableTime: false,
-      // more options available on the documentation!
+      dateFormat: "d-m-Y",
+      minDate: "today",
     });
   }
 }
+*
