@@ -1,7 +1,27 @@
+<video autoplay muted loop id="myVideo">
+  <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656397/production_ID_5192077_f8mwmi.mp4" type="video/mp4">
+</video>
 
-<div class="banner_home" style="background-image: url(https://res.cloudinary.com/di7k88pkv/image/upload/v1675937188/dbt8tnankghzkym5x5kf.png)">
-<div>
-  <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 190, width: 380, alt: "Logo blablasport" %><br><br>
+<div class="content">
+  <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 250, width: 500, alt: "Logo blablasport" %><br><br>
   <h1>LE RESEAU SPORTIF</h1><br><br>
-  <%= link_to "Accéder aux événements", events_path, class: "btn btn-outline-warning" %>
+  <%= link_to "Accéder aux événements", events_path, class: "btn btn-outline-warning" %><br>
+  <%# <button id="myBtn" onclick="myFunction()">Pause</button> %>
 </div>
+
+<script>
+// Get the video
+var video = document.getElementById("myVideo");
+// Get the button
+var btn = document.getElementById("myBtn");
+// Pause and play the video, and change the button text
+function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Pause";
+  } else {
+    video.pause();
+    btn.innerHTML = "Play";
+  }
+}
+</script>

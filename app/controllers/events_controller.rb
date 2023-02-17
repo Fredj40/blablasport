@@ -8,9 +8,11 @@ class EventsController < ApplicationController
       @reviews = Review.all
       @rating = @reviews.average(:rating)
       set_markers
+      @activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
     else
       @events = Event.all.order("date ASC, time ASC")
       set_markers
+      @activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
     end
   end
 
@@ -29,27 +31,28 @@ class EventsController < ApplicationController
       marker_html: render_to_string(partial: "marker")
     }]
 
-        # User qui a créé l'événement
-        @user = @event.user
-        # calculer la moyenne des notes de chaque event de l'user
-        @ratings = []
-        # recuperer les notes de l'event sur lequel tu itères
-        @user.events.each do |event|
-          event.reviews.each do |review|
-            @ratings << review.rating # équivalent à @ratings << event.reviews.average(:rating)
-          end
-        end
-        # calculer la moyenne des notes de l'user
-        @ratings = @ratings.compact
-        if @ratings.empty?
-          @user_rating = "Pas de note"
-        else
-          @user_rating = @ratings.sum / @ratings.size
-        end
-        # calculer le nombre de notes de l'user
-        @user_reviews = @user.events.map { |event| event.reviews.count }.sum
-        # calculer le nombre d'événements de l'user
-        @user_events = @user.events.count
+    # User qui a créé l'événement
+    @user = @event.user
+    # calculer la moyenne des notes de chaque event de l'user
+    @ratings = []
+    # recuperer les notes de l'event sur lequel tu itères
+    @user.events.each do |event|
+      event.reviews.each do |review|
+        @ratings << review.rating # équivalent à @ratings << event.reviews.average(:rating)
+      end
+    end
+    # calculer la moyenne des notes de l'user
+    @ratings = @ratings.compact
+    if @ratings.empty?
+      @user_rating = "Pas de note"
+    else
+      @user_rating = @ratings.sum / @ratings.size
+    end
+    # calculer le nombre de notes de l'user
+    @user_reviews = @user.events.map { |event| event.reviews.count }.sum
+    # calculer le nombre d'événements de l'user
+    @user_events = @user.events.count
+
   end
 
   def new

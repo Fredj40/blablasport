@@ -1,48 +1,46 @@
 <nav id="nav" class="navbar sticky-top navbar-expand-lg py-2 ">
   <div class="pe-lg-0 ps-lg-5 container-fluid justify-content-between">
     <a class="navbar-brand" href="/events">
-        <img src="https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png" height="70" alt="logo">
+      <img src="https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png" height="70" alt="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <div class="nav_left d-lg-flex align-items-center">
-        <div class="nav d-block d-lg-flex nav-tabs" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-            type="button" role="tab" aria-controls="home" aria-selected="true">Accueil</button>
-          <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
-            type="button" role="tab" aria-controls="about" aria-selected="false">Nouvelle Partie</button>
-          <button class="nav-link" id="timing-tab" data-bs-toggle="tab" data-bs-target="#timing"
-            type="button" role="tab" aria-controls="timing" aria-selected="false">Recherche Ville</button>
-          <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
-            type="button" role="tab" aria-controls="courses" aria-selected="false">Mes Amis</button>
-          <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
-            type="button" role="tab" aria-controls="courses" aria-selected="false">Nous Contacter</button>
-          <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
-            type="button" role="tab" aria-controls="courses" aria-selected="false">A propos de nous</button>
+        <nav>
+          <div class="nav d-block d-lg-flex nav-tabs" id="nav-tab" role="tablist">
 
-          <div class="nav-link">
-            <% if user_signed_in? %>
-              <div class="nav-item dropdown">
-                <%=current_user.full_name %>
-                <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                <p class="avatar dropdown-toggle" id="navbarDropdown" >OUVRE MOI</p>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <%= link_to "Mon Profil", profile_path, class: "dropdown-item" %>
-                  <%= link_to "Mon tableau de bord", dashboard_path, class: "dropdown-item" %>
-                  <%= link_to "Mes paramètres", settings_path, class: "dropdown-item" %>
-                  <%= link_to "Mes amis", settings_path, class: "dropdown-item" %>
-                  <%= link_to "Contacts", settings_path, class: "dropdown-item" %>
-                  <%= link_to "Me deconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-                </div>
-              </div>
-            <% else %>
-              <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
-            <% end %>
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+              type="button" role="tab" aria-controls="home" aria-selected="true"><%= link_to "Page d'accueil", events_path, class: "nav-link-to" %></button>
+            <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+              type="button" role="tab" aria-controls="home" aria-selected="true"><%= link_to "Ajouter une activité", new_event_path, class: "nav-link-to" %></button>
+            <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
+              type="button" role="tab" aria-controls="about" aria-selected="false"><%= link_to "Mon tableau de Bord", dashboard_path, class: "nav-link-to" %></button>
+            <button class="nav-link" id="timing-tab" data-bs-toggle="tab" data-bs-target="#timing"
+              type="button" role="tab" aria-controls="timing" aria-selected="false"><%= link_to "Rechercher un ami", friendships_search_path, class: "nav-link-to" %></button>
+            <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
+              type="button" role="tab" aria-controls="courses" aria-selected="false"><%= link_to "Nous contacter", contact_path, class: "nav-link-to" %></button>
+
+            <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
+              type="button" role="tab" aria-controls="courses" aria-selected="false">
+              <% if user_signed_in? %>
+                <%= link_to current_user.full_name, profile_path, class: "nav-link-to" %>
+              <% else %>
+                <%= link_to "Connexion", new_user_session_path, class: "nav-link-to" %>
+              <% end %>
+            </button>
+
+            <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses" type="button" role="tab" aria-controls="courses" aria-selected="false">
+              <% if user_signed_in? %>
+                <%= link_to "Deconnexion", destroy_user_session_path, class: "nav-link-to", data: {turbo_method: :delete} %>
+              <% else %>
+              <% end %>
+            </button>
+
           </div>
-        </div>
+        </nav>
       </div>
     </div>
   </div>

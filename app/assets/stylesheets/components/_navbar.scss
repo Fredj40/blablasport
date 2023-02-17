@@ -79,3 +79,10 @@ input.search_input::placeholder {
 .navbar-toggler:focus {
   box-shadow: none;
 }
+.nav-link-to {
+  text-decoration: none;
+  color: white;
+}
+.nav-link-to:hover {
+  color: #C95014;
+}
