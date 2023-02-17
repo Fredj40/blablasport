@@ -14,7 +14,7 @@
         <tbody>
           <% @bookings.each do |booking| %>
             <tr>
-              <td><%= booking.event.name %></td>
+              <td><%= booking.event.sport.sport_name %></td>
               <td><%= booking.user.email %></td>
               <td><%= link_to "Show", booking_path(booking) %></td>
               <td><%= link_to "Edit", edit_booking_path(booking) %></td>

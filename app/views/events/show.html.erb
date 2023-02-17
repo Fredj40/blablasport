@@ -70,7 +70,7 @@
             </h5>
 
               <% @event.bookings.each do |booking| %>
-                <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
+                <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= ls booking.user.city %></li>
               <% end %>
             <% end %><br>
           </ul><br><br>
