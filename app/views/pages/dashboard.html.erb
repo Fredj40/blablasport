@@ -35,7 +35,7 @@
             <% if booking.event.date >= Date.today %>
               <tr>
                 <td><%= booking.event.sport.sport_name %></td>
-                <td><%= booking.event.address.split.last %></td>
+                <td><%= booking.event.address.split.last(2).first.chomp(',') %></td>
                 <td><%= booking.event.date.strftime("%d/%m/%Y") %></td>
                 <td><%= booking.event.time.strftime("%kh%M") %></td>
                 <td>
@@ -74,7 +74,7 @@
             <% if booking.event.date < Date.today %>
               <tr>
                 <td><%= booking.event.sport.sport_name %></td>
-                <td><%= booking.event.address.split.last %></td>
+                <td><%= booking.event.address.split.last(2).first.chomp(',') %></td>
                 <td><%= booking.event.date.strftime("%d/%m/%Y") %></td>
                 <td><%= booking.event.time.strftime("%kh%M") %></td>
                 <td>
