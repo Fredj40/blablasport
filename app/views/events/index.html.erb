@@ -4,11 +4,21 @@
     <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656463/production_ID_4440937_yjqeyx.mp4" type="video/mp4">
   </video>
 
-  <div id="logo-index" class="d-flex justify-content-center"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", alt: "Logo blablasport" %></div>
-  <div class="d-flex justify-content-center"><h8>LE RESEAU SPORTIF</h8></div><br>
-  <div class="d-flex justify-content-center"><h7>L'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs !</h7></div><br>
-  <button id="btnVideo" onclick="playAndPause()">Pause</button>
+  <div class="logo-index">
+    <div id="logo-index"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 180, width: 360, alt: "BlaBlaSport" %></div>
+    <div class="d-flex justify-content-center"><h8>LE RESEAU SPORTIF</h8></div><br>
+    <div class="d-flex justify-content-center"><h7>L'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs !</h7></div><br><br><br><br><br>
+  </div>
+
   <div class="d-flex justify-content-center"><%= link_to "Je cherche des joueurs", new_event_path, class: "btn btn-warning" %></div>
+  <div class="d-flex justify-content-center col-12">
+  <div class="form_search">
+    <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
+      <%= f.input :"", label: "", placeholder: "Je cherche une partie ", input_html: { name: 'search', value: params.dig(:search) } %>
+    <% end %>
+  </div>
+</div>
+<button id="btnVideo" onclick="playAndPause()">Pause</button>
 
   <script>
     var video = document.getElementById("background-video");
@@ -27,27 +37,12 @@
 
 <div class="container">
   <div class="row">
-    <div class="d-flex justify-content-center col-12">
-      <div class="form_search">
-        <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
-          <%= f.input :"", label: "", placeholder: "Je cherche une partie ", input_html: { name: 'search', value: params.dig(:search) } %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-12 col-lg-12">
-      <div id="map" class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div><br><br>
-    </div>
 
     <div class= "events_card events_card col-12 col-lg-7">
-
       <h1>EVENEMENTS A VENIR</h1><br>
-
         <% @events.each do |event| %>
-
           <% unless Date.today > event.date %>
             <div class="event-card" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
-
               <h4><strong><%= event.sport.sport_name %></strong> - <strong><%= event.address.split.last %></strong><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %>
 
               <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true"
@@ -92,8 +87,15 @@
     </div>
 
     <div class= "events_card col-12 col-lg-4">
+
+      <div><h1>CARTE</h1>
+        <div id="map" class="d-flex" style="width: 100% ; height: 400px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      </div><br><br>
+
       <div class="activity-feed" style="flex: 1; display: flex; flex-direction: column; align-items: center;">
         <h1>ACTUALITE</h1>
+
+        <% @activities.first(10) %>
         <% @activities.each do |activity| %>
           <div class="activity" style="display: flex; flex-direction: column; align-items: center; margin-top: 10px; background-color: #fff; padding: 10px; border-radius: 10px;">
             <%# <%= activity.created_at.strftime("%d/%m/%Y") %> <%# à <%=activity.created_at.time.strftime("%kh%M") %>
@@ -105,7 +107,8 @@
               <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint l'événement <%= activity.trackable.event.sport.sport_name %> qui aura lieu à <%= activity.trackable.event.address.split.last %> le <%= activity.trackable.event.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.event.time.strftime("%kh%M") %></span>
             <% end %>
           </div>
-        <% end %><br>
+        <% end %><br><br>
+
         <!-- JavaScript -->
         <script>
           $('#activityModal').on('show.bs.modal', function (event) {
@@ -116,36 +119,35 @@
             modal.find('.modal-title').text("Fil d'actualités")
           })
         </script>
+
+        <div class="events-passed"><h1>EVENEMENTS PASSES</h1><br>
+          <% @events.first(10)  %>
+          <% @events.each do |event| %>
+            <% unless Date.today < event.date %>
+              <h4><strong><%= event.sport.sport_name %></strong>
+              <span> - <strong><%= event.address.split.last %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
+                <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %> par <strong><%= event.user.first_name %></strong>
+                  <% starfull = event.user.average_rating %>
+                  <% unless starfull == "Pas de note" %>
+                    <% starfull.times do %>
+                      <i class="fa-solid fa-star"></i>
+                    <% end %>
+                    <% (5-starfull).times do %>
+                      <i class="fa-regular fa-star"></i>
+                    <% end %>
+                  <% end %>
+                  <% unless event.user.number_of_events == nil %>
+                    <% if event.user.number_of_events == 1 %>
+                      <span> (1 partie organisée)</span>
+                    <% else %>
+                      <span> (<%= event.user.number_of_events %> parties organisées)</span>
+                    <% end %>
+                  <% end %>
+                </h6>
+              <%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %><br><br>
+            <% end %>
+          <% end %>
+        </div>
       </div>
   </div>
 </div>
-
-<div class= "events_card col-12 col-lg-12">
-  <h1>EVENEMENTS PASSES</h1><br>
-
-  <% @events.each do |event| %>
-    <% unless Date.today < event.date %>
-      <h4><strong><%= event.sport.sport_name %></strong>
-      <span> - <strong><%= event.address.split.last %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
-        <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %> par <strong><%= event.user.first_name %></strong>
-          <% starfull = event.user.average_rating %>
-          <% unless starfull == "Pas de note" %>
-            <% starfull.times do %>
-              <i class="fa-solid fa-star"></i>
-            <% end %>
-            <% (5-starfull).times do %>
-              <i class="fa-regular fa-star"></i>
-            <% end %>
-          <% end %>
-          <% unless event.user.number_of_events == nil %>
-            <% if event.user.number_of_events == 1 %>
-              <span> (1 partie organisée)</span>
-            <% else %>
-              <span> (<%= event.user.number_of_events %> parties organisées)</span>
-            <% end %>
-          <% end %>
-        </h6>
-      <%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %><br><br>
-    <% end %>
-  <% end %>
-</div><br><br>

@@ -6,6 +6,7 @@ Sport.destroy_all
 AdminUser.destroy_all
 Review.destroy_all
 Message.destroy_all
+Friendship.destroy_all
 p 'Database cleaned'
 
 p "Creating Users..."
