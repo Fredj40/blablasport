@@ -1,12 +1,13 @@
 p "Cleaning database..."
-User.destroy_all
-Event.destroy_all
-Chatroom.destroy_all
-Sport.destroy_all
-AdminUser.destroy_all
-Review.destroy_all
 Message.destroy_all
 Friendship.destroy_all
+Review.destroy_all
+Chatroom.destroy_all
+Booking.destroy_all
+Event.destroy_all
+Sport.destroy_all
+AdminUser.destroy_all
+User.destroy_all
 p 'Database cleaned'
 
 p "Creating Users..."
