@@ -32,25 +32,12 @@
   }
 
   #logo-index {
-  width: 600px;
-  height: 300px;
+  width: auto;
+  height: 250px;
   margin-top: 10vh;
   margin-left: auto;
   margin-right: auto;
   }
-
-// .banner {
-//   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676307770/e9exsyio6mgbv2sraswe.jpg");
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   height: 700px;
-//   border-bottom:2px solid #8292AA;
-//   border-top:1px solid #d09d76;
-// }
-// .banner img {
-//   margin-top: 12em;
-// }
 
 .h5-star {
   color: #d09d76;
@@ -59,7 +46,7 @@
 #map {
   background-color: rgba(255, 255, 255, 0.3);
   opacity: 0.9;
-  margin-top: 5rem;
+  margin-top: 1rem;
   border: 1px solid #e98b2a;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -75,14 +62,14 @@
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: center;
-  margin-top: 3em;
+  margin-top: 8em;
 }
 .event-card {
   background-color: white;
   border: 1px solid #e98b2a;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding : 10px;
+  padding : 50px;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -117,4 +104,7 @@
 .badge-warning {
   color: #9F6000;
   background-color: #FEEFB3;
+}
+.events-passed h6 {
+  color: white;
 }
