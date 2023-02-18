@@ -7,7 +7,7 @@
   <div class="logo-index">
     <div id="logo-index"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 180, width: 360, alt: "BlaBlaSport" %></div>
     <div class="d-flex justify-content-center"><h8>LE RESEAU SPORTIF</h8></div><br>
-    <div class="d-flex justify-content-center"><h7>L'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs !</h7></div><br><br><br><br><br>
+    <div class="d-flex justify-content-center"><h7>L'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs !</h7></div><br><br>
   </div>
 
   <div class="d-flex justify-content-center"><%= link_to "Je cherche des joueurs", new_event_path, class: "btn btn-warning" %></div>
@@ -38,18 +38,19 @@
 <div class="container">
   <div class="row">
 
-    <div class= "events_card events_card col-12 col-lg-7">
+    <div class= "events_card events_card col-12 col-lg-4">
       <h1>EVENEMENTS A VENIR</h1><br>
         <% @events.each do |event| %>
           <% unless Date.today > event.date %>
             <div class="event-card" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
-              <h4><strong><%= event.sport.sport_name %></strong> - <strong><%= event.address.split.last %></strong><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %>
+              <h4><strong><%= event.sport.sport_name %></strong> - <strong><%= event.address.split.last(2).first.chomp(',') %></strong><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %>
 
               <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true"
               title="Niveau minimum requis: <%= event.level %><% if event.age_mini.nil? %><% else %> - Age mini : <%= event.age_mini %><% end %>
               <% if event.age_maxi.nil? %><% else %> - Age maxi : <%= event.age_maxi %> ans<% end %>"></i></h4>
 
-              <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %> par <strong><%= event.user.first_name %></strong>
+              <%# <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %>
+              <h6>Créé par <strong><%= event.user.first_name %></strong>
                 <% starfull = event.user.average_rating %>
                 <% unless starfull == "Pas de note" %>
                   <% starfull.times do %>
@@ -58,7 +59,7 @@
                   <% (5-starfull).times do %>
                     <i class="fa-regular fa-star"></i>
                   <% end %>
-                <% end %>
+                <% end %><br>
                 <% unless event.user.number_of_events == nil %>
                   <% if event.user.number_of_events == 1 %>
                     <span> (1 partie organisée)</span>
@@ -97,14 +98,14 @@
 
         <% @activities.first(10) %>
         <% @activities.each do |activity| %>
-          <div class="activity" style="display: flex; flex-direction: column; align-items: center; margin-top: 10px; background-color: #fff; padding: 10px; border-radius: 10px;">
+          <div class="activity" style="display: flex; flex-direction: column; align-items: center; margin-top: 10px; background-color: black; opacity: 0.7; color: white; padding: 10px; border-radius: 10px;">
             <%# <%= activity.created_at.strftime("%d/%m/%Y") %> <%# à <%=activity.created_at.time.strftime("%kh%M") %>
             <% if activity.trackable_type == "Event" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> a posté un nouvel événement qui aura lieu à <%= activity.trackable.address.split.last %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %></span>
+              <span><strong><%= activity.trackable.user.first_name %></strong> a posté un nouvel événement qui aura lieu à <%= activity.trackable.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %></span>
             <% elsif activity.trackable_type == "User" %>
               <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint la famille blabla sport"</span>
             <% elsif activity.trackable_type == "Booking" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint l'événement <%= activity.trackable.event.sport.sport_name %> qui aura lieu à <%= activity.trackable.event.address.split.last %> le <%= activity.trackable.event.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.event.time.strftime("%kh%M") %></span>
+              <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint l'événement <%= activity.trackable.event.sport.sport_name %> qui aura lieu à <%= activity.trackable.event.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.event.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.event.time.strftime("%kh%M") %></span>
             <% end %>
           </div>
         <% end %><br><br>
@@ -121,31 +122,34 @@
         </script>
 
         <div class="events-passed"><h1>EVENEMENTS PASSES</h1><br>
-          <% @events.first(10)  %>
+          <% @events.first(20) %>
           <% @events.each do |event| %>
-            <% unless Date.today < event.date %>
-              <h4><strong><%= event.sport.sport_name %></strong>
-              <span> - <strong><%= event.address.split.last %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
-                <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %> par <strong><%= event.user.first_name %></strong>
-                  <% starfull = event.user.average_rating %>
-                  <% unless starfull == "Pas de note" %>
-                    <% starfull.times do %>
-                      <i class="fa-solid fa-star"></i>
+            <div class="event-passed" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
+              <% unless Date.today < event.date %>
+                <h4><strong><%= event.sport.sport_name %></strong>
+                <span> - <strong><%= event.address.split.last(2).first.chomp(',') %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
+                  <%# <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %>
+                  <h6>Créé par <strong><%= event.user.first_name %></strong>
+                    <% starfull = event.user.average_rating %>
+                    <% unless starfull == "Pas de note" %>
+                      <% starfull.times do %>
+                        <i class="fa-solid fa-star"></i>
+                      <% end %>
+                      <% (5-starfull).times do %>
+                        <i class="fa-regular fa-star"></i>
+                      <% end %>
+                    <% end %><br>
+                    <% unless event.user.number_of_events == nil %>
+                      <% if event.user.number_of_events == 1 %>
+                        <span> (1 partie organisée)</span>
+                      <% else %>
+                        <span> (<%= event.user.number_of_events %> parties organisées)</span>
+                      <% end %>
                     <% end %>
-                    <% (5-starfull).times do %>
-                      <i class="fa-regular fa-star"></i>
-                    <% end %>
-                  <% end %>
-                  <% unless event.user.number_of_events == nil %>
-                    <% if event.user.number_of_events == 1 %>
-                      <span> (1 partie organisée)</span>
-                    <% else %>
-                      <span> (<%= event.user.number_of_events %> parties organisées)</span>
-                    <% end %>
-                  <% end %>
-                </h6>
-              <%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %><br><br>
-            <% end %>
+                  </h6>
+                <%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %><br><br>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>

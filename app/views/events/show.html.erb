@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row">
     <div class= "events_card col-12 col-lg-7">
-      <h3><strong><%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last %></h3>
+      <h3><strong><%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last(2).first.chomp(',') %></h3>
       <h4><strong>Séance le <%= @event.date.strftime("%d/%m/%Y") %> à <%= @event.time.strftime("%kh%M") %></strong><br></h4>
       <h5>Créé le <%=@event.created_at.strftime("%d/%m/%Y")%> par <strong><%= @event.user.first_name %></strong>, <%= @event.user.age %> ans - <%= @event.user.city %></h5>
 
@@ -132,7 +132,7 @@
     <div class= "review_card col 12 col-lg-12" >
       <% unless Date.today < @event.date  %>
         <% if @event.user != current_user %>
-          <h3><strong>AVIS <%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last %><span> (<%= @event.date.strftime("%d/%m/%Y") %>) </span></h3>
+          <h3><strong>AVIS <%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last(2).first.chomp(',') %><span> (<%= @event.date.strftime("%d/%m/%Y") %>) </span></h3>
           <% if @event.reviews.blank? %>
             <h5>Aucun avis</h5>
           <% else %>
