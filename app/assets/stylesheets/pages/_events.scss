@@ -31,9 +31,14 @@
   margin-bottom: 2vh;
   }
 
+  .logo-index {
+  display: flex;
+  flex-direction: column;
+  }
+
   #logo-index {
-  width: auto;
-  height: 250px;
+  width: 50;
+  height: 340;
   margin-top: 10vh;
   margin-left: auto;
   margin-right: auto;
