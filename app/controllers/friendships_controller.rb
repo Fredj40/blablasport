@@ -14,7 +14,7 @@ class FriendshipsController < ApplicationController
 
   def friendslist
     @request_friend = Friendship.where(friend_id: current_user.id, status: "pending")
-
+    @users = User.all
     @friendships = Friendship.where(friend_id: current_user.id , status: "accepted") + Friendship.where(user_id: current_user.id, status: "accepted")
   end
 
@@ -38,8 +38,8 @@ class FriendshipsController < ApplicationController
   end
 
   def accept
-    friendship = Friendship.find(params[:id])
-    friendship.update(status: "accepted")
+    @friendship = Friendship.find(params[:id])
+    @friendship.update(status: "accepted")
     redirect_to friendships_path
   end
 

@@ -17,7 +17,9 @@ class PagesController < ApplicationController
 
   def profile
     @user = current_user
+    @users = User.all
     @events = @user.events
+    @friendships = Friendship.where(friend_id: current_user.id , status: "accepted") + Friendship.where(user_id: current_user.id, status: "accepted")
     if params[:search].present?
       @users = User.where("first_name ILIKE :search OR last_name ILIKE :search", search: "%#{params[:search]}%")
     else
