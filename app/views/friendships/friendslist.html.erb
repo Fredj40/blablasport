@@ -1,0 +1,21 @@
+<h1>Liste d'amis</h1>
+
+<h2>Demandes reçues</h2>
+
+<% @request_friend.each do |friendship| %>
+    <div class="friend-request">
+      <p>Demande d'ami reçue de <%= User.find(friendship.user_id).first_name %></p>
+      <%= link_to 'Accepter', accept_friendship_path(friendship), method: :patch, data: { turbo_method: :patch } %>
+      <%= link_to 'Refuser', friendship, method: :delete, data: { confirm: 'Etes-vous sûr de vouloir refuser cette demande?' } %>
+    </div>
+<% end %>
+
+<h2>Amis</h2>
+<% @friendships.each do |friendship| %>
+  <% if friendship.status == "accepted" %>
+    <div class="friend">
+      <p><%= User.find(friendship.user_id).first_name %></p>
+      <%= link_to 'Supprimer', friendship, method: :delete, data: { confirm: 'Etes-vous sûr de vouloir supprimer cet ami?' } %>
+    </div>
+  <% end %>
+<% end %>

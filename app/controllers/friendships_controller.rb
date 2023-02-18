@@ -3,14 +3,19 @@ class FriendshipsController < ApplicationController
 
   def search
     @friendships = current_user.friendships
-
     if params[:search_term].present?
-      @users = User.where("first_name LIKE ?", "%#{params[:search_term]}%")
+      @users = User.where("lower(first_name) LIKE ?", "%#{params[:search_term]&.downcase}%")
       respond_to do |format|
         format.json { render json: @users }
         format.js { render 'search' }
       end
     end
+  end
+
+  def friendslist
+    @request_friend = Friendship.where(friend_id: current_user.id, status: "pending")
+
+    @friendships = Friendship.where(friend_id: current_user.id , status: "accepted") + Friendship.where(user_id: current_user.id, status: "accepted")
   end
 
   def create
@@ -19,7 +24,7 @@ class FriendshipsController < ApplicationController
     if @friendship.new_record? && @friendship.save
       flash[:notice] = "Demande d'ami envoyée avec succès"
     else
-      flash[:alert] = "Impossible d'ajouter en ami"
+      flash[:alert] = "vous avez déjà demandé à être ami"
     end
   end
 
@@ -32,7 +37,20 @@ class FriendshipsController < ApplicationController
     redirect_to friendships_path
   end
 
+  def accept
+    friendship = Friendship.find(params[:id])
+    friendship.update(status: "accepted")
+    redirect_to friendships_path
+  end
+
+  def decline
+    friendship = Friendship.find(params[:id])
+    friendship.destroy
+    redirect_to friendships_path
+  end
+
   def destroy
+    friendship = Friendship.find(params[:id])
     if @friendship.destroy
       flash[:notice] = "Ami supprimé avec succès"
     else

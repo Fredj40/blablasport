@@ -17,7 +17,9 @@
   // Fonction de recherche d'utilisateurs
   function searchUsers() {
     var searchTerm = $("#search").val();
-
+    if (searchTerm.length == 0) {
+      return;
+    }
     $.ajax({
       url: "/users/search",
       data: {
