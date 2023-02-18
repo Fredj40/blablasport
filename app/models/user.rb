@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :chatrooms, through: :events, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :sports, through: :events, dependent: :destroy
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
   validates :first_name, presence: true

@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :friendships, only: [:create, :update]
-  get 'friendships/search', to: 'friendships#search'
+  resources :friendships, only: [:index, :create, :update, :destroy] do
+    get :friendslist, on: :collection
+    patch :accept, on: :member
+  end
+  get 'friendships/search', to: 'friendships#search', as: 'search_friendship'
+
+  get 'friendships/decline/:id', to: 'friendships#decline', as: 'decline_friendship'
 end
