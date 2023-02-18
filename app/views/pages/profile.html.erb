@@ -10,6 +10,19 @@
     <% else %>
       <p style="color: #7B8AA2; margin-bottom: 10px;">Ce joueur n'a pas encore ajouté de description</p>
     <% end %>
+    <div class="friends-list" style="flex: 1; display: flex; flex-direction: column; background-color: #DBDADB; padding: 30px;">
+      <h2 style="margin-top: 30px; color: #E98B2A;">Liste d'amis</h2>
+        <%  @friendships.each do |friendship| %>
+          <% if current_user == friendship.user_id %>
+          <div class="friend-item" style="background-color: #fff; padding: 20px; border-radius: 10px; margin-top: 30px; text-align: center;">
+            <p style="color: #7B8AA2; margin-bottom: 10px;"> <%= friendship.friend_id.first_name %> <%= friendship.friend_id.last_name %></p>
+          <% else %>
+            <div class="friend-item" style="background-color: #fff; padding: 20px; border-radius: 10px; margin-top: 30px; text-align: center;">
+            <p style="color: #7B8AA2; margin-bottom: 10px;"> <%= User.find(friendship.user_id).first_name %> <%= User.find(friendship.user_id).last_name %></p>
+          <% end  %></h5>
+    </div>
+  <% end %>
+</div>
   </div>
   <div class="events-list" style="flex: 1; display: flex; flex-direction: column; background-color: #DBDADB; padding: 30px;">
     <h2 style="margin-top: 30px; color: #E98B2A;">Evénements créés ou participés</h2>
