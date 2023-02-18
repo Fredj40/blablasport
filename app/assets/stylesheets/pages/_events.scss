@@ -70,11 +70,22 @@
   margin-top: 8em;
 }
 .event-card {
-  background-color: white;
+  background-color: black;
+  opacity: 0.8;
   border: 1px solid #e98b2a;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding : 50px;
+  padding : 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.event-passed {
+  background-color: rgb(99, 94, 94);
+  opacity: 0.9;
+  border: 1px solid #e98b2a;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding : 10px;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -111,5 +122,8 @@
   background-color: #FEEFB3;
 }
 .events-passed h6 {
+  color: white;
+}
+.event-card h6 {
   color: white;
 }
