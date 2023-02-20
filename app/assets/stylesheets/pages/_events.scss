@@ -15,7 +15,7 @@
   font-family: Trebuchet MS;
   font-weight: bold;
   text-align: center;
-  font-size: 6rem;
+  font-size: 5rem;
   margin-top: 5vh;
   margin-bottom: 5vh;
   }
@@ -56,7 +56,58 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .events_card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  opacity: 0.9;
+  border: 1px solid #8292AA;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 8em;
+}
+
+@media(max-width: 600px) {
+  .events_card {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    opacity: 0.9;
+    border: 1px solid #8292AA;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    margin-top: 8em;
+  }
+}
+
+.events_card-show {
+  background-color: black;
+  opacity: 0.8;
+  border: 1px solid #8292AA;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 8em;
+}
+
+.feed_card {
   background-color: rgba(255, 255, 255, 0.3);
   opacity: 0.9;
   border: 1px solid #8292AA;
@@ -80,7 +131,7 @@
   text-align: center;
 }
 .event-passed {
-  background-color: rgb(99, 94, 94);
+  background-color: rgb(66, 64, 64);
   opacity: 0.9;
   border: 1px solid #e98b2a;
   border-radius: 5px;
@@ -126,4 +177,16 @@
 }
 .event-card h6 {
   color: white;
+}
+.container-show {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1675937203/zfvgizqgzwzaqzpuby1x.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.container-new {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892785/pexels-the-th-179908_c3wvvx.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
