@@ -4,7 +4,7 @@
 <div class="container-show">
   <div class="container">
     <div class="row">
-      <div class= "events_card-show col-12 col-lg-7">
+      <div class= "events_card-show col-12 col-lg-6">
         <h3><strong><%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last(2).first.chomp(',') %></h3>
         <h4><strong>Séance le <%= @event.date.strftime("%d/%m/%Y") %> à <%= @event.time.strftime("%kh%M") %></strong><br></h4>
         <h5>Créé le <%=@event.created_at.strftime("%d/%m/%Y")%> par <strong><%= @event.user.first_name %></strong>, <%= @event.user.age %> ans - <%= @event.user.city %></h5>
@@ -112,7 +112,7 @@
       <div class= "col-12 col-lg-1">
       </div>
 
-      <div class= "events_card-show col-12 col-lg-4">
+      <div class= "events_card-show col-12 col-lg-5">
         <div class="container chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
           <h4><strong>Chatroom : </strong></h4><span><i>Discute avec les autres joueurs !</i></span>
           <div class="messages" data-chatroom-subscription-target="messages">
