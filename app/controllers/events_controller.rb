@@ -110,7 +110,7 @@ class EventsController < ApplicationController
   end
 
   def set_markers
-    @markers = @events.geocoded.map do |event|
+    @markers = @events.where("date >= ?", Date.today).geocoded.map do |event|
       {
         lat: event.latitude,
         lng: event.longitude,

@@ -1,9 +1,9 @@
 #background-video {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   object-fit: cover;
-  // position: fixed;
-  position: absolute;
+  position: fixed;
+  // position: absolute;
   left: 0;
   right: 0;
   top: 0;
@@ -18,7 +18,7 @@ font-weight: bold;
 text-align: center;
 font-size: 4rem;
 margin-top: 4vh;
-margin-bottom: 3vh;
+margin-bottom: 5vh;
 }
 
   // #btnVideo{
@@ -46,8 +46,7 @@ margin-right: auto;
 }
 
 .form_search {
-  font-family: 'PT Sans', sans-serif;
-  margin-bottom: 8px;
+  width: 465px;
 }
 
 .orange-band {
@@ -55,6 +54,7 @@ margin-right: auto;
   opacity: 0.6;
   height: 1px;
   width: 100%;
+  border-radius: 1px;
 }
 .orange-band3 {
   background-color: #2C86D6;
@@ -70,10 +70,11 @@ margin-right: auto;
 
 
 .container-index {
-  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892786/pexels-ingo-joseph-2618794_vryawr.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  // background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892786/pexels-ingo-joseph-2618794_vryawr.jpg");
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  background-color: black;
   height: 100%;
   width: 100%;
   // position: fixed;
