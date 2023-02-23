@@ -1,69 +1,98 @@
 #background-video {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   object-fit: cover;
-  position: fixed;
+  // position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   z-index: -1;
-  }
-
-  h8 {
-  color: white;
-  font-family: Trebuchet MS;
-  font-weight: bold;
-  text-align: center;
-  font-size: 5rem;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-  }
-
-  #btnVideo{
-  font-size: 1rem;
-  background: 0;
-  border: 0;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  font-family: Trebuchet MS;
-  margin-bottom: 2vh;
-  }
-
-  .logo-index {
-  display: flex;
-  flex-direction: column;
-  }
-
-  #logo-index {
-  width: 50;
-  height: 340;
-  margin-top: 10vh;
-  margin-left: auto;
-  margin-right: auto;
-  }
-
-.h5-star {
-  color: #d09d76;
-  font-size: 12px;
 }
-#map {
-  background-color: rgba(255, 255, 255, 0.3);
-  opacity: 0.9;
-  margin-top: 1rem;
-  border: 1px solid #e98b2a;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+h8 {
+color: white;
+font-family: Trebuchet MS;
+font-weight: bold;
+text-align: center;
+font-size: 4rem;
+margin-top: 4vh;
+margin-bottom: 3vh;
+}
+
+  // #btnVideo{
+  // font-size: 1rem;
+  // background: 0;
+  // border: 0;
+  // margin-left: 50%;
+  // transform: translateX(-50%);
+  // color: white;
+  // font-family: Trebuchet MS;
+  // margin-bottom: 2vh;
+  // }
+
+.logo-index {
+display: flex;
+flex-direction: column;
+}
+
+#logo-index {
+width: 80;
+height: 400;
+margin-top: 5vh;
+margin-left: auto;
+margin-right: auto;
+}
+
+.form_search {
+  font-family: 'PT Sans', sans-serif;
+  margin-bottom: 8px;
+}
+
+.orange-band {
+  background-color: #d09d76;
+  opacity: 0.6;
+  height: 1px;
+  width: 100%;
+}
+.orange-band3 {
+  background-color: #2C86D6;
+  opacity: 0.6;
+  height: 1px;
+  width: 100%;
+}
+.orange-band2 {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 20px;
+  width: 100%;
+}
+
+
+.container-index {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892786/pexels-ingo-joseph-2618794_vryawr.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  // position: fixed;
+  // left: 0;
+  // right: 0;
+  // top: 0;
+  // bottom: 0;
+  // z-index:
 }
 
 .events_card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
+  // display: flex;
+  // flex-wrap: wrap;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  // grid-gap: 1rem;
   background-color: rgba(255, 255, 255, 0.3);
   opacity: 0.9;
-  border: 1px solid #8292AA;
+  border: 1px solid #2C86D6;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding-left: 50px;
@@ -74,53 +103,32 @@
   margin-top: 8em;
 }
 
-@media(max-width: 600px) {
-  .events_card {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 1rem;
-    background-color: rgba(255, 255, 255, 0.3);
-    opacity: 0.9;
-    border: 1px solid #8292AA;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center;
-    margin-top: 8em;
-  }
+.events_cards {
+  display: flex;
+  flex-wrap: wrap;
 }
+// @media(max-width: 600px) {
+//   .events_card {
+//     display: grid;
+//     grid-template-columns: 1fr;
+//     grid-gap: 1rem;
+//     background-color: rgba(255, 255, 255, 0.3);
+//     opacity: 0.9;
+//     border: 1px solid #8292AA;
+//     border-radius: 5px;
+//     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+//     padding-left: 50px;
+//     padding-right: 50px;
+//     padding-top: 20px;
+//     padding-bottom: 20px;
+//     text-align: center;
+//     margin-top: 8em;
+//   }
+// }
 
-.events_card-show {
-  background-color: black;
-  opacity: 0.8;
-  border: 1px solid #8292AA;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-  margin-top: 8em;
-}
-
-.feed_card {
-  background-color: rgba(255, 255, 255, 0.3);
-  opacity: 0.9;
-  border: 1px solid #8292AA;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-  margin-top: 8em;
-}
 .event-card {
+  margin: 10px;
+  flex: 40%;
   background-color: black;
   opacity: 0.8;
   border: 1px solid #e98b2a;
@@ -130,6 +138,33 @@
   margin-bottom: 20px;
   text-align: center;
 }
+
+.event-card-list {
+  text-align: left;
+}
+
+.feed_card {
+  background-color: rgba(255, 255, 255, 0.3);
+  opacity: 0.9;
+  border: 1px solid #2C86D6;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 8em;
+}
+
+#map {
+  background-color: rgba(255, 255, 255, 0.3);
+  opacity: 0.9;
+  border: 1px solid #e98b2a;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .event-passed {
   background-color: rgb(66, 64, 64);
   opacity: 0.9;
@@ -140,22 +175,17 @@
   margin-bottom: 20px;
   text-align: center;
 }
-.event-card-list {
-  text-align: left;
+
+.events-passed h6 {
+  color: white;
+}
+.event-card h6 {
+  color: white;
 }
 
-.review_card {
-  border: 1px solid #8292AA;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding : 10px;
-  margin-bottom: 20px;
-  margin-top: 3em;
-}
-
-.form_search {
-  font-family: 'PT Sans', sans-serif;
-  margin-bottom: 8px;
+.h5-star {
+  color: #d09d76;
+  font-size: 12px;
 }
 
 .badge-danger {
@@ -172,21 +202,41 @@
   color: #9F6000;
   background-color: #FEEFB3;
 }
-.events-passed h6 {
-  color: white;
-}
-.event-card h6 {
-  color: white;
-}
+
 .container-show {
   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1675937203/zfvgizqgzwzaqzpuby1x.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.events_card-show {
+  background-color: black;
+  opacity: 0.8;
+  border: 1px solid #8292AA;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 8em;
+}
+
+.review_card {
+  border: 1px solid #8292AA;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding : 10px;
+  margin-bottom: 20px;
+  margin-top: 3em;
+}
+
 .container-new {
   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892785/pexels-the-th-179908_c3wvvx.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  height: 90vh;
 }

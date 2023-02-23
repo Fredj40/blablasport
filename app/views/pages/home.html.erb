@@ -4,19 +4,26 @@
   </video>
 
   <div class="content">
-    <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 190, width: 380, alt: "BlaBlaSport" %><br><br>
-    <div class="text-home">LE RESEAU SPORTIF</div><br><br>
+
+    <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 190, width: 380, alt: "BlaBlaSport" %><br>
+
+    <div class="text-home">LE RESEAU SPORTIF</div><br>
+
+    <div class="description-home">
+      <span>
+        BlaBlaSport est l'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs.<br>
+        Il te manque un adversaire, un partenaire, ou plusieurs joueurs, rejoins la communauté BlaBlaSport !
+      </span>
+    </div><br><br>
+
     <%= link_to "Accéder aux événements", events_path, class: "btn btn-outline-warning" %><br>
-    <%# <button id="myBtn" onclick="myFunction()">Pause</button> %>
+
   </div>
 
-
+<%#
 <script>
-// Get the video
 var video = document.getElementById("myVideo");
-// Get the button
 var btn = document.getElementById("myBtn");
-// Pause and play the video, and change the button text
 function myFunction() {
   if (video.paused) {
     video.play();
@@ -26,4 +33,4 @@ function myFunction() {
     btn.innerHTML = "Play";
   }
 }
-</script>
+</script> %>

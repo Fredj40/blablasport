@@ -2,28 +2,77 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-6">
-        <div class="form-login">
-          <h2>Je publie un événement</h2>
+        <div class="form-event">
+          <h2>J'ajoute une activité</h2><br>
           <%= @error %>
-          <%= simple_form_for @event do |f| %>
-            <%= f.input :sport_id, collection: @ordered_list, label: "Choisis ton sport" %>
-            <%= f.input :players_number, label: "Place(s) disponible(s)" %>
-            <%= f.input :level,  collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum requis" %>
-            <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-            <%= f.input :price, label: "Prix" %>
-            <%= f.input :date, as: :string,
-                        wrapper_html: { class: "mb-4" },
-                        label_html: { class: "form-label text-secondary fw-bold" },
-                        input_html: { data: { controller: "flatpickr" } } %>
-            <%= f.input :time, label: "Heure de début", as: :time, :minute_step => 10 %>
-            <%= f.input :duration, label: "Durée en minutes" %>
-            <%= f.input :description, label: "Eventuel commentaire" %>
-            <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-            <%= f.submit "Publier", class: "btn btn-outline-warning" %>
-          <% end %>
-          <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %>
+          <form class="row g-3">
+            <%= simple_form_for @event do |f| %>
+              <div class="form-fields row">
+                <div class="col-md-5">
+                  <%= f.input :sport_id, input_html: { class: 'form-label' }, collection: @ordered_list, label: "Choisis ton sport" %>
+                </div>
+
+                <div class="col-md-3">
+                  <%= f.input :players_number, input_html: { class: 'form-label' }, label: "Nombre de places" %>
+                </div>
+
+                <div class="col-md-3">
+                  <%= f.input :level, input_html: { class: 'form-label' }, collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum" %>
+                </div>
+
+                <div class="col-md-5">
+                  <%= f.input :date, as: :string,
+                              wrapper_html: { class: "mb-4" },
+                              label_html: { class: "form-label text-secondary fw-bold" },
+                              input_html: { data: { controller: "flatpickr" } } %>
+                </div>
+
+
+                <div class="col-md-3">
+                  <%= f.input :time, input_html: { class: 'small-field' }, label: "Heure début", as: :time, :minute_step => 10 %>
+                </div>
+
+                <div class="col-md-3">
+                  <%= f.input :duration, input_html: { class: 'form-label' }, collection: ['20 min','30 min','45 min', '1H00', '1H30', '2H00', '2H30', '3H00 ou plus'], label: "Durée" %>
+                </div>
+
+                <div class="col-11">
+                  <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire" %>
+                </div>
+
+                <div class="col-6">
+                  <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+                </div>
+
+                <div class="col-md-2">
+                  <%= f.input :price, input_html: { class: 'price-field' }, label: "Prix" %>
+                </div>
+
+                <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+
+                <div class="col-5">
+                  <%= f.submit "Publier", class: "btn btn-outline-warning" %>
+                </div>
+                <div class="col-1">
+                </div>
+                <div class="col-5">
+                  <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %>
+                </div>
+
+              </div>
+            <% end %>
+          </form>
         </div><br>
       </div>
     </div>
   </div>
+
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="gridCheck">
+    <label class="form-check-label" for="gridCheck">
+      Check me out
+    </label>
+  </div>
+
 </div>

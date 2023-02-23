@@ -2,7 +2,7 @@
   background :rgba(0, 0, 0, 0.6);
   color: white;
   padding: 10px 20px;
-  margin-top: 50px;
+  margin-top: 200px;
   border-radius: 3px;
   box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
   h2 {
@@ -15,4 +15,52 @@
     width: 100%;
     margin-bottom: 20px
   }
+}
+.form-links {
+  text-align: center;
+  text-justify: center;
+  margin-top: 10px;
+  a {
+    text-align: center;
+    text-justify: center;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+  }
+}
+
+.form-event {
+  background :rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 20px;
+  margin-top: 150px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .btn {
+    width: 100%;
+    margin-bottom: 20px
+  }
+}
+.small-field {
+  width: 30%;
+}
+.half-field {
+  width: 50%;
+  height: 1em;
+}
+.comment-field {
+  height: 1em;
+}
+.price-field {
+  align-items: end;
+}
+.form-fields {
+  margin-left: 20px;
 }
