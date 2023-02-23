@@ -3,7 +3,8 @@
     <div class="row justify-content-center">
       <div class="col-12 col-lg-12">
       <h1>Mon tableau de bord</h1>
-
+      </br>
+      <h3>Mes inscriptions :</h3>
         <% if @bookings.empty?  %>
           <p>Tu n'es inscrit à aucun événement</p>
         <% elsif @bookings.count == 1 %>
@@ -13,7 +14,7 @@
         <% end %>
 
         <%= render 'pages/participated_events' %>
-        <%# <%= render 'pages/my_events' %>
+        <%= render 'pages/my_events' %>
 
       </div>
     </div>
