@@ -10,35 +10,36 @@
           <%= f.input :email, required: true, autofocus: true %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+            <p>En attente de confirmation de: <%= resource.unconfirmed_email %></p>
           <% end %>
 
           <%= f.input :password,
-                      hint: "leave it blank if you don't want to change it",
+                      label: "New password",
+                      hint: "Ne pas rensigner si tu ne souhaites pas changer de mot de passe",
                       required: false,
-                      input_html: { autocomplete: "new-password" } %>
+                      input_html: { autocomplete: "Nouveau mot de passe" } %>
           <%= f.input :password_confirmation,
                       required: false,
-                      input_html: { autocomplete: "new-password" } %>
+                      input_html: { autocomplete: "Nouveau mot de passe" } %>
           <%= f.input :current_password,
-                      hint: "we need your current password to confirm your changes",
+                      hint: "Nous avons besoin de ton mot de passe actuel pour confirmer les changements",
                       required: true,
-                      input_html: { autocomplete: "current-password" } %>
+                      input_html: { autocomplete: "Mot de passe actuel" } %>
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Update" %>
+          <%= f.button :submit, "Mettre à jour" %>
         </div>
       <% end %>
 
-      <h3>Cancel my account</h3>
+      <h3>Supprimer mon compte</h3>
 
       <div class="d-flex align-items-center">
-        <div>Unhappy?</div>
-        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
+        <div>Mécontent ?</div>
+        <%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Es-tu sûr ?" }, method: :delete, class: "btn btn-link" %>
       </div>
 
-      <%= link_to "Back", :back %>
+      <%= link_to "Retour", :back %>
     </div>
   </div>
 </div>
