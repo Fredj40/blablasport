@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :sports, through: :favorite_sports, dependent: :destroy
   #has_many :players, through: :bookings, dependent: :destroy
-  has_many :events, through: :players
+  # has_many :events, through: :players
   has_many :events, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :chatrooms, through: :events, dependent: :destroy
@@ -52,7 +52,7 @@ class User < ApplicationRecord
     friendships.find_by(friend_id: friend.id).destroy
   end
 
-def average_rating
+  def average_rating
     ratings = []
     events.each do |event|
       event.reviews.each do |review|
