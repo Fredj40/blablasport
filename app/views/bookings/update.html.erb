@@ -4,18 +4,18 @@
       <h1>Consulter les demandes de réservations</h1>
 
       <% @event.bookings.each do |booking| %>
-        <ul>
-          <li><p><strong>Événement :</strong> <%= booking.event.title %></p></li>
-          <li><p><strong>Date :</strong> <%= booking.event.date %></p></li>
-          <li><p><strong>Adresse :</strong> <%= booking.event.address %></p></li>
-          <li><p><strong>Prix :</strong> <%= booking.event.price %> €</p></li>
-          <li><p><strong>Nom :</strong> <%= booking.user.first_name %></p></li>
-          <li><p><strong>Prénom :</strong> <%= booking.user.last_name %></p></li>
-          <li><p><strong>Email :</strong> <%= booking.user.email %></p></li>
-          <li><p><strong>Statut :</strong> <%= booking.booking_status %></p></li>
-          <%= link_to "Accepter", booking_path(booking, booking_status: "accepted"), method: :patch, class: "btn btn-outline-success" %>
-          <%= link_to "Refuser", booking_path(booking, booking_status: "refused"), method: :patch, class: "btn btn-outline-danger" %>
-        </ul>
+      <tr>
+        <td><%= booking.user.name %></td>
+        <td><%= booking.event.name %></td>
+        <td><%= booking.status %></td>
+        <% if booking.pending? %>
+          <td><%= button_to "Approve", approve_booking_path(booking), method: :post %></td>
+          <td><%= button_to "Reject", reject_booking_path(booking), method: :post %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
+      </tr>
       <% end %>
 
       <%= link_to "Retour", events_path, class: "btn btn-outline-warning" %>
