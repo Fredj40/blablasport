@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get "bookings", to: "bookings#index"
   get '/users/search', to: 'friendships#search'
 
+  resources :users, only: [:show]
+
   resources :bookings do
     member do
       patch :approve

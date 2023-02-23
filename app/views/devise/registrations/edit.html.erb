@@ -1,17 +1,75 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-6">
+<div class="container-new">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="form-event">
       <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs">
+        <div class="form-inputs class=row g-3">
           <%= f.input :email, required: true, autofocus: true %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>En attente de confirmation de: <%= resource.unconfirmed_email %></p>
           <% end %>
+        <div class="col-md-5">
+          <%= f.input :first_name,
+                      label: "Prénom",
+                      hint: "Ne pas rensigner si tu ne souhaites pas changer de prénom",
+                      required: false,
+                      input_html: { autocomplete: "Nouveau prénom" } %>
+        </div>
+        <div class="col-md-5">
+          <%= f.input :last_name,
+                      label: "Nom de famille",
+                      hint: "Ne pas rensigner si tu ne souhaites pas changer de nom de famille",
+                      required: false,
+                      input_html: { autocomplete: "nouveau nom de famille" } %>
+        </div>
+        <div class="col-md-5">
+          <%= f.input :phone_number,
+                      label: "Numéro de téléphone",
+                      hint: "Ne pas rensigner si tu ne souhaites pas changer de numéro de téléphone",
+                      required: false,
+                      input_html: { autocomplete: "Nouveau numéro de téléphone" } %>
+        </div>
+        <div class="col-md-5">
+          <%= f.input :address,
+                      label: "Adresse",
+                      hint: "Ne pas rensigner si tu ne souhaites pas changer d'adresse",
+                      required: false,
+                      input_html: { autocomplete: "Nouvelle adresse" } %>
+        </div>
+        <div class="col-md-5">
+          <%= f.input :zip_code,
+                      label: "code postale",
+                      hint: "Ne pas rensigner si tu ne souhaites pas changer de code postale",
+                      required: false,
+                      input_html: { autocomplete: "Nouveau code postale" } %>
+        </div>
+        <div class="col-md-5">
+          <%= f.input :city,
+                      label: "ville de résidence",
+                      hint: "Ne pas rensigner si tu ne souhaites pas changer de ville de résidence",
+                      required: false,
+                      input_html: { autocomplete: "Nouvelle ville de résidence" } %>
+        </div>
+        <div class="col-md-5">
+          <%= f.input :age,
+                      label: "Age",
+                      hint: "Ne pas rensigner si tu ne souhaites pas changer d'âge",
+                      required: false,
+                      input_html: { autocomplete: "ton nouvel âge" } %>
+        </div>
+        <div class="col-md-5">
+          <%= f.input :sex,
+                      label: "Sexe",
+                      hint: "Ne pas rensigner si tu ne souhaites pas changer ton sexe ",
+                      required: false,
+                      input_html: { autocomplete: "ton nouvel sexe" } %>
+        </div>
 
           <%= f.input :password,
                       label: "New password",
@@ -40,6 +98,8 @@
       </div>
 
       <%= link_to "Retour", :back %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

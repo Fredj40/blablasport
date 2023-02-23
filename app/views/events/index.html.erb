@@ -114,10 +114,6 @@
               <%# <%= activity.created_at.strftime("%d/%m/%Y") %> <%# à <%=activity.created_at.time.strftime("%kh%M") %>
               <% if activity.trackable_type == "Event" %>
                 <span><strong><%= activity.trackable.user.first_name %></strong> a posté un nouvel événement qui aura lieu à <%= activity.trackable.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %></span>
-              <% elsif activity.trackable_type == "User" %>
-                <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint la famille blabla sport"</span>
-              <% elsif activity.trackable_type == "Booking" %>
-                <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint l'événement <%= activity.trackable.event.sport.sport_name %> qui aura lieu à <%= activity.trackable.event.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.event.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.event.time.strftime("%kh%M") %></span>
               <% end %>
             </div>
           <% end %><br><br>
