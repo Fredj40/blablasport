@@ -20,6 +20,18 @@ class Event < ApplicationRecord
   include PublicActivity::Model
   tracked
 
+  def future?
+    date > Date.today
+  end
+
+  def past?
+    date < Date.today
+  end
+
+  def fully_booked?
+    players_number == players.count
+  end
+
   def to_s
     title
   end

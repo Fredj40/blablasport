@@ -89,6 +89,15 @@ class EventsController < ApplicationController
     redirect_to events_path(@event), status: :see_other
   end
 
+  # def my_events
+  #   @events = current_user.events
+  #   @bookings_pending_review = current_user.bookings.pending.includes(:event)
+  # end
+
+  # def participated_events
+  #   @events = current_user.booked_events.includes(:bookings)
+  # end
+
   private
 
   def event_params
