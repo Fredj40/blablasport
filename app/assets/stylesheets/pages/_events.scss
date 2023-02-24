@@ -207,8 +207,11 @@ margin-right: auto;
 .container-show {
   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1675937203/zfvgizqgzwzaqzpuby1x.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
 }
 
 .events_card-show {
@@ -222,7 +225,8 @@ margin-right: auto;
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: center;
-  margin-top: 8em;
+  margin-top: 4em;
+  margin-bottom: 4em;
 }
 
 .review_card {
@@ -237,7 +241,9 @@ margin-right: auto;
 .container-new {
   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892785/pexels-the-th-179908_c3wvvx.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
-  height: 90vh;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
 }

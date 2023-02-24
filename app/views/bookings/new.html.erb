@@ -1,29 +1,44 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-6"><br>
-      <h1>Je réserve ma place</h1>
+ <div class="booking-new-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="booking-card"><br>
+          <h1>Je réserve ma place</h1><br>
 
-      <h2>Informations sur l'événement</h2>
-        <ul>
-          <li><p><strong>Événement :</strong> <%= @event.title %></p></li>
-          <li><p><strong>Date :</strong> <%= @event.date %></p></li>
-          <li><p><strong>Adresse :</strong> <%= @event.address %></p></li>
-          <li><p><strong>Prix :</strong> <%= @event.price %> €</p></li>
-        </ul>
+          <h2>Récapitulatif de ton inscription</h2>
+          <div class="d-flex justify-content-start">
+            <ul>
+              <li class="d-flex justify-content-start"><p><strong>Activité :</strong> <%= @event.sport.sport_name %></p></li>
+              <li class="d-flex justify-content-start"><p><strong>Date :</strong> <%= @event.date.strftime("%d/%m/%Y") %></p></li>
+              <li class="d-flex justify-content-start"><p><strong>Heure :</strong> <%= @event.time.strftime("%kh%M") %></p></li>
+              <li class="d-flex justify-content-start"><p><strong>Adresse :</strong> <%= @event.address %></p></li>
+              <li class="d-flex justify-content-start"><p><strong>Prix :</strong> <%= @event.price %> €</p></li>
+            </ul>
+          </div>
 
-      <h2>Mes informations personnelles</h2>
-        <ul>
-          <li><p><strong>Nom :</strong> <%= current_user.first_name %></p></li>
-          <li><p><strong>Prénom :</strong> <%= current_user.last_name %></p></li>
-          <li><p><strong>Email :</strong> <%= current_user.email %></p></li>
-        </ul>
+          <h2>Mes informations personnelles</h2>
+            <ul>
+              <li class="d-flex justify-content-start"><p><strong>Nom :</strong> <%= current_user.first_name %></p></li>
+              <li class="d-flex justify-content-start"><p><strong>Prénom :</strong> <%= current_user.last_name %></p></li>
+              <li class="d-flex justify-content-start"><p><strong>Email :</strong> <%= current_user.email %></p></li>
+            </ul>
 
-      <%= form_with(model: [@event, @booking]) do |form| %>
-        <%= form.hidden_field :user_id, value: current_user.id %>
-        <%= form.hidden_field :event_id, value: @event.id %><br>
-        <%= form.submit "Je m'inscris", class: "btn btn-outline-success" %>
-      <% end %><br><br>
-      <%= link_to "Retour", event_path(@event), class: "btn btn-outline-secondary" %>
+          <%= form_with(model: [@event, @booking]) do |form| %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.hidden_field :event_id, value: @event.id %><br>
+
+          <div class="d-flex justify-content-center">
+            <div class="col-5">
+              <%= form.submit "Je m'inscris", class: "btn btn-outline-success" %>
+            </div>
+          <% end %>
+            <div class="col-1"></div>
+            <div class="col-5">
+              <%= link_to "Annuler", event_path(@event), class: "btn btn-outline-secondary" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

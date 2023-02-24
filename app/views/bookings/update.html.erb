@@ -1,24 +1,26 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-6">
-      <h1>Consulter les demandes de réservations</h1>
+ <div class="booking-update-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <h1>Consulter les demandes de réservations</h1>
 
-      <% @event.bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.user.name %></td>
-        <td><%= booking.event.name %></td>
-        <td><%= booking.status %></td>
-        <% if booking.pending? %>
-          <td><%= button_to "Approve", approve_booking_path(booking), method: :post %></td>
-          <td><%= button_to "Reject", reject_booking_path(booking), method: :post %></td>
-        <% else %>
-          <td></td>
-          <td></td>
+        <% @event.bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.user.name %></td>
+          <td><%= booking.event.name %></td>
+          <td><%= booking.status %></td>
+          <% if booking.pending? %>
+            <td><%= button_to "Approve", approve_booking_path(booking), method: :post %></td>
+            <td><%= button_to "Reject", reject_booking_path(booking), method: :post %></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+        </tr>
         <% end %>
-      </tr>
-      <% end %>
 
-      <%= link_to "Retour", events_path, class: "btn btn-outline-warning" %>
+        <%= link_to "Retour", events_path, class: "btn btn-outline-warning" %>
+      </div>
     </div>
   </div>
 </div>
