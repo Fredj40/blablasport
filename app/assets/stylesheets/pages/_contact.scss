@@ -1,0 +1,121 @@
+.contact-container {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1677250395/pexels-cottonbro-studio-4761615_depmr6.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  // position: fixed;
+}
+
+.container-contact-cards {
+  height: 100vh;
+  width: 100vw;
+}
+
+.border-contact {
+  height: 290px;
+  width: 240px;
+  background: transparent;
+  border-radius: 10px;
+  transition: border 1s;
+  position: relative;
+
+  &:hover {
+    border: 1px solid white;
+  }
+}
+
+.card-contact {
+  margin-top: 10px;
+  margin-right: 50px;
+  height: 300px;
+  width: 250px;
+  background: grey;
+  border-radius: 10px;
+  transition: background 0.8s;
+  overflow: hidden;
+  background: black;
+  box-shadow: 0 70px 63px -60px #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.card0 {
+  background: url('https://media.licdn.com/dms/image/C4D03AQGpBEjEEaxVfg/profile-displayphoto-shrink_800_800/0/1636313065233?e=2147483647&v=beta&t=aNK_mDeYx-8MLSnqpuyVDZsdH1A6O2UBZ5q4wKA1NSE') center center no-repeat;
+  background-size: 300px;
+  filter: grayscale(100%);
+
+  &:hover {
+    background: url('https://media.licdn.com/dms/image/C4D03AQGpBEjEEaxVfg/profile-displayphoto-shrink_800_800/0/1636313065233?e=2147483647&v=beta&t=aNK_mDeYx-8MLSnqpuyVDZsdH1A6O2UBZ5q4wKA1NSE') left center no-repeat;
+    background-size: 550px;
+
+    h2 {
+      opacity: 1;
+    }
+    .fa {
+      opacity: 1;
+    }
+  }
+}
+.card1 {
+  background: url('https://res.cloudinary.com/di7k88pkv/image/upload/v1677250896/fred_cqpuqf.jpg') center center no-repeat;
+  background-size: 300px;
+  filter: grayscale(100%);
+
+  &:hover {
+    background: url('https://res.cloudinary.com/di7k88pkv/image/upload/v1677250896/fred_cqpuqf.jpg') left center no-repeat;
+    background-size: 470px;
+
+    h2 {
+      opacity: 1;
+    }
+    .fa {
+      opacity: 1;
+    }
+  }
+}
+
+.card2 {
+  background: url('https://media.licdn.com/dms/image/C4D03AQFoQuXZ04xIWA/profile-displayphoto-shrink_200_200/0/1556093445308?e=1680134400&v=beta&t=HXed-iDeEQAIuRrRYDuEoubGMDC3jGhnwOlojaIHEVE') center center no-repeat;
+  background-size: 300px;
+  filter: grayscale(100%);
+
+  &:hover {
+    background: url('https://media.licdn.com/dms/image/C4D03AQFoQuXZ04xIWA/profile-displayphoto-shrink_200_200/0/1556093445308?e=1680134400&v=beta&t=HXed-iDeEQAIuRrRYDuEoubGMDC3jGhnwOlojaIHEVE') left center no-repeat;
+    background-size: 500px;
+    h2 {
+      opacity: 1;
+    }
+    .fa {
+      opacity: 1;
+    }
+  }
+}
+
+.border-contact h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: white;
+  margin: 20px;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.fa-contact {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.icons-contact {
+  position: absolute;
+  fill: #fff;
+  color: #fff;
+  height: 130px;
+  top: 226px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}

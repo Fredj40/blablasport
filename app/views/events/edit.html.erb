@@ -1,26 +1,75 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-6">
-      <div class="form-login">
-        <h2>Modifier mon événement</h2>
-        <%= @error %>
-        <%= simple_form_for @event do |f| %>
-          <%= f.input :sport_id, collection: Sport.all.map { |sport| [sport.sport_name, sport.id] }, label: "Choisis ton sport" %>
-          <%# <%= f.input :title, label: "Titre" %>
-          <%= f.input :players_number, label: "Place(s) disponible(s)" %>
-          <%= f.input :level, label: "Niveau minimum" %>
-          <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-          <%= f.input :price, label: "Prix" %>
-          <%= f.input :date %>
-          <%= f.input :time, label: "Heure de début" %>
-          <%= f.input :duration, label: "Durée en minutes" %>
-          <%= f.input :description, label: "Eventuel commentaire" %>
-          <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-          <%= f.submit "Valider les modifications", class: "btn btn-outline-success" %>
-          <%= link_to "Annuler les modifications", event_path, class: "btn btn-outline-danger" %>
-        <% end %>
-        <%= link_to "Retour au menu", events_path, class: "btn btn-secondary" %>
+<div class="container-new">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="form-event">
+          <h2>Modifier mon activité</h2><br>
+          <%= @error %>
+          <form class="row g-3">
+            <%= simple_form_for @event do |f| %>
+              <div class="form-fields row">
+                <div class="col-md-5">
+                  <%= f.input :sport_id, input_html: { class: 'form-label' }, collection: @ordered_list, label: "Choisis ton sport" %>
+                </div>
+
+                <div class="col-md-3">
+                  <%= f.input :players_number, input_html: { class: 'form-label' }, label: "Nombre de places" %>
+                </div>
+
+                <div class="col-md-3">
+                  <%= f.input :level, input_html: { class: 'form-label' }, collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum" %>
+                </div>
+
+                <div class="col-md-5">
+                  <%= f.input :date, as: :string,
+                              wrapper_html: { class: "mb-4" },
+                              label_html: { class: "form-label text-secondary fw-bold" },
+                              input_html: { data: { controller: "flatpickr" } } %>
+                </div>
+
+
+                <div class="col-md-3">
+                  <%= f.input :time, input_html: { class: 'small-field' }, label: "Heure début", as: :time, :minute_step => 10 %>
+                </div>
+
+                <div class="col-md-3">
+                  <%= f.input :duration, input_html: { class: 'form-label' }, collection: ['20 min','30 min','45 min', '1H00', '1H30', '2H00', '2H30', '3H00 ou plus'], label: "Durée" %>
+                </div>
+
+                <div class="col-11">
+                  <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire" %>
+                </div>
+
+                <div class="col-6">
+                  <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+                </div>
+
+                <div class="col-md-2">
+                  <%= f.input :price, input_html: { class: 'price-field' }, label: "Prix" %>
+                </div>
+
+                <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+
+                <div class="col-5">
+                  <%= f.submit "Valider les modifications", class: "btn btn-success" %>
+                </div>
+
+                <div class="col-1"></div>
+
+                <div class="col-5">
+                <%= link_to "Annuler les modifications", event_path, class: "btn btn-danger" %>
+                </div>
+
+                <div class="col-1"></div>
+
+                <div class="col-11">
+                  <%= link_to "Retour au menu", events_path, class: "btn btn-secondary" %>
+                </div>
+
+              </div>
+            <% end %>
+          </form>
+        </div><br>
       </div>
     </div>
   </div>
-</div>

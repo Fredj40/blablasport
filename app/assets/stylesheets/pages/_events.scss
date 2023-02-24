@@ -93,7 +93,7 @@ margin-right: auto;
   // grid-gap: 1rem;
   background-color: rgba(255, 255, 255, 0.3);
   opacity: 0.9;
-  border: 1px solid #2C86D6;
+  border: 1px solid #c95014;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding-left: 50px;
@@ -147,7 +147,7 @@ margin-right: auto;
 .feed_card {
   background-color: rgba(255, 255, 255, 0.3);
   opacity: 0.9;
-  border: 1px solid #2C86D6;
+  border: 1px solid #c95014;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding-left: 50px;
@@ -211,7 +211,7 @@ margin-right: auto;
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
-  position: fixed;
+  // position: fixed;
 }
 
 .events_card-show {
@@ -229,13 +229,22 @@ margin-right: auto;
   margin-bottom: 4em;
 }
 
-.review_card {
+.reviews_card-show {
+  background-color: black;
+  opacity: 0.8;
   border: 1px solid #8292AA;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding : 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+.reviews_card-title {
+  text-align: center;
   margin-bottom: 20px;
-  margin-top: 3em;
 }
 
 .container-new {
@@ -246,4 +255,33 @@ margin-right: auto;
   height: 100%;
   width: 100%;
   position: fixed;
+}
+
+// NOTES REVIEWS
+
+.tag-item {
+  display: inline-block;
+}
+
+.tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: #e98b2a;
+  color: white;
+  border: 1px solid white;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.tag-selector:checked + label {
+  background-color: #32c914;
+  color: black;
 }

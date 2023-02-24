@@ -16,13 +16,13 @@
               <td><%= event.date.strftime("%d/%m/%Y") %></td>
               <td><%= event.players_number %></td>
               <td><% if booking.booking_status == "Acceptée" %>
-                  <div>Inscription validée : tu vas participer à cette partie</div>
+                  <div>Inscription validée : tu vas participer à cette activité</div>
                 <% elsif booking.booking_status == "En attente de validation" %>
-                  <div>Tu as postulé à cette partie - Demande en attente de traitement</div>
+                  <div>Tu as postulé à cette activité - Demande en attente de traitement</div>
                 <% elsif booking.booking_status == "Refusée" %>
                   <div>Ta demande a été refusée</div>
                 <% end %></td>
-              <td><%= link_to "Accéder", event_path(event), class: "btn btn-warning" %></td>
+              <td><%= link_to "Accéder", event_path(event), class: "btn btn-outline-warning" %></td>
             </tr>
           <% end %>
         <% end %>
@@ -47,13 +47,16 @@
               <td><%= event.date.strftime("%d/%m/%Y") %></td>
               <td><%= event.players_number %></td>
               <td><% if booking.booking_status == "Acceptée" %>
-                  <div>Inscription validée : tu vas participer à cette partie</div>
+                  <div>Inscription validée : tu as participé à cette activité</div>
                 <% elsif booking.booking_status == "En attente de validation" %>
-                  <div>Tu as postulé à cette partie - Demande en attente de traitement</div>
+                  <div>Tu as postulé à cette activité - Demande non traitée..</div>
                 <% elsif booking.booking_status == "Refusée" %>
                   <div>Ta demande a été refusée</div>
                 <% end %></td>
-              <td><%= link_to "Accéder", event_path(event), class: "btn btn-warning" %></td>
+              <td><% if booking.booking_status == "Acceptée" %>
+              <%= link_to "Je laisse un avis", event_path(event), class: "btn btn-outline-success" %>
+              <% else %><%= link_to "Revoir l'activité", event_path(event), class: "btn btn-outline-warning" %>
+              <% end %></td>
             </tr>
           <% end %>
         <% end %>
