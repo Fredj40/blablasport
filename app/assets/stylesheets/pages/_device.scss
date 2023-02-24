@@ -1,7 +1,9 @@
 .new-container {
   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892782/pexels-pixabay-461593_u3z3pv.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
-  height: 90vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
 }
