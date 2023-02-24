@@ -1,0 +1,55 @@
+<div class="profile-container">
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="profile-title col-12 col-lg-12">
+      <span>Profil de <%= @user.full_name %></span>
+      </div>
+
+      <div class="profile_cards col-12 col-lg-3">
+        <h2>Mes Informations</h2><br>
+        <span>Prénom : <i><%= @user.first_name %></i></span><br><br>
+        <span>Nom : <i><%= @user.last_name %></i></span><br><br>
+        <span>Age : <i><%= @user.age %></i></span><br><br>
+        <span>Ville : <i><%= @user.city %></i></span><br><br>
+        <span>Description :
+          <i>
+          <% unless @user_description == nil  %>
+            <%= @user_description %>
+          <% else %>
+            <p>Tu n'as pas encore ajouté de description</i>
+          <% end %></i></span>
+      </div>
+
+      <div class= "col-12 col-lg-1"></div>
+
+      <div class="profile_cards col-12 col-lg-3">
+        <h2>Ma liste d'amis</h2><br>
+          <% @friendships.each do |friendship| %>
+            <ul>
+              <% if current_user == friendship.user_id %>
+                <ul><%= friendship.friend_id.first_name %> <%= friendship.friend_id.last_name %></ul>
+                <%= link_to 'Voir le profil', user_path(friendship.friend_id), class: "btn btn-primary" %> <br>
+              <% else %>
+                <ul><%= User.find(friendship.user_id).first_name %> <%= User.find(friendship.user_id).last_name %></ul>
+                  <%= link_to 'Voir le profil', user_path(friendship.user_id), class: "btn btn-primary" %>
+              <% end %>
+            </ul>
+          <% end %>
+      </div>
+
+      <div class= "col-12 col-lg-1"></div>
+
+      <div class="profile_cards col-12 col-lg-4">
+        <h2>Mes activités</h2><br>
+        <% @user.events.each do |event| %>
+          <ul>
+          <li><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></li>
+          </ul>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
