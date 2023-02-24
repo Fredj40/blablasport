@@ -1,27 +1,29 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <h1>Réservations en attente</h1>
+ <div class="booking-index-container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h1>Réservations en attente</h1>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Event</th>
-            <th>User</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @bookings.each do |booking| %>
+        <table class="table">
+          <thead>
             <tr>
-              <td><%= booking.event.sport.sport_name %></td>
-              <td><%= booking.user.email %></td>
-              <td><%= link_to "Show", booking_path(booking) %></td>
-              <td><%= link_to "Edit", edit_booking_path(booking) %></td>
+              <th>Event</th>
+              <th>User</th>
+              <th colspan="3"></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @bookings.each do |booking| %>
+              <tr>
+                <td><%= booking.event.sport.sport_name %></td>
+                <td><%= booking.user.email %></td>
+                <td><%= link_to "Show", booking_path(booking) %></td>
+                <td><%= link_to "Edit", edit_booking_path(booking) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -32,8 +32,11 @@ class User < ApplicationRecord
   validates :zip_code, presence: true
   validates :zip_code, length: { minimum: 4 }
 
+  #include PublicActivity::Model
+  #tracked only: [:create], owner: Proc.new{ |controller, model| controller && controller.current_user }
+
   include PublicActivity::Model
-  tracked only: [:create], owner: Proc.new{ |controller, model| controller && controller.current_user }
+  tracked
 
   def full_name
     "#{first_name} #{last_name}"

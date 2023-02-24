@@ -1,0 +1,65 @@
+.booking-index-container {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892782/pexels-pixabay-390051_rbic7l.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+.booking-show-container {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892782/pexels-pixabay-390051_rbic7l.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+.booking-new-container {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892782/pexels-pixabay-390051_rbic7l.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+.booking-edit-container {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892782/pexels-pixabay-390051_rbic7l.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+.booking-update-container {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892782/pexels-pixabay-390051_rbic7l.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.booking-card {
+  background :rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 20px;
+  margin-top: 150px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .btn {
+    width: 100%;
+    margin-bottom: 20px
+  }
+}

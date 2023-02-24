@@ -22,6 +22,7 @@ class EventsController < ApplicationController
     @chatroom = Chatroom.find_by(event_id: @event.id)
     @review = Review.new
     @actual_review = @event.reviews.find_by(user: current_user)
+    @actual_booking = @event.bookings.find_by(user: current_user)
     @reviews = Review.all
     @message = Message.new
     @markers = [{
@@ -123,7 +124,7 @@ class EventsController < ApplicationController
   end
 
   def set_markers
-    @markers = @events.geocoded.map do |event|
+    @markers = @events.where("date >= ?", Date.today).geocoded.map do |event|
       {
         lat: event.latitude,
         lng: event.longitude,

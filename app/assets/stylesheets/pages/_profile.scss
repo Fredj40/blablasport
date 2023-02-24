@@ -1,9 +1,11 @@
 .profile-container {
   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892786/pexels-ingo-joseph-2618794_vryawr.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
-  height: 90vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
 }
 
 .profile_cards {
@@ -25,4 +27,7 @@
   font-size: 30px;
   font-weight: bold;
   text-align: end;
+}
+.friend-name a {
+  color: white;
 }
