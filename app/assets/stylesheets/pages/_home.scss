@@ -7,6 +7,7 @@
   background-size: cover;
   display: block;
   margin: 0 auto;
+  margin-top: 20px;
 }
 .content {
   display: flex;
@@ -17,12 +18,17 @@
   color: #f1f1f1;
   width: 100%;
   padding: 100px;
-  height: 55%;
+  height: 60%;
   justify-content: center;
   align-items: center;
   text-align: center;
   background-size: cover;
   background-position: center;
+}
+.logo-home {
+  margin-top: 20px;
+  height: 190;
+  width: 380;
 }
 .text-home {
   font-family: "PT Sans", sans-serif;
@@ -38,18 +44,22 @@
   text-align: center;
 }
 
-/* Style the button used to pause/play the video */
-// #myBtn {
-//   width: 200px;
-//   font-size: 1px;
-//   padding: 10px;
-//   border: none;
-//   background: #d09d76;
-//   color: #fff;
-//   cursor: pointer;
+// .main-container {
+//   display: flex;
+//   justify-content: space-between;
 // }
 
-// #myBtn:hover {
-//   background: #ddd;
-//   color: #d09d76;
+// .card {
+//   background-size: cover;
+//   background-position: center;
+//   height: 150px;
+//   border-radius: 1px;
+//   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-around;
+//   font-size: 22px;
+//   color: white;
+//   font-weight: bolder;
+//   text-shadow: 0 0 10px rgba(0,0,0,0.7);
 // }
