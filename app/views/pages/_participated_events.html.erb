@@ -1,58 +1,61 @@
-<h3>Mes participations</h3>
-
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="future-tab" data-toggle="tab" href="#future" role="tab" aria-controls="future" aria-selected="true">Evénements à venir</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="past-tab" data-toggle="tab" href="#past" role="tab" aria-controls="past" aria-selected="false">Evénements passés</a>
-  </li>
-</ul>
-
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="future" role="tabpanel" aria-labelledby="future-tab">
+  <h2>Mes réservations à venir</h2></br>
     <table class="table">
       <thead>
         <tr>
-          <th>Nom</th>
           <th>Date</th>
           <th>Places proposées</th>
           <th>Statut</th>
+          <th>Lien</th>
         </tr>
       </thead>
       <tbody>
-        <% current_user.bookings do |booking| %>
-        <% #@events.select { |event| event.future? }.each do |event| %>
-          <tr>
-            <td><%= booking.event.sport.sport_name %></td>
-            <td><%= booking.event.date.strftime("%d/%m/%Y") %></td>
-            <td><%= booking.event.players_number %></td>
-            <td><%= booking.booking_status %></td>
-          </tr>
+        <% current_user.bookings.each do |booking| %>
+          <% event = booking.event %>
+          <% if event.future? %>
+            <tr>
+              <td><%= event.date.strftime("%d/%m/%Y") %></td>
+              <td><%= event.players_number %></td>
+              <td><% if booking.booking_status == "Acceptée" %>
+                  <div>Inscription validée : tu vas participer à cette partie</div>
+                <% elsif booking.booking_status == "En attente de validation" %>
+                  <div>Tu as postulé à cette partie - Demande en attente de traitement</div>
+                <% elsif booking.booking_status == "Refusée" %>
+                  <div>Ta demande a été refusée</div>
+                <% end %></td>
+              <td><%= link_to "Accéder", event_path(event), class: "btn btn-warning" %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
-    </table>
-  </div>
-  <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
+    </table></br>
+
+  <h2>Mes réservations passées</h2></br>
     <table class="table">
       <thead>
         <tr>
-          <th>Nom</th>
           <th>Date</th>
           <th>Places proposées</th>
-          <th>Status</th>
+          <th>Statut</th>
+          <th>Lien</th>
         </tr>
       </thead>
       <tbody>
-        <% @events.select { |event| event.past? }.each do |event| %>
-          <tr>
-            <td><%= event.sport.sport_name %></td>
-            <td><%= event.date %></td>
-            <td><%= event.players_number %></td>
-            <td><%= event.user_status %></td>
-          </tr>
+        <% current_user.bookings.each do |booking| %>
+          <% event = booking.event %>
+          <% if event.past? %>
+            <tr>
+              <td><%= event.date.strftime("%d/%m/%Y") %></td>
+              <td><%= event.players_number %></td>
+              <td><% if booking.booking_status == "Acceptée" %>
+                  <div>Inscription validée : tu vas participer à cette partie</div>
+                <% elsif booking.booking_status == "En attente de validation" %>
+                  <div>Tu as postulé à cette partie - Demande en attente de traitement</div>
+                <% elsif booking.booking_status == "Refusée" %>
+                  <div>Ta demande a été refusée</div>
+                <% end %></td>
+              <td><%= link_to "Accéder", event_path(event), class: "btn btn-warning" %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
-  </div>
-</div>

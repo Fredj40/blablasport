@@ -18,12 +18,10 @@ Rails.application.routes.draw do
   get "bookings", to: "bookings#index"
   get '/users/search', to: 'friendships#search'
 
-  resources :users, only: [:show]
-
-  resources :bookings do
+  resources :events do
     member do
-      patch :approve
-      patch :reject
+      put :accept_event_booking
+      put :reject_event_booking
     end
   end
 

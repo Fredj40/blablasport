@@ -90,14 +90,27 @@ class EventsController < ApplicationController
     redirect_to events_path(@event), status: :see_other
   end
 
-  # def my_events
-  #   @events = current_user.events
-  #   @bookings_pending_review = current_user.bookings.pending.includes(:event)
-  # end
+  def accept_event_booking
+    booking = current_user.bookings.find_by(event_id: params[:event_id], booking_status: "En attente de validation")
+    if booking
+      booking.update(booking_status: "Accepté")
+      flash[:success] = "Inscription validée avec succès !"
+    else
+      flash[:danger] = "Erreur : l'inscription n'existe pas ou n'est pas en attente de validation"
+    end
+    redirect_to dashboard_path
+  end
 
-  # def participated_events
-  #   @events = current_user.booked_events.includes(:bookings)
-  # end
+  def reject_event_booking
+    booking = current_user.bookings.find_by(event_id: params[:event_id], booking_status: "En attente de validation")
+    if booking
+      booking.update(booking_status: "Refusé")
+      flash[:success] = "Inscription refusée avec succès !"
+    else
+      flash[:danger] = "Erreur : l'inscription n'existe pas ou n'est pas en attente de validation"
+    end
+    redirect_to dashboard_path
+  end
 
   private
 

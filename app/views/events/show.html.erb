@@ -96,7 +96,7 @@
         <% unless @event.user == current_user %>
           <% unless Date.today > @event.date %>
             <% if @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
-              <div class="badge-success">Iscription validée : tu vas participer à cette partie</div><br>
+              <div class="badge-success">Inscription validée : tu vas participer à cette partie</div><br>
               <%# <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete }, class: "btn btn-outline-warning" %></h5> %>
             <% elsif @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) %>
               <div class="badge-warning">Tu as postulé à cette partie - Demande en attente de traitement</div><br>
