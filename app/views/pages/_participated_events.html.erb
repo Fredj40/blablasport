@@ -1,35 +1,42 @@
   <h2>Mes réservations à venir</h2></br>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Places proposées</th>
-          <th>Statut</th>
-          <th>Lien</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% current_user.bookings.each do |booking| %>
-          <% event = booking.event %>
-          <% if event.future? %>
-            <tr>
-              <td><%= event.date.strftime("%d/%m/%Y") %></td>
-              <td><%= event.players_number %></td>
-              <td><% if booking.booking_status == "Acceptée" %>
-                  <div>Inscription validée : tu vas participer à cette activité</div>
-                <% elsif booking.booking_status == "En attente de validation" %>
-                  <div>Tu as postulé à cette activité - Demande en attente de traitement</div>
-                <% elsif booking.booking_status == "Refusée" %>
-                  <div>Ta demande a été refusée</div>
-                <% end %></td>
-              <td><%= link_to "Accéder", event_path(event), class: "btn btn-outline-warning" %></td>
-            </tr>
+    <% if current_user.bookings.any? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Places proposées</th>
+            <th>Statut</th>
+            <th>Lien</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_user.bookings.each do |booking| %>
+            <% event = booking.event %>
+            <% if event.future? %>
+              <tr>
+                <td><%= event.date.strftime("%d/%m/%Y") %></td>
+                <td><%= event.players_number %></td>
+                <td><% if booking.booking_status == "Acceptée" %>
+                    <div>Inscription validée : tu vas participer à cette activité</div>
+                  <% elsif booking.booking_status == "En attente de validation" %>
+                    <div>Tu as postulé à cette activité - Demande en attente de traitement</div>
+                  <% elsif booking.booking_status == "Refusée" %>
+                    <div>Ta demande a été refusée</div>
+                  <% end %></td>
+                <td><%= link_to "Accéder", event_path(event), class: "btn btn-outline-warning" %></td>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
-      </tbody>
-    </table></br>
+        </tbody>
+      </table>
+    <% else %>
+      <div>Tu n'as pas encore réservé d'activité</div>
+    <% end %>
+
+  </br>
 
   <h2>Mes réservations passées</h2></br>
+  <% if current_user.bookings.any? %>
     <table class="table">
       <thead>
         <tr>
@@ -62,3 +69,6 @@
         <% end %>
       </tbody>
     </table>
+  <% else %>
+    <div>Tu n'as pas de réservation passée</div>
+  <% end %>
