@@ -1,7 +1,5 @@
 <div class="container">
 
-  <h1>Recherche d'utilisateurs</h1>
-
   <div class="form-group">
     <label for="search">Rechercher un utilisateur:</label>
     <input type="text" class="form-control" id="search" placeholder="Entrer le nom d'utilisateur">
@@ -36,6 +34,8 @@ success: function(data) {
         "<div class='card-body'>" +
           "<h5 class='card-title'>" + user.first_name + "</h5>" +
           "<button class='btn btn-primary add-friend-button' data-user-id='" + user.id + "'>Ajouter en ami</button>" +
+          "&nbsp;&nbsp;&nbsp;" +
+          "<a href='/users/" + user.id + "' class='btn btn-secondary'>Voir profil</a>" +
         "</div>" +
       "</div>"
     );
