@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :show, :edit, :update, :destroy]
   resources :reviews, only: [:show]
 
+  resources :users
+
   get "dashboard", to: "pages#dashboard"
   get "profile", to: "pages#profile"
   get "settings", to: "pages#settings"

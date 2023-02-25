@@ -16,6 +16,7 @@ class FriendshipsController < ApplicationController
     @request_friend = Friendship.where(friend_id: current_user.id, status: "pending")
     @users = User.all
     @friendships = Friendship.where(friend_id: current_user.id , status: "accepted") + Friendship.where(user_id: current_user.id, status: "accepted")
+    @request_friend_count = Friendship.where(friend_id: current_user.id, status: "pending").count
   end
 
   def create
