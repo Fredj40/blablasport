@@ -1,4 +1,3 @@
-
 <div class="banner-video">
   <video id="background-video" autoplay muted loop id="myVideo">
     <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656463/production_ID_4440937_yjqeyx.mp4" type="video/mp4">
@@ -38,7 +37,7 @@
             <div class= "events_cards">
               <% @events.first(30).each do |event| %>
                 <% unless Date.today > event.date %>
-                  <div class="event-card" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
+                  <div class="event-card" data-bs-customClass="popover-description" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
                     <h4><strong><%= event.sport.sport_name %></strong> - <strong><%= event.address.split.last(2).first.chomp(',') %></strong><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %>
 
                     <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true"

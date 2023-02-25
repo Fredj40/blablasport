@@ -1,14 +1,14 @@
 .chatroom {
-  background: black;
+  background-color: black;
   opacity: 0.8;
-  margin-top: 9px;
-  margin-bottom: 4em;
-  height: calc(100vh - 75px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
+  border: 1px solid #8292AA;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
+  margin-top: 4em;
+  margin-bottom: 4em;
 
   h1 {
     border-bottom: 1px solid $gray-200;
@@ -18,8 +18,9 @@
 
   .messages {
     height: 50%;
-    overflow: scroll;
+    overflow-y: auto;
     padding: 1rem;
+    text-align : left;
   }
 
   #new_message {
