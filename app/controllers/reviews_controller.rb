@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
   def create
     @user = current_user
     @review = Review.new(review_params)
+    @review.rating = params["review"]["rating"][0].to_i
     @review.event = @event
     @review.user = @user
     if @review.save

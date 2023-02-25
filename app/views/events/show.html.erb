@@ -1,4 +1,4 @@
-<% content_for :meta_title, "#{@event.sport.sport_name} à #{@event.address.split.last} - BlaBlaSport" %>
+<% content_for :meta_title, "#{@event.sport.sport_name} à #{@event.address.split.last(2).first.chomp(',') } - BlaBlaSport" %>
 <% content_for :meta_description, @event.description %>
 <%# <% content_for :meta_image, cl_image_path(@event.photo.key) if @event.photo.attached? %>
 <div class="container-show">
@@ -37,12 +37,10 @@
             <li>Places disponibles : <strong><%= @event.players_number %></strong></li>
           <% end %>
             <li>Niveau minimum requis : <strong><%= @event.level %></strong></li>
-          <% if @event.age_mini.nil? %>
-          <% else %>
+          <% if @event.age_mini %>
             <li>Age mini : <strong><%= @event.age_mini %> ans</strong></li>
           <% end %>
-          <% if @event.age_maxi.nil? %>
-          <% else %>
+          <% if @event.age_maxi %>
             <li>Age maxi : <strong><%= @event.age_maxi %> ans</strong></li>
           <% end %>
           <% if @event.price.nil? || @event.price == 0 %>
@@ -57,7 +55,6 @@
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
           </div>
           <i>Lieu de rendez-vous : <%= @event.address %></i><br><br>
-
 
           <% if @event.bookings.where(booking_status: "Acceptée").empty? %>
             <h5>Aucune inscription</h5>
@@ -118,9 +115,8 @@
       <div class= "col-12 col-lg-1"></div>
 
       <% if Date.today <= @event.date  %>
-        </div class="chatroom col-12 col-lg-5">
+        <div class="col-12 col-lg-5">
           <% if @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) || @event.bookings.exists?(booking_status:"Acceptée", user:current_user)%>
-            <div class= "events_card-show col-12 col-lg-5">
               <div class="container chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
                 <h4><strong>Chatroom : </strong></h4><span><i>Discute avec les autres joueurs !</i></span>
                 <div class="messages" data-chatroom-subscription-target="messages">
@@ -128,7 +124,7 @@
                     <%= render "messages/message", message: message %>
                   <% end %>
                 </div>
-              <div class="messages" data-chatroom-subscription-target="messages">
+              <div data-chatroom-subscription-target="messages">
                 <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f| %>
                 <%= f.input :content, label: false, placeholder: "Nouveau message", wrapper_html: {class: "flex-grow-1"} %>
                 <%= f.submit "Envoyer", class: "btn btn-outline-warning mb-3" %>
@@ -191,9 +187,8 @@
                   </div>
                   <%= f.input :rating, as: :check_boxes, label_html: { class: "form-label text-secondary fw-bold" },
                               label: "Choisis une note pour cette activité :",
-                              input_html: { class: "tag-selector" }, collection: [1, 2, 3, 4, 5],
+                              input_html: { class: "tag-selector" }, collection: [1, 2, 3, 4, 5], include_hidden: false,
                               item_wrapper_class: 'tag-item' %> <br>
-
                   <div class="d-flex justify-content-center"><%= f.button :submit, "Valider", class: "btn btn-outline-warning" %></div>
                   <% end %>
                 </div><br>
