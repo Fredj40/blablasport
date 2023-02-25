@@ -4,10 +4,9 @@
       <div class="col-12 col-lg-6">
         <div class="form-event">
           <h2>J'ajoute une activité</h2><br>
-          <%= @error %>
-          <form class="row g-3">
-            <%= simple_form_for @event do |f| %>
-              <div class="form-fields row">
+            <%= @error %>
+            <%= simple_form_for(@event) do |f| %>
+              <div class="row">
                 <div class="col-md-5">
                   <%= f.input :sport_id, input_html: { class: 'form-label' }, collection: @ordered_list, label: "Choisis ton sport", placeholder: "Football" %>
                 </div>
@@ -20,16 +19,15 @@
                   <%= f.input :level, input_html: { class: 'form-label' }, collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum", placeholder: "Pour tous" %>
                 </div>
 
-                <div class="col-md-5">
-                  <%= f.input :date, as: :string, placeholder: "23/03/2023",
+                <div class="col-md-4">
+                  <%= f.input :date, as: :string,
                               wrapper_html: { class: "mb-4" },
                               label_html: { class: "form-label text-secondary fw-bold" },
                               input_html: { data: { controller: "flatpickr" } } %>
                 </div>
 
-
-                <div class="col-md-3">
-                  <%= f.input :time, input_html: { class: 'small-field' }, label: "Heure début", as: :time, :minute_step => 10, placeholder: "16:00" %>
+                <div class="col-md-4">
+                  <%= f.input :time, input_html: { class: 'form-label' }, label: "Heure début", as: :time, :minute_step => 10 %>
                 </div>
 
                 <div class="col-md-3">
@@ -58,10 +56,8 @@
                 <div class="col-5">
                   <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %>
                 </div>
-
               </div>
             <% end %>
-          </form>
         </div><br>
       </div>
     </div>
