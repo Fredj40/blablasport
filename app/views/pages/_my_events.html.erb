@@ -19,10 +19,10 @@
               <td><%= booking.booking_status %></td>
               <td>
                 <% if booking.booking_status == "En attente de validation" %>
-                  <%= link_to "Accepter", accept_event_booking_event_path(event), class: "btn btn-outline-success", method: :put, data: { confirm: "Êtes-vous sûr de vouloir accepter cette inscription ?" } %>
-                  <%= link_to "Refuser", reject_event_booking_event_path(event), class: "btn btn-outline-danger" , method: :put, data: { confirm: "Êtes-vous sûr de vouloir accepter cette inscription ?" } %>
+                  <%= link_to "Accepter", approve_booking_path(booking), method: :patch, class: "btn btn-outline-success" %>
+                  <%= link_to "Refuser", reject_booking_path(booking), method: :patch, class: "btn btn-outline-danger" %>
                 <% else %>
-                  <%= link_to "Annuler", cancel_event_booking_event_path(event, booking), class: "btn btn-outline-warning", method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cette inscription ?" } %>
+                  <%= link_to "Annuler", cancel_booking_path(booking), method: :patch, class: "btn btn-outline-warning" %>
                 <% end %>
               </td>
             </tr>

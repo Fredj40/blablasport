@@ -29,29 +29,28 @@ class BookingsController < ApplicationController
   def edit
   end
 
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to events_path
+  end
+
   def approve
     @booking = Booking.find(params[:id])
     @booking.update(booking_status: "Acceptée")
-    redirect_to bookings_path, notice: "La réservation a bien été acceptée"
+    redirect_to dashboard_path, notice: "La réservation a bien été acceptée"
   end
 
   def reject
     @booking = Booking.find(params[:id])
     @booking.update(booking_status: "Refusée")
-    redirect_to bookings_path, notice: "La réservation a bien été refusée"
+    redirect_to dashboard_path, notice: "La réservation a bien été refusée"
   end
 
-  def update
+  def cancel
     @booking = Booking.find(params[:id])
-    @booking.update(booking_status: params[:booking_status])
-    redirect_to events_path if @booking.booking_status == "Acceptée"
-    redirect_to bookings_path if @booking.booking_status == "Refusée"
-  end
-
-  def destroy
-    @booking = Booking.find(params[:id])
-    @booking.destroy
-    redirect_to events_path
+    @booking.update(booking_status: "Annulée")
+    redirect_to dashboard_path, notice: "La réservation a bien été annulée"
   end
 
   private
