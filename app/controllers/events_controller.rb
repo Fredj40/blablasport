@@ -112,6 +112,17 @@ class EventsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def cancel_event_booking
+    booking = current_user.bookings.find_by(event_id: params[:event_id], booking_status: "Accepté")
+    if booking
+      booking.update(booking_status: "Annulé")
+      flash[:success] = "Inscription annulée avec succès !"
+    else
+      flash[:danger] = "Erreur : l'inscription n'existe pas ou n'est pas en attente de validation"
+    end
+    redirect_to dashboard_path
+  end
+
   private
 
   def event_params
@@ -120,7 +131,6 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
-
   end
 
   def set_markers

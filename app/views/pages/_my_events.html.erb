@@ -20,7 +20,9 @@
               <td>
                 <% if booking.booking_status == "En attente de validation" %>
                   <%= link_to "Accepter", accept_event_booking_event_path(event), class: "btn btn-outline-success", method: :put, data: { confirm: "Êtes-vous sûr de vouloir accepter cette inscription ?" } %>
-                  <%= link_to "Refuser", reject_event_booking_event_path(event), class: "btn btn-outline-warning" , method: :put, data: { confirm: "Êtes-vous sûr de vouloir accepter cette inscription ?" } %>
+                  <%= link_to "Refuser", reject_event_booking_event_path(event), class: "btn btn-outline-danger" , method: :put, data: { confirm: "Êtes-vous sûr de vouloir accepter cette inscription ?" } %>
+                <% else %>
+                  <%= link_to "Annuler", cancel_event_booking_event_path(event, booking), class: "btn btn-outline-warning", method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cette inscription ?" } %>
                 <% end %>
               </td>
             </tr>
@@ -30,3 +32,7 @@
     <% end %>
   </tbody>
 </table>
+
+<% if current_user.bookings.empty? %>
+  <p>Vous n'avez pas de réservation à venir</p>
+<% end %>

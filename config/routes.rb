@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     member do
       put :accept_event_booking
       put :reject_event_booking
+      put :cancel_event_booking
     end
   end
 
