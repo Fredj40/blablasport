@@ -116,7 +116,7 @@
 
       <% if Date.today <= @event.date  %>
         <div class="col-12 col-lg-5">
-          <% if @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) || @event.bookings.exists?(booking_status:"Acceptée", user:current_user)%>
+          <% if @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) || @event.bookings.exists?(booking_status:"Acceptée", user:current_user) || @event.user == current_user %>
               <div class="container chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
                 <h4><strong>Chatroom : </strong></h4><span><i>Discute avec les autres joueurs !</i></span>
                 <div class="messages" data-chatroom-subscription-target="messages">
