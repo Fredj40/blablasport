@@ -65,6 +65,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    raise
     @event = Event.new(event_params)
     @event.user = current_user
     @user_id = current_user.id
