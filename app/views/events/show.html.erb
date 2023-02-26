@@ -57,14 +57,14 @@
           <i>Lieu de rendez-vous : <%= @event.address %></i><br><br>
 
           <% if @event.bookings.where(booking_status: "Acceptée").empty? %>
-            <h5>Aucune inscription</h5>
+            <h5>Il n'y a pas encore de participant</h5>
           <% elsif @event.bookings.where(booking_status: "Acceptée").count == 1 %>
-            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> inscription validée :</h5>
+            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participant confirmé :</h5>
               <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
                 <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
               <% end %>
           <% elsif %>
-            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> inscriptions validées:</h5>
+            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participants confirmés:</h5>
               <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
                 <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
               <% end %>
