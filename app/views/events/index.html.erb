@@ -1,45 +1,36 @@
-  <%# <video id="background-video" autoplay muted loop id="myVideo">
-    <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656463/production_ID_4440937_yjqeyx.mp4" type="video/mp4">
-  </video> %>
+<%# <video id="background-video" autoplay muted loop id="myVideo">
+  <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656463/production_ID_4440937_yjqeyx.mp4" type="video/mp4">
+</video> %>
 
-<div class="diagonal-video-box">
-  <video id="background-video" autoplay muted loop id="myVideo">
-    <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656463/production_ID_4440937_yjqeyx.mp4" type="video/mp4">
-    <div class="logo-index">
-    <div id="logo-index"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", height: 180, width: 360, alt: "BlaBlaSport" %></div>
-    <div class="d-flex justify-content-center"><h8>LE RESEAU SPORTIF</h8></div>
-  </video>
+<video id="background-video" autoplay muted loop id="myVideo">
+  <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656463/production_ID_4440937_yjqeyx.mp4" type="video/mp4">
+</video>
 
-    </div>
+<div class="logo-index">
+    <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", alt: "BlaBlaSport" %>
 </div>
-
-
 
 <div class = "middle-container">
-  <div class="d-flex justify-content-center">
-    <%= link_to "J'organise une activité et je cherche des joueurs", new_event_path, class: "btn btn-warning" %>
-  </div><br>
-
-  <div class="d-flex justify-content-center">
-    <form class="form_search row g-3">
-      <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
-        <div class="d-flex justify-content-center">
-          <div class="col-sm-9">
-            <input type="search"  name= 'search' value: params.dig(:search) class="form-control" id="inputRecherche3" placeholder= "Je cherche une activité, ex: Foot à Paris">
-          </div>
-          <div class="col-sm-1">
-            <button type="submit" class="btn btn-outline-warning">Go</button>
-          </div>
-        </div>
-      <% end %>
-    </form>
-  </div>
+  <p>Rejoins la communauté BlaBlaSport !<br>LE RESEAU SPORTIF</p>
 </div>
 
+<div class="diagonal-box"></div>
 
+<div class="buttons-container">
 
+  <div class="col-sm-10"><%= link_to "J'organise une activité et je cherche des joueurs", new_event_path, class: "btn btn-info" %></div><br>
 
-
+  <form class="form_search row g-3">
+    <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
+        <div class="col-sm-10">
+          <input type="search"  name= 'search' value: params.dig(:search) class="form-control" id="inputRecherche3" placeholder= "Je cherche une activité, ex: Foot à Paris">
+        </div>
+        <div class="col-sm-1">
+          <button type="submit" class="btn btn-warning">Go</button>
+      </div>
+    <% end %>
+  </form>
+</div>
 
 <div class="events-container">
   <div class="container">
@@ -143,3 +134,4 @@
     </div>
   </div>
 </div>
+<div class="diagonal-box2"></div>
