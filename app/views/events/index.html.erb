@@ -11,43 +11,45 @@
 </div>
 
 <div class = "middle-container">
-  <p>Rejoins la communauté BlaBlaSport !<br>LE RESEAU SPORTIF</p>
+  <p>Rejoins la communauté BlaBlaSport ! LE réseau sportif</p>
 </div>
 
 <div class="diagonal-box"></div>
+<div class="diagonal-box2"></div>
+
+<div class="logo-ball">
+<div class="organize-circle"></div>
+<%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1677586893/ballon2_nynlym.png", alt: "ballon BlaBlaSport", class: "ballon" %>
+<div class="organize-circle2"><%= link_to "J'organise une activité et je cherche des joueurs", new_event_path %></div>
+</div>
 
 <div class="buttons-container">
-
-
-  <form class="form_search row">
+  <form class="form_search row d-flex justify-content-center">
     <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
-        <div class="col-12 col-lg-5">
-          <input type="search"  name= 'search' value: params.dig(:search) class="form-control" id="inputRecherche3" placeholder= "Je cherche une activité, ex: Foot à Paris">
-        </div>
-        <div class="col-12 col-lg-1">
-          <button type="submit" class="btn btn-warning">Go</button>
+      <div class="col-12 col-lg-11">
+        <input type="search"  name= 'search' value: params.dig(:search) class="form-control" id="inputRecherche3" placeholder= "Je cherche une activité, ex : Foot à Paris">
+      </div>
+      <div class="col-12 col-lg-1">
+        <button type="submit" class="btn btn-info">Go</button>
       </div>
     <% end %>
   </form>
-
-    <div class="col-12 col-lg-5"><%= link_to "J'organise une activité et je cherche des joueurs", new_event_path, class: "btn btn-info" %></div><br>
-
 </div>
 
 <div class="events-container">
   <div class="container">
     <div class="row">
       <div class= "events_card col-12 col-lg-7">
-        <div class="d-flex justify-content-center"><h1>Evénements à venir</h1></div><br>
-          <% if @events.empty? %>
-            <div class="d-flex justify-content-center"><span>Il n'y a pas de résultat avec ces critères</span></div>
+        <h1>Evénements à venir</h1>
+          <% if @events.empty? %><br>
+            <div class="d-flex justify-content-end"><span>Il n'y a pas de résultat avec ces critères</span></div>
           <% else %>
             <div class= "events_cards">
               <% @events.first(30).each do |event| %>
                 <% unless Date.today > event.date %>
                   <div class="event-card" data-bs-customClass="popover-description" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
                     <h3><strong><%= event.sport.sport_name %></strong></h3>
-                    <h4><strong><%= event.address.split.last(2).first.chomp(',') %></strong><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %>
+                    <h4><strong><%= event.address.split.last(2).first.chomp(',') %></strong><br><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %>
 
                     <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true"
                     title="Niveau minimum requis: <%= event.level %><% if event.age_mini.nil? %><% else %> - Age mini : <%= event.age_mini %><% end %>
@@ -69,12 +71,12 @@
                           <span> (1 partie organisée)</span>
                         <% else %>
                           <span> (<%= event.user.number_of_events %> parties organisées) </span>
-                        <% end %><br>
+                        <% end %><br><br>
                       <% end %>
                     </h6>
 
                     <h5>
-                      <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-warning" %><br><br>
+                      <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-warning btn-sm" %><br><br>
                       <% if event.players_number - event.bookings.where(booking_status: "Acceptée").count > 1 %>
                         <div class="badge-success">Il reste <%= event.players_number - event.bookings.where(booking_status: "Acceptée").count %> places disponibles</div>
                       <% elsif event.players_number - event.bookings.where(booking_status: "Acceptée").count == 1 %>
@@ -90,24 +92,22 @@
           <% end %>
         </div><br><br>
 
-      <div class= "col-12 col-lg-1">
-      </div>
+      <div class= "col-12 col-lg-1"></div>
 
       <div class= "feed_card col-12 col-lg-4">
 
         <div id="map" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
         <div class="activity-feed">
-          <h1>ACTUALITE</h1>
+          <h1>Actualités</h1>
 
-
-          <div class="events-passed"><h1>EVENEMENTS PASSES</h1><br>
+          <div class="events-passed"><h1>Evénements passés</h1>
             <% @events.first(10) %>
             <% @events.each do |event| %>
               <% unless Date.today < event.date %>
                 <div class="event-passed" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
                 <h4><strong><%= event.sport.sport_name %></strong>
-                  <span> - <strong><%= event.address.split.last(2).first.chomp(',') %></strong> - Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
+                  <span> - <strong><%= event.address.split.last(2).first.chomp(',') %></strong><br><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
                     <%# <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %>
                     <h6>Créé par <strong><%= event.user.first_name %></strong>
                       <% starfull = event.user.average_rating %>
@@ -123,11 +123,11 @@
                         <% if event.user.number_of_events == 1 %>
                           <span> (1 partie organisée)</span>
                         <% else %>
-                          <span> (<%= event.user.number_of_events %> parties organisées)</span>
+                          <span> (<%= event.user.number_of_events %> parties organisées)</span><br>
                         <% end %>
                       <% end %>
                     </h6>
-                  <%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %><br><br>
+                  <%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary btn-sm" %>
                 </div>
               <% end %>
             <% end %>
@@ -136,4 +136,3 @@
     </div>
   </div>
 </div>
-<div class="diagonal-box2"></div>

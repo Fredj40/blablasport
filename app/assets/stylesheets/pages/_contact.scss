@@ -5,11 +5,13 @@
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
+  margin-top: -11vh;
   // position: fixed;
 }
 
 .container-contact-cards {
-  height: 100vh;
+  margin-top: 10vh;
+  height: 85vh;
   width: 100vw;
 }
 
@@ -118,4 +120,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+}
+
+.text-center {
+  text-align: center;
+  color: #fff;
 }
