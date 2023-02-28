@@ -7,15 +7,15 @@
             <%= @error %>
             <%= simple_form_for(@event) do |f| %>
               <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                   <%= f.input :sport_id, input_html: { class: 'form-label' }, collection: @ordered_list, label: "Choisis ton sport", placeholder: "Football" %>
                 </div>
 
                 <div class="col-md-3">
-                  <%= f.input :players_number, input_html: { class: 'form-label' }, placeholder: "1", label: "Nombre de places" %>
+                  <%= f.input :players_number, input_html: { class: 'form-label', min: '1', step: '1' }, placeholder: "1", label: "Nb de places" %>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <%= f.input :level, input_html: { class: 'form-label' }, collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum", placeholder: "Pour tous" %>
                 </div>
 
@@ -31,11 +31,11 @@
                 </div>
 
                 <div class="col-md-3">
-                  <%= f.input :duration, input_html: { class: 'form-label' }, collection: ['20 min','30 min','45 min', '1H00', '1H30', '2H00', '2H30', '3H00 ou plus'], label: "Durée", placeholder: "1H00" %>
+                  <%= f.input :duration, input_html: { class: 'form-label' }, collection: ['20 min','30 min','45 min', '1H00', '1H30', '2H00', '2H30', '3H00 ou +'], label: "Durée", placeholder: "1H00" %>
                 </div>
 
                 <div class="col-11">
-                  <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire", placeholder: "Bien arrivé à l'heure" %>
+                  <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire", placeholder: "Bien arriver à l'heure" %>
                 </div>
 
                 <div class="col-9">
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="col-md-2">
-                  <%= f.input :price, input_html: { class: 'price-field' }, label: "Prix", placeholder: "7" %>
+                  <%= f.input :price, input_html: { class: 'price-field', min: '0', step: '1' }, label: "Prix" %>
                 </div>
 
                 <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>

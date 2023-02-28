@@ -57,14 +57,14 @@
           <i>Lieu de rendez-vous : <%= @event.address %></i><br><br>
 
           <% if @event.bookings.where(booking_status: "Acceptée").empty? %>
-            <h5>Aucune inscription</h5>
+            <h5>Il n'y a pas encore de participant</h5>
           <% elsif @event.bookings.where(booking_status: "Acceptée").count == 1 %>
-            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> inscription validée :</h5>
+            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participant confirmé :</h5>
               <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
                 <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
               <% end %>
           <% elsif %>
-            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> inscriptions validées:</h5>
+            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participants confirmés:</h5>
               <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
                 <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
               <% end %>
@@ -116,7 +116,7 @@
 
       <% if Date.today <= @event.date  %>
         <div class="col-12 col-lg-5">
-          <% if @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) || @event.bookings.exists?(booking_status:"Acceptée", user:current_user)%>
+          <% if @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) || @event.bookings.exists?(booking_status:"Acceptée", user:current_user) || @event.user == current_user %>
               <div class="container chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
                 <h4><strong>Chatroom : </strong></h4><span><i>Discute avec les autres joueurs !</i></span>
                 <div class="messages" data-chatroom-subscription-target="messages">

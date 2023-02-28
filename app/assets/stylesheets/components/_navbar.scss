@@ -1,6 +1,8 @@
 #nav {
   background: rgba(0, 0, 0, 0.6);
-  // background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1675937136/jstwikb9u2ujszfabdfr.png");
+  // background-image: linear-gradient(45deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.7));
+  // background: rgba(94, 96, 108, 0.9);
+  // background-color: #5E606C;
   border-bottom: 1px solid #d09d76;
   border-top: 1px solid #d09d76;
   padding: 0;
@@ -9,9 +11,9 @@
 }
 
 .nav_left {
-  // background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1675980880/x82v7tkuekw0vul0nmyf.jpg");
-  background-color: #d09d76;
-  color: white;
+  background-image: linear-gradient(45deg, #c95014, #d09d76);
+  // background-color: #d09d76;
+  color: #5E606C;
   border-top-left-radius: 48px;
   border-bottom-left-radius: 48px;
 }
@@ -19,7 +21,7 @@
 .nav-tabs .nav-link.active {
   background-color: transparent;
   border-color: transparent;
-  border-top: 4px solid #C95014;
+  border-top: 4px solid white;
   color: #C95014;
 }
 
@@ -28,7 +30,7 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   margin: 0 30px 0 40px;
-  color: white;
+  color: #5E606C;
 }
 
 .nav-tabs {
