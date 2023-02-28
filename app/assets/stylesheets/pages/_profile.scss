@@ -1,33 +1,102 @@
-.profile-container {
-  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892786/pexels-ingo-joseph-2618794_vryawr.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-  position: fixed;
+.container-profile {
+  display: block;
 }
 
-.profile_cards {
+.row-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card {
+  margin: 10px;
+  flex: 30%;
   background-color: black;
   opacity: 0.8;
-  border: 1px solid #8292AA;
-  border-radius: 5px;
+  // border: 1px solid #e98b2a;
+  border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: start;
-  margin-top: 8em;
+  padding : 10px;
+  margin-bottom: 20px;
+  text-align: center;
 }
-.profile-title {
-  margin-top: 2em;
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: end;
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
 }
-.friend-name a {
-  color: white;
+
+.card img {
+  border-radius: 50%;
+  height: 150px;
+  margin: 0 auto;
+  width: 150px;
+}
+
+.card h5 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+.card p.text-muted {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.card .d-flex {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.card .list-group {
+  margin-bottom: 0;
+}
+
+.card .list-group-item {
+  border-radius: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card .list-group-item i {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.card .list-group-item p {
+  margin-bottom: 0;
+}
+
+.card hr {
+  border-color: #e9ecef;
+  margin-bottom: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.card .mb-0,
+.card .my-3 {
+  margin-bottom: 0;
+}
+
+.card .mb-4,
+.card .mb-lg-0 {
+  margin-bottom: 1.25rem;
+}
+
+.card .p-3 {
+  padding: 1.25rem;
+}
+
+.card .mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.card .btn {
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
 }

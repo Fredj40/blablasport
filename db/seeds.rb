@@ -8,6 +8,7 @@ Event.destroy_all
 Sport.destroy_all
 AdminUser.destroy_all
 User.destroy_all
+
 p 'Database cleaned'
 
 p "Creating Users..."
