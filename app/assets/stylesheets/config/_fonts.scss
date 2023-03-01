@@ -5,8 +5,11 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Exo", "Exo", "sans-serif";
-$headers-font: "PT Sans", "PT Sans", "sans-serif";
+$body-font: "Segoe UI", "serif";
+// $body-font: "Exo", "Exo", "sans-serif";
+
+$headers-font: "Segoe UI", "serif";
+// $headers-font: "PT Sans", "PT Sans", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

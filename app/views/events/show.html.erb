@@ -37,6 +37,7 @@
             <li>Places disponibles : <strong><%= @event.players_number %></strong></li>
           <% end %>
             <li>Niveau minimum requis : <strong><%= @event.level %></strong></li>
+            <li>Durée : <strong><%= @event.duration %></strong></li>
           <% if @event.age_mini %>
             <li>Age mini : <strong><%= @event.age_mini %> ans</strong></li>
           <% end %>
@@ -49,7 +50,7 @@
             <li>Prix : <strong><%= @event.price %></strong> €</li>
           <% end %><br>
 
-          <div id="map" class="d-flex" style="width: 100% ; height: 190px;"
+          <div id="map-show" class="d-flex" style="width: 100% ; height: 190px;"
             data-controller="map"
             data-map-markers-value="<%= @markers.to_json %>"
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -93,7 +94,7 @@
         <% unless @event.user == current_user %>
           <% unless Date.today > @event.date %>
             <% if @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
-              <div class="badge-success">Inscription validée : tu vas participer à cette partie</div><br>
+              <div class="badge-confirmed">Inscription validée : tu vas participer à cette partie</div><br>
               <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir annuler ton inscription ?" }, class: "btn btn-outline-danger" %></h5>
             <% elsif @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) %>
               <div class="badge-warning">Tu as postulé à cette partie - Demande en attente de traitement</div><br>
