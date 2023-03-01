@@ -18,9 +18,7 @@
 <div class="diagonal-box2"></div>
 
 <div class="logo-ball">
-<div class="organize-circle"></div>
-<%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1677586893/ballon2_nynlym.png", alt: "ballon BlaBlaSport", class: "ballon" %>
-<div class="organize-circle2"><%= link_to "J'organise une activité et je cherche des joueurs", new_event_path %></div>
+  <div><%= link_to "J'organise une activité et je cherche des joueurs", new_event_path, class: "btn btn-info" %></div>
 </div>
 
 <div class="buttons-container">
@@ -40,7 +38,7 @@
   <div class="container">
     <div class="row">
       <div class= "events_card col-12 col-lg-7">
-        <h1>Evénements à venir</h1>
+        <%# <h1>Evénements à venir</h1> %>
           <% if @events.empty? %><br>
             <div class="d-flex justify-content-end"><span>Il n'y a pas de résultat avec ces critères</span></div>
           <% else %>

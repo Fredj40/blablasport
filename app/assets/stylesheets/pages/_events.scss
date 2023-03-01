@@ -31,12 +31,13 @@
 .middle-container {
   display: flex;
   height: 30vh;
-  // background-image: linear-gradient(45deg, #c95014, #d09d76);
-  background-color: #d09d76;
+  background-image: linear-gradient(45deg, #ca844f, #e4b998);
+  // background-color: #d09d76;
   transform: skewY(-3deg);
   position: relative;
   margin-top: -11vh;
   border-top-left-radius : 200px 50px;
+  // border-top: 1px solid rgb(17, 23, 78);
 }
 
 .middle-container p {
@@ -72,68 +73,57 @@
 }
 
 .logo-ball {
-  margin-top: 4vh;
-}
-.organize-circle {
-  margin-top: -22vh;
-  margin-left: 70%;
+  // background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1677609598/ballon-orange_xlbbil.png");
+  // object-fit: fill;
+  margin-top: -18vh;
+  margin-bottom: 13vh;
+  margin-left: 63%;
   position: relative;
-  border-radius: 100%;
-  background-color: #c95014;
-  text-align: center;
-  line-height:15px;
-  height: 141px;
-  width: 141px;
-  padding-top:43px;
-  padding-left: 2px;
-  padding-right: 2px;
-  // border: 3px solid black;
-}
 
-.ballon {
-  margin-top: -179px;
-  position: relative;
-  margin-left: 1328px;
+  // height: 173px;
+  // width: 147px;
+  // padding-top: 30px;
+  // padding-right: 5px;
+  // padding-left: 5px;
+  // text-align: center;
 }
-
-.organize-circle2 {
-  margin-top: -162px;
-  position: relative;
-  margin-left: 1332px;
-  // margin-top: -22vh;
-  // margin-left: 70%;
-  position: relative;
-  border-radius: 100%;
-  background-color: transparent;
-  text-align: center;
-  line-height:15px;
-  height: 143px;
-  width: 143px;
-  padding-top:45px;
-  padding-left: 5px;
-  padding-right: 5px;
-  // border: 3px solid black;
-  z-index: 2;
-}
-
-.organize-circle2 a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
- }
- .organize-circle2 a:hover{
-  color: rgb(244, 248, 13);
-  font-weight: bold;
- }
+// .logo-ball div {
+//   margin-top: 3vh;
+// }
+// .logo-ball a {
+//   text-decoration: none;
+//   font-size: 16px;
+//   font-weight: bold;
+//   color: white;
+// }
+// .logo-ball:hover {
+//   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1677609598/ballon-jaune_nmn0mp.png");
+//   object-fit: fill;
+//   margin-top: -20vh;
+//   margin-left: 69%;
+//   position: relative;
+//   height: 173px;
+//   width: 147px;
+//   padding-top: 30px;
+//   padding-right: 5px;
+//   padding-left: 5px;
+//   text-align: center;
+// }
+// .logo-ball a:hover {
+//   text-decoration: none;
+//   font-size: 16px;
+//   font-weight: bold;
+//   color: rgb(224, 77, 9);
+// }
 
 .buttons-container {
   position: relative;
   // display: flex;
   // flex-direction: row;
-  margin-top: -4vh;
+  margin-top: -9vh;
   margin-left: 21%;
   margin-right: 50%;
+  margin-bottom: 2vh;
   z-index: 2;
 }
 
@@ -160,7 +150,7 @@
   color: #e98b2a !important;
   display: flex;
   text-align: center;
-
+  z-index: 3;
 }
 
 .events_cards {
@@ -168,24 +158,6 @@
   flex-wrap: wrap;
   z-index: 3;
 }
-// @media(max-width: 600px) {
-//   .events_card {
-//     display: grid;
-//     grid-template-columns: 1fr;
-//     grid-gap: 1rem;
-//     background-color: rgba(255, 255, 255, 0.3);
-//     opacity: 0.9;
-//     border: 1px solid #8292AA;
-//     border-radius: 5px;
-//     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-//     padding-left: 50px;
-//     padding-right: 50px;
-//     padding-top: 20px;
-//     padding-bottom: 20px;
-//     text-align: center;
-//     margin-top: 8em;
-//   }
-// }
 
 .event-card {
   margin: 10px;
@@ -229,7 +201,7 @@
   width: 80%;
   height: 400px;
   margin-left: 33px;
-  margin-top: 90px;
+  // margin-top: 90px;
 }
 
 
