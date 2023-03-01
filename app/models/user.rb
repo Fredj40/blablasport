@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :sports, through: :events, dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships
+  has_many :friends, through: :friendships, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
