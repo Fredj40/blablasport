@@ -11,7 +11,11 @@
 </div>
 
 <div class = "middle-container">
-  <p>Rejoins la communauté BlaBlaSport ! LE réseau sportif</p>
+  <h1>Rejoins la communauté BLABLASPORT !</h1>
+  <h2>LE réseau sportif</h2>
+  <h3>Trouve des adversaires Rejoins une équipe</h3>
+  <h4>Découvre de nouveaux sports Organise ta cession</h4>
+  <h5>Rencontre de nouveaux joueurs et suis-les !</h5>
 </div>
 
 <div class="diagonal-box"></div>
@@ -47,14 +51,29 @@
                 <% unless Date.today > event.date %>
                   <div class="event-card" data-bs-customClass="popover-description" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
                     <h3><strong><%= event.sport.sport_name %></strong></h3>
-                    <h4><strong><%= event.address.split.last(2).first.chomp(',') %></strong><br><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %>
-
-                    <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true"
+                    <h4><strong><%= event.address.split.last(2).first.chomp(',') %></strong></h4>
+                    <h4><i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true"
                     title="Niveau minimum requis: <%= event.level %><% if event.age_mini.nil? %><% else %> - Age mini : <%= event.age_mini %><% end %>
                     <% if event.age_maxi.nil? %><% else %> - Age maxi : <%= event.age_maxi %> ans<% end %>"></i></h4>
-
+                    <h5>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %></h5>
+                    <h5>
+                      <% if event.players_number - event.bookings.where(booking_status: "Acceptée").count > 1 %>
+                        <div class="badge-success"><%= event.players_number - event.bookings.where(booking_status: "Acceptée").count %> places</div>
+                      <% elsif event.players_number - event.bookings.where(booking_status: "Acceptée").count == 1 %>
+                        <div class="badge-warning">Une seule place !</div>
+                      <% else event.players_number - event.bookings.where(booking_status: "Acceptée").count == nil %>
+                        <div class="badge-danger">Partie complète</div>
+                      <% end %>
+                    </h5>
                     <%# <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %>
-                    <h6>Créé par <strong><%= event.user.first_name %></strong>
+                    <h6>Créé par <strong><%= event.user.first_name %></strong><br>
+                      <% unless event.user.number_of_events == nil %>
+                        <% if event.user.number_of_events == 1 %>
+                          <span> (1 partie organisée)</span>
+                        <% else %>
+                          <span> (<%= event.user.number_of_events %> parties organisées) </span>
+                        <% end %>
+                      <% end %><br>
                       <% starfull = event.user.average_rating %>
                       <% unless starfull == "Pas de note" %>
                         <% starfull.times do %>
@@ -63,26 +82,9 @@
                         <% (5-starfull).times do %>
                           <i class="fa-regular fa-star"></i>
                         <% end %>
-                      <% end %><br>
-                      <% unless event.user.number_of_events == nil %>
-                        <% if event.user.number_of_events == 1 %>
-                          <span> (1 partie organisée)</span>
-                        <% else %>
-                          <span> (<%= event.user.number_of_events %> parties organisées) </span>
-                        <% end %><br><br>
                       <% end %>
-                    </h6>
-
-                    <h5>
-                      <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-warning btn-sm" %><br><br>
-                      <% if event.players_number - event.bookings.where(booking_status: "Acceptée").count > 1 %>
-                        <div class="badge-success">Il reste <%= event.players_number - event.bookings.where(booking_status: "Acceptée").count %> places disponibles</div>
-                      <% elsif event.players_number - event.bookings.where(booking_status: "Acceptée").count == 1 %>
-                        <div class="badge-warning">Plus qu'une place !</div>
-                      <% else event.players_number - event.bookings.where(booking_status: "Acceptée").count == nil %>
-                        <div class="badge-danger">Cette partie est complète</div>
-                      <% end %>
-                    </h5>
+                    </h6><br>
+                    <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-warning btn-sm" %><br>
                   </div>
                 <% end %>
               <% end %>
@@ -97,11 +99,10 @@
         <div id="map" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
         <div class="activity-feed">
-          <h1>Actualités</h1>
-
+          <%# <h1>Actualités</h1> %>
           <% @activities.first(20) %>
           <% @activities.each do |activity| %>
-            <div class="activity" style="display: flex; flex-direction: column; align-items: center; margin-top: 10px; background-color: black; opacity: 0.7; color: white; padding: 10px; border-radius: 10px;">
+            <div class="activity">
               <%# <%= activity.created_at.strftime("%d/%m/%Y") %> <%# à <%=activity.created_at.time.strftime("%kh%M") %>
               <% if activity.trackable_type == "Event" %>
                 <span><strong><%= activity.trackable.user.first_name %></strong> a posté un nouvel événement qui aura lieu à <%= activity.trackable.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %></span>
@@ -127,7 +128,7 @@
               <% unless Date.today < event.date %>
                 <div class="event-passed" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
                 <h4><strong><%= event.sport.sport_name %></strong>
-                  <span> - <strong><%= event.address.split.last(2).first.chomp(',') %></strong><br><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
+                  <span> - <strong><%= event.address.split.last(2).first.chomp(',') %></strong><br>Le <%= event.date.strftime("%d/%m/%Y") %> à <%= event.time.strftime("%kh%M") %><br></h4>
                     <%# <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %>
                     <h6>Créé par <strong><%= event.user.first_name %></strong>
                       <% starfull = event.user.average_rating %>
