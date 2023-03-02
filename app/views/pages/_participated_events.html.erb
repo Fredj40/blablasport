@@ -10,7 +10,7 @@
           </tr>
         </thead>
         <tbody>
-          <% current_user.bookings.each do |booking| %>
+          <% current_user.bookings.joins(:event).order(date: :asc).each do |booking| %>
             <% event = booking.event %>
             <% if event.future? %>
               <tr>
@@ -49,7 +49,7 @@
         </tr>
       </thead>
       <tbody>
-        <% current_user.bookings.each do |booking| %>
+        <% current_user.bookings.joins(:event).order(date: :asc).each do |booking| %>
           <% event = booking.event %>
           <% if event.past? %>
             <tr>

@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% current_user.events.each do |event| %>
+    <% current_user.events.order(date: :desc).each do |event| %>
       <% if event.user == current_user %>
         <% event.bookings.each do |booking| %>
           <% unless booking.user == current_user %>

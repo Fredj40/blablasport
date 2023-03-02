@@ -1,30 +1,3 @@
-.dashboard-container {
-  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1677770401/pexels-onur-bahad%C4%B1r-15476801_gevtyj_hyjad2.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-  // position: fixed;
-}
-
-.table {
-  color: white;
-}
-.dashboard-title {
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: end;
-}
-
-.dashboard-container h3 {
-  color: #c95014;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: start;
-}
-
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
 @import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
 
@@ -36,29 +9,29 @@
   box-sizing: border-box;
 }
 
-html,
+.tabs html,
 body {
   height: 100%;
 }
 
-body {
+.tabs body {
   font: 14px/1 'Open Sans', sans-serif;
   color: #555;
   background: #eee;
 }
 
-h1 {
+.tabs h1 {
   padding: 10px 0;
   font-weight: 400;
   text-align: center;
 }
 
-p {
+.tabs p {
   margin: 0 0 20px;
   line-height: 1.5;
 }
 
-main {
+.tabs main {
   min-width: 320px;
   max-width: 800px;
   padding: 50px;
@@ -66,17 +39,17 @@ main {
   background: #fff;
 }
 
-section {
+.tabs section {
   display: none;
   padding: 20px 0 0;
   border-top: 1px solid #ddd;
 }
 
-input {
+.tabs input {
   display: none;
 }
 
-label {
+.tabs label {
   display: inline-block;
   margin: 0 0 -1px;
   padding: 15px 25px;
@@ -86,34 +59,34 @@ label {
   border: 1px solid transparent;
 }
 
-label:before {
+.tabs label:before {
   font-family: fontawesome;
   font-weight: normal;
   margin-right: 10px;
 }
 
-label[for*='1']:before {
+.tabs label[for*='1']:before {
   content: '\f1cb';
 }
 
-label[for*='2']:before {
+.tabs label[for*='2']:before {
   content: '\f17d';
 }
 
-label[for*='3']:before {
+.tabs label[for*='3']:before {
   content: '\f16b';
 }
 
-label[for*='4']:before {
+.tabs label[for*='4']:before {
   content: '\f1a9';
 }
 
-label:hover {
+.tabs label:hover {
   color: #888;
   cursor: pointer;
 }
 
-input:checked+label {
+.tabs input:checked+label {
   color: #555;
   border: 1px solid #ddd;
   border-top: 2px solid orange;
@@ -143,4 +116,32 @@ input:checked+label {
   label {
     padding: 15px;
   }
+}
+
+.dashboard-container {
+  background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1677770401/pexels-onur-bahad%C4%B1r-15476801_gevtyj_hyjad2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.table {
+  color: white;
+}
+
+.dashboard-title {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: end;
+}
+
+.dashboard-container h3 {
+  color: #c95014;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: start;
 }
