@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.where(user: current_user)
-    @events = Event.all
+    @events = Event.all.order(date: :DESC)
     @activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
   end
 

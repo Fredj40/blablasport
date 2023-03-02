@@ -25,9 +25,9 @@
             <% else %>
             <span> <%= @user_events %> évenements organisés)</span>
             <% end %>
-        </div><br>
+        </div><br><br>
 
-        <%= @event.description %><br><br>
+        <%= @event.description %><br><br><br>
 
         <ul class="event-card-list">
           <% if @event.players_number == 1 %>
@@ -55,41 +55,41 @@
             data-map-markers-value="<%= @markers.to_json %>"
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
           </div>
-          <i>Lieu de rendez-vous : <%= @event.address %></i><br><br>
+          <i>Lieu de rendez-vous : <%= @event.address %></i><br><br><br>
 
           <% if @event.bookings.where(booking_status: "Acceptée").empty? %>
-            <h5>Il n'y a pas encore de participant</h5>
+            <h4>Il n'y a pas encore de participant</h4><br>
           <% elsif @event.bookings.where(booking_status: "Acceptée").count == 1 %>
-            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participant confirmé :</h5>
+            <h4><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participant confirmé :</h4><br>
               <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
                 <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
               <% end %>
           <% elsif %>
-            <h5><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participants confirmés:</h5>
+            <h4><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participants confirmés:</h4><br>
               <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
                 <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
               <% end %>
-          <% end %><br>
-
-          <% unless Date.today > @event.date %>
-            <% if @event.bookings.where(booking_status: "En attente de validation").empty? %> <i>Aucune inscription en attente</i>
-            <% elsif @event.bookings.where(booking_status: "En attente de validation").count == 1 %> <i>1 autre inscription en attente de validation</i>
-            <% else %> <i><%= @event.bookings.where(booking_status: "En attente de validation").count %> autres inscriptions en attente de validation</i>
-            <% end %>
           <% end %>
-        </ul>
+        </ul><br>
 
         <% if @event.players_number - @event.bookings.where(booking_status: "Acceptée").count > 1 %>
-          <div class="badge-success">Il reste <%= @event.players_number - @event.bookings.where(booking_status: "Acceptée").count %> places disponibles</div><br>
+          <div class="badge-success">Il reste <%= @event.players_number - @event.bookings.where(booking_status: "Acceptée").count %> places disponibles</div>
           <% unless @event.user == current_user || @event.bookings.exists?(user:current_user) %><%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success" %>
           <% end %>
         <% elsif @event.players_number - @event.bookings.where(booking_status: "Acceptée").count == 1 %>
-          <div class="badge-warning">Il reste 1 place disponible</div><br>
+          <div class="badge-warning">Il reste 1 place disponible</div>
           <% unless @event.user == current_user  || @event.bookings.exists?(user:current_user) %><%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success" %>
           <% end %>
         <% elsif @event.players_number - @event.bookings.where(booking_status: "Acceptée").count == nil %>
-          <div class="badge-danger">Cette partie est complète</div><br>
+          <div class="badge-danger">Cette partie est complète</div>
         <% end %><br>
+
+        <% unless Date.today > @event.date %>
+          <% if @event.bookings.where(booking_status: "En attente de validation").empty? %> <i>Aucune inscription en attente</i>
+          <% elsif @event.bookings.where(booking_status: "En attente de validation").count == 1 %> <i>Il y a actuellement 1 autre inscription en attente de validation</i>
+          <% else %><i>Il y a actuellement <%= @event.bookings.where(booking_status: "En attente de validation").count %> autres inscriptions en attente de validation</i>
+          <% end %>
+        <% end %><br><br><br>
 
         <% unless @event.user == current_user %>
           <% unless Date.today > @event.date %>
@@ -106,9 +106,9 @@
         <% end %>
 
         <% if @event.user == current_user && Date.today < @event.date %>
-          <h5> Tu es l'organisateur de cette activité</h5>
-          <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning" %>
-          <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
+          <h4> Tu es l'organisateur de cette activité</h4>
+          <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning btn-sm" %>
+          <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
         <% end %><br>
         <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br>
       </div><br><br>
@@ -154,17 +154,17 @@
           </div>
 
           <% unless @event.reviews.blank? %>
-            <% @event.reviews.each do |review| %>
 
+            <% @event.reviews.each do |review| %>
+              <strong><%= review.user.first_name %></strong> - <%= review.user.age %> ans, <%= review.user.city %>,<br><br>
               <% starfull= review.rating.to_i %>
                 <% starfull.times do %>
-                  <i class="fa-solid fa-star"></i>
+                  <p class="fa-solid fa-star"></p>
                 <% end %>
                 <% (5-starfull).times do %>
-                  <i class="fa-regular fa-star"></i>
+                  <p class="fa-regular fa-star"></p>
                 <% end %>
-              <span> : <%= review.comment %></span><br>
-              <strong><%= review.user.first_name %></strong> - <%= review.user.age %> ans, <%= review.user.city %><br><br>
+              <span> : <%= review.comment %></span><br><br>
             <% end %>
           <% end %><br><br><br>
 
@@ -172,8 +172,8 @@
             <i>En tant qu'organisateur, tu ne peux pas laisser d'avis </i><br>
           <% else %>
             <% if @event.user != current_user && @actual_review != nil %>
-              <h5>Tu as déjà donné ton avis</h5><br>
-              <div class="d-flex justify-content-center"><h5><%= link_to "Supprimer mon avis", event_review_path(@event.id, @actual_review), data: { turbo_method: :delete }, class: "btn btn-outline-warning" %></h5></div>
+              <div class="d-flex justify-content-center"><h5>Tu as déjà donné ton avis</h5></div><br>
+              <div class="d-flex justify-content-center"><h5><%= link_to "Supprimer mon avis", event_review_path(@event.id, @actual_review), data: { turbo_method: :delete }, class: "btn btn-outline-warning btn-sm" %></h5></div>
             <% elsif @event.user != current_user && @event.bookings.find_by(user:current_user) != nil && @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
               <div class="d-flex justify-content-center">
                 <div class="col-12 col-sm-8">
@@ -189,8 +189,8 @@
                   <%= f.input :rating, as: :check_boxes, label_html: { class: "form-label text-secondary fw-bold" },
                               label: "Choisis une note pour cette activité :",
                               input_html: { class: "tag-selector" }, collection: [1, 2, 3, 4, 5], include_hidden: false,
-                              item_wrapper_class: 'tag-item' %> <br>
-                  <div class="d-flex justify-content-center"><%= f.button :submit, "Valider", class: "btn btn-outline-warning" %></div>
+                              item_wrapper_class: 'tag-item' %><br>
+                  <div class="d-flex justify-content-center"><%= f.button :submit, "Publier mon avis", class: "btn btn-outline-success btn-sm" %></div>
                   <% end %>
                 </div><br>
               </div>

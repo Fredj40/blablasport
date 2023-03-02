@@ -1,11 +1,13 @@
-<h2>Demandes d'inscription reçues</h2>
+<h2>Demandes d'inscription reçues</h2></br>
 <table class="table">
   <thead>
     <tr>
+      <th>Date</th>
       <th>Événement</th>
       <th>Participant</th>
       <th>Status</th>
       <th>Action</th>
+      <th>Lien</th>
     </tr>
   </thead>
 
@@ -15,17 +17,27 @@
         <% event.bookings.each do |booking| %>
           <% unless booking.user == current_user %>
             <tr>
-              <td><%= event.sport.sport_name %></td>
+              <td><%= event.date.strftime("%d/%m/%Y") %></td>
+              <td><%= event.sport.sport_name %> à <%= event.address.split.last(2).first.chomp(',') %></td>
               <td><%= booking.user.full_name %>, <%= booking.user.age %></td>
               <td><%= booking.booking_status %></td>
               <td>
                 <% if booking.booking_status == "En attente de validation" %>
-                  <%= link_to "Accepter", approve_booking_path(booking), method: :patch, class: "btn btn-outline-success" %>
-                  <%= link_to "Refuser", reject_booking_path(booking), method: :patch, class: "btn btn-outline-danger" %>
+                  <%= link_to "Accepter", approve_booking_path(booking), method: :patch, class: "btn btn-success btn-sm" %>
+                  <%= link_to "Refuser", reject_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm" %>
                 <% else %>
-                  <%= link_to "Annuler", cancel_booking_path(booking), method: :patch, class: "btn btn-outline-warning" %>
+                  <% if Date.today < event.date %>
+                    <%= link_to "Annuler l'inscription", cancel_booking_path(booking), method: :patch, class: "btn btn-outline-danger btn-sm" %>
+                  <% else %>
+                    <p>Activité terminée</p>
+                  <% end %>
                 <% end %>
               </td>
+                <% if Date.today > event.date %>
+                  <td><%= link_to "Voir l'activité", event_path(event), class: "btn btn-secondary btn-sm" %></td>
+                <% else %>
+                  <td><%= link_to "Voir l'activité", event_path(event), class: "btn btn-warning btn-sm" %></td>
+                <% end %>
             </tr>
           <% end %>
         <% end %>

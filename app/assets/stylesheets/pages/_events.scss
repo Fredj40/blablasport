@@ -180,7 +180,7 @@
 .events-container {
   // background-color: #3A3C4F;
   background-image: linear-gradient(0deg, #D5D2B6, #3A3C4F);
-  height: 100%;
+  // height: 100%;
   width: 100%;
   z-index: -5;
 }
@@ -405,7 +405,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100%;
+  // height: 100%;
   width: 100%;
   color: white;
   // position: fixed;
@@ -413,20 +413,26 @@
 
 .event-card-list {
   text-align: left;
+  margin-left: 40px;
+  margin-right: 40px;
 }
+.event-card-list li {
+  margin-bottom: 10px;
+}
+
 
 .events_card-show {
   background-color: black;
   opacity: 0.8;
   border: 1px solid #8292AA;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   text-align: center;
-  margin-top: 4em;
+  margin-top: 2em;
   margin-bottom: 4em;
 }
 
@@ -434,13 +440,13 @@
   background-color: black;
   opacity: 0.8;
   border: 1px solid #8292AA;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 20px;
   padding-bottom: 20px;
-  margin-top: 4em;
+  margin-top: 2em;
   margin-bottom: 4em;
 }
 .reviews_card-title {
@@ -460,29 +466,29 @@
 
 // NOTES REVIEWS
 
-// .tag-item {
-//   display: inline-block;
-// }
+.tag-item {
+  display: inline-block;
+}
 
-// .tag-selector {
-//   position: absolute;
-//   transform: scale(0);
-// }
+.tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
 
-// .tag-selector + label {
-//   cursor: pointer;
-//   display: inline-block;
-//   font-size: 0.7rem;
-//   border-radius: 50rem;
-//   padding: 0.1rem 0.5rem;
-//   background-color: #e98b2a;
-//   color: white;
-//   border: 1px solid white;
-//   margin-right: 0.6rem;
-//   margin-bottom: 0.4rem;
-// }
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: #e98b2a;
+  color: white;
+  border: 1px solid white;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
 
-// .tag-selector:checked + label {
-//   background-color: #32c914;
-//   color: black;
-// }
+.tag-selector:checked + label {
+  background-color: #32c914;
+  color: black;
+}
