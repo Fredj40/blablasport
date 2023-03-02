@@ -156,7 +156,7 @@
           <% unless @event.reviews.blank? %>
 
             <% @event.reviews.each do |review| %>
-              <strong><%= review.user.first_name %></strong> - <%= review.user.age %> ans, <%= review.user.city %>,<br><br>
+              <strong><%= review.user.first_name %></strong> - <%= review.user.age %> ans, <%= review.user.city %>,<br>
               <% starfull= review.rating.to_i %>
                 <% starfull.times do %>
                   <p class="fa-solid fa-star"></p>
@@ -184,7 +184,7 @@
                                 wrapper_html: { class: "mb-1" },
                                 input_html: { data: { character_counter_target: "input" } },
                                 label_html: { class: "form-label text-secondary fw-bold" } %>
-                    <%# <p>Ta déscription fait actuellement <strong data-character-counter-target="counter"></strong> caractères.</p> %>
+                    <p>Ta déscription fait actuellement <strong data-character-counter-target="counter"></strong> caractères.</p>
                   </div>
                   <%= f.input :rating, as: :check_boxes, label_html: { class: "form-label text-secondary fw-bold" },
                               label: "Choisis une note pour cette activité :",
