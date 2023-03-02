@@ -73,15 +73,15 @@
         </ul><br>
 
         <% if @event.players_number - @event.bookings.where(booking_status: "Acceptée").count > 1 %>
-          <div class="badge-success">Il reste <%= @event.players_number - @event.bookings.where(booking_status: "Acceptée").count %> places disponibles</div>
-          <% unless @event.user == current_user || @event.bookings.exists?(user:current_user) %><%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success" %>
+          <div class="badge-success">Il reste <%= @event.players_number - @event.bookings.where(booking_status: "Acceptée").count %> places disponibles</div><br>
+          <% unless @event.user == current_user || @event.bookings.exists?(user:current_user) %><%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success btn-sm" %><br>
           <% end %>
         <% elsif @event.players_number - @event.bookings.where(booking_status: "Acceptée").count == 1 %>
-          <div class="badge-warning">Il reste 1 place disponible</div>
-          <% unless @event.user == current_user  || @event.bookings.exists?(user:current_user) %><%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success" %>
+          <div class="badge-warning">Il reste 1 place disponible</div><br>
+          <% unless @event.user == current_user  || @event.bookings.exists?(user:current_user) %><%= link_to "Je m'inscris !", new_event_booking_path(@event), class: "btn btn-success btn-sm" %><br>
           <% end %>
         <% elsif @event.players_number - @event.bookings.where(booking_status: "Acceptée").count == nil %>
-          <div class="badge-danger">Cette partie est complète</div>
+          <div class="badge-danger">Cette partie est complète</div><br>
         <% end %><br>
 
         <% unless Date.today > @event.date %>
@@ -94,13 +94,13 @@
         <% unless @event.user == current_user %>
           <% unless Date.today > @event.date %>
             <% if @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
-              <div class="badge-confirmed">Inscription validée : tu vas participer à cette partie</div><br>
-              <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir annuler ton inscription ?" }, class: "btn btn-outline-danger" %></h5>
+              <div class="badge-validée">Inscription validée</div><br>
+              <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir annuler ton inscription ?" }, class: "btn btn-outline-danger btn-sm" %></h5>
             <% elsif @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) %>
-              <div class="badge-warning">Tu as postulé à cette partie - Demande en attente de traitement</div><br>
-              <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete }, class: "btn btn-outline-danger" %></h5>
+              <div class="badge-attente">Inscription en attente</div><br>
+              <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete }, class: "cancel" %></h5>
             <% elsif @event.bookings.exists?(booking_status: "Refusée", user:current_user) %>
-              <div class="badge-danger">Ta demande a été refusée</div><br><br>
+              <div class="badge-refusée">Inscription refusée</div><br><br>
             <% end %>
           <% end %>
         <% end %>
@@ -110,7 +110,7 @@
           <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-outline-warning btn-sm" %>
           <%= link_to "Supprimer", event_path(@event), class: "btn btn-outline-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: "supprimer ?" } %><br><br>
         <% end %><br>
-        <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %><br><br>
+        <%= link_to "Retour au menu", events_path, class: "btn btn-secondary btn-sm" %><br><br>
       </div><br><br>
 
       <div class= "col-12 col-lg-1"></div>
