@@ -8,13 +8,24 @@
         <% if @bookings.empty?  %>
           <p>Tu n'es inscrit à aucun événement</p>
         <% elsif @bookings.count == 1 %>
-          <h3>Tu t'es inscrit à 1 événement</h3><br>
+          <h3>Tu es inscrit à 1 événement</h3><br>
         <% else %>
-          <h3>Tu t'es inscrit à <%= @bookings.count %> événements</h3><br>
+          <h3>Tu es inscrit à <%= @bookings.count %> événements</h3><br>
         <% end %>
-        <%= render 'pages/participated_events' %>
-        </br>
-        <%= render 'pages/my_events' %>
+
+        <input id="tab1" type="radio" name="tabs" checked>
+        <label for="tab1">Mes inscriptions</label>
+
+        <input id="tab2" type="radio" name="tabs">
+        <label for="tab2">Mes événements</label>
+
+        <section id="content1">
+          <%= render 'pages/participated_events' %>
+        </section>
+
+        <section id="content2">
+          <%= render 'pages/my_events' %>
+        </section>
 
       </div>
     </div>

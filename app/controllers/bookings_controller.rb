@@ -50,6 +50,7 @@ class BookingsController < ApplicationController
   def cancel
     @booking = Booking.find(params[:id])
     @booking.update(booking_status: "Annulée")
+    @booking.destroy
     redirect_to dashboard_path, notice: "La réservation a bien été annulée"
   end
 

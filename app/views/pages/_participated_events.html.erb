@@ -3,8 +3,8 @@
       <table class="table">
         <thead>
           <tr>
+            <th>Événement</th>
             <th>Date</th>
-            <th>Places proposées</th>
             <th>Statut</th>
             <th>Lien</th>
           </tr>
@@ -14,8 +14,8 @@
             <% event = booking.event %>
             <% if event.future? %>
               <tr>
+                <td><%= event.sport.sport_name %> à <%= event.address %></td>
                 <td><%= event.date.strftime("%d/%m/%Y") %></td>
-                <td><%= event.players_number %></td>
                 <td><% if booking.booking_status == "Acceptée" %>
                     <div>Inscription validée : tu vas participer à cette activité</div>
                   <% elsif booking.booking_status == "En attente de validation" %>
@@ -40,8 +40,8 @@
     <table class="table">
       <thead>
         <tr>
+          <th>Événement</th>
           <th>Date</th>
-          <th>Places proposées</th>
           <th>Statut</th>
           <th>Lien</th>
         </tr>
@@ -51,8 +51,8 @@
           <% event = booking.event %>
           <% if event.past? %>
             <tr>
+              <td><%= event.sport.sport_name %> à <%= event.address %></td>
               <td><%= event.date.strftime("%d/%m/%Y") %></td>
-              <td><%= event.players_number %></td>
               <td><% if booking.booking_status == "Acceptée" %>
                   <div>Inscription validée : tu as participé à cette activité</div>
                 <% elsif booking.booking_status == "En attente de validation" %>
