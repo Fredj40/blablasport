@@ -3,8 +3,8 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Événement</th>
             <th>Date</th>
+            <th>Événement</th>
             <th>Statut</th>
             <th>Lien</th>
           </tr>
@@ -14,16 +14,18 @@
             <% event = booking.event %>
             <% if event.future? %>
               <tr>
-                <td><%= event.sport.sport_name %> à <%= event.address %></td>
                 <td><%= event.date.strftime("%d/%m/%Y") %></td>
-                <td><% if booking.booking_status == "Acceptée" %>
+                <td><%= event.sport.sport_name %> à <%= event.address.split.last(2).first.chomp(',') %></td>
+                <td>
+                  <% if booking.booking_status == "En attente de validation" %>
+                    <div>Tu as postulé à cette activité - En attente</div>
+                  <% elsif booking.booking_status == "Acceptée" %>
                     <div>Inscription validée : tu vas participer à cette activité</div>
-                  <% elsif booking.booking_status == "En attente de validation" %>
-                    <div>Tu as postulé à cette activité - Demande en attente de traitement</div>
                   <% elsif booking.booking_status == "Refusée" %>
                     <div>Ta demande a été refusée</div>
-                  <% end %></td>
-                <td><%= link_to "Accéder", event_path(event), class: "btn btn-warning" %></td>
+                  <% end %>
+                </td>
+                <td><%= link_to "Voir l'activité", event_path(event), class: "btn btn-info btn-sm" %></td>
               </tr>
             <% end %>
           <% end %>
@@ -40,8 +42,8 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Événement</th>
           <th>Date</th>
+          <th>Événement</th>
           <th>Statut</th>
           <th>Lien</th>
         </tr>
@@ -51,8 +53,8 @@
           <% event = booking.event %>
           <% if event.past? %>
             <tr>
-              <td><%= event.sport.sport_name %> à <%= event.address %></td>
               <td><%= event.date.strftime("%d/%m/%Y") %></td>
+              <td><%= event.sport.sport_name %> à <%= event.address.split.last(2).first.chomp(',') %></td>
               <td><% if booking.booking_status == "Acceptée" %>
                   <div>Inscription validée : tu as participé à cette activité</div>
                 <% elsif booking.booking_status == "En attente de validation" %>
@@ -61,8 +63,8 @@
                   <div>Ta demande a été refusée</div>
                 <% end %></td>
               <td><% if booking.booking_status == "Acceptée" %>
-              <%= link_to "Je laisse un avis", event_path(event), class: "btn btn-outline-success" %>
-              <% else %><%= link_to "Revoir l'activité", event_path(event), class: "btn btn-outline-warning" %>
+              <%= link_to "Je laisse un avis", event_path(event), class: "btn btn-success btn-sm" %>
+              <% else %><%= link_to "Revoir l'activité", event_path(event), class: "btn btn-secondary btn-sm" %>
               <% end %></td>
             </tr>
           <% end %>

@@ -3,15 +3,6 @@
     <div class="row justify-content-center">
       <div class="col-12 col-lg-12">
       <h1>Mon tableau de bord</h1>
-      </br>
-      <%# <h3>Mes inscriptions :</h3> %>
-        <% if @bookings.empty?  %>
-          <p>Tu n'es inscrit à aucun événement</p>
-        <% elsif @bookings.count == 1 %>
-          <h3>Tu es inscrit à 1 événement</h3><br>
-        <% else %>
-          <h3>Tu es inscrit à <%= @bookings.count %> événements</h3><br>
-        <% end %>
 
         <input id="tab1" type="radio" name="tabs" checked>
         <label for="tab1">Mes inscriptions</label>

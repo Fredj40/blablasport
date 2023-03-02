@@ -38,8 +38,8 @@
                   <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire", placeholder: "Bien arriver à l'heure" %>
                 </div>
 
-                <div class="col-9">
-                  <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, placeholder: "saisir l'adresse", wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+                 <div class="col-9">
+                  <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
                 </div>
 
                 <div class="col-md-2">
