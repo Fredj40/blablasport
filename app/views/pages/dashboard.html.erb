@@ -6,17 +6,17 @@
 
         <div class="tabs">
           <input id="tab1" type="radio" name="tabs" checked>
-          <label for="tab1">Mes inscriptions</label>
+          <label for="tab1">Mes événements</label>
 
           <input id="tab2" type="radio" name="tabs">
-          <label for="tab2">Mes événements</label>
+          <label for="tab2">Mes inscriptions</label>
 
           <section id="content1">
-            <%= render 'pages/participated_events' %>
+            <%= render 'pages/my_events' %>
           </section>
 
           <section id="content2">
-            <%= render 'pages/my_events' %>
+            <%= render 'pages/participated_events' %>
           </section>
         </div>
       </div>
