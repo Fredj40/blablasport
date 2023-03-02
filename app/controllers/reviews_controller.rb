@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     @review.rating = params["review"]["rating"][0].to_i
     @review.event = @event
     @review.user = @user
-    if @review.save
+    if @review.save!
       redirect_to event_path(@event)
     else
       render 'events/show', status: :unprocessable_entity
