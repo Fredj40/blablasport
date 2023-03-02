@@ -5,11 +5,15 @@
       <th>Date</th>
       <th>Événement</th>
       <th>Participant</th>
-      <th>Status</th>
+      <th>Statut</th>
       <th>Action</th>
       <th>Lien</th>
     </tr>
   </thead>
+
+  <% if current_user.bookings.empty? %>
+    <p>Vous n'avez pas de réservation à venir</p>
+  <% end %>
 
   <tbody>
     <% current_user.events.order(date: :desc).each do |event| %>
@@ -23,11 +27,11 @@
               <td><%= booking.booking_status %></td>
               <td>
                 <% if booking.booking_status == "En attente de validation" %>
-                  <%= link_to "Accepter", approve_booking_path(booking), method: :patch, class: "btn btn-success btn-sm" %>
-                  <%= link_to "Refuser", reject_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm" %>
+                  <%= link_to "Accepter", approve_booking_path(booking), method: :patch, class: "btn btn-success btn-sm", data: {confirm: "Êtes-vous sûr de vouloir accepter cette demande d'inscription?"} %>
+                  <%= link_to "Refuser", reject_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm", data: {confirm: "Êtes-vous sûr de vouloir refuser cette demande d'inscription?"} %>
                 <% else %>
                   <% if Date.today < event.date %>
-                    <%= link_to "Annuler l'inscription", cancel_booking_path(booking), method: :patch, class: "btn btn-outline-danger btn-sm" %>
+                    <%= link_to "Annuler l'inscription", cancel_booking_path(booking), method: :patch, class: "btn btn-outline-danger btn-sm", data: {confirm: "Êtes-vous sûr de vouloir annuler cette demande d'inscription?"} %>
                   <% else %>
                     <p>Activité terminée</p>
                   <% end %>
@@ -45,7 +49,3 @@
     <% end %>
   </tbody>
 </table>
-
-<% if current_user.bookings.empty? %>
-  <p>Vous n'avez pas de réservation à venir</p>
-<% end %>
