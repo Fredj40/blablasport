@@ -7,7 +7,7 @@
   background-size: cover;
   display: block;
   margin: 0 auto;
-  margin-top: 20px;
+  // margin-top: 20px;
 }
 .content {
   display: flex;
@@ -17,7 +17,6 @@
   background: rgba(0, 0, 0, 0.5);
   color: #f1f1f1;
   width: 100%;
-  padding: 100px;
   height: 60%;
   justify-content: center;
   align-items: center;
@@ -25,11 +24,7 @@
   background-size: cover;
   background-position: center;
 }
-.logo-home {
-  margin-top: 20px;
-  height: 190;
-  width: 380;
-}
+
 .text-home {
   font-family: "PT Sans", sans-serif;
   color: #c95014;
@@ -42,6 +37,11 @@
   color: white;
   font-size: 16px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  // text-align: justify;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 // .main-container {
