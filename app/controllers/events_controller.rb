@@ -33,11 +33,11 @@ class EventsController < ApplicationController
     }]
 
     # User qui a créé l'événement
-    @user = @event.user
+    @user_event = @event.user
     # calculer la moyenne des notes de chaque event de l'user
     @ratings = []
     # recuperer les notes de l'event sur lequel tu itères
-    @user.events.each do |event|
+    @user_event.events.each do |event|
       event.reviews.each do |review|
         @ratings << review.rating # équivalent à @ratings << event.reviews.average(:rating)
       end
@@ -50,9 +50,9 @@ class EventsController < ApplicationController
       @user_rating = @ratings.sum / @ratings.size
     end
     # calculer le nombre de notes de l'user
-    @user_reviews = @user.events.map { |event| event.reviews.count }.sum
+    @user_reviews = @user_event.events.map { |event| event.reviews.count }.sum
     # calculer le nombre d'événements de l'user
-    @user_events = @user.events.count
+    @user_events = @user_event.events.count
 
   end
 
@@ -93,7 +93,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :date, :time, :price, :level, :players_number, :duration, :address, :user_id, :sport_id, messages_attributes: [:content, :user_id, :chatroom_id], chatrooms_attributes: [:event_id], reviews_attributes: [:comment, :rating, :event_id])
+    params.require(:event).permit(:title, :description, :date, :time, :price, :level, :players_number, :duration, :address, :user_id, :sport_id, messages_attributes: [:content, :user_id, :chatroom_id], chatrooms_attributes: [:event_id], reviews_attributes: [:comment, :rating, :event_id, :user_id])
   end
 
   def set_event
