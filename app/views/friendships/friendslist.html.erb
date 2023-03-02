@@ -20,10 +20,11 @@
       <div class="col-sm-6">
         <div class="card friend">
           <div class="card-body">
-            <h5 class="card-title"><% if current_user == friendship.user_id %>
-              <%= User.find(friendship.friend_id).first_name %> <%= User.find(friendship.friend_id).last_name   %>
+            <h5 class="card-title">
+            <% if current_user.id == friendship.user_id %>
+              <%= "#{friendship.friend.first_name} #{friendship.friend.last_name}" %>
             <% else  %>
-              <%= User.find(friendship.user_id).first_name  %> <%= User.find(friendship.user_id).last_name  %>
+              <%= "#{User.find(friendship.user_id).first_name} #{User.find(friendship.user_id).last_name}"  %>
             <% end  %></h5>
             <%= link_to 'Supprimer', friendship, method: :delete, data: { confirm: 'Etes-vous sûr de vouloir supprimer cet ami?' }, class: "btn btn-danger mr-2" %>
           </div>

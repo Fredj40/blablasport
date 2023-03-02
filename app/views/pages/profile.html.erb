@@ -1,4 +1,4 @@
-<div class="profile-container">
+<div class="profile-container"><br>
   <div class="mb-4"><%= render 'pages/search_friends' %></div>
 
     <div class="container-profile">
@@ -21,15 +21,14 @@
       <h2>Ma liste d'amis (<%=@friends_count %>)</h2><br>
       <ul class="list-group list-group-flush rounded-3">
         <% @friendships.each do |friendship| %>
-          <% if current_user == friendship.user_id %>
-            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-              <i class="fas fa-globe fa-lg text-warning"></i>
+          <% if current_user.id == friendship.user_id %>
+            <li class="d-flex justify-content-between align-items-center p-3">
               <p class="mb-0">
-                <%= link_to "#{friendship.friend_id.first_name} #{friendship.friend_id.last_name}", user_path(friendship.friend_id), style: "text-decoration: none;" %>
+                <%= link_to "#{friendship.friend.first_name} #{friendship.friend.last_name}", user_path(friendship.friend_id), style: "text-decoration: none;" %>
               </p>
             </li>
           <%else %>
-            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+            <li class="d-flex justify-content-between align-items-center p-3 bs-list-group-bg: none">
               <p class="mb-0">
                 <%= link_to "#{User.find(friendship.user_id).first_name} #{User.find(friendship.user_id).last_name}", user_path(friendship.user_id), style: "text-decoration: none;" %>
               </p>
@@ -50,7 +49,7 @@
                   <p class="mb-0"></p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0"><%=current_user.user_description %></p>
+                  <p class="text-muted mb-0" style="color: white">Description : <%=current_user.user_description %></p>
                 </div>
               </div>
               <hr>
@@ -77,7 +76,7 @@
                   <p class="mb-0"></p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Sportif confirmé</p>
+                  <p class="text-muted mb-0">Status : Sportif confirmé</p>
                 </div>
               </div>
               <hr>
@@ -95,7 +94,7 @@
                     <h5>Mes événements organisés</h5>
                       <% @user.events.each do |event| %>
                         <% if event.user_id == current_user.id %>
-                          <li style="color: black"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></li>
+                          <ul style="color: white; text-align: center"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></ul>
                           <%end%>
                           <%end%>
                   </div>
@@ -108,7 +107,7 @@
                     <% @user.bookings.each do |booking| %>
                       <% event = Event.find(booking.event_id) %>
                       <%if booking.booking_status == "Acceptée"%>
-                      <li style="color: black"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></li>
+                      <ul style="color: white; text-align: center"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></ul>
                       <%end%>
                     <%end %>
                   </div>

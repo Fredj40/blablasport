@@ -1,111 +1,114 @@
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3"><%= @user.first_name %> <%= @user.last_name %></h5>
-            <p class="text-muted mb-1"><%= @user.age %> ans</p>
-            <p class="text-muted mb-4"><%= @user.city %></p>
-            <div class="d-flex justify-content-center mb-2">
-              <%if  Friendship.where(friend_id: current_user.id , status: "accepted") || Friendship.where(user_id: current_user.id, status: "accepted")%>
-              <%= link_to "demander en ami", "#", class: "btn btn-primary", id: "add-friend-button" %>
-              <%end%>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-4 mb-lg-0">
-          <div class="card-body p-0">
-            <h2>Ma liste d'amis(<%=@friends_count %>)</h2><br>
-              <ul class="list-group list-group-flush rounded-3">
-                <% @friendships.each do |friendship| %>
-                <% if current_user == friendship.user_id %>
+<div class="profile-container"><br>
+  <div class="mb-4"><%= render 'pages/search_friends' %></div>
 
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fas fa-globe fa-lg text-warning"></i>
-                  <p class="mb-0"><%= link_to "#{friendship.friend_id.first_name} #{friendship.friend_id.last_name}", user_path(friendship.friend_id), style: "text-decoration: none;" %></p>
-                </li>
-                <%else %>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <p class="mb-0"><%= link_to "#{User.find(friendship.user_id).first_name} #{User.find(friendship.user_id).last_name}", user_path(friendship.user_id), style: "text-decoration: none;" %></p>
-                </li>
-                <%end%>
-                <%end%>
-              </li>
+    <div class="container-profile">
+      <div class="row-profile">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="https://thumbs.dreamstime.com/b/user-icon-male-hipster-avatar-vector-flat-design-user-icon-male-beard-icon-hipster-flat-icon-avatar-man-beard-flat-99281046.jpg" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3"><%= @user.first_name %> <%= @user.last_name %></h5>
+              <p class="text-muted mb-1"><%= @user.age %> ans</p>
+              <p class="text-muted mb-4"><%= @user.city %></p>
+              <div class="d-flex justify-content-center mb-2">
+              <%= link_to "demander en ami", "#", class: "btn btn-outline-warning btn-sm", id: "add-friend-button" %>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4 mb-lg-0">
+    <div class="card-body p-0">
+      <h2>Les amis de <%=@user.first_name%> (<%=@friends_count %>)</h2><br>
+      <ul class="list-group list-group-flush rounded-3">
+        <% @friendships.each do |friendship| %>
+          <% if @user.id == friendship.user_id %>
+            <ul class="d-flex justify-content-between align-items-center p-3">
+              <p class="mb-0">
+                <%= link_to "#{friendship.friend.first_name} #{friendship.friend.last_name}", user_path(friendship.friend_id), style: "text-decoration: none;" %>
+              </p>
             </ul>
-          </div>
+          <%else%>
+            <ul class=" justify-content-between align-items-center p-3">
+              <p class="mb-0">
+                <%= link_to "#{User.find(friendship.user_id).first_name} #{User.find(friendship.user_id).last_name}", user_path(friendship.user_id), style: "text-decoration: none;" %>
+              </p>
+            </ul>
+          <%end%>
+          <%end %>
+      </ul>
+    </div>
+  </div>
+
         </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Mes sports favoris</p>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row-profile">
+                <div>
+                  <p ></p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">Description : <%=@user.user_description %></p>
+                </div>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%=@user.user_description %></p>
+              <hr>
+              <div class="row-profile">
+                <div class="col-sm-3">
+                  <p class="mb-0"></p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">Evénement(s) créé(s): <%=@created_event_count%></p>
+                </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+              <hr>
+              <div class="row-profile">
+                <div class="col-sm-3">
+                  <p class="mb-0"></p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">Evénement(s) participé(s): <%=@attended_event_count%></p>
+                </div>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">Evénement(s) créé(s): <%=@created_event_count%></p>
+              <hr>
+              <div class="row-profile">
+                <div class="col-sm-3">
+                  <p class="mb-0"></p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">Sportif confirmé</p>
+                </div>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">Evénement(s) participé(s): <%=@attended_event_count%></p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Mobile</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">Sportif confirmé</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Address</p>
-              </div>
-            </div>
-          </div>
-        </div>
-          <div class="col-md-6">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body">
-                <h5 class="mb-3">Ses événements</h5>
-                  <% @user.events.each do |event| %>
-                    <% if event.user_id == current_user.id %>
-                      <li style="color: black"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></li>
-                      <%end%>
-                      <%end%>
+              <hr>
+              <div class="row-profile">
+                <div class="col-sm-3">
+                  <p class="mb-0"></p>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="card mb-4 mt-4 mb-md-0">
-                <div class="card-body">
-                  <h5 class="mb-3">Ses événements participés</h5>
-                  <% @user.bookings.each do |booking| %>
-                    <% event = Event.find(booking.event_id) %>
-                    <%if booking.booking_status == "Acceptée"%>
-                    <div><li style="color: black"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></li>
-                    <%end%>
-                  <%end %>
+          </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5><%=@user.first_name%> a participé à :</h5><br>
+                      <% @user.events.each do |event| %>
+                        <% if event.user_id == @user.id %>
+                          <ul style="color: white"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></ul>
+                          <%end%>
+                          <%end%>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5>Les événements organisés par <%=@user.first_name%></h5><br>
+                    <% @user.bookings.each do |booking| %>
+                      <% event = Event.find(booking.event_id) %>
+                      <%if booking.booking_status == "Acceptée"%>
+                      <ul style="color: white"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></ul>
+                      <%end%>
+                    <%end %>
                   </div>
                 </div>
               </div>
@@ -114,8 +117,7 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+</div>
 
 <script>
   $(document).ready(function() {
