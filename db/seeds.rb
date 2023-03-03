@@ -532,10 +532,10 @@ p "Created #{Message.count} messages"
 #   filename: 'favicon.png',
 #   comment_type: 'image/jpg'
 # )
-image_path = Rails.root.join("app/assets/images/BlaBlaSport.png")
-cloudinary_image = Cloudinary::Uploader.upload(image_path)
-picture44 = ActiveStorage::Blob.create_and_upload!(
-  io: URI.open(cloudinary_image['secure_url']),
-  filename: 'BlaBlaSport.png',
-  comment_type: 'image/jpg'
-)
+# image_path = Rails.root.join("app/assets/images/BlaBlaSport.png")
+# cloudinary_image = Cloudinary::Uploader.upload(image_path)
+# picture44 = ActiveStorage::Blob.create_and_upload!(
+#   io: URI.open(cloudinary_image['secure_url']),
+#   filename: 'BlaBlaSport.png',
+#   comment_type: 'image/jpg'
+# )
