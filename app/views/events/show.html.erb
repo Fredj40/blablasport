@@ -95,10 +95,10 @@
           <% unless Date.today > @event.date %>
             <% if @event.bookings.exists?(booking_status:"Acceptée", user:current_user) %>
               <div class="badge-validée">Inscription validée</div><br>
-              <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir annuler ton inscription ?" }, class: "btn btn-outline-danger btn-sm" %></h5>
+              <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir annuler ton inscription ?" }, class: "cancel" %></h5>
             <% elsif @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) %>
               <div class="badge-attente">Inscription en attente</div><br>
-              <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete }, class: "cancel" %></h5>
+              <h5><%= link_to "Annuler mon inscription", booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir annuler ton inscription ?" }, class: "cancel" %></h5>
             <% elsif @event.bookings.exists?(booking_status: "Refusée", user:current_user) %>
               <div class="badge-refusée">Inscription refusée</div><br><br>
             <% end %>

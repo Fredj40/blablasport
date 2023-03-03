@@ -1,65 +1,44 @@
 #myVideo {
   position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  background-size: cover;
-  display: block;
-  margin: 0 auto;
-  // margin-top: 20px;
-}
-.content {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
+  height: auto;
   width: 100%;
-  height: 60%;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-size: cover;
-  background-position: center;
+  top: 0;
+  z-index: -2;
 }
 
-.text-home {
-  font-family: "PT Sans", sans-serif;
-  color: #c95014;
-  font-size: 60px;
-  font-weight: bold;
-  text-align: center;
+.logo-home {
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 26%;
+  z-index: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: rgba(0, 0, 0, 0.5);
+
 }
+
+.btn-enter {
+position: relative;
+max-width: 100%;
+height: auto;
+display: flex;
+justify-content: center;
+z-index: 0;
+padding-bottom: 20px;
+background: rgba(0, 0, 0, 0.5);
+}
+
 .description-home {
-  font-family: "PT Sans", sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 16px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  // text-align: justify;
-  margin-left: 40px;
-  margin-right: 40px;
+  font-weight: 300;
 }
-
-// .main-container {
-//   display: flex;
-//   justify-content: space-between;
-// }
-
-// .card {
-//   background-size: cover;
-//   background-position: center;
-//   height: 150px;
-//   border-radius: 1px;
-//   box-shadow: 0 0 10px rgba(0,0,0,0.2);
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-around;
-//   font-size: 22px;
-//   color: white;
-//   font-weight: bolder;
-//   text-shadow: 0 0 10px rgba(0,0,0,0.7);
-// }

@@ -13,7 +13,7 @@ class Event < ApplicationRecord
   validates :sport, presence: true
   validates :user, presence: true
   validates :level, presence: true
- # validates :players_number, presence: true, inclusion: { in: 1..30 }
+ validates :players_number, presence: true, inclusion: { in: 1..30 }
   validates :address, presence: true
   validates :duration, presence: true, inclusion: { in: 1..120 }
 

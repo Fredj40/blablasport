@@ -1,5 +1,4 @@
 <div class="profile-container"><br>
-  <div class="mb-4"><%= render 'pages/search_friends' %></div>
 
     <div class="container-profile">
       <div class="row-profile">
@@ -27,16 +26,24 @@
                 <%= link_to "#{friendship.friend.first_name} #{friendship.friend.last_name}", user_path(friendship.friend_id), style: "text-decoration: none;" %>
               </p>
             </li>
-          <%else %>
+          <% else %>
             <li class="d-flex justify-content-between align-items-center p-3 bs-list-group-bg: none">
               <p class="mb-0">
                 <%= link_to "#{User.find(friendship.user_id).first_name} #{User.find(friendship.user_id).last_name}", user_path(friendship.user_id), style: "text-decoration: none;" %>
               </p>
             </li>
-          <%end%>
-        <%end%>
+          <% end %>
+        <% end %>
       </ul>
-      <%= link_to "Mes demandes d'amis en attente(#{@request_friend_count})", friendslist_friendships_path, class: "mt-3" %>
+
+      <% if @request_friend_count == nil %>
+        <%= link_to "Demandes d'amis en attente : #{@request_friend_count}", friendslist_friendships_path, class: "btn btn-info btn-sm" %>
+      <% else %>
+        <p>Pas de demande en attente</p>
+      <% end %><br>
+
+      <div class="mb-4"><%= render 'pages/search_friends' %></div>
+
     </div>
   </div>
 

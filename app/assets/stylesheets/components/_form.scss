@@ -32,16 +32,41 @@
 .form-event {
   background :rgba(0, 0, 0, 0.6);
   color: white;
-  padding: 10px 20px;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  padding-right: 40px;
+  padding-left: 40px;
   margin-top: 100px;
   border-radius: 10px;
   box-shadow: -1rem 0 3rem #000;
-  width: 140%;
+  width: 100%;
   h2 {
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 15px;
-    // text-align: center;
+    text-align: center;
+  }
+  .btn {
+    width: 100%;
+    margin-bottom: 20px
+  }
+}
+
+.form-event-new {
+  background :rgba(0, 0, 0, 0.6);
+  color: white;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  padding-right: 40px;
+  margin-top: 100px;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+  width: 100%;
+  h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
   }
   .btn {
     width: 100%;
@@ -67,6 +92,6 @@
 .price-field {
   align-items: end;
 }
-.form-fields {
-  margin-left: 20px;
-}
+// .form-fields {
+//   margin-left: 20px;
+// }

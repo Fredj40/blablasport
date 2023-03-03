@@ -1,0 +1,26 @@
+<h1>ACTUALITE</h1>
+
+<% @activities.first(10) %>
+<% @activities.each do |activity| %>
+  <div class="activity" style="display: flex; flex-direction: column; align-items: center; margin-top: 10px; background-color: black; opacity: 0.7; color: white; padding: 10px; border-radius: 10px;">
+    <%# <%= activity.created_at.strftime("%d/%m/%Y") %> <%# à <%=activity.created_at.time.strftime("%kh%M") %>
+    <% if activity.trackable_type == "Event" %>
+      <span><strong><%= activity.trackable.user.first_name %></strong> a posté un nouvel événement qui aura lieu à <%= activity.trackable.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %></span>
+    <% elsif activity.trackable_type == "User" %>
+      <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint la famille blabla sport"</span>
+    <% elsif activity.trackable_type == "Booking" %>
+      <span><strong><%= activity.trackable.user.first_name %></strong> a rejoint l'événement <%= activity.trackable.event.sport.sport_name %> qui aura lieu à <%= activity.trackable.event.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.event.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.event.time.strftime("%kh%M") %></span>
+    <% end %>
+  </div>
+<% end %><br><br>
+
+<!-- JavaScript -->
+<script>
+  $('#activityModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // Update the modal's content.
+    var modal = $(this)
+    modal.find('.modal-title').text("Fil d'actualités")
+  })
+</script>

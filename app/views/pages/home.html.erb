@@ -1,18 +1,19 @@
+<div class="home-container">
+  <div class="col-12">
+    <video autoplay muted loop id="myVideo">
+      <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656397/production_ID_5192077_f8mwmi.mp4" type="video/mp4">
+    </video>
 
-<video autoplay muted loop id="myVideo">
-  <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656397/production_ID_5192077_f8mwmi.mp4" type="video/mp4">
-</video>
+    <div class="logo-home">
+      <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", alt: "BlaBlaSport" %>
+    </div>
 
-<div class="content">
-  <div class="logo-home"><%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", alt: "BlaBlaSport" %></div><br><br>
-  <%# <div class="text-home">LE RESEAU SPORTIF</div> %>
+    <div class="btn-enter">
+      <%= link_to "Accéder aux événements", events_path, class: "btn btn-info" %>
+    </div>
 
-  <div class="col-12 col-1"></div>
-  <div class="description-home col-10 col-lg-4">
-  <div class="col-12 col-1"></div>
-    <p>BlaBlaSport est l'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs.</p>
-    <p>Il te manque un adversaire, un partenaire, ou plusieurs joueurs,<br>rejoins la communauté BlaBlaSport !</p>
-  </div><br>
-    <div class="col-12 col-1"></div>
-  <%= link_to "Accéder aux événements", events_path, class: "btn btn-info" %>
+    <div class="description-home">
+      <p>BlaBlaSport est l'application qui permet de participer ou d'organiser des événements avec ceux qui partagent les mêmes centres d'intérêts sportifs.<br> Il te manque un adversaire, un partenaire, ou plusieurs joueurs, rejoins la communauté BlaBlaSport !</p>
+    </div>
+  </div>
 </div>

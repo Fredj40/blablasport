@@ -1,64 +1,64 @@
-<div class="container-new">
+<div class="container-new-activity">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-6">
-        <div class="form-event">
+        <div class="form-event-new">
           <h2>J'ajoute une activité</h2><br>
-            <%= @error %>
-            <%= simple_form_for(@event) do |f| %>
-              <div class="row">
-                <div class="col-md-4">
-                  <%= f.input :sport_id, input_html: { class: 'form-label' }, collection: @ordered_list, label: "Choisis ton sport", placeholder: "Football" %>
-                </div>
-
-                <div class="col-md-3">
-                  <%= f.input :players_number, input_html: { class: 'form-label', min: '1', step: '1' }, placeholder: "1", label: "Nb de places" %>
-                </div>
-
-                <div class="col-md-4">
-                  <%= f.input :level, input_html: { class: 'form-label' }, collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum", placeholder: "Pour tous" %>
-                </div>
-
-                <div class="col-md-4">
-                  <%= f.input :date, as: :string,
-                              wrapper_html: { class: "mb-4" },
-                              label_html: { class: "form-label text-secondary fw-bold" },
-                              input_html: { data: { controller: "flatpickr" } } %>
-                </div>
-
-                <div class="col-md-4">
-                  <%= f.input :time, input_html: { class: 'form-label' }, label: "Heure début", as: :time, :minute_step => 10 %>
-                </div>
-
-                <div class="col-md-3">
-                  <%= f.input :duration, input_html: { class: 'form-label' }, collection: ['20 min','30 min','45 min', '1H00', '1H30', '2H00', '2H30', '3H00 ou +'], label: "Durée", placeholder: "1H00" %>
-                </div>
-
-                <div class="col-11">
-                  <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire", placeholder: "Bien arriver à l'heure" %>
-                </div>
-
-                 <div class="col-9">
-                  <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
-                </div>
-
-                <div class="col-md-2">
-                  <%= f.input :price, input_html: { class: 'price-field', min: '0', step: '1' }, label: "Prix" %>
-                </div>
-
-                <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-
-                <div class="col-5">
-                  <%= f.submit "Publier", class: "btn btn-outline-warning" %>
-                </div>
-                <div class="col-1">
-                </div>
-                <div class="col-5">
-                  <%= link_to "Retour au menu", events_path, class: "btn btn-outline-secondary" %>
-                </div>
+          <%= @error %>
+          <%= simple_form_for @event do |f| %>
+            <div class="row">
+              <div class="col-md-4">
+                <%= f.input :sport_id, input_html: { class: 'form-label' }, collection: @ordered_list, label: "Choisis ton sport", placeholder: "Football" %>
               </div>
-            <% end %>
-        </div><br>
+
+              <div class="col-md-4">
+                <%= f.input :players_number, input_html: { class: 'form-label', min: '1', step: '1' }, placeholder: "1", label: "Nb de places" %>
+              </div>
+
+              <div class="col-md-4">
+                <%= f.input :level, input_html: { class: 'form-label' }, collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum", placeholder: "Pour tous" %>
+              </div>
+
+              <div class="col-md-7">
+                <%= f.input :date, as: :string,
+                            wrapper_html: { class: "mb-4" },
+                            label_html: { class: "form-label text-secondary fw-bold" },
+                            input_html: { data: { controller: "flatpickr" } } %>
+              </div>
+
+              <div class="col-md-5">
+                <%= f.input :time, input_html: { class: 'form-label' }, label: "Heure début", as: :time, :minute_step => 10 %>
+              </div>
+
+              <div class="col-md-4">
+                <%= f.input :duration, input_html: { class: 'form-label' }, collection: ['20 min','30 min','45 min', '1H00', '1H30', '2H00', '2H30', '3H00 ou +'], label: "Durée", placeholder: "1H00" %>
+              </div>
+
+              <div class="col-8">
+                <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire", placeholder: "Bien arriver à l'heure" %>
+              </div>
+
+                <div class="col-9">
+                <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+              </div>
+
+              <div class="col-md-3">
+                <%= f.input :price, input_html: { class: 'price-field', min: '0', step: '1' }, label: "Prix" %>
+              </div>
+
+              <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+
+              <div class="col-6">
+                <%= f.submit "Publier", class: "btn btn-success btn-sm" %>
+              </div>
+
+              <div class="col-6">
+                <%= link_to "Retour au menu", events_path, class: "btn btn-secondary btn-sm" %>
+              </div>
+
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
