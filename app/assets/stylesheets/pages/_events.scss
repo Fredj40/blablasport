@@ -14,6 +14,20 @@
   // margin-top: 9vh;
 }
 
+@media (max-width: 767px) {
+  .logo-index-mobile {
+    // display: flex;
+    // flex-direction: column;
+    z-index: 1;
+    position: relative;
+    margin-left: -60%;
+    margin-right: -10%;
+    .logo-index img {
+      width: 80%;
+    }
+  }
+}
+
 .logo-index {
   display: flex;
   flex-direction: column;
@@ -23,9 +37,11 @@
   margin-left: 70vw;
 }
 
-.logo-index img {
-  height: 100%;
-  width: 100%;
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none;
+  }
 }
 
 .middle-container {
@@ -113,63 +129,34 @@
   border-top-left-radius : 200px 50px;
 }
 
-.logo-ball {
-  // background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1677609598/ballon-orange_xlbbil.png");
-  // object-fit: fill;
+.add-activity {
+  margin-top: -14vh;
+  margin-left: 20%;
+}
+
+.organize-btn {
   margin-top: -18vh;
   margin-bottom: 13vh;
-  margin-left: 64%;
+  margin-left: 66%;
   position: relative;
-  // height: 173px;
-  // width: 147px;
-  // padding-top: 30px;
-  // padding-right: 5px;
-  // padding-left: 5px;
-  // text-align: center;
 }
-// .logo-ball div {
-//   margin-top: 3vh;
-// }
-// .logo-ball a {
-//   text-decoration: none;
-//   font-size: 16px;
-//   font-weight: bold;
-//   color: white;
-// }
-// .logo-ball:hover {
-//   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1677609598/ballon-jaune_nmn0mp.png");
-//   object-fit: fill;
-//   margin-top: -20vh;
-//   margin-left: 69%;
-//   position: relative;
-//   height: 173px;
-//   width: 147px;
-//   padding-top: 30px;
-//   padding-right: 5px;
-//   padding-left: 5px;
-//   text-align: center;
-// }
-// .logo-ball a:hover {
-//   text-decoration: none;
-//   font-size: 16px;
-//   font-weight: bold;
-//   color: rgb(224, 77, 9);
-// }
 
-.buttons-container {
+.search-index-form {
   position: relative;
-  margin-top: -9vh;
-  margin-left: 21%;
-  margin-right: 50%;
-  margin-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: -7vh;
+  margin-left: 10%;
+  // margin-right: 50%;
+  margin-bottom: 9vh;
   z-index: 2;
 }
 
 #inputRecherche3 {
   position: relative;
-  width: 100%;
+  width: 37vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border-color: #c95014;
   background: white;
   color: #c95014;
@@ -181,7 +168,7 @@
   z-index: -5;
 }
 .events_card {
-  margin-bottom: 50px;
+  margin-bottom: 20vh;
 }
 
 .events_card h1 {
@@ -193,6 +180,7 @@
 
 .events_cards {
   margin-top: 20px;
+  margin-left: 50px;
   display: flex;
   flex-wrap: wrap;
   z-index: 3;
@@ -201,7 +189,8 @@
 }
 
 .event-card {
-  margin: 12px;
+  margin-right: 20px;
+  margin-left: 30px;
   flex: 20%;
   background-color: rgb(32, 31, 31);
   border-radius: 20px;
@@ -248,33 +237,16 @@
   line-height: 1.5;
 }
 
-
 .feed_card {
-  // background-color: transparent;
-  // background-color: rgba(255, 255, 255, 0.3);
-  // opacity: 0.9;
-  // border: 1px solid #c95014;
-  // border-radius: 5px;
-  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  // padding-left: 50px;
-  // padding-right: 50px;
-  // padding-top: 20px;
-  // padding-bottom: 20px;
-  // text-align: center;
-  // align-items: center;
+  margin-top: -13vh;
 }
 
 #map {
-  // background-color: rgba(255, 255, 255, 0.3);
-  // opacity: 0.9;
-  // border: 1px solid #e98b2a;
   border-radius: 20px;
   box-shadow: -1rem 0 3rem #000;
   display: flex;
   width: 100%;
   height: 400px;
-  // margin-left: 33px;
-  // margin-top: 90px;
   margin-bottom: 40px;
   margin-top: -30px;
   position: sticky;
@@ -289,24 +261,16 @@
   margin-left: -20px;
 }
 
-
-// .mapboxgl-canvas {
-
-// }
-
 .activity-feed {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // margin-left: 20px;
-  // margin-right: 20px;
 }
 
 .activity-feed h1 {
   color: #c95014;
   font-size: 30px;
-  // margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -330,12 +294,10 @@
 .event-passed {
   background-color: rgb(255, 255, 255);
   opacity: 0.7;
-  // border: 1px solid #e98b2a;
   border-radius: 10px;
   border: 1px solid black;
   box-shadow: -1rem 0 3rem #000;
   padding-top: 10px;
-  // margin : 20px;
   margin-bottom: 20px;
   text-align: center;
   height: 150px;
@@ -358,8 +320,6 @@
 
 .events-passed {
   width: 100%;
-  // margin-left: 20px;
-  // margin-right: 20px;
 }
 .events-passed h1 {
   color: black;
