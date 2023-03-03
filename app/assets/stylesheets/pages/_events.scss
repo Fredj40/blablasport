@@ -45,9 +45,9 @@
   color: #3A3C4F;
   font-weight: bold;
   font-size: 36px;
-  margin-top: 2vh;
+  margin-top: 4vh;
   margin-left: 1vh;
-  transform: skewY(0deg);
+  transform: skewY(-1deg);
 }
 
 .middle-container h2 {
@@ -57,7 +57,7 @@
   font-size: 32px;
   margin-top: 3vh;
   margin-left: 10vh;
-  transform: skewY(0deg);
+  transform: skewY(-0.5deg);
 }
 
 .middle-container h3 {
@@ -67,7 +67,7 @@
   font-size: 26px;
   margin-top: 3vh;
   margin-left: 10vh;
-  transform: skewY(0deg);
+  transform: skewY(-0.5deg);
 }
 
 .middle-container h4 {
@@ -77,7 +77,7 @@
   font-size: 19px;
   margin-top: 3vh;
   margin-left: 10vh;
-  transform: skewY(0deg);
+  transform: skewY(-0.5deg);
 }
 
 .middle-container h5 {
@@ -485,9 +485,9 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100%;
+  background-attachment: fixed;
+  height: 89vh;
   width: 100%;
-  position: fixed;
 }
 
 // NOTES REVIEWS

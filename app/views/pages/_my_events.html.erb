@@ -2,7 +2,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Date</th>
       <th>Événement</th>
       <th>Participant</th>
       <th>Statut</th>
@@ -21,26 +20,25 @@
         <% event.bookings.each do |booking| %>
           <% unless booking.user == current_user %>
             <tr>
-              <td><%= event.date.strftime("%d/%m/%Y") %></td>
-              <td><%= event.sport.sport_name %> à <%= event.address.split.last(2).first.chomp(',') %></td>
-              <td><%= booking.user.full_name %>, <%= booking.user.age %></td>
-              <td><%= booking.booking_status %></td>
-              <td>
+              <td style="vertical-align:middle;"><%= event.date.strftime("%d/%m/%y") %><br><%= event.sport.sport_name %><br><%= event.address.split.last(2).first.chomp(',') %></td>
+              <td style="vertical-align:middle;"><%= booking.user.full_name %><br><%= booking.user.age %> ans<br><%= booking.user.city %></td>
+              <td style="vertical-align:middle;"><%= booking.booking_status.split[0...2].join(' ') %></td>
+              <td style="vertical-align:middle;">
                 <% if booking.booking_status == "En attente de validation" %>
                   <%= link_to "Accepter", approve_booking_path(booking), method: :patch, class: "btn btn-success btn-sm", data: {confirm: "Êtes-vous sûr de vouloir accepter cette demande d'inscription?"} %>
                   <%= link_to "Refuser", reject_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm", data: {confirm: "Êtes-vous sûr de vouloir refuser cette demande d'inscription?"} %>
                 <% else %>
                   <% if Date.today < event.date %>
-                    <%= link_to "Annuler l'inscription", cancel_booking_path(booking), method: :patch, class: "btn btn-outline-danger btn-sm", data: {confirm: "Êtes-vous sûr de vouloir annuler cette demande d'inscription?"} %>
+                    <%= link_to "Annuler", cancel_booking_path(booking), method: :patch, class: "btn btn-outline-danger btn-sm", data: {confirm: "Êtes-vous sûr de vouloir annuler cette demande d'inscription?"} %>
                   <% else %>
                     <p>Activité terminée</p>
                   <% end %>
                 <% end %>
               </td>
                 <% if Date.today > event.date %>
-                  <td><%= link_to "Voir l'activité", event_path(event), class: "btn btn-secondary btn-sm" %></td>
+                  <td style="vertical-align:middle;"><%= link_to "Voir l'activité", event_path(event), class: "btn btn-secondary btn-sm" %></td>
                 <% else %>
-                  <td><%= link_to "Voir l'activité", event_path(event), class: "btn btn-warning btn-sm" %></td>
+                  <td style="vertical-align:middle;"><%= link_to "Voir l'activité", event_path(event), class: "btn btn-info btn-sm" %></td>
                 <% end %>
             </tr>
           <% end %>

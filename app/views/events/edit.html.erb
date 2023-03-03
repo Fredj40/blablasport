@@ -6,20 +6,20 @@
           <h2>Modifier mon activité</h2><br>
           <%= @error %>
           <%= simple_form_for @event do |f| %>
-            <div class="form-fields row">
+            <div class="row">
               <div class="col-md-4">
-                <%= f.input :sport_id, input_html: { class: 'form-label' }, collection: @ordered_list, label: "Choisis ton sport", placeholder: "Football" %>
+                <%= f.input :sport_id, as: :hidden, input_html: { class: 'form-label' }, collection: @ordered_list, label: "Le choix du sport ne peut être modifié", placeholder: "Football" %>
               </div>
 
-              <div class="col-md-3">
-                <%= f.input :players_number, input_html: { class: 'form-label', min: '1', step: '1' }, placeholder: "1", label: "Nombre de places" %>
+              <div class="col-md-4">
+                <%= f.input :players_number, input_html: { class: 'form-label', min: '1', step: '1' }, placeholder: "Nb ?", label: "Nombre de places" %>
               </div>
 
               <div class="col-md-4">
                 <%= f.input :level, input_html: { class: 'form-label' }, collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum", placeholder: "Pour tous" %>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <%= f.input :date, as: :string,
                             wrapper_html: { class: "mb-4" },
                             label_html: { class: "form-label text-secondary fw-bold" },
@@ -34,11 +34,11 @@
                 <%= f.input :duration, input_html: { class: 'form-label' }, collection: ['20 min','30 min','45 min', '1H00', '1H30', '2H00', '2H30', '3H00 ou +'], label: "Durée", placeholder: "1H00" %>
               </div>
 
-              <div class="col-7">
+              <div class="col-8">
                 <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire", placeholder: "Bien arriver à l'heure" %>
               </div>
 
-              <div class="col-8">
+              <div class="col-9">
                 <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, placeholder: "saisir l'adresse", wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
               </div>
 
@@ -48,25 +48,20 @@
 
               <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
 
-              <div class="col-5">
-                <%= f.submit "Valider les modifications", class: "btn btn-success" %>
+              <div class="col-6">
+                <%= f.submit "Valider", class: "btn btn-success btn-sm" %>
               </div>
 
-              <div class="col-1"></div>
-
-              <div class="col-5">
-              <%= link_to "Annuler les modifications", event_path, class: "btn btn-danger" %>
+              <div class="col-6">
+              <%= link_to "Annuler", event_path, class: "btn btn-danger btn-sm" %>
               </div>
-
-              <div class="col-1"></div>
-
-              <div class="col-11">
-                <%= link_to "Retour au menu", events_path, class: "btn btn-secondary" %>
+              <div class="col-12">
+                <%= link_to "Retour au menu", events_path, class: "btn btn-secondary btn-sm" %>
               </div>
 
             </div>
           <% end %>
-        </div><br>
+        </div>
       </div>
     </div>
   </div>

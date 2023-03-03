@@ -12,7 +12,7 @@ User.destroy_all
 p 'Database cleaned'
 
 p "Creating Users..."
-@user1 = User.create!(email: "romainweyrich90@gmail.com", first_name: "Romain", last_name: "Weyrich", password: "123456", password_confirmation: "123456", age: "32", phone_number: "0606060606", sex: "Homme", address: "rue de la Paix", zip_code: "1018", city: "Lausanne", user_description: "fan de foot")
+@user1 = User.create!(email: "romainweyrich90@gmail.com", first_name: "Romain", last_name: "Weyrich", password: "123456", password_confirmation: "123456", age: "32", phone_number: "0606060606", sex: "Homme", address: "rue de la Paix", zip_code: "1018", city: "Lausanne", user_description: "fan d'aquagym, pilate, fitness")
 @user2 = User.create!(email: "alx.dionisio@gmail.com", first_name: "Alex", last_name: "Dionisio", password: "123456", password_confirmation: "123456", age: "32", phone_number: "0606060607", sex:"Homme", address: "rue Victor Hugo", zip_code: "13005", city: "Marseille", user_description: "fan de tennis")
 @user3 = User.create!(email: "fredericjeanne@gmail.com", first_name: "Fred", last_name: "Jeanne", password: "123456", password_confirmation: "123456", age: "40", phone_number: "0606060608", sex:"Homme", address: "rue Romain Weyrich", zip_code: "40100", city: "Dax", user_description: "fan de badminton")
 @user4 = User.create!(email: "test4@test.com", first_name: "Jeff", last_name: "Tuche", password: "123456", password_confirmation: "123456", age: "42", phone_number: "0606060609", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
@@ -532,3 +532,10 @@ p "Created #{Message.count} messages"
 #   filename: 'favicon.png',
 #   comment_type: 'image/jpg'
 # )
+image_path = Rails.root.join("app/assets/images/BlaBlaSport.png")
+cloudinary_image = Cloudinary::Uploader.upload(image_path)
+picture44 = ActiveStorage::Blob.create_and_upload!(
+  io: URI.open(cloudinary_image['secure_url']),
+  filename: 'BlaBlaSport.png',
+  comment_type: 'image/jpg'
+)
