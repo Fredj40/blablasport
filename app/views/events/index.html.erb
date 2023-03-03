@@ -6,36 +6,40 @@
   <source src="https://res.cloudinary.com/di7k88pkv/video/upload/v1676656463/production_ID_4440937_yjqeyx.mp4" type="video/mp4">
 </video>
 
-<div class="logo-index">
-    <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", alt: "BlaBlaSport" %>
+<div class="logo-index-mobile">
+  <div class="logo-index">
+      <%= image_tag "https://res.cloudinary.com/di7k88pkv/image/upload/v1675864703/agenx4hoeac8j1gufekm.png", alt: "BlaBlaSport" %>
+  </div>
 </div>
 
-<div class = "middle-container">
-  <h1>Rejoins la communauté BLABLASPORT !</h1>
-  <h2>LE réseau sportif</h2>
-  <h3>Trouve des adversaires Rejoins une équipe</h3>
-  <h4>Découvre de nouveaux sports Organise ta cession</h4>
-  <h5>Rencontre de nouveaux joueurs et suis-les !</h5>
+<div class="hidden-mobile">
+  <div class= "middle-container">
+    <h1>Rejoins la communauté BLABLASPORT !</h1>
+    <h2>LE réseau sportif</h2>
+    <h3>Trouve des adversaires Rejoins une équipe</h3>
+    <h4>Découvre de nouveaux sports Organise ta cession</h4>
+    <h5>Rencontre de nouveaux joueurs et suis-les !</h5>
+  </div>
 </div>
 
 <div class="diagonal-box"></div>
 <div class="diagonal-box2"></div>
 
-<div class="logo-ball">
-  <div><%= link_to "J'organise une activité et je cherche des joueurs", new_event_path, class: "btn btn-info" %></div>
-</div>
+<div class="search-index-form">
 
-<div class="buttons-container">
-  <form class="form_search row d-flex justify-content-center">
+  <form class="form_search row">
     <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
-      <div class="col-12 col-lg-11">
+      <div class="col-12 col-lg-12 col-sm-12">
         <input type="search"  name= 'search' value: params.dig(:search) class="form-control" id="inputRecherche3" placeholder= "Je cherche une activité, ex : Foot à Paris">
-      </div>
-      <div class="col-12 col-lg-1">
         <button type="submit" class="btn btn-info">Go</button>
       </div>
     <% end %>
   </form>
+
+  <div class="add-activity">
+    <%= link_to "Je souhaite publier une activité", new_event_path, class: "btn btn-info" %>
+  </div>
+
 </div>
 
 <div class="events-container">
