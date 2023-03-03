@@ -158,8 +158,6 @@
 
 .buttons-container {
   position: relative;
-  // display: flex;
-  // flex-direction: row;
   margin-top: -9vh;
   margin-left: 21%;
   margin-right: 50%;
@@ -178,11 +176,12 @@
 }
 
 .events-container {
-  // background-color: #3A3C4F;
   background-image: linear-gradient(0deg, #D5D2B6, #3A3C4F);
-  // height: 100%;
   width: 100%;
   z-index: -5;
+}
+.events_card {
+  margin-bottom: 50px;
 }
 
 .events_card h1 {
@@ -198,25 +197,22 @@
   flex-wrap: wrap;
   z-index: 3;
   left: calc(50% - 300px);
+  align-items: center;
 }
 
 .event-card {
   margin: 12px;
-  flex: 30%;
+  flex: 20%;
   background-color: rgb(32, 31, 31);
-  // opacity: 0.8;
-  // border: 1px solid #e98b2a;
   border-radius: 20px;
   box-shadow: -1rem 0 3rem #000;
-  padding : 15px;
+  padding : 10px;
   margin-bottom: 20px;
   text-align: center;
-
   transition: 0.4s ease-out;
   position: relative;
-  // display: flex;
-  height: 320px;
-  width: 180px;
+  max-width: 180px;
+  height: 300px;
   box-shadow: -1rem 0 3rem #000;
   margin-left: -50px;
   left: 0px;
@@ -231,13 +227,25 @@
   border: 1px solid gold;
   z-index: 4;
 }
-.event-card:hover ~ .card {
+.event-card:hover ~ .event-card {
   position: relative;
   left: 50px;
   transition: 0.4s ease-out;
 }
 .event-card h3 {
   margin-top: 5px;
+  font-size: 20px;
+}
+.event-card h4 {
+  margin-top: 5px;
+  font-size: 18px;
+}
+.event-card h6 {
+  color: white;
+  font-weight: 300;
+  font-style: normal;
+  margin-bottom: 15px;
+  line-height: 1.5;
 }
 
 
@@ -334,6 +342,19 @@
   margin-left: 20px;
   margin-right: 20px;
 }
+.event-passed:hover {
+  transform: translateX(20px) translateY(-15px);
+  transition: 0.4s ease-out;
+  border: 1px solid gold;
+  background-color: black;
+}
+
+.event-passed:hover h6 {
+  color: white;
+}
+.event-passed:hover h4 {
+  color: gold;
+}
 
 .events-passed {
   width: 100%;
@@ -350,9 +371,6 @@
 
 .events-passed h6 {
   color: black;
-}
-.event-card h6 {
-  color: white;
 }
 
 .h5-star {
@@ -480,15 +498,16 @@
   margin-bottom: 20px;
 }
 
-.container-new {
+.container-new-activity {
   background-image: url("https://res.cloudinary.com/di7k88pkv/image/upload/v1676892785/pexels-the-th-179908_c3wvvx.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 89vh;
+  height: 100%;
   width: 100%;
+  position: fixed;
 }
+
 
 // NOTES REVIEWS
 
