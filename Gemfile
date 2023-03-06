@@ -27,6 +27,7 @@ gem 'active_bootstrap_skin'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
+gem "letter_opener", group: :development
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
   has_many :sports, through: :favorite_sports, dependent: :destroy
-  #has_many :players, through: :bookings, dependent: :destroy
-  # has_many :events, through: :players
   has_many :events, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :chatrooms, through: :events, dependent: :destroy
@@ -18,6 +16,8 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :age, presence: true
+  validates :sex, presence: true
   validates :email, presence: true
   validates :email, uniqueness: true
   validates :password, presence: true
@@ -31,9 +31,6 @@ class User < ApplicationRecord
   validates :city, presence: true
   validates :zip_code, presence: true
   validates :zip_code, length: { minimum: 4 }
-
-  #include PublicActivity::Model
-  #tracked only: [:create], owner: Proc.new{ |controller, model| controller && controller.current_user }
 
   include PublicActivity::Model
   tracked

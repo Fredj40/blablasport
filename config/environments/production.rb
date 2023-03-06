@@ -4,6 +4,16 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://www.blablasport.fr" }
   # Settings specified here will take precedence over those in config/application.rb.
 
+  ActionMailer::Base.smtp_settings = {
+    :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
+    :password => ENV["MAPBOX_API_KEY"], # This is the secret sendgrid API key which was issued during API key creation
+    :domain => 'blablasport.fr',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
   config.force_ssl = true
 
   # Code is not reloaded between requests.
