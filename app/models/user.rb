@@ -33,7 +33,7 @@ class User < ApplicationRecord
   # validates :zip_code, length: { minimum: 4 }
 
   include PublicActivity::Model
-  tracked
+  tracked owner: :itself
 
   def full_name
     "#{first_name} #{last_name}"

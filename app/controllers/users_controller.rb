@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @users = User.all
     end
     @friends_count = Friendship.where(friend_id: @user.id , status: "accepted").count + Friendship.where(user_id: @user.id, status: "accepted").count
-    @activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
+    @activities = PublicActivity::Activity.order(created_at: :desc).limit(20)
     @attended_event = @user.bookings
     @created_event = @user.events
     @attended_event_count = @user.bookings.count

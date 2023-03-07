@@ -15,10 +15,10 @@
             <% if event.future? %>
               <tr>
                 <td style="vertical-align:middle;"><%= event.date.strftime("%d/%m/%y") %><br><%= event.sport.sport_name %><br><%= event.address.split.last(2).first.chomp(',') %></td>
-                <td style="vertical-align:middle;"><%= event.user.first_name %><br><%= event.user.age %> ans<br><%= event.user.city %></td>
+                <td style="vertical-align:middle;"><%= event.user.full_name %><br><%= event.user.age %> ans<br><%= event.user.city %></td>
                 <td style="vertical-align:middle;">
                   <% if booking.booking_status == "En attente de validation" %>
-                    <div>Inscription en attente</div>
+                    <div>En attente</div>
                   <% elsif booking.booking_status == "Acceptée" %>
                     <div>Inscription validée</div>
                   <% elsif booking.booking_status == "Refusée" %>
@@ -32,7 +32,7 @@
         </tbody>
       </table>
     <% else %>
-      <div>Tu n'as pas encore réservé d'activité</div>
+      <p>Tu n'as pas encore réservé d'activité</p>
     <% end %>
 
   </br>
@@ -56,7 +56,7 @@
           <% if event.past? %>
             <tr>
               <td style="vertical-align:middle;"><%= event.date.strftime("%d/%m/%y") %><br><%= event.sport.sport_name %><br><%= event.address.split.last(2).first.chomp(',') %></td>
-              <td style="vertical-align:middle;"><%= event.user.first_name %><br><%= event.user.age %> ans<br><%= event.user.city %></td>
+              <td style="vertical-align:middle;"><%= event.user.full_name %><br><%= event.user.age %> ans<br><%= event.user.city %></td>
               <td style="vertical-align:middle;"><% if booking.booking_status == "Acceptée" %>
                   <div>Inscription validée</div>
                 <% elsif booking.booking_status == "En attente de validation" %>
@@ -74,5 +74,5 @@
       </tbody>
     </table>
   <% else %>
-    <div>Tu n'as pas de réservation passée</div>
+    <p>Tu n'as pas de réservation passée</p>
   <% end %>

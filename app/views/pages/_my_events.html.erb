@@ -6,7 +6,6 @@
       <th>Participant</th>
       <th>Statut</th>
       <th>Action</th>
-      <th>Lien</th>
     </tr>
   </thead>
 
@@ -22,7 +21,7 @@
             <tr>
               <td style="vertical-align:middle;"><%= event.date.strftime("%d/%m/%y") %><br><%= event.sport.sport_name %><br><%= event.address.split.last(2).first.chomp(',') %></td>
               <td style="vertical-align:middle;"><%= booking.user.full_name %><br><%= booking.user.age %> ans<br><%= booking.user.city %></td>
-              <td style="vertical-align:middle;"><%= booking.booking_status.split[0...2].join(' ') %></td>
+              <td style="vertical-align:middle; justify-content:center;"><%= booking.booking_status.split[0...2].join(' ') %><br><%= link_to "Voir l'activité", event_path(event), class: "dashboard-link" %></td>
               <td style="vertical-align:middle;">
                 <% if booking.booking_status == "En attente de validation" %>
                   <%= link_to "Accepter", approve_booking_path(booking), method: :patch, class: "btn btn-success btn-sm", data: {confirm: "Êtes-vous sûr de vouloir accepter cette demande d'inscription?"} %>
@@ -35,11 +34,6 @@
                   <% end %>
                 <% end %>
               </td>
-                <% if Date.today > event.date %>
-                  <td style="vertical-align:middle;"><%= link_to "Voir l'activité", event_path(event), class: "btn btn-secondary btn-sm" %></td>
-                <% else %>
-                  <td style="vertical-align:middle;"><%= link_to "Voir l'activité", event_path(event), class: "btn btn-info btn-sm" %></td>
-                <% end %>
             </tr>
           <% end %>
         <% end %>

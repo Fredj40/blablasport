@@ -9,16 +9,15 @@ class Event < ApplicationRecord
 
   validates :date, presence: true
   validates :time, presence: true
-  validates :price, presence: true
-  validates :sport, presence: true
-  validates :user, presence: true
+  validates :gratuit, presence: true
+  validates :price, presence: true, if: :validation_price_check
   validates :level, presence: true
- validates :players_number, presence: true, inclusion: { in: 1..30 }
+  validates :players_number, presence: true, inclusion: { in: 1..30 }
   validates :address, presence: true
-  validates :duration, presence: true, inclusion: { in: 1..120 }
+  validates :duration, presence: true
 
   include PublicActivity::Model
-  tracked
+  tracked only: [:create, :update]
 
   def future?
     date > Date.today
@@ -36,6 +35,10 @@ class Event < ApplicationRecord
     title
   end
 
+  def validation_price_check
+    gratuit == false
+  end
+
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
@@ -50,5 +53,4 @@ class Event < ApplicationRecord
   using: {
     tsearch: { prefix: true }
   }
-
 end

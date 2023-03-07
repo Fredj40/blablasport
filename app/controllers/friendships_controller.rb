@@ -17,6 +17,7 @@ class FriendshipsController < ApplicationController
     @users = User.all
     @friendships = Friendship.where(friend_id: current_user.id , status: "accepted") + Friendship.where(user_id: current_user.id, status: "accepted")
     @request_friend_count = Friendship.where(friend_id: current_user.id, status: "pending").count
+    @activities = PublicActivity::Activity.order(created_at: :desc).limit(20)
   end
 
   def create
@@ -42,6 +43,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     @friendship.update(status: "accepted")
     redirect_to friendships_path
+    @activities = PublicActivity::Activity.order(created_at: :desc).limit(20)
   end
 
   def decline

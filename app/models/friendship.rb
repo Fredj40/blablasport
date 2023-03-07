@@ -5,4 +5,8 @@ class Friendship < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :global_search,
     against: [:first_name, :last_name]
+
+  include PublicActivity::Model
+  tracked only: :update
+
 end
