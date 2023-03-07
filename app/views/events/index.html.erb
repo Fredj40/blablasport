@@ -121,7 +121,7 @@
             <% elsif activity.key == "review.create" %>
               <span><strong><%= activity.trackable.user.first_name %></strong> a laissé un avis sur l'activité xxxxx <%= activity.created_at %><%= time_ago_in_words(activity.created_at)%></span>
             <% elsif activity.key == "friendship.update" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> et xxxxxxx sont maintenants amis <%= activity.created_at %><%= time_ago_in_words(activity.created_at)%></span>
+              <span><strong><%= activity.trackable.user.first_name %></strong> et <%= activity.trackable %> sont maintenants amis <%= activity.trackable.user.first_name %><%= activity.created_at %><%= time_ago_in_words(activity.created_at)%></span>
 
             <% end %>
           </div>
