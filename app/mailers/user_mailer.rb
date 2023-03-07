@@ -1,20 +1,9 @@
 class UserMailer < ApplicationMailer
-  after_create :send_welcome_email
+  default from: 'contact@blablasport.fr'
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.welcome.subject
-  #
-  def welcome
-    @greeting = "Bonjour"
-    user = @user
-    mail to: user.email
-    mail to: "to@example.org"
+  def welcome_email
+    @user = params[:user]
+    @url  = 'http://www.blablasport.fr/users/sign_in'
+    mail(to: @user.email, subject: 'Bienvenue dans la communauté BlablaSport !')
   end
-
-  def send_welcome_email
-    UserMailer.welcome(self).deliver_now
-  end
-
 end

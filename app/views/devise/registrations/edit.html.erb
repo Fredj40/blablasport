@@ -2,16 +2,11 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-6">
-        <div class="form-event">
+        <div class="form-login">
           <h2>Modifier mon profil</h2>
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
             <%= f.error_notification %>
             <div class="row">
-
-              <div class="col-md-6">
-                <%= f.input :email, required: true, autofocus: true %>
-              </div>
-
               <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                 <p>En attente de confirmation de: <%= resource.unconfirmed_email %></p>
               <% end %>
@@ -19,77 +14,71 @@
               <div class="col-md-6">
                 <%= f.input :first_name,
                             label: "Prénom",
-                            hint: "Ne pas renseigner si tu ne souhaites pas changer de prénom",
-                            input_html: { autocomplete: "Nouveau prénom" } %>
+                            required: true %>
               </div>
+
               <div class="col-md-6">
                 <%= f.input :last_name,
-                            label: "Nom de famille",
-                            hint: "Ne pas renseigner si tu ne souhaites pas changer de nom de famille",
-                            input_html: { autocomplete: "nouveau nom de famille" } %>
+                            label: "Nom",
+                            required: true %>
               </div>
-              <div class="col-md-6">
-                <%= f.input :phone_number,
-                            label: "Numéro de téléphone",
-                            hint: "Ne pas renseigner si tu ne souhaites pas changer de numéro de téléphone",
-                            input_html: { autocomplete: "Nouveau numéro de téléphone" } %>
-              </div>
-              <div class="col-md-6">
-                <%= f.input :address,
-                            label: "Adresse",
-                            hint: "Ne pas renseigner si tu ne souhaites pas changer d'adresse",
-                            input_html: { autocomplete: "Nouvelle adresse" } %>
-              </div>
-              <div class="col-md-6">
-                <%= f.input :zip_code,
-                            label: "code postal",
-                            hint: "Ne pas renseigner si tu ne souhaites pas changer de code postale",
-                            input_html: { autocomplete: "Nouveau code postale" } %>
-              </div>
-              <div class="col-md-6">
-                <%= f.input :city,
-                            label: "ville de résidence",
-                            hint: "Ne pas renseigner si tu ne souhaites pas changer de ville de résidence",
-                            input_html: { autocomplete: "Nouvelle ville de résidence" } %>
-              </div>
+
               <div class="col-md-6">
                 <%= f.input :age,
                             label: "Age",
-                            hint: "Ne pas renseigner si tu ne souhaites pas changer d'âge",
-                            input_html: { autocomplete: "Age" } %>
+                            required: true,
+                            input_html: { min: '12', step: '1' } %>
               </div>
+
               <div class="col-md-6">
+
                 <%= f.input :sex,
                             label: "Sexe",
-                            hint: "Ne pas renseigner si tu ne souhaites pas changer ton sexe ",
-                            input_html: { autocomplete: "Sexe" } %>
+                            collection: ['Homme', 'Femme'],
+                            required: true %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.input :city,
+                            label: "Ville" %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.input :phone_number,
+                            label: "Numéro de téléphone",
+                            required: true %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.input :email,
+                            label: "Email de connexion",
+                            required: true,
+                            autofocus: true %>
               </div>
 
               <div class="col-md-6">
                 <%= f.input :current_password,
                             label: "Mot de passe actuel",
-                            hint: "Nous avons besoin de ton mot de passe actuel pour confirmer les changements",
                             input_html: { autocomplete: "Mot de passe actuel" } %>
               </div>
 
               <div class="col-md-6">
                 <%= f.input :password,
                             label: "Nouveau mot de passe",
-                            hint: "Ne pas renseigner si tu ne souhaites pas changer de mot de passe",
                             input_html: { autocomplete: "Nouveau mot de passe" } %>
               </div>
 
               <div class="col-md-6">
                 <%= f.input :password_confirmation,
-                            label: "Confirmation nouveau mot de passe",
+                            label: "Confirmer nouveau mot de passe",
                             input_html: { autocomplete: "Confirmer nouveau mot de passe" } %>
               </div>
 
-              <div class="col-md-6">
+              <div class="btn-edit-profile col-md-6">
                 <%= f.button :submit, "Mettre à jour", class: "btn btn-success btn-sm" %>
               </div>
 
-              <div class="col-md-6">
+              <div class="btn-edit-profile col-md-6">
                 <%= link_to "Retour au menu", events_path, class: "btn btn-secondary btn-sm" %>
               </div>
 

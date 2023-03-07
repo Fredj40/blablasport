@@ -48,7 +48,7 @@
       <div class= "events_card col-12 col-lg-8">
         <%# <h1>Evénements à venir</h1> %>
         <% if @events.empty? %><br>
-          <div class="d-flex justify-content-end"><span>Il n'y a pas de résultat avec ces critères</span></div>
+          <div class="d-flex justify-content-evenly"><p>Il n'y a pas de résultat avec ces critères</p></div>
         <% else %>
           <div class= "events_cards">
             <% @events.first(30).each do |event| %>

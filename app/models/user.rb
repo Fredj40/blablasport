@@ -27,10 +27,10 @@ class User < ApplicationRecord
   validates :phone_number, presence: true
   validates :phone_number, uniqueness: true
   validates :phone_number, length: { minimum: 10 }
-  validates :address, presence: true
+  # validates :address, presence: true
   validates :city, presence: true
-  validates :zip_code, presence: true
-  validates :zip_code, length: { minimum: 4 }
+  # validates :zip_code, presence: true
+  # validates :zip_code, length: { minimum: 4 }
 
   include PublicActivity::Model
   tracked

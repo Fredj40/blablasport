@@ -1,14 +1,20 @@
+
 .form-login {
   background :rgba(0, 0, 0, 0.6);
   color: white;
-  padding: 10px 20px;
-  margin-top: 200px;
-  border-radius: 3px;
-  box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+  padding-top: 40px;
+  padding-bottom: 10px;
+  padding-right: 40px;
+  padding-left: 40px;
+  margin-top: 50px;
+  margin-bottom: 110px;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+  width: 100%;
   h2 {
     font-size: 25px;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     text-align: center;
   }
   .btn {
@@ -16,6 +22,7 @@
     margin-bottom: 20px
   }
 }
+
 .form-links {
   text-align: center;
   text-justify: center;

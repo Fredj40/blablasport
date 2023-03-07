@@ -2,14 +2,54 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-6">
-        <div class="form-event">
-            <h2>Inscription</h2>
+        <div class="form-login">
+            <h2>Inscription</h2><br><br>
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
               <%= f.error_notification %>
 
               <div class="row">
+
+              <div class="col-md-6">
+                <%= f.input :first_name,
+                            label: "Prénom",
+                            required: true %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.input :last_name,
+                            label: "Nom",
+                            required: true %>
+              </div>
+
+              <div class="col-md-2">
+                <%= f.input :age,
+                            label: "Age",
+                            required: true,
+                            input_html: { min: '12', step: '1' } %>
+              </div>
+
+              <div class="col-md-3">
+
+                <%= f.input :sex,
+                            label: "Sexe",
+                            collection: ['Homme', 'Femme'],
+                            required: true %>
+              </div>
+
+              <div class="col-md-7">
+                <%= f.input :city,
+                            label: "Ville" %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.input :phone_number,
+                            label: "Numéro de téléphone",
+                            required: true %>
+              </div>
+
               <div class="col-md-6">
                 <%= f.input :email,
+                            label: "Email de connexion",
                             required: true,
                             autofocus: true %>
               </div>
@@ -26,61 +66,14 @@
                           required: true %>
               </div>
 
-              <div class="col-md-6">
-                <%= f.input :first_name,
-                            label: "Prénom",
-                            required: true %>
-              </div>
-
-              <div class="col-md-6">
-                <%= f.input :last_name,
-                            label: "Nom de famille",
-                            required: true %>
-              </div>
-
-              <div class="col-md-6">
-                <%= f.input :age,
-                            label: "Age",
-                            required: true %>
-              </div>
-              <div class="col-md-6">
-                <%= f.input :sex,
-                            label: "Sexe",
-                            collection: ['Homme', 'Femme'],
-                            required: true %>
-              </div>
-
-              <div class="col-md-6">
-                <%= f.input :phone_number,
-                            label: "Numéro de téléphone",
-                            required: true %>
-              </div>
-
-              <div class="col-md-12">
-                <%= f.input :address,
-                            label: "Adresse",
-                            required: true %>
-              </div>
-              <div class="col-md-6">
-                <%= f.input :zip_code,
-                            label: "code postal",
-                            required: true %>
-              </div>
-
-              <div class="col-md-6">
-                <%= f.input :city,
-                            label: "ville de résidence",
-                            required: true %>
-              </div>
-
             </div><br>
 
             <div class="form-actions col-md-12">
               <%= f.button :submit, "S'inscrire", class: "btn btn-success" %>
             </div>
-          <% end %>
+          <% end %><br><br>
 
-          <%= render "devise/shared/links" %>
+          <%= render "devise/shared/links" %><br><br>
 
         </div>
       </div>
