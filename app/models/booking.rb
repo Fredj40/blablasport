@@ -11,6 +11,9 @@ class Booking < ApplicationRecord
   validates :booking_status, presence: true
   validates :booking_status, inclusion: { in: ["En attente de validation", "Acceptée", "Refusée"] }
 
+  include PublicActivity::Model
+  tracked only: :create
+
   private
 
   def set_default_booking_status

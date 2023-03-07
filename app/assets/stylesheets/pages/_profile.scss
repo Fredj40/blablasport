@@ -16,6 +16,8 @@
 }
 .container-edit {
   background-image: linear-gradient(45deg, #D5D2B6, #3A3C4F);
+  height: 100%;
+  width: 100%;
 }
 
 .container-profile {
@@ -120,4 +122,8 @@
 .card .btn {
   border-radius: 0.25rem;
   font-size: 0.875rem;
+}
+
+.btn-edit-profile {
+  margin-top: 30px;
 }

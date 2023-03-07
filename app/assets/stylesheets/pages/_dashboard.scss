@@ -132,6 +132,18 @@ body {
   color: white;
 }
 
+#content1 {
+  p {
+    color: white;
+  }
+}
+
+#content2 {
+  p {
+    color: white;
+  }
+}
+
 .dashboard-title {
   color: white;
   font-size: 30px;
@@ -144,4 +156,13 @@ body {
   font-size: 24px;
   font-weight: bold;
   text-align: start;
+}
+
+.dashboard-link {
+  color: #c95014;
+  font-weight: bold;
+  text-decoration: none;
+}
+.dashboard-link:hover {
+  color: white;
 }

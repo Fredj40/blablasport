@@ -167,6 +167,10 @@
   width: 100%;
   z-index: -5;
 }
+.events-container p{
+  color: white;
+  z-index: 2;
+}
 .events_card {
   margin-bottom: 20vh;
 }
@@ -465,7 +469,7 @@
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
-  position: fixed;
+  // position: fixed;
 }
 
 

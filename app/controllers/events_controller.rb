@@ -8,11 +8,11 @@ class EventsController < ApplicationController
       @reviews = Review.all
       @rating = @reviews.average(:rating)
       set_markers
-      @activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
+      @activities = PublicActivity::Activity.order(created_at: :desc).limit(20)
     else
       @events = Event.all.order("date ASC, time ASC")
       set_markers
-      @activities = PublicActivity::Activity.order(created_at: :desc).limit(10)
+      @activities = PublicActivity::Activity.order(created_at: :desc).limit(20)
     end
   end
 
@@ -22,7 +22,7 @@ class EventsController < ApplicationController
     @chatroom = Chatroom.find_by(event_id: @event.id)
     @review = Review.new
     @actual_review = @event.reviews.find_by(user: current_user)
-    @booking = @event.bookings.find_by(user: current_user)
+    @booking = Booking.new
     @reviews = Review.all
     @message = Message.new
     @markers = [{
@@ -93,7 +93,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :date, :time, :price, :level, :players_number, :duration, :address, :user_id, :sport_id, messages_attributes: [:content, :user_id, :chatroom_id], chatrooms_attributes: [:event_id], reviews_attributes: [:comment, :rating, :event_id, :user_id])
+    params.require(:event).permit(:title, :description, :date, :time, :gratuit, :price, :level, :players_number, :duration, :address, :user_id, :sport_id, messages_attributes: [:content, :user_id, :chatroom_id], chatrooms_attributes: [:event_id], reviews_attributes: [:comment, :rating, :event_id, :user_id])
   end
 
   def set_event

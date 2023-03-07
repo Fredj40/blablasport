@@ -4,55 +4,62 @@
       <div class="col-12 col-lg-6">
         <div class="form-event-new">
           <h2>J'ajoute une activité</h2><br>
+
           <%= @error %>
           <%= simple_form_for @event do |f| %>
+
             <div class="row">
-              <div class="col-md-4">
-                <%= f.input :sport_id, input_html: { class: 'form-label' }, collection: @ordered_list, label: "Choisis ton sport", placeholder: "Football" %>
+              <div class="col-md-4 col-12">
+                <%= f.input :sport_id, collection: @ordered_list, label: "Sport", prompt: "Choisir Sport" %>
               </div>
 
-              <div class="col-md-4">
-                <%= f.input :players_number, input_html: { class: 'form-label', min: '1', step: '1' }, placeholder: "1", label: "Nb de places" %>
+              <div class="col-md-4 col-5">
+                <%= f.input :players_number, input_html: { min: '1', step: '1' }, placeholder: "Nb joueurs", label: "Places" %>
               </div>
 
-              <div class="col-md-4">
-                <%= f.input :level, input_html: { class: 'form-label' }, collection: ['Pour tous','Intermédiaire','Confirmé'], label: "Niveau minimum", placeholder: "Pour tous" %>
+              <div class="col-md-4 col-7">
+                <%= f.input :level, label: "Niveau", collection: ['Pour tous','Intermédiaire','Confirmé'], prompt: "Choisir Niveau" %>
               </div>
 
-              <div class="col-md-7">
+              <div class="col-md-7 col-7">
                 <%= f.input :date, as: :string,
-                            wrapper_html: { class: "mb-4" },
-                            label_html: { class: "form-label text-secondary fw-bold" },
-                            input_html: { data: { controller: "flatpickr" } } %>
+                            label: "Date de l'activité",
+                            input_html: { data: { controller: "flatpickr" }, placeholder: "Choisir Date", allowInput: true } %>
               </div>
 
-              <div class="col-md-5">
-                <%= f.input :time, input_html: { class: 'form-label' }, label: "Heure début", as: :time, :minute_step => 10 %>
+
+              <div class="col-md-5 col-5">
+                <%= f.input :duration, collection: ['20 minutes','30 minutes','45 minutes', '1 heure', '1 heure 30', '2 heures', '2 heures 30', '3 heures ou +'], label: "Durée", prompt: "Durée" %>
               </div>
 
-              <div class="col-md-4">
-                <%= f.input :duration, input_html: { class: 'form-label' }, collection: ['20 min','30 min','45 min', '1H00', '1H30', '2H00', '2H30', '3H00 ou +'], label: "Durée", placeholder: "1H00" %>
+              <div class="col-md-6 col-12">
+                <%= f.input :time,  hint: "heure de début d'activité", label: "Heure début", as: :time, :minute_step => 10 %>
+
               </div>
 
-              <div class="col-8">
-                <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire", placeholder: "Bien arriver à l'heure" %>
+              <div class="col-md-4 col-6">
+                <%= f.input :gratuit, label: "Gratuit ?", hint: "", input_html: { class: "toggle" } %>
               </div>
 
-                <div class="col-9">
-                <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+              <div class="col-md-4 col-6">
+                <%= f.input :price, input_html: { min: '1' }, label: "Prix", placeholder: "Prix si payant" %>
               </div>
 
-              <div class="col-md-3">
-                <%= f.input :price, input_html: { class: 'price-field', min: '0', step: '1' }, label: "Prix" %>
+                <div class="col-md-12 col-12">
+                <%= f.input :address, label: "Adresse complète", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden, hint: "Recherche adresse complète", wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+              </div>
+
+              <div class="col-md-12 col-12">
+                <%= f.input :description, input_html: { class: 'comment-field' }, label: "Eventuel commentaire", placeholder: "Eventuel commentaire" %>
               </div>
 
               <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
 
-              <div class="col-6">
+              <div class="col-md-6">
                 <%= f.submit "Publier", class: "btn btn-success btn-sm" %>
               </div>
 
-              <div class="col-6">
+              <div class="col-md-6">
                 <%= link_to "Retour au menu", events_path, class: "btn btn-secondary btn-sm" %>
               </div>
 

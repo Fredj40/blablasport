@@ -4,4 +4,5 @@ class Chatroom < ApplicationRecord
   has_many :users, through: :messages
   validates :event, presence: true
   validates :event, uniqueness: { message: "Cet événement a déjà une chatroom" }
+
 end

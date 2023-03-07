@@ -10,4 +10,8 @@ class Review < ApplicationRecord
   validates :comment, length: { maximum: 200 }
   validates :comment, uniqueness: { scope: :user, message: "Tu as déjà publié un commentaire" }
   validates :user, uniqueness: { scope: :event, message: "Tu as déjà publié un commentaire" }
+
+  include PublicActivity::Model
+  tracked only: :create
+
 end
