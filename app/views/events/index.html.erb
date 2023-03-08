@@ -109,7 +109,7 @@
             <% if activity.key == "event.create" %>
               <span><strong><%= activity.trackable.user.first_name %></strong> a créé un nouvel événement qui aura lieu à <%= activity.trackable.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %></span><%= activity.created_at %><%= time_ago_in_words(activity.created_at) %>
             <% elsif activity.key == "event.update" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> a modifié son événement <%= activity.trackable.sport.sport_name %> à <%= activity.trackable.address.split.last(2).first.chomp(',') %><br>Il y a <%= time_ago_in_words(activity.created_at)%></span>
+              <span><strong><%= activity.trackable.user.first_name %></strong> a modifié l'événement <%= activity.trackable.sport.sport_name %> à <%= activity.trackable.address.split.last(2).first.chomp(',') %><br>Il y a <%= time_ago_in_words(activity.created_at)%></span>
             <% elsif activity.key == "message.create" %>
               <span><strong><%= activity.trackable.user.first_name %></strong> a posté un message dans la chatroom <%= activity.trackable.chatroom.event.sport.sport_name %> - <%= activity.trackable.chatroom.event.address.split.last(2).first.chomp(',') %><br>Il y a <%= time_ago_in_words(activity.created_at)%><%= link_to "Voir le détail", event_path(activity.trackable.chatroom.event.id) %></span>
             <% elsif activity.key == "booking.create" %>
