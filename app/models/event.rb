@@ -17,7 +17,7 @@ class Event < ApplicationRecord
   validates :duration, presence: true
 
   include PublicActivity::Model
-  tracked only: [:create, :update]
+  tracked only: [:create, :edit, :update]
 
   def future?
     date > Date.today
