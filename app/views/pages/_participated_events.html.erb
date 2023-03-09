@@ -1,78 +1,34 @@
-  <h2>Mes réservations à venir</h2></br>
-    <% if current_user.bookings.any? %>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Événement</th>
-            <th>Organisateur</th>
-            <th>Statut</th>
-            <th>Lien</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% current_user.bookings.joins(:event).order(date: :asc).each do |booking| %>
-            <% event = booking.event %>
-            <% if event.future? %>
-              <tr>
-                <td style="vertical-align:middle;"><%= event.date.strftime("%d/%m/%y") %><br><%= event.sport.sport_name %><br><%= event.address.split.last(2).first.chomp(',') %></td>
-                <td style="vertical-align:middle;"><%= event.user.full_name %><br><%= event.user.age %> ans<br><%= event.user.city %></td>
-                <td style="vertical-align:middle;">
-                  <% if booking.booking_status == "En attente de validation" %>
-                    <div>En attente</div>
-                  <% elsif booking.booking_status == "Acceptée" %>
-                    <div>Inscription validée</div>
-                  <% elsif booking.booking_status == "Refusée" %>
-                    <div>Inscription refusée</div>
-                  <% end %>
-                </td>
-                <td style="vertical-align:middle;"><%= link_to "Voir l'activité", event_path(event), class: "btn btn-info btn-sm" %></td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <p>Tu n'as pas encore réservé d'activité</p>
-    <% end %>
-
-  </br>
-  </br>
-  </br>
-
-  <h2>Mes réservations passées</h2></br>
+<h2>Activités en cours - Participant</h2></br>
   <% if current_user.bookings.any? %>
     <table class="table">
       <thead>
         <tr>
-          <th>Événement</th>
+          <th>Activité</th>
           <th>Organisateur</th>
           <th>Statut</th>
-          <th>Lien</th>
         </tr>
       </thead>
       <tbody>
-        <% current_user.bookings.joins(:event).order(date: :desc).each do |booking| %>
+        <% current_user.bookings.joins(:event).order(date: :asc).each do |booking| %>
           <% event = booking.event %>
-          <% if event.past? %>
+          <% if event.future? %>
             <tr>
               <td style="vertical-align:middle;"><%= event.date.strftime("%d/%m/%y") %><br><%= event.sport.sport_name %><br><%= event.address.split.last(2).first.chomp(',') %></td>
               <td style="vertical-align:middle;"><%= event.user.full_name %><br><%= event.user.age %> ans<br><%= event.user.city %></td>
-              <td style="vertical-align:middle;"><% if booking.booking_status == "Acceptée" %>
-                  <div>Inscription validée</div>
-                <% elsif booking.booking_status == "En attente de validation" %>
-                  <div>Inscription en attente</div>
+              <td style="vertical-align:middle;">
+                <% if booking.booking_status == "En attente de validation" %>
+                  <div><%= link_to "Inscription en attente", event_path(event), class: "btn btn-warning btn-sm" %></div>
+                <% elsif booking.booking_status == "Acceptée" %>
+                  <div><%= link_to "Inscription validée", event_path(event), class: "btn btn-success btn-sm" %></div>
                 <% elsif booking.booking_status == "Refusée" %>
-                  <div>Inscription refusée</div>
-                <% end %></td>
-              <td style="vertical-align:middle;"><% if booking.booking_status == "Acceptée" %>
-              <%= link_to "Je laisse un avis", event_path(event), class: "btn btn-success btn-sm" %>
-              <% else %><%= link_to "Revoir l'activité", event_path(event), class: "btn btn-secondary btn-sm" %>
-              <% end %></td>
+                  <div><%= link_to "Inscription refusée", event_path(event), class: "btn btn-danger btn-sm" %></div>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         <% end %>
       </tbody>
     </table>
   <% else %>
-    <p>Tu n'as pas de réservation passée</p>
+    <p>Aucune inscription en cours</p>
   <% end %>

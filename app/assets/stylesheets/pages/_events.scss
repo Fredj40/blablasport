@@ -305,8 +305,6 @@
   margin-bottom: 20px;
   text-align: center;
   height: 150px;
-  margin-left: 20px;
-  margin-right: 20px;
 }
 .event-passed:hover {
   transform: translateX(20px) translateY(-15px);
@@ -371,30 +369,27 @@
 }
 .badge-validée {
   color: rgb(0, 0, 0);
-  background-color: #93d61f;
-  border-radius: 5px;
-  margin-right: 200px;
-  margin-left: 200px;
-  padding: 10px;
+  background-color: #1bf508;
+  border-radius: 2px;
+  padding: 5px;
   font-weight: bold;
+  display:inline;
 }
 .badge-attente {
   color: white;
   background-color: #ec8712;
-  border-radius: 5px;
-  margin-right: 200px;
-  margin-left: 200px;
-  padding: 10px;
+  border-radius: 2px;
+  padding: 5px;
   font-weight: bold;
+  display:inline;
 }
 .badge-refusée {
   color: #D8000C;
   background-color: white;
-  border-radius: 5px;
-  margin-right: 200px;
-  margin-left: 200px;
-  padding: 10px;
+  border-radius: 2px;
+  padding: 5px;
   font-weight: bold;
+  display:inline;
 }
 .cancel {
   color: white;

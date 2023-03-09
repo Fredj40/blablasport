@@ -1,0 +1,26 @@
+<h2>Mon historique - Participant</h2></br>
+<% if current_user.bookings.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Activité</th>
+        <th>Organisateur</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_user.bookings.joins(:event).order(date: :desc).each do |booking| %>
+        <% event = booking.event %>
+        <% if event.past? && booking.booking_status == "Acceptée" %>
+          <tr>
+            <td style="vertical-align:middle;"><%= event.date.strftime("%d/%m/%y") %><br><%= event.sport.sport_name %><br><%= event.address.split.last(2).first.chomp(',') %></td>
+            <td style="vertical-align:middle;"><%= event.user.full_name %><br><%= event.user.age %> ans<br><%= event.user.city %></td>
+            <td style="vertical-align:middle;"><%= link_to "Je laisse un avis", event_path(event), class: "btn btn-success btn-sm" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Tu n'as pas de réservation passée</p>
+<% end %>

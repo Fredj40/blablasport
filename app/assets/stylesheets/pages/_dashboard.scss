@@ -159,10 +159,15 @@ body {
 }
 
 .dashboard-link {
-  color: #c95014;
-  font-weight: bold;
-  text-decoration: none;
+  color: white;
 }
 .dashboard-link:hover {
+  color: orange;
+}
+
+.dashboard-cancel-link {
   color: white;
+}
+.dashboard-cancel-link:hover {
+  color: red;
 }

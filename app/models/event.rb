@@ -1,15 +1,14 @@
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :sport
-  has_many :players, dependent: :destroy
-  has_many :users, through: :players
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :chatrooms, dependent: :destroy
+  has_many :messages, through: :chatrooms, dependent: :destroy
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   validates :date, presence: true
   validates :time, presence: true
-  validates :gratuit, presence: true
   validates :price, presence: true, if: :validation_price_check
   validates :level, presence: true
   validates :players_number, presence: true, inclusion: { in: 1..30 }
@@ -17,7 +16,7 @@ class Event < ApplicationRecord
   validates :duration, presence: true
 
   include PublicActivity::Model
-  tracked only: [:create, :edit, :update]
+  tracked only: [:create, :edit, :update, :destroy]
 
   def future?
     date > Date.today
@@ -44,13 +43,6 @@ class Event < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :global_search,
-  against:
+  against: [ :description, :title, :address ], associated_against: { sport: [:sport_name] }, using: { tsearch: { prefix: true } }
 
-  [ :description, :title, :address ],
-  associated_against: {
-    sport: [:sport_name]
-  },
-  using: {
-    tsearch: { prefix: true }
-  }
 end

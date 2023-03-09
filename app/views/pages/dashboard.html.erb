@@ -2,22 +2,39 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-12">
-        <h1>Mon tableau de bord</h1>
+        <h1>Mon tableau de bord</h1><br>
 
         <div class="tabs">
-          <input id="tab1" type="radio" name="tabs" checked>
-          <label for="tab1">Mes événements</label>
 
-          <input id="tab2" type="radio" name="tabs">
-          <label for="tab2">Mes inscriptions</label>
+          <input id="tab1" type="radio" name="tabs">
+          <label for="tab1">PARTICIPANT - Activités en cours</label>
+
+          <input id="tab2" type="radio" name="tabs" checked>
+          <label for="tab2">ORGANISATEUR - Activités en cours</label>
+
+          <input id="tab3" type="radio" name="tabs">
+          <label for="tab3">PARTICIPANT - Historique</label>
+
+          <input id="tab4" type="radio" name="tabs">
+          <label for="tab4">ORGANISATEUR - Historique</label>
+
 
           <section id="content1">
-            <%= render 'pages/my_events' %>
+            <%= render 'pages/participated_events' %>
           </section>
 
           <section id="content2">
-            <%= render 'pages/participated_events' %>
+            <%= render 'pages/my_events' %>
           </section>
+
+          <section id="content3">
+            <%= render 'pages/participated_events_history' %>
+          </section>
+
+          <section id="content4">
+            <%= render 'pages/my_events_history' %>
+          </section>
+
         </div>
       </div>
     </div>
