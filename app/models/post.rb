@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   include PublicActivity::Model
-  tracked owner: proc { |controller, model| controller.current_user }
+  tracked
 
   def to_s
     title

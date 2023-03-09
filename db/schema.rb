@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_141128) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_143405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -135,14 +135,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_141128) do
     t.index ["user_id"], name: "index_favorite_sports_on_user_id"
   end
 
-  create_table "friendships", force: :cascade do |t|
+  create_table "followability_relationships", force: :cascade do |t|
+    t.string "followerable_type", null: false
+    t.bigint "followerable_id", null: false
+    t.string "followable_type", null: false
+    t.bigint "followable_id", null: false
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "friend_id"
-    t.bigint "user_id"
-    t.string "status", default: "pending"
-    t.index ["friend_id"], name: "index_friendships_on_friend_id"
-    t.index ["user_id"], name: "index_friendships_on_user_id"
+    t.index ["followable_type", "followable_id"], name: "index_followability_relationships_on_followable"
+    t.index ["followerable_type", "followerable_id"], name: "index_followability_relationships_on_followerable"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -162,15 +164,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_141128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
-  end
-
-  create_table "players", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "event_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_players_on_event_id"
-    t.index ["user_id"], name: "index_players_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -225,12 +218,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_141128) do
   add_foreign_key "events", "users"
   add_foreign_key "favorite_sports", "sports"
   add_foreign_key "favorite_sports", "users"
-  add_foreign_key "friendships", "users"
-  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "players", "events"
-  add_foreign_key "players", "users"
   add_foreign_key "reviews", "events"
   add_foreign_key "reviews", "users"
 end

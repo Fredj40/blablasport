@@ -60,6 +60,7 @@ gem "jbuilder"
 gem 'public_activity'
 
 #friendslist
+gem "followability", "~> 1.1"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
