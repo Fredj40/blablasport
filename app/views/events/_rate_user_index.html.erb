@@ -1,0 +1,16 @@
+<% unless event.user.number_of_events == nil %>
+  <% if event.user.number_of_events == 1 %>
+    <span> (1 partie organisée)</span>
+  <% else %>
+    <span> (<%= event.user.number_of_events %> parties organisées) </span>
+  <% end %>
+<% end %>
+<% starfull = event.user.average_rating %>
+<% unless starfull == "Pas de note" %>
+  <% starfull.times do %>
+    <i class="fa-solid fa-star"></i>
+  <% end %>
+  <% (5-starfull).times do %>
+    <i class="fa-regular fa-star"></i>
+  <% end %>
+<% end %>

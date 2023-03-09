@@ -1,6 +1,9 @@
 class Review < ApplicationRecord
   belongs_to :event
   belongs_to :user
+
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
+
   validates :event, presence: true
   validates :user, presence: true
   validates :rating, presence: true

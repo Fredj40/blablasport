@@ -70,25 +70,7 @@
                     <% end %>
                   </h5>
                   <%# <h6>Créé le <%= event.created_at.strftime("%d/%m/%Y") %>
-                  <h6>Créé par <strong><%= event.user.first_name %></strong><br>
-                    <%# <% unless event.user.number_of_events == nil %>
-                      <%# <% if event.user.number_of_events == 1 %>
-                        <%# <span> (1 partie organisée)</span> %>
-                      <%# <% else %>
-                        <%# <span> (<%= event.user.number_of_events %>
-                      <%# parties organisées) </span> %>
-                      <%# <% end %>
-                    <%# <% end %>
-                    <% starfull = event.user.average_rating %>
-                    <% unless starfull == "Pas de note" %>
-                      <% starfull.times do %>
-                        <i class="fa-solid fa-star"></i>
-                      <% end %>
-                      <% (5-starfull).times do %>
-                        <i class="fa-regular fa-star"></i>
-                      <% end %>
-                    <% end %>
-                  </h6>
+                  <h6>Créé par <strong><%= event.user.first_name %></strong><br></h6>
                   <%= link_to "Voir le détail", event_path(event), class: "btn btn-outline-warning btn-sm" %>
                 </div>
               <% end %>
@@ -104,25 +86,8 @@
         <div id="map" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
         <div class="activity-feed">
-        <% @activities.each do |activity| %>
-          <div class="activity" style="display: flex; flex-direction: column; align-items: center; margin-top: 10px; background-color: black; opacity: 0.7; color: white; padding: 10px; border-radius: 10px;">
-            <% if activity.key == "event.create" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> a créé un nouvel événement qui aura lieu à <%= activity.trackable.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %></span><%= activity.created_at %><%= time_ago_in_words(activity.created_at) %>
-            <% elsif activity.key == "event.update" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> a modifié l'événement <%= activity.trackable.sport.sport_name %> à <%= activity.trackable.address.split.last(2).first.chomp(',') %><br>Il y a <%= time_ago_in_words(activity.created_at)%></span>
-            <% elsif activity.key == "message.create" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> a posté un message dans la chatroom <%= activity.trackable.chatroom.event.sport.sport_name %> - <%= activity.trackable.chatroom.event.address.split.last(2).first.chomp(',') %><br>Il y a <%= time_ago_in_words(activity.created_at)%><%= link_to "Voir le détail", event_path(activity.trackable.chatroom.event.id) %></span>
-            <% elsif activity.key == "booking.create" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> s'est inscrit à l'événement <%= activity.trackable.event.sport.sport_name %> à <%= activity.trackable.event.address.split.last(2).first.chomp(',') %><br>Il y a <%= time_ago_in_words(activity.created_at)%><%= link_to "Voir le détail", event_path(activity.trackable.event.id) %></span>
-            <% elsif activity.key == "user.create" %>
-              <span><strong><%= activity.trackable.first_name %></strong> a rejoint la communauté BlaBlaSport! <br>Il y a <%= time_ago_in_words(activity.created_at)%></span>
-            <% elsif activity.key == "review.create" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> a laissé un avis aprés sa participation au <%= activity.trackable.event.sport.sport_name %> à <%= activity.trackable.event.address.split.last(2).first.chomp(',') %><br>Il y a <%= time_ago_in_words(activity.created_at)%></span>
-            <% elsif activity.key == "friendship.update" %>
-              <span><strong><%= activity.trackable.user.first_name %></strong> et <%= activity.trackable.friend.first_name %> sont maintenants amis <%= activity.trackable.user.first_name %><br>Il y a <%= time_ago_in_words(activity.created_at)%></span>
-            <% end %>
-          </div>
-        <% end %>
+
+          <%= render 'events/public_activity' %>
 
           <div class="events-passed"><h1>Evénements passés</h1>
             <% @events.first(10) %>

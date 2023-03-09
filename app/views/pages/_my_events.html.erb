@@ -1,37 +1,37 @@
-<h2>Demandes d'inscription reçues</h2></br>
+<h2>Activités en cours - Organisateur</h2></br>
 <table class="table">
   <thead>
     <tr>
-      <th>Événement</th>
+      <th>Activité</th>
       <th>Participant</th>
       <th>Statut</th>
-      <th>Action</th>
     </tr>
   </thead>
 
-  <% if current_user.bookings.empty? %>
-    <p>Vous n'avez pas de réservation à venir</p>
+  <% if current_user.bookings.empty? && Date.today <= event.date %>
+    <p>Aucune Inscription reçue</p>
   <% end %>
 
   <tbody>
     <% current_user.events.order(date: :desc).each do |event| %>
-      <% if event.user == current_user %>
+      <% if event.user == current_user && Date.today <= event.date %>
         <% event.bookings.each do |booking| %>
           <% unless booking.user == current_user %>
             <tr>
               <td style="vertical-align:middle;"><%= event.date.strftime("%d/%m/%y") %><br><%= event.sport.sport_name %><br><%= event.address.split.last(2).first.chomp(',') %></td>
               <td style="vertical-align:middle;"><%= booking.user.full_name %><br><%= booking.user.age %> ans<br><%= booking.user.city %></td>
-              <td style="vertical-align:middle; justify-content:center;"><%= booking.booking_status.split[0...2].join(' ') %><br><%= link_to "Voir l'activité", event_path(event), class: "dashboard-link" %></td>
-              <td style="vertical-align:middle;">
+              <td style="vertical-align:middle; justify-content:center;">
+
                 <% if booking.booking_status == "En attente de validation" %>
                   <%= link_to "Accepter", approve_booking_path(booking), method: :patch, class: "btn btn-success btn-sm", data: {confirm: "Êtes-vous sûr de vouloir accepter cette demande d'inscription?"} %>
-                  <%= link_to "Refuser", reject_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm", data: {confirm: "Êtes-vous sûr de vouloir refuser cette demande d'inscription?"} %>
-                <% else %>
-                  <% if Date.today < event.date %>
-                    <%= link_to "Annuler", cancel_booking_path(booking), method: :patch, class: "btn btn-outline-danger btn-sm", data: {confirm: "Êtes-vous sûr de vouloir annuler cette demande d'inscription?"} %>
-                  <% else %>
-                    <p>Activité terminée</p>
-                  <% end %>
+                  <%= link_to "Refuser", reject_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm", data: {confirm: "Êtes-vous sûr de vouloir refuser cette demande d'inscription?"} %><br>
+                  <%= link_to "Voir l'activité", event_path(event), class: "dashboard-link" %>
+                <% elsif booking.booking_status == "Acceptée" %>
+                  <%= link_to "Inscription acceptée", event_path(event), class: "btn btn-success btn-sm" %><br>
+                  <%= link_to "Annuler le statut", cancel_booking_path(booking), method: :patch, class: "dashboard-cancel-link", data: {confirm: "Êtes-vous sûr de vouloir annuler cette demande d'inscription?"} %>
+                <% elsif booking.booking_status == "Refusée" %>
+                  <%= link_to "Inscription refusée", event_path(event), class: "btn btn-danger btn-sm" %><br>
+                   <%= link_to "Annuler le statut", cancel_booking_path(booking), method: :patch, class: "dashboard-cancel-link", data: {confirm: "Êtes-vous sûr de vouloir annuler cette demande d'inscription?"} %>
                 <% end %>
               </td>
             </tr>

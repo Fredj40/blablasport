@@ -1,0 +1,27 @@
+.public_activity_cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  background-color: black;
+  opacity: 0.7;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+}
+
+.link_activity {
+  color: #e98b2a;
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    color: #ffffff;
+  }
+}
+.time_ago {
+  color: #d09d76;
+  font-size: 12px;
+  font-style: italic;
+  text-align: end;
+}

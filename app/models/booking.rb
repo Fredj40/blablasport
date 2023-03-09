@@ -4,6 +4,8 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :event
   # has_many :players, :through => :bookings, :source => :user
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
+
   validates :user, presence: true
   validates :event, presence: true
   validates :event, uniqueness: { scope: :user, message: "Tu as déjà une réservation pour cet événement" }
@@ -12,7 +14,7 @@ class Booking < ApplicationRecord
   validates :booking_status, inclusion: { in: ["En attente de validation", "Acceptée", "Refusée"] }
 
   include PublicActivity::Model
-  tracked only: :create
+  tracked only: [:create , :update, :edit]
 
   private
 
