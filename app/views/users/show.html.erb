@@ -1,5 +1,4 @@
 <div class="profile-container"><br>
-  <div class="mb-4"><%= render 'pages/search_friends' %></div>
 
     <div class="container-profile">
       <div class="row-profile">
@@ -12,31 +11,9 @@
               <p class="text-muted mb-1"><%= @user.age %> ans</p>
               <p class="text-muted mb-4"><%= @user.city %></p>
               <div class="d-flex justify-content-center mb-2">
-              <%= link_to "demander en ami", "#", class: "btn btn-outline-warning btn-sm", id: "add-friend-button" %>
               </div>
             </div>
           </div>
-          <div class="card mb-4 mb-lg-0">
-    <div class="card-body p-0">
-      <h2>Les amis de <%=@user.first_name%> (<%=@friends_count %>)</h2><br>
-      <ul class="list-group list-group-flush rounded-3">
-        <% @friendships.each do |friendship| %>
-          <% if @user.id == friendship.user_id %>
-            <ul class="d-flex justify-content-between align-items-center p-3">
-              <p class="mb-0">
-                <%= link_to "#{friendship.friend.first_name} #{friendship.friend.last_name}", user_path(friendship.friend_id), style: "text-decoration: none;" %>
-              </p>
-            </ul>
-          <%else%>
-            <ul class=" justify-content-between align-items-center p-3">
-              <p class="mb-0">
-                <%= link_to "#{User.find(friendship.user_id).first_name} #{User.find(friendship.user_id).last_name}", user_path(friendship.user_id), style: "text-decoration: none;" %>
-              </p>
-            </ul>
-          <%end%>
-          <%end %>
-      </ul>
-    </div>
   </div>
 
         </div>
@@ -118,22 +95,3 @@
       </div>
     </div>
 </div>
-
-<script>
-  $(document).ready(function() {
-    $("#add-friend-button").click(function() {
-      $.ajax({
-        url: "/friendships",
-        method: "POST",
-        dataType: 'json',
-        data: {
-          friend_id: <%= @user.id %>,
-          authenticity_token: $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(data) {
-          alert("demande d'ami envoyée!");
-        }
-      });
-    });
-  });
-</script>

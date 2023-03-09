@@ -3,7 +3,6 @@ class Booking < ApplicationRecord
 
   belongs_to :user
   belongs_to :event
-  # has_many :players, :through => :bookings, :source => :user
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   validates :user, presence: true

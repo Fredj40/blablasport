@@ -16,36 +16,39 @@
             </div>
           </div>
           <div class="card mb-4 mb-lg-0">
+
     <div class="card-body p-0">
-      <h2>Ma liste d'amis (<%=@friends_count %>)</h2><br>
-      <ul class="list-group list-group-flush rounded-3">
-        <% @friendships.each do |friendship| %>
-          <% if current_user.id == friendship.user_id %>
-            <li class="d-flex justify-content-between align-items-center p-3">
-              <p class="mb-0">
-                <%= link_to "#{friendship.friend.first_name} #{friendship.friend.last_name}", user_path(friendship.friend_id), style: "text-decoration: none;" %>
-              </p>
-            </li>
-          <% else %>
-            <li class="d-flex justify-content-between align-items-center p-3 bs-list-group-bg: none">
-              <p class="mb-0">
-                <%= link_to "#{User.find(friendship.user_id).first_name} #{User.find(friendship.user_id).last_name}", user_path(friendship.user_id), style: "text-decoration: none;" %>
-              </p>
-            </li>
-          <% end %>
+      <div class="friends">
+        <% current_user.follow_requests.each do |request| %>
+          <%= request.followerable.full_name %> veut te suivre
+          <%= button_to "Accepter", accept_path(request.followerable) %>
+          <%= button_to "Refuser", decline_path(request.followerable) %>
         <% end %>
-      </ul>
-
-      <% if @request_friend_count == nil %>
-        <%= link_to "Demandes d'amis en attente : #{@request_friend_count}", friendslist_friendships_path, class: "btn btn-info btn-sm" %>
-      <% else %>
-        <p>Pas de demande en attente</p>
-      <% end %><br>
-
-      <div class="mb-4"><%= render 'pages/search_friends' %></div>
-
+        <hr/>
+        <%= current_user.followers.each do |user| %>
+          <%= link_to user.full_name, follower_path(user) %> te suit
+          <%= button_to "Ne plus suivre", unfollow_path(user) %>
+        <% end %>
+      </div>
     </div>
+
   </div>
+
+    <div class="card-body p-0">
+      <div class="friends">
+        <% current_user.follow_requests.each do |request| %>
+          <%= request.followerable.full_name %> veut te suivre
+          <%= button_to "Accepter", accept_path(request.followerable) %>
+          <%= button_to "Refuser", decline_path(request.followerable) %>
+        <% end %>
+        <hr/>
+        <%= current_user.followers.each do |user| %>
+          <%= link_to user.full_name, follower_path(user) %> te suit
+          <%= button_to "Ne plus suivre", unfollow_path(user) %>
+        <% end %>
+
+      </div>
+    </div>
 
         </div>
         <div class="col-lg-8">
@@ -125,4 +128,6 @@
         </div>
       </div>
     </div>
+
+
 </div>

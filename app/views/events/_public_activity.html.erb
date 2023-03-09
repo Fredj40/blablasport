@@ -57,13 +57,19 @@
       <%= activity.trackable.event.date.strftime("%d/%m/%Y") %><br>
       <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
 
-    <% elsif activity.key == "friendship.create" %>
-      <span><strong><%= activity.trackable.user.first_name %></strong> a demandé <strong><%= activity.trackable.friend.first_name %></strong> en ami<br>
-      <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+    <%# <% elsif activity.key == "friendship.create"
+      <%# <span><strong><%= activity.trackable.user.first_name %>
+      <%# </strong> a demandé <strong><%= activity.trackable.friend.first_name %>
+      <%# </strong> en ami<br>
+      <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
+      <%# </div></span>
 
     <% elsif activity.key == "friendship.update" %>
-      <span><strong><%= activity.trackable.user.first_name %></strong> et <strong><%= activity.trackable.friend.first_name %></strong> sont maintenants amis !<br>
-      <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+      <%# <span><strong><%= activity.trackable.user.first_name %>
+      <%# </strong> et <strong><%= activity.trackable.friend.first_name %>
+      <%# </strong> sont maintenants amis !<br>
+      <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
+      <%# </div></span> %>
 
     <% end %>
   </div>
