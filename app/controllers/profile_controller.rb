@@ -17,40 +17,58 @@ class ProfileController < ApplicationController
     redirect_to profile_path
   end
 
+  def search
+    # user_params
+    if params[:search].present?
+      @users = User.global_search(params[:search])
+    else
+      "Aucun résultat"
+    end
+  end
+
   def show
-    @activities = PublicActivity::Activity.order(created_at: :desc).limit(20)
     @events_creator = @user.events
     @bookings = Booking.where(user: @user, booking_status: "Acceptée")
   end
 
   def follow
+    @user.create_activity :follow
     current_user.send_follow_request_to(@user)
     redirect_to profile_path
   end
 
   def unfollow
+    @user.create_activity :unfollow
     make_it_an_unfriend_request
     current_user.unfollow(@user)
     redirect_to profile_path
   end
 
   def accept
+    @user.create_activity :friend_accept
     current_user.accept_follow_request_of(@user)
     make_it_a_friend_request
     redirect_to profile_path
   end
 
   def decline
+    @user.create_activity :friend_decline
     current_user.decline_follow_request_of(@user)
     redirect_to profile_path
   end
 
   def cancel
+    @user.create_activity :friend_cancel
     current_user.remove_follow_request_for(@user)
     redirect_to profile_path
   end
 
+
   private
+
+  # def user_params
+  #   params.require(:user).permit(:first_name, :user_description, :full_name, :city, sports_attributes: [:sport_name])
+  # end
 
   def make_it_an_unfriend_request
     @user.unfollow(current_user) if @user.mutual_following_with?(current_user)

@@ -29,8 +29,12 @@ class User < ApplicationRecord
   validates :phone_number, length: { minimum: 10 }
   validates :city, presence: true
 
+  include PgSearch::Model
+  pg_search_scope :global_search,
+  against: [ :first_name, :last_name, :city, :user_description, :email ], associated_against: { sport: [:sport_name] }, using: { tsearch: { prefix: true } }
+
   include PublicActivity::Model
-  tracked owner: :itself
+  tracked
 
   def full_name
     "#{first_name} #{last_name}"

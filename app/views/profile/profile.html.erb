@@ -1,71 +1,78 @@
 <div class="profile-container"><br>
 
   <div class="card-profile">
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-    <h5><%= @user.full_name %></h5>
+
+    <img src="" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+    <h3><%= @user.full_name %></h3>
+    <p class="text mb-0"><%= @user.age %> ans, <%= @user.city %><br><%=@user.user_description %></p><br>
     <div><%= link_to "Editer mon profil", edit_user_registration_path, class: "btn btn-outline-warning btn-sm" %></div>
-    <hr/>
-    <p class="text mb-0"><%= @user.sex %></p>
-    <p class="text mb-0"><%= @user.age %> ans</p>
-    <p class="text mb-0"><%= @user.city %></p>
-    <p class="text mb-0"><%=current_user.user_description %></p>
-    <hr/>
-    <p class="text mb-0">Organisateur d'activité : <%= @events.count %></p>
-    <p class="text mb-0">Participant d'activité : <%= @bookings.count %></p>
-  </div>
 
-  <div class="card-profile">
-    <h5>Demande d'amis en attente :</h5>
-      <% current_user.follow_requests.each do |request| %>
-        <p><%= request.followerable.full_name %><br><%= link_to "Accepter", accept_path(request.followerable), class: "profile-ok-link" %> <%= link_to "Refuser", decline_path(request.followerable), class: "profile-ko-link" %></p>
+    <hr/>
+
+    <p class="text mb-0">Organisateur d'activité : <strong><%= @events.count %></strong></p>
+    <p class="text mb-0">Participant d'activité : <strong><%= @bookings.count %></strong></p>
+
+    <hr/>
+
+    <h4>Amis</h4>
+
+    <h5>Demandes d'ami</h5>
+    <% if current_user.follow_requests.any? %>
+    <% current_user.follow_requests.each do |request| %>
+      <p><strong><%= request.followerable.full_name %></strong></p>
+      <div class="d-flex justify-content-center">
+        <div><%= button_to "Accepter", accept_path(request.followerable), { class: 'btn btn-success btn-sm' } %></div>
+        <div><%= button_to "Refuser", decline_path(request.followerable), { class: 'btn btn-danger btn-sm' } %></div>
+      </div><br>
       <% end %>
-     <hr/>
+    <% else %>
+      <p><i>Aucune demande d'ami en cours</i></p>
+    <% end %>
+
     <h5>Ma liste d'amis</h5>
-      <% current_user.followers.each do |user| %>
-        <p><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %> <%= link_to "Annuler", unfollow_path(user), class: "profile-cancel-link" %></p>
+    <% current_user.followers.each do |user| %>
+      <a><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %> - <%= user.city %>, <%= user.age %> ans</a><br>
+    <% end %><br>
+
+    <%= link_to "Rechercher un joueur", search_path, class: "btn btn-outline-info btn-sm" %>
+
+    <hr/>
+
+    <h4>Mon agenda :</h4><br>
+
+    <% @bookings.last(10) %>
+    <% @bookings.each do |booking| %>
+      <% if booking.event.date >= Date.today %>
+        <p><strong><%= booking.event.sport.sport_name %></strong> - <%= booking.event.address.split.last(2).first.chomp(',') %>, le <%= booking.event.date.strftime("%d/%m/%Y") %></p>
       <% end %>
-  </div>
-
-
-    <div class="card-profile">
-      <h5>Mon agenda :</h5><br>
-    </div>
-
-
-
-    <div class="card-profile">
-      <% if @bookings.count == 0 %>
-        <h5>Je n'ai participé à aucune activité</h5><br>
-      <% elsif @bookings.count == 1 %>
-        <h5>J'ai participé à cette activité :</h5><br>
-      <% else %>
-        <h5>J'ai participé à ces <%= @bookings.count  %> activités :</h5><br>
+    <%end %>
+    <% @user.events.last(10) %>
+    <% @user.events.each do |event| %>
+      <% if event.date >= Date.today %>
+        <p><strong><%= event.sport.sport_name %></strong> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %> (organisateur)</p>
       <% end %>
-      <% @bookings.last(20) %>
+    <% end %>
+    <%= link_to "Accéder à mon tableau de bord", dashboard_path, class: "btn btn-outline-info btn-sm" %>
+
+    <hr/>
+
+    <h4>Mon historique :</h4>
+      <% @bookings.last(10) %>
       <% @bookings.each do |booking| %>
+        <% if booking.event.date < Date.today %>
           <p><strong><%= booking.event.sport.sport_name %></strong> - <%= booking.event.address.split.last(2).first.chomp(',') %>, le <%= booking.event.date.strftime("%d/%m/%Y") %></p>
         <% end %>
-    </div>
-
-    <div class="card-profile">
-
-      <% if @events.count == 0 %>
-        <h5>Je n'ai pas encore organisé d'activité</h5><br>
-      <% elsif @events.count == 1 %>
-        <h5>J'ai organisé cette activité :</h5><br>
-      <% else %>
-        <h5>J'ai organisé ces <%= @events.count %> activités :</h5><br>
-      <% end %>
-      <% @user.events.last(20) %>
+      <%end %>
+      <% @user.events.last(10) %>
       <% @user.events.each do |event| %>
-        <% if event.user_id == current_user.id %>
-          <p><strong><%= event.sport.sport_name %></strong> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></p>
+        <% if event.date < Date.today %>
+          <p><strong><%= event.sport.sport_name %></strong> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %> (organisateur)</p>
         <% end %>
       <% end %>
-    </div>
 
- <div class="card-profile">
-    <h5>Mon actualité :</h5><br>
+    <hr/>
+
+    <h4>Mon actualité :</h4><br>
 
   </div>
 

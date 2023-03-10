@@ -1,0 +1,17 @@
+<div class="container">
+
+  <form class="form_search_user">
+    <%= simple_form_for :search, method: :get, defaults: { required: false } do |f| %>
+      <div class="row justify-content-center col-12">
+        <div class="col-9"><h4>Rechercher un joueur</h4></div>
+        <div class="col-9"><input type="search"  name= 'search' value: params.dig(:search) class="form-control" id="inputRecherche4" placeholder= "Nom, email, ville..."></div>
+        <div class="col-1"><button type="submit" class="btn btn-info">Go</button></div>
+      </div>
+    <% end %>
+  </form>
+
+  <%# <% @users.each do |user|%>
+    <%# <%= user.full_name %>
+  <%# <% end %>
+
+</div>

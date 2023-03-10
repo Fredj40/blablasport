@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :users
 
   get "profile", to: "profile#profile", as: "profile"
+  get "profile/search", to: "profile#search", as: "search"
   get "profile/:id", to: "profile#show", as: "follower"
   post "profile/:id/follow", to: "profile#follow", as: "follow"
   post "profile/:id/unfollow", to: "profile#unfollow", as: "unfollow"
