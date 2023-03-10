@@ -1,133 +1,72 @@
 <div class="profile-container"><br>
 
-    <div class="container-profile">
-      <div class="row-profile">
-        <div class="col-lg-4">
-          <div class="card mb-4">
-            <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3"><%= @user.first_name %> <%= @user.last_name %></h5>
-              <p class="text-muted mb-1"><%= @user.age %> ans</p>
-              <p class="text-muted mb-4"><%= @user.city %></p>
-              <div class="d-flex justify-content-center mb-2">
-                <%= link_to "Editer mon profil", edit_user_registration_path, class: "btn btn-outline-warning btn-sm" %>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-4 mb-lg-0">
-
-    <div class="card-body p-0">
-      <div class="friends">
-        <% current_user.follow_requests.each do |request| %>
-          <%= request.followerable.full_name %> veut te suivre
-          <%= button_to "Accepter", accept_path(request.followerable) %>
-          <%= button_to "Refuser", decline_path(request.followerable) %>
-        <% end %>
-        <hr/>
-        <%= current_user.followers.each do |user| %>
-          <%= link_to user.full_name, follower_path(user) %> te suit
-          <%= button_to "Ne plus suivre", unfollow_path(user) %>
-        <% end %>
-      </div>
-    </div>
-
+  <div class="card-profile">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+    <h5><%= @user.full_name %></h5>
+    <div><%= link_to "Editer mon profil", edit_user_registration_path, class: "btn btn-outline-warning btn-sm" %></div>
+    <hr/>
+    <p class="text mb-0"><%= @user.sex %></p>
+    <p class="text mb-0"><%= @user.age %> ans</p>
+    <p class="text mb-0"><%= @user.city %></p>
+    <p class="text mb-0"><%=current_user.user_description %></p>
+    <hr/>
+    <p class="text mb-0">Organisateur d'activité : <%= @events.count %></p>
+    <p class="text mb-0">Participant d'activité : <%= @bookings.count %></p>
   </div>
 
-    <div class="card-body p-0">
-      <div class="friends">
-        <% current_user.follow_requests.each do |request| %>
-          <%= request.followerable.full_name %> veut te suivre
-          <%= button_to "Accepter", accept_path(request.followerable) %>
-          <%= button_to "Refuser", decline_path(request.followerable) %>
-        <% end %>
-        <hr/>
-        <%= current_user.followers.each do |user| %>
-          <%= link_to user.full_name, follower_path(user) %> te suit
-          <%= button_to "Ne plus suivre", unfollow_path(user) %>
-        <% end %>
+  <div class="card-profile">
+    <h5>Demande d'amis en attente :</h5>
+      <% current_user.follow_requests.each do |request| %>
+        <p><%= request.followerable.full_name %><br><%= link_to "Accepter", accept_path(request.followerable), class: "profile-ok-link" %> <%= link_to "Refuser", decline_path(request.followerable), class: "profile-ko-link" %></p>
+      <% end %>
+     <hr/>
+    <h5>Ma liste d'amis</h5>
+      <% current_user.followers.each do |user| %>
+        <p><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %> <%= link_to "Annuler", unfollow_path(user), class: "profile-cancel-link" %></p>
+      <% end %>
+  </div>
 
-      </div>
+
+    <div class="card-profile">
+      <h5>Mon agenda :</h5><br>
     </div>
 
-        </div>
-        <div class="col-lg-8">
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0" style="color: white">Description : <%=current_user.user_description %></p>
-                </div>
-              </div>
-              <hr>
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">Evénement(s) créé(s): <%=@created_event_count%></p>
-                </div>
-              </div>
-              <hr>
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">Evénement(s) participé(s): <%=@attended_event_count%></p>
-                </div>
-              </div>
-              <hr>
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">Status : Sportif confirmé</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h5>Mes événements organisés</h5>
-                      <% @user.events.each do |event| %>
-                        <% if event.user_id == current_user.id %>
-                          <ul style="color: white; text-align: center"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></ul>
-                          <%end%>
-                          <%end%>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h5>Mes événements participés</h5>
-                    <% @user.bookings.each do |booking| %>
-                      <% event = Event.find(booking.event_id) %>
-                      <%if booking.booking_status == "Acceptée"%>
-                      <ul style="color: white; text-align: center"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></ul>
-                      <%end%>
-                    <%end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
+    <div class="card-profile">
+      <% if @bookings.count == 0 %>
+        <h5>Je n'ai participé à aucune activité</h5><br>
+      <% elsif @bookings.count == 1 %>
+        <h5>J'ai participé à cette activité :</h5><br>
+      <% else %>
+        <h5>J'ai participé à ces <%= @bookings.count  %> activités :</h5><br>
+      <% end %>
+      <% @bookings.last(20) %>
+      <% @bookings.each do |booking| %>
+          <p><strong><%= booking.event.sport.sport_name %></strong> - <%= booking.event.address.split.last(2).first.chomp(',') %>, le <%= booking.event.date.strftime("%d/%m/%Y") %></p>
+        <% end %>
     </div>
 
+    <div class="card-profile">
+
+      <% if @events.count == 0 %>
+        <h5>Je n'ai pas encore organisé d'activité</h5><br>
+      <% elsif @events.count == 1 %>
+        <h5>J'ai organisé cette activité :</h5><br>
+      <% else %>
+        <h5>J'ai organisé ces <%= @events.count %> activités :</h5><br>
+      <% end %>
+      <% @user.events.last(20) %>
+      <% @user.events.each do |event| %>
+        <% if event.user_id == current_user.id %>
+          <p><strong><%= event.sport.sport_name %></strong> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></p>
+        <% end %>
+      <% end %>
+    </div>
+
+ <div class="card-profile">
+    <h5>Mon actualité :</h5><br>
+
+  </div>
 
 </div>

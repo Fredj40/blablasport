@@ -1,9 +1,62 @@
-<h1><%= @user.email %></h1>
+<div class="profile-container"><br>
 
-<% if current_user.following?(@user) %>
-  <%= button_to "Unfollow", unfollow_path(@user) %>
-<% elsif current_user.sent_follow_request_to?(@user) %>
-  <%= button_to "Cancel follow request", cancel_path(@user) %>
-<% else %>
-  <%= button_to "Follow", follow_path(@user) %>
-<% end %>
+  <div class="card-profile">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;"> A REVOIR
+    <h5><%= @user.full_name %></h5>
+
+    <% if current_user.following?(@user) %>
+      <%= button_to "Unfollow", unfollow_path(@user) %>
+    <% elsif current_user.sent_follow_request_to?(@user) %>
+      <%= button_to "Cancel follow request", cancel_path(@user) %>
+    <% else %>
+      <%= button_to "Follow", follow_path(@user) %>
+    <% end %>
+
+    <hr/>
+    <p class="text mb-0"><%= @user.sex %></p>
+    <p class="text mb-0"><%= @user.age %> ans</p>
+    <p class="text mb-0"><%= @user.city %></p>
+    <p class="text mb-0"><%=current_user.user_description %></p>
+    <hr/>
+    <p class="text mb-0">Organisateur d'activité : <%= @events_creator.count %></p>
+    <p class="text mb-0">Participant d'activité : <%= @bookings.count %></p>
+  </div>
+
+  <div class="card-profile">
+    <h5>Mon agenda :</h5><br>
+  </div>
+
+  <div class="card-profile">
+    <% if @bookings.count == 0 %>
+      <h5>Je n'ai participé à aucune activité</h5><br>
+    <% elsif @bookings.count == 1 %>
+      <h5>J'ai participé à cette activité :</h5><br>
+    <% else %>
+      <h5>J'ai participé à ces <%= @bookings.count  %> activités :</h5><br>
+    <% end %>
+    <% @bookings.last(20) %>
+    <% @bookings.each do |booking| %>
+      <p><strong><%= booking.event.sport.sport_name %></strong> - <%= booking.event.address.split.last(2).first.chomp(',') %>, le <%= booking.event.date.strftime("%d/%m/%Y") %></p>
+    <%end %>
+  </div>
+
+  <div class="card-profile">
+    <% if @events_creator.count == 0 %>
+      <h5>Je n'ai pas encore organisé d'activité</h5><br>
+    <% elsif @events_creator.count == 1 %>
+      <h5>J'ai organisé cette activité :</h5><br>
+    <% else %>
+      <h5>J'ai organisé ces <%= @events_creator.count %> activités :</h5><br>
+    <% end %>
+    <% @events_creator.last(20) %>
+    <% @events_creator.each do |event| %>
+      <p><strong><%= event.sport.sport_name %></strong> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></p>
+    <%end%>
+  </div>
+
+ <div class="card-profile">
+    <h5>Mon actualité :</h5><br>
+
+  </div>
+
+</div>

@@ -4,14 +4,10 @@ class ProfileController < ApplicationController
 
 
   def profile
+    @activities = PublicActivity::Activity.order(created_at: :desc).limit(20)
     @user = current_user
     @users = User.all
     @events = @user.events
-    @activities = PublicActivity::Activity.order(created_at: :desc).limit(20)
-    @attended_event = Booking.where(user: current_user, booking_status: "Acceptée").count
-    @created_event = @user.events
-    @attended_event_count = @user.bookings.count
-    @created_event_count = @user.events.count
     @bookings = Booking.where(user: current_user, booking_status: "Acceptée")
   end
 
@@ -22,6 +18,9 @@ class ProfileController < ApplicationController
   end
 
   def show
+    @activities = PublicActivity::Activity.order(created_at: :desc).limit(20)
+    @events_creator = @user.events
+    @bookings = Booking.where(user: @user, booking_status: "Acceptée")
   end
 
   def follow
