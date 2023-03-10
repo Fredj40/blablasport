@@ -1,133 +1,79 @@
 <div class="profile-container"><br>
 
-    <div class="container-profile">
-      <div class="row-profile">
-        <div class="col-lg-4">
-          <div class="card mb-4">
-            <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3"><%= @user.first_name %> <%= @user.last_name %></h5>
-              <p class="text-muted mb-1"><%= @user.age %> ans</p>
-              <p class="text-muted mb-4"><%= @user.city %></p>
-              <div class="d-flex justify-content-center mb-2">
-                <%= link_to "Editer mon profil", edit_user_registration_path, class: "btn btn-outline-warning btn-sm" %>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-4 mb-lg-0">
+  <div class="card-profile">
 
-    <div class="card-body p-0">
-      <div class="friends">
-        <% current_user.follow_requests.each do |request| %>
-          <%= request.followerable.full_name %> veut te suivre
-          <%= button_to "Accepter", accept_path(request.followerable) %>
-          <%= button_to "Refuser", decline_path(request.followerable) %>
+    <img src="" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+    <h3><%= @user.full_name %></h3>
+    <p class="text mb-0"><%= @user.age %> ans, <%= @user.city %><br><%=@user.user_description %></p><br>
+    <div><%= link_to "Editer mon profil", edit_user_registration_path, class: "btn btn-outline-warning btn-sm" %></div>
+
+    <hr/>
+
+    <p class="text mb-0">Organisateur d'activité : <strong><%= @events.count %></strong></p>
+    <p class="text mb-0">Participant d'activité : <strong><%= @bookings.count %></strong></p>
+
+    <hr/>
+
+    <h4>Amis</h4>
+
+    <h5>Demandes d'ami</h5>
+    <% if current_user.follow_requests.any? %>
+    <% current_user.follow_requests.each do |request| %>
+      <p><strong><%= request.followerable.full_name %></strong></p>
+      <div class="d-flex justify-content-center">
+        <div><%= button_to "Accepter", accept_path(request.followerable), { class: 'btn btn-success btn-sm' } %></div>
+        <div><%= button_to "Refuser", decline_path(request.followerable), { class: 'btn btn-danger btn-sm' } %></div>
+      </div><br>
+      <% end %>
+    <% else %>
+      <p><i>Aucune demande d'ami en cours</i></p>
+    <% end %>
+
+    <h5>Ma liste d'amis</h5>
+    <% current_user.followers.each do |user| %>
+      <a><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %> - <%= user.city %>, <%= user.age %> ans</a><br>
+    <% end %><br>
+
+    <%= link_to "Rechercher un joueur", search_path, class: "btn btn-outline-info btn-sm" %>
+
+    <hr/>
+
+    <h4>Mon agenda :</h4><br>
+
+    <% @bookings.last(10) %>
+    <% @bookings.each do |booking| %>
+      <% if booking.event.date >= Date.today %>
+        <p><strong><%= booking.event.sport.sport_name %></strong> - <%= booking.event.address.split.last(2).first.chomp(',') %>, le <%= booking.event.date.strftime("%d/%m/%Y") %></p>
+      <% end %>
+    <%end %>
+    <% @user.events.last(10) %>
+    <% @user.events.each do |event| %>
+      <% if event.date >= Date.today %>
+        <p><strong><%= event.sport.sport_name %></strong> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %> (organisateur)</p>
+      <% end %>
+    <% end %>
+    <%= link_to "Accéder à mon tableau de bord", dashboard_path, class: "btn btn-outline-info btn-sm" %>
+
+    <hr/>
+
+    <h4>Mon historique :</h4>
+      <% @bookings.last(10) %>
+      <% @bookings.each do |booking| %>
+        <% if booking.event.date < Date.today %>
+          <p><strong><%= booking.event.sport.sport_name %></strong> - <%= booking.event.address.split.last(2).first.chomp(',') %>, le <%= booking.event.date.strftime("%d/%m/%Y") %></p>
         <% end %>
-        <hr/>
-        <%= current_user.followers.each do |user| %>
-          <%= link_to user.full_name, follower_path(user) %> te suit
-          <%= button_to "Ne plus suivre", unfollow_path(user) %>
+      <%end %>
+      <% @user.events.last(10) %>
+      <% @user.events.each do |event| %>
+        <% if event.date < Date.today %>
+          <p><strong><%= event.sport.sport_name %></strong> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %> (organisateur)</p>
         <% end %>
-      </div>
-    </div>
+      <% end %>
+
+    <hr/>
+
+    <h4>Mon actualité :</h4><br>
 
   </div>
-
-    <div class="card-body p-0">
-      <div class="friends">
-        <% current_user.follow_requests.each do |request| %>
-          <%= request.followerable.full_name %> veut te suivre
-          <%= button_to "Accepter", accept_path(request.followerable) %>
-          <%= button_to "Refuser", decline_path(request.followerable) %>
-        <% end %>
-        <hr/>
-        <%= current_user.followers.each do |user| %>
-          <%= link_to user.full_name, follower_path(user) %> te suit
-          <%= button_to "Ne plus suivre", unfollow_path(user) %>
-        <% end %>
-
-      </div>
-    </div>
-
-        </div>
-        <div class="col-lg-8">
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0" style="color: white">Description : <%=current_user.user_description %></p>
-                </div>
-              </div>
-              <hr>
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">Evénement(s) créé(s): <%=@created_event_count%></p>
-                </div>
-              </div>
-              <hr>
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">Evénement(s) participé(s): <%=@attended_event_count%></p>
-                </div>
-              </div>
-              <hr>
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">Status : Sportif confirmé</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row-profile">
-                <div class="col-sm-3">
-                  <p class="mb-0"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h5>Mes événements organisés</h5>
-                      <% @user.events.each do |event| %>
-                        <% if event.user_id == current_user.id %>
-                          <ul style="color: white; text-align: center"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></ul>
-                          <%end%>
-                          <%end%>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h5>Mes événements participés</h5>
-                    <% @user.bookings.each do |booking| %>
-                      <% event = Event.find(booking.event_id) %>
-                      <%if booking.booking_status == "Acceptée"%>
-                      <ul style="color: white; text-align: center"><%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %></ul>
-                      <%end%>
-                    <%end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
 </div>

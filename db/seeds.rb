@@ -1,6 +1,5 @@
 p "Cleaning database..."
 Message.destroy_all
-Friendship.destroy_all
 Review.destroy_all
 Chatroom.destroy_all
 Booking.destroy_all
@@ -22,7 +21,7 @@ p "Creating Users..."
 @user7 = User.create!(email: "test7@test.com", first_name: "Kylian", last_name: "Mbappé", password: "123456", password_confirmation: "123456", age: "23", phone_number: "0606060612", sex:"Homme", address: "rue Romain Weyrich", zip_code: "13005", city: "Paris", user_description: "fan de badminton")
 @user8 = User.create!(email: "test8@test.com", first_name: "Scarlett", last_name: "Johansson", password: "123456", password_confirmation: "123456", age: "30", phone_number: "0606060613", sex:"Femme", address: "rue Alex Dionisio", zip_code: "67000", city: "Strasbourg", user_description: "fan de basket")
 @user9 = User.create!(email: "test9@test.com", first_name: "James", last_name: "Bond", password: "123456", password_confirmation: "123456", age: "35", phone_number: "0606060614", sex:"Homme", address: "rue ", zip_code: "14000", city: "Caen", user_description: "fan d'espionnage")
-@user10 = User.create!(email: "test10@test.com", first_name: "Brigitte", last_name: "Macron", password: "123456", password_confirmation: "123456", age: "71", phone_number: "0606060615", sex:"Homme", address: "rue ", zip_code: "35000", city: "Rennes", user_description: "fan d'Ultimate")
+@user10 = User.create!(email: "test10@test.com", first_name: "Brigitte", last_name: "Macron", password: "123456", password_confirmation: "123456", age: "71", phone_number: "0606060615", sex:"Femme", address: "rue ", zip_code: "35000", city: "Rennes", user_description: "fan d'Ultimate")
 @user11 = User.create!(email: "test11@test.com", first_name: "Guy", last_name: "Theube", password: "123456", password_confirmation: "123456", age: "22", phone_number: "0606060616", sex:"Homme", address: "rue ", zip_code: "44000", city: "Nantes", user_description: "fan de wagon")
 p "#{User.count} users created"
 
