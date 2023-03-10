@@ -32,13 +32,13 @@ class ProfileController < ApplicationController
   end
 
   def follow
-    @user.create_activity :follow
+    # @user.create_activity :follow
     current_user.send_follow_request_to(@user)
     redirect_to profile_path
   end
 
   def unfollow
-    @user.create_activity :unfollow
+    # @user.create_activity :unfollow
     make_it_an_unfriend_request
     current_user.unfollow(@user)
     redirect_to profile_path
@@ -52,13 +52,13 @@ class ProfileController < ApplicationController
   end
 
   def decline
-    @user.create_activity :friend_decline
+    # @user.create_activity :friend_decline
     current_user.decline_follow_request_of(@user)
     redirect_to profile_path
   end
 
   def cancel
-    @user.create_activity :friend_cancel
+    # @user.create_activity :friend_cancel
     current_user.remove_follow_request_for(@user)
     redirect_to profile_path
   end

@@ -27,10 +27,10 @@
                   <%= link_to "Refuser", reject_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm", data: {confirm: "Êtes-vous sûr de vouloir refuser cette demande d'inscription?"} %><br>
                   <%= link_to "Voir l'activité", event_path(event), class: "dashboard-link" %>
                 <% elsif booking.booking_status == "Acceptée" %>
-                  <%= link_to "Inscription acceptée", event_path(event), class: "btn btn-success btn-sm" %><br>
+                  <%= link_to "Acceptée", event_path(event), class: "btn btn-outline-success btn-sm" %><br>
                   <%= link_to "Annuler le statut", cancel_booking_path(booking), method: :patch, class: "dashboard-cancel-link", data: {confirm: "Êtes-vous sûr de vouloir annuler cette demande d'inscription?"} %>
                 <% elsif booking.booking_status == "Refusée" %>
-                  <%= link_to "Inscription refusée", event_path(event), class: "btn btn-danger btn-sm" %><br>
+                  <%= link_to "Refusée", event_path(event), class: "btn btn-outline-danger btn-sm" %><br>
                    <%= link_to "Annuler le statut", cancel_booking_path(booking), method: :patch, class: "dashboard-cancel-link", data: {confirm: "Êtes-vous sûr de vouloir annuler cette demande d'inscription?"} %>
                 <% end %>
               </td>

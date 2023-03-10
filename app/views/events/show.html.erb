@@ -62,18 +62,15 @@
           <% elsif @event.bookings.where(booking_status: "Acceptée").count == 1 %>
             <h4><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participant confirmé :</h4><br>
               <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
-                <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
+                <li><strong><%= booking.user.full_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %><%= button_to "", follow_path(@user), { class:"fa-regular fa-futbol"} %></li>
               <% end %>
           <% elsif %>
             <h4><%= @event.bookings.where(booking_status: "Acceptée").count %><span> participants confirmés:</h4><br>
               <% @event.bookings.where(booking_status: "Acceptée").each do |booking| %>
-                <li><strong><%= booking.user.first_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %></li>
+                <li><strong><%= booking.user.full_name %></strong>, <%= booking.user.age %> ans - <%= booking.user.city %><%= button_to "", follow_path(@user), { class:"fa-duotone fa-plus" } %></li>
               <% end %>
           <% end %>
         </ul><br>
-
-
-
 
         <% if @event.players_number - @event.bookings.where(booking_status: "Acceptée").count > 1 %>
           <div class="badge-success">Il reste <%= @event.players_number - @event.bookings.where(booking_status: "Acceptée").count %> places disponibles</div><br>
