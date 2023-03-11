@@ -34,7 +34,7 @@ class User < ApplicationRecord
   against: [ :first_name, :last_name, :city, :user_description, :email ], associated_against: { sport: [:sport_name] }, using: { tsearch: { prefix: true } }
 
   include PublicActivity::Model
-  # tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
 
   def full_name
     "#{first_name} #{last_name}"
