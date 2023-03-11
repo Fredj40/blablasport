@@ -56,7 +56,7 @@
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
           </div>
           <i>Lieu de rendez-vous : <%= @event.address %></i><br><br><br>
-
+<%# PARTICIPANTS %>
           <% if @event.bookings.where(booking_status: "Acceptée").empty? %>
             <h4>Il n'y a pas encore de participant</h4><br>
           <% elsif @event.bookings.where(booking_status: "Acceptée").count == 1 %>
@@ -124,7 +124,7 @@
       </div><br><br>
 
       <div class= "col-12 col-lg-1"></div>
-
+<%# CHATROOM %>
       <% if Date.today <= @event.date  %>
         <div class="col-12 col-lg-5">
           <% if @event.bookings.exists?(booking_status:"En attente de validation", user:current_user) || @event.bookings.exists?(booking_status:"Acceptée", user:current_user) || @event.user == current_user %>
@@ -146,6 +146,7 @@
         </div>
 
       <% else %>
+<%# REVIEW %>
         <div class= "reviews_card-show col-12 col-lg-5">
           <div class="reviews_card-title">
             <h3><strong>AVIS <%= @event.sport.sport_name.upcase %></strong> - <%= @event.address.split.last(2).first.chomp(',') %><span> (<%= @event.date.strftime("%d/%m/%Y") %>) </span></h3>
@@ -209,6 +210,7 @@
             <% end %>
           <% end %><br>
         </div><br>
+
       <% end %>
     </div>
   </div>

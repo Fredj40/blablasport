@@ -51,6 +51,7 @@
           <div class="d-flex justify-content-evenly"><p>Il n'y a pas de résultat avec ces critères</p></div>
         <% else %>
           <div class= "events_cards">
+
             <% @events.first(30).each do |event| %>
               <% unless Date.today > event.date %>
                 <div class="event-card" data-bs-customClass="popover-description" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= event.description %>">
@@ -75,6 +76,7 @@
                 </div>
               <% end %>
             <% end %>
+
           </div>
         <% end %>
       </div>
@@ -87,7 +89,7 @@
 
         <div class="activity-feed">
 
-          <%= render 'events/public_activity' %>
+          <%= render 'events/index_public_activity' %>
 
           <div class="events-passed"><h1>Evénements passés</h1>
             <% @events.first(10) %>

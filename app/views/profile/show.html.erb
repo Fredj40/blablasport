@@ -1,7 +1,7 @@
 <div class="profile-container"><br>
 
   <div class="card-profile">
-
+    <div class="d-flex justify-content-start"><%= link_to "Retour", profile_path, class: 'btn btn-secondary btn-sm'%></div>
     <img src="" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
     <h3><%= @user.full_name %></h3>
     <p class="text mb-0"><%= @user.age %> ans, <%= @user.city %><br><%= @user.user_description %></p><br>
@@ -23,10 +23,25 @@
     <h4>Sa liste d'amis</h4>
     <div class="card-profile-align-start">
       <% @user.followers.each do |user| %>
-        <% if current_user == user %>
-          <a><strong><%= current_user.full_name %></strong> - <%= user.city %>, <%= user.age %> ans</a><br>
+        <% if user.following?(current_user) || current_user.following?(user) %>
+            <div class="d-flex justify-content-start text mb-3">
+            <div><strong><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %></strong> - <%= user.city %>, <%= user.age %> ans</div>
+            <div><%= button_to "Ne plus suivre", unfollow_path(user), { class: 'btn btn-danger btn-sm' } %></div>
+          </div>
+        <% elsif current_user.sent_follow_request_to?(user) %>
+            <div class="d-flex justify-content-start text mb-3">
+            <div><strong><%= user.full_name %></strong> - <%= user.city %>, <%= user.age %> ans</div>
+            <div><%= button_to "Annuler demande d'ami", cancel_path(user), { class: 'btn btn-outline-danger btn-sm' } %></div>
+          </div>
         <% else %>
-          <a><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %> - <%= user.city %>, <%= user.age %> ans</a><br>
+          <% if user == current_user %>
+            <div class="d-flex justify-content-start text mb-3"><strong><%= user.full_name %></strong> - <%= user.city %>, <%= user.age %> ans</div>
+          <% else %>
+            <div class="d-flex justify-content-start text mb-3">
+              <div><strong><%= user.full_name %></strong> - <%= user.city %>, <%= user.age %> ans</div>
+              <div><%= button_to "Ajouter en ami", follow_path(user), { class: 'btn btn-success btn-sm' } %></div>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>
@@ -70,12 +85,11 @@
     <hr/>
 
     <h4>Son actualité :</h4><br>
-    <div class="card-profile-align-start">
 
-    </div>
+    <%= render 'profile/public_activity_show' %>
+
     <hr/>
 
-    <div class="d-flex justify-content-center"><%= link_to "Retour à mon profil", profile_path, class: 'btn btn-secondary btn-sm'%></div>
 
   </div>
 </div>

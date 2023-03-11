@@ -14,22 +14,33 @@
 
       <hr/>
 
-      <h4>Amis</h4>
+      <h4>Demandes d'amis</h4>
 
-      <h5>Demandes d'ami</h5>
+      <h5>Reçues</h5>
       <% if current_user.follow_requests.any? %>
       <% current_user.follow_requests.each do |request| %>
-        <p><strong><%= request.followerable.full_name %></strong></p>
+        <p class="text mb-0"><%= request.followerable.full_name %></p>
         <div class="d-flex justify-content-center">
           <div><%= button_to "Accepter", accept_path(request.followerable), { class: 'btn btn-success btn-sm' } %></div>
           <div><%= button_to "Refuser", decline_path(request.followerable), { class: 'btn btn-danger btn-sm' } %></div>
         </div><br>
         <% end %>
       <% else %>
-        <p><i>Aucune demande d'ami en cours</i></p>
-      <% end %>
+        <p class="text mb-0"><i>-</i></p>
+      <% end %><br>
 
-      <h5>Ma liste d'amis</h5>
+      <h5>Envoyées</h5>
+      <% if current_user.pending_requests.any? %>
+      <% current_user.pending_requests.each do |request| %>
+        <p class="text mb-0"><%= request.followable.full_name %></p>
+        <% end %>
+      <% else %>
+        <p class="text mb-0"><i>-</i></p>
+      <% end %><br>
+
+      <hr/>
+
+      <h4>Ma liste d'amis</h4>
       <div class="card-profile-align-start">
         <% current_user.followers.each do |user| %>
           <a><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %> - <%= user.city %>, <%= user.age %> ans</a><br>
@@ -75,106 +86,14 @@
           <% end %>
         <% end %>
       </div>
+
       <hr/>
 
       <h4>Mon actualité :</h4><br>
-      <div class="card-profile-align-start">
-      <% @activities.each do |activity| %>
-        <% unless activity.trackable.nil? %>
 
-          <% if activity.key == "event.destroy" %>
-            <span><strong><%= activity.id %></strong> a été supprimée
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+      <%= render 'profile/public_activity_profile' %>
 
-          <% elsif activity.key == "event.create" %>
-            <span><strong><%= activity.trackable.user.full_name %></strong> a créé une nouvelle activité
-            <%= link_to activity.trackable.sport.sport_name, event_path(activity.trackable.id), class:"link_activity" %> qui aura lieu à
-            <%= activity.trackable.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %><br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+      <hr/>
 
-          <% elsif activity.key == "event.update" %>
-            <span><strong><%= activity.trackable.user.full_name %></strong> a modifié l'activité
-            <%= link_to activity.trackable.sport.sport_name, event_path(activity.trackable.id), class:"link_activity" %>
-            <%= link_to activity.trackable.address.split.last(2).first.chomp(','), event_path(activity.trackable.id), class:"link_activity" %>
-            (<%= activity.trackable.date.strftime("%d/%m/%Y") %>)<br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-          <% elsif activity.key == "message.create" %>
-            <span><strong><%= activity.trackable.user.full_name %></strong> a posté un nouveau message dans la chatroom
-            <%= link_to activity.trackable.chatroom.event.sport.sport_name, event_path(activity.trackable.chatroom.event.id), class:"link_activity" %>
-            <%= link_to activity.trackable.chatroom.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.chatroom.event.id), class:"link_activity" %>
-            (<%= activity.trackable.chatroom.event.date.strftime("%d/%m/%Y") %>)<br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-          <% elsif activity.key == "booking.create" %>
-            <span><strong><%= activity.trackable.user.full_name %></strong> s'est inscrit à l'activité
-            <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %>
-            <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %>
-            (<%= activity.trackable.event.date.strftime("%d/%m/%Y") %>)<br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-          <% elsif activity.key == "booking.update" %>
-            <% if activity.trackable.booking_status == "Acceptée" %>
-            <span>L'inscription de <strong><%= activity.trackable.user.full_name %></strong> à l'activité
-            <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %>
-            <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %>
-            (<%= activity.trackable.event.date.strftime("%d/%m/%Y") %>) a été acceptée
-            <% elsif activity.trackable.booking_status == "Refusée" %>
-            <span>L'inscription de <strong><%= activity.trackable.user.full_name %></strong> à l'activité
-            <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %>
-            <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %>
-            (<%= activity.trackable.event.date.strftime("%d/%m/%Y") %>) a été refusée
-            <% end %><br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-          <% elsif activity.key == "user.create" %>
-            <span><strong><%= activity.trackable.full_name %></strong> a rejoint la communauté BlaBlaSport !!<br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-          <% elsif activity.key == "review.create" %>
-            <% if activity.trackable.user == current_user %>
-              <span>Tu a laissé un avis aprés ta participation à l'activité
-              <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %> à
-              <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %> le
-              <%= activity.trackable.event.date.strftime("%d/%m/%Y") %><br>
-              <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-            <% elsif activity.trackable.event.user == current_user  %>
-              <span><strong><%= activity.trackable.user.full_name %></strong> a laissé un avis aprés sa participation à ton activité
-              <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %> à
-              <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %> le
-              <%= activity.trackable.event.date.strftime("%d/%m/%Y") %><br>
-              <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-            <% end %>
-
-          <% elsif activity.key == "user.friend_accept" %>
-            <span><strong><%= activity.owner&.full_name %></strong>
-            et <strong><%= activity.trackable.full_name %></strong> sont désormais amis !<br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
-            </div></span>
-
-          <% elsif activity.key == "user.follow" %>
-            <span><strong><%= activity.owner&.full_name %></strong>
-            a demandé <strong><%= activity.trackable.full_name %></strong> en ami<br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
-            </div></span>
-
-          <% elsif activity.key == "user.friend_cancel" %>
-            <span><strong><%= activity.owner&.full_name %></strong>
-            n'est plus ami avec <strong><%= activity.trackable.full_name %></strong><br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
-            </div></span>
-
-          <% elsif activity.key == "user.friend_decline" %>
-            <span><strong><%= activity.owner&.full_name %></strong>
-            a refusé la demande d'amitié de
-            <strong><%= activity.trackable.full_name %></strong><br>
-            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
-            </div></span>
-
-            <% end %>
-        <% end %>
-      <% end %>
-      </div>
-    </div>
   </div>
 </div>

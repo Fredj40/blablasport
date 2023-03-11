@@ -9,6 +9,14 @@ class ProfileController < ApplicationController
     @users = User.all
     @events = @user.events
     @bookings = Booking.where(user: current_user, booking_status: "Acceptée")
+
+    @activities.each do |activity|
+      @activity_id = activity.trackable.id
+    end
+
+    @Booking = Booking.find_by(event_id: @activity_id, user: current_user)
+    @Event = Event.find_by(id: @activity_id, user: current_user)
+
   end
 
   def update
