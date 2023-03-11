@@ -24,9 +24,9 @@
 
               <td style="vertical-align:middle;">
                 <% if booking.booking_status == "Acceptée" %>
-                  <%= link_to "Inscription acceptée", event_path(event), class: "btn btn-success btn-sm" %><br>
+                  <%= link_to "Acceptée", event_path(event), class: "btn btn-outline-success btn-sm" %><br>
                 <% elsif booking.booking_status == "Refusée" %>
-                  <%= link_to "Inscription refusée", event_path(event), class: "btn btn-danger btn-sm" %><br>
+                  <%= link_to "Refusée", event_path(event), class: "btn btn-outline-danger btn-sm" %><br>
                 <% end %>
               </td>
 

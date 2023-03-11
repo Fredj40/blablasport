@@ -17,11 +17,11 @@
               <td style="vertical-align:middle;"><%= event.user.full_name %><br><%= event.user.age %> ans<br><%= event.user.city %></td>
               <td style="vertical-align:middle;">
                 <% if booking.booking_status == "En attente de validation" %>
-                  <div><%= link_to "Inscription en attente", event_path(event), class: "btn btn-warning btn-sm" %></div>
+                  <div><%= link_to "En attente", event_path(event), class: "btn btn-outline-warning btn-sm" %></div>
                 <% elsif booking.booking_status == "Acceptée" %>
-                  <div><%= link_to "Inscription validée", event_path(event), class: "btn btn-success btn-sm" %></div>
+                  <div><%= link_to "Validée", event_path(event), class: "btn btn-outline-success btn-sm" %></div>
                 <% elsif booking.booking_status == "Refusée" %>
-                  <div><%= link_to "Inscription refusée", event_path(event), class: "btn btn-danger btn-sm" %></div>
+                  <div><%= link_to "Refusée", event_path(event), class: "btn btn-outline-danger btn-sm" %></div>
                 <% end %>
               </td>
             </tr>

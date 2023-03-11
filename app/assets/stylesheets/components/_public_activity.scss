@@ -1,7 +1,6 @@
 .public_activity_cards {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-top: 10px;
   background-color: black;
   opacity: 0.7;
@@ -24,4 +23,5 @@
   font-size: 12px;
   font-style: italic;
   text-align: end;
+  margin-bottom: 10px;
 }

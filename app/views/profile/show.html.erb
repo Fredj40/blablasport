@@ -11,7 +11,6 @@
       <%= button_to "Annuler demande d'ami", cancel_path(@user), { class: 'btn btn-outline-danger btn-sm' } %>
     <% else %>
       <%= button_to "Ajouter en ami", follow_path(@user), { class: 'btn btn-success btn-sm' } %>
-      <%= button_to "", follow_path(@user), { class:"fa-solid fa-user-plus" } %>
     <% end %>
 
     <hr/>
@@ -22,52 +21,58 @@
     <hr/>
 
     <h4>Sa liste d'amis</h4>
-    <% @user.followers.each do |user| %>
-      <% if current_user == user %>
-        <a><strong><%= current_user.full_name %></strong> - <%= user.city %>, <%= user.age %> ans</a><br>
-      <% else %>
-        <a><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %> - <%= user.city %>, <%= user.age %> ans</a><br>
+    <div class="card-profile-align-start">
+      <% @user.followers.each do |user| %>
+        <% if current_user == user %>
+          <a><strong><%= current_user.full_name %></strong> - <%= user.city %>, <%= user.age %> ans</a><br>
+        <% else %>
+          <a><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %> - <%= user.city %>, <%= user.age %> ans</a><br>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
 
     <hr/>
 
     <h4>Son agenda :</h4><br>
-
-    <% @bookings.last(20) %>
-    <% @bookings.each do |booking| %>
-      <% if booking.event.date >= Date.today %>
-        <p><strong><%= booking.event.date.strftime("%d/%m/%Y") %> : </strong><%= booking.event.sport.sport_name %> - <%= booking.event.address.split.last(2).first.chomp(',') %></p>
+    <div class="card-profile-align-start">
+      <% @bookings.last(20) %>
+      <% @bookings.each do |booking| %>
+        <% if booking.event.date >= Date.today %>
+          <p><strong><%= booking.event.date.strftime("%d/%m/%Y") %> : </strong><%= booking.event.sport.sport_name %> - <%= booking.event.address.split.last(2).first.chomp(',') %></p>
+        <% end %>
+      <%end %>
+      <% @events_creator.last(20) %>
+      <% @events_creator.each do |event| %>
+        <% if event.date >= Date.today %>
+          <p><strong><%= event.date.strftime("%d/%m/%Y") %></strong> : <%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %></p>
+        <% end %>
       <% end %>
-    <%end %>
-    <% @events_creator.last(20) %>
-    <% @events_creator.each do |event| %>
-      <% if event.date >= Date.today %>
-        <p><strong><%= event.date.strftime("%d/%m/%Y") %></strong> : <%= event.sport.sport_name %> - <%= event.address.split.last(2).first.chomp(',') %></p>
-      <% end %>
-    <% end %>
+    </div>
 
     <hr/>
 
     <h4>Son historique :</h4><br>
-
-    <% @bookings.last(20) %>
-    <% @bookings.each do |booking| %>
-      <% if booking.event.date < Date.today %>
-        <p><strong><%= booking.event.sport.sport_name %></strong> - <%= booking.event.address.split.last(2).first.chomp(',') %>, le <%= booking.event.date.strftime("%d/%m/%Y") %></p>
+    <div class="card-profile-align-start">
+      <% @bookings.last(20) %>
+      <% @bookings.each do |booking| %>
+        <% if booking.event.date < Date.today %>
+          <p><strong><%= booking.event.sport.sport_name %></strong> - <%= booking.event.address.split.last(2).first.chomp(',') %>, le <%= booking.event.date.strftime("%d/%m/%Y") %></p>
+        <% end %>
+      <%end %>
+      <% @events_creator.last(20) %>
+      <% @events_creator.each do |event| %>
+        <% if event.date < Date.today %>
+          <p><strong><%= event.sport.sport_name %></strong> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %> (organisateur)</p>
+        <% end %>
       <% end %>
-    <%end %>
-    <% @events_creator.last(20) %>
-    <% @events_creator.each do |event| %>
-      <% if event.date < Date.today %>
-        <p><strong><%= event.sport.sport_name %></strong> - <%= event.address.split.last(2).first.chomp(',') %>, le <%= event.date.strftime("%d/%m/%Y") %> (organisateur)</p>
-      <% end %>
-    <% end %>
+    </div>
 
     <hr/>
 
     <h4>Son actualité :</h4><br>
+    <div class="card-profile-align-start">
 
+    </div>
     <hr/>
 
     <div class="d-flex justify-content-center"><%= link_to "Retour à mon profil", profile_path, class: 'btn btn-secondary btn-sm'%></div>

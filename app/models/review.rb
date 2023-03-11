@@ -3,6 +3,7 @@ class Review < ApplicationRecord
   belongs_to :user
 
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
+  has_many :activities, as: :owner, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   validates :event, presence: true
   validates :user, presence: true
@@ -15,6 +16,6 @@ class Review < ApplicationRecord
   validates :user, uniqueness: { scope: :event, message: "Tu as déjà publié un commentaire" }
 
   include PublicActivity::Model
-  tracked only: :create
+  tracked only: [:create]
 
 end

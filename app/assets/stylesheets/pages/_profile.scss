@@ -19,7 +19,6 @@
   width: 100%;
 }
 
-
 .card-profile {
   flex: 30%;
   background-color: black;
@@ -88,4 +87,10 @@
     font-weight: 900;
     color: red;
   }
+}
+.card-profile-align-start {
+  text-align: start;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }

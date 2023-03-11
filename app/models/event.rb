@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   has_many :chatrooms, dependent: :destroy
   has_many :messages, through: :chatrooms, dependent: :destroy
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
+  has_many :activities, as: :owner, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   validates :date, presence: true
   validates :time, presence: true
@@ -26,9 +27,9 @@ class Event < ApplicationRecord
     date < Date.today
   end
 
-  def fully_booked?
-    players_number == players.count
-  end
+  # def fully_booked?
+  #   players_number == players.count
+  # end
 
   def to_s
     title
