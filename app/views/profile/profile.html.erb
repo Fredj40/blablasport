@@ -14,22 +14,33 @@
 
       <hr/>
 
-      <h4>Amis</h4>
+      <h4>Demandes d'amis</h4>
 
-      <h5>Demandes d'ami</h5>
+      <h5>Reçues</h5>
       <% if current_user.follow_requests.any? %>
       <% current_user.follow_requests.each do |request| %>
-        <p><strong><%= request.followerable.full_name %></strong></p>
+        <p class="text mb-0"><%= request.followerable.full_name %></p>
         <div class="d-flex justify-content-center">
           <div><%= button_to "Accepter", accept_path(request.followerable), { class: 'btn btn-success btn-sm' } %></div>
           <div><%= button_to "Refuser", decline_path(request.followerable), { class: 'btn btn-danger btn-sm' } %></div>
         </div><br>
         <% end %>
       <% else %>
-        <p><i>Aucune demande d'ami en cours</i></p>
-      <% end %>
+        <p class="text mb-0"><i>-</i></p>
+      <% end %><br>
 
-      <h5>Ma liste d'amis</h5>
+      <h5>Envoyées</h5>
+      <% if current_user.pending_requests.any? %>
+      <% current_user.pending_requests.each do |request| %>
+        <p class="text mb-0"><%= request.followable.full_name %></p>
+        <% end %>
+      <% else %>
+        <p class="text mb-0"><i>-</i></p>
+      <% end %><br>
+
+      <hr/>
+
+      <h4>Ma liste d'amis</h4>
       <div class="card-profile-align-start">
         <% current_user.followers.each do |user| %>
           <a><%= link_to user.full_name, follower_path(user), class: "profile-follower-link" %> - <%= user.city %>, <%= user.age %> ans</a><br>

@@ -23,7 +23,6 @@
         <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
         <% end %>
 
-      <%# on a modifié l'activité à laqelle tu participes %>
 
       <%# je poste un message %>
       <% elsif activity.key == "message.create" %>
@@ -77,32 +76,47 @@
           <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
         <% end %>
 
-      <% elsif activity.key == "user.friend_accept" %>
-        <span><strong><%= activity.owner&.full_name %></strong>
-        et <strong><%= activity.trackable.full_name %></strong> sont désormais amis !<br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
-        </div></span>
-
-      <% elsif activity.key == "user.follow" %>
-        <span><strong><%= activity.owner&.full_name %></strong>
-        a demandé <strong><%= activity.trackable.full_name %></strong> en ami<br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
-        </div></span>
-
-      <% elsif activity.key == "user.friend_cancel" %>
-        <span><strong><%= activity.owner&.full_name %></strong>
-        n'est plus ami avec <strong><%= activity.trackable.full_name %></strong><br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
-        </div></span>
-
-      <% elsif activity.key == "user.friend_decline" %>
-        <span><strong><%= activity.owner&.full_name %></strong>
-        a refusé la demande d'amitié de
-        <strong><%= activity.trackable.full_name %></strong><br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
-        </div></span>
-
+      <% elsif activity.key == "user.friend_accept" && activity.owner == current_user || activity.trackable == current_user %>
+        <% if activity.owner == current_user %>
+          <span>Tu es désormais ami avec <strong><%= link_to activity.trackable.full_name, follower_path(activity.trackable), class: "link_activity" %></strong> !<br>
+        <% elsif activity.trackable == current_user %>
+          <strong><%= link_to activity.owner&.full_name, follower_path(activity.owner), class: "link_activity" %></strong> est désormais ami avec toi !
         <% end %>
+      <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+      <% elsif activity.key == "user.follow" && activity.owner == current_user || activity.trackable == current_user %>
+        <% if activity.owner == current_user %>
+          <span>Tu as demandé <strong><%= activity.trackable.full_name %></strong> en ami<br>
+        <% elsif activity.trackable == current_user %>
+          <strong><%= activity.owner&.full_name %></strong> t'a demandé en ami
+        <% end %>
+      <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+      <% elsif activity.key == "user.unfollow" && activity.owner == current_user || activity.trackable == current_user %>
+        <% if activity.owner == current_user %>
+          <span>Tu n'es plus ami avec <strong><%= activity.trackable.full_name %></strong><br>
+        <% elsif activity.trackable == current_user %>
+          <strong><%= activity.owner&.full_name %></strong> n'est plus ami avec toi
+        <% end %>
+      <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+      <% elsif activity.key == "user.friend_cancel" && activity.owner == current_user || activity.trackable == current_user %>
+        <% if activity.owner == current_user %>
+          <span>Tu as annulé ta demande d'ami avec <strong><%= activity.trackable.full_name %></strong><br>
+        <% elsif activity.trackable == current_user %>
+          <strong><%= activity.owner&.full_name %></strong> a annulé sa demande d'ami avec toi
+        <% end %>
+      <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+      <% elsif activity.key == "user.friend_decline" && activity.owner == current_user || activity.trackable == current_user %>
+        <% if activity.owner == current_user %>
+          <span>Tu as refusé la demande d'ami de <strong><%= activity.trackable.full_name %></strong><br>
+        <% elsif activity.trackable == current_user %>
+          <strong><%= activity.owner&.full_name %></strong> a refusé ta demande d'ami
+        <% end %>
+      <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+      <% end %>
     <% end %>
   <% end %>
   </div>

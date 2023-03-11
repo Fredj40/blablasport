@@ -1,68 +1,69 @@
 <div class="public_activity_cards">
+
   <% @activities.each do |activity| %>
     <% unless activity.trackable.nil? %>
 
-      <% if activity.key == "event.destroy" %>
-        <span><strong><%= activity.id %></strong> a été supprimée
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-      <% elsif activity.key == "event.create" %>
-        <span><strong><%= activity.trackable.user.first_name %></strong> a créé une nouvelle activité
-        <%= link_to activity.trackable.sport.sport_name, event_path(activity.trackable.id), class:"link_activity" %> qui aura lieu à
-        <%= activity.trackable.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %><br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-      <% elsif activity.key == "event.update" %>
-        <span><strong><%= activity.trackable.user.first_name %></strong> a modifié l'activité
-        <%= link_to activity.trackable.sport.sport_name, event_path(activity.trackable.id), class:"link_activity" %>
-        <%= link_to activity.trackable.address.split.last(2).first.chomp(','), event_path(activity.trackable.id), class:"link_activity" %>
-        (<%= activity.trackable.date.strftime("%d/%m/%Y") %>)<br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-      <% elsif activity.key == "message.create" %>
-        <span><strong><%= activity.trackable.user.first_name %></strong> a posté un nouveau message dans la chatroom
-        <%= link_to activity.trackable.chatroom.event.sport.sport_name, event_path(activity.trackable.chatroom.event.id), class:"link_activity" %>
-        <%= link_to activity.trackable.chatroom.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.chatroom.event.id), class:"link_activity" %>
-        (<%= activity.trackable.chatroom.event.date.strftime("%d/%m/%Y") %>)<br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-      <% elsif activity.key == "booking.create" %>
-        <span><strong><%= activity.trackable.user.first_name %></strong> s'est inscrit à l'activité
-        <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %>
-        <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %>
-        (<%= activity.trackable.event.date.strftime("%d/%m/%Y") %>)<br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-      <% elsif activity.key == "booking.update" %>
-        <% if activity.trackable.booking_status == "Acceptée" %>
-        <span>L'inscription de <strong><%= activity.trackable.user.first_name %></strong> à l'activité
-        <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %>
-        <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %>
-        (<%= activity.trackable.event.date.strftime("%d/%m/%Y") %>) a été acceptée
-        <% elsif activity.trackable.booking_status == "Refusée" %>
-        <span>L'inscription de <strong><%= activity.trackable.user.first_name %></strong> à l'activité
-        <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %>
-        <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %>
-        (<%= activity.trackable.event.date.strftime("%d/%m/%Y") %>) a été refusée
-        <% end %><br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-      <% elsif activity.key == "user.create" %>
-        <span><strong><%= activity.trackable&.first_name %></strong> a rejoint la communauté BlaBlaSport !!<br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
-
-      <% elsif activity.key == "review.create" %>
-          <span><strong><%= activity.trackable.user.first_name %></strong> a laissé un avis aprés sa participation au
-          <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %> à
-          <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %> le
-          <%= activity.trackable.event.date.strftime("%d/%m/%Y") %><br>
+        <% if activity.key == "event.destroy" %>
+          <span><strong><%= activity.id %></strong> a été supprimée
           <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
 
-      <% elsif activity.key == "user.friend_accept" %>
-        <span><strong><%= activity.owner.full_name %></strong>
-        et <strong><%= activity.trackable.first_name %></strong> sont désormais amis !<br>
-        <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
-        </div></span>
+        <% elsif activity.key == "event.create" %>
+          <span><strong><%= activity.trackable.user.first_name %></strong> a créé une nouvelle activité
+          <%= link_to activity.trackable.sport.sport_name, event_path(activity.trackable.id), class:"link_activity" %> qui aura lieu à
+          <%= activity.trackable.address.split.last(2).first.chomp(',') %> le <%= activity.trackable.date.strftime("%d/%m/%Y") %> à <%= activity.trackable.time.strftime("%kh%M") %><br>
+          <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+        <% elsif activity.key == "event.update" %>
+          <span><strong><%= activity.trackable.user.first_name %></strong> a modifié l'activité
+          <%= link_to activity.trackable.sport.sport_name, event_path(activity.trackable.id), class:"link_activity" %>
+          <%= link_to activity.trackable.address.split.last(2).first.chomp(','), event_path(activity.trackable.id), class:"link_activity" %>
+          (<%= activity.trackable.date.strftime("%d/%m/%Y") %>)<br>
+          <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+        <% elsif activity.key == "message.create" %>
+          <span><strong><%= activity.trackable.user.first_name %></strong> a posté un nouveau message dans la chatroom
+          <%= link_to activity.trackable.chatroom.event.sport.sport_name, event_path(activity.trackable.chatroom.event.id), class:"link_activity" %>
+          <%= link_to activity.trackable.chatroom.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.chatroom.event.id), class:"link_activity" %>
+          (<%= activity.trackable.chatroom.event.date.strftime("%d/%m/%Y") %>)<br>
+          <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+        <% elsif activity.key == "booking.create" %>
+          <span><strong><%= activity.trackable.user.first_name %></strong> s'est inscrit à l'activité
+          <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %>
+          <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %>
+          (<%= activity.trackable.event.date.strftime("%d/%m/%Y") %>)<br>
+          <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+        <% elsif activity.key == "booking.update" %>
+          <% if activity.trackable.booking_status == "Acceptée" %>
+          <span>L'inscription de <strong><%= activity.trackable.user.first_name %></strong> à l'activité
+          <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %>
+          <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %>
+          (<%= activity.trackable.event.date.strftime("%d/%m/%Y") %>) a été acceptée
+          <% elsif activity.trackable.booking_status == "Refusée" %>
+          <span>L'inscription de <strong><%= activity.trackable.user.first_name %></strong> à l'activité
+          <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %>
+          <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %>
+          (<%= activity.trackable.event.date.strftime("%d/%m/%Y") %>) a été refusée
+          <% end %><br>
+          <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+        <% elsif activity.key == "user.create" %>
+          <span><strong><%= activity.trackable&.first_name %></strong> a rejoint la communauté BlaBlaSport !!<br>
+          <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+        <% elsif activity.key == "review.create" %>
+            <span><strong><%= activity.trackable.user.first_name %></strong> a laissé un avis aprés sa participation au
+            <%= link_to activity.trackable.event.sport.sport_name, event_path(activity.trackable.event.id), class:"link_activity" %> à
+            <%= link_to activity.trackable.event.address.split.last(2).first.chomp(','), event_path(activity.trackable.event.id), class:"link_activity" %> le
+            <%= activity.trackable.event.date.strftime("%d/%m/%Y") %><br>
+            <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
+
+        <% elsif activity.key == "user.friend_accept" %>
+          <span><strong><%= activity.owner.first_name %></strong>
+          et <strong><%= activity.trackable.first_name %></strong> sont désormais amis !<br>
+          <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
+          </div></span>
 
       <% end %>
     <% end %>
