@@ -138,25 +138,26 @@
           <div class="time_ago"><%= time_ago_in_words(activity.created_at) %></div></span>
 
           <% elsif activity.key == "user.friend_accept" %>
-          <span><strong><%= User.where(id: activity.owner_id).first.full_name %></strong>
+          <span><strong><%= activity.owner.full_name %></strong>
           et <strong><%= activity.trackable.full_name %></strong> sont désormais amis !<br>
           <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
           </div></span>
 
           <% elsif activity.key == "user.follow" %>
-          <% User.where(id: activity.owner_id) %>
+          <%= activity.owner %></strong>
           a demandé <strong><%= activity.trackable.full_name %></strong> en ami<br>
           <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
           </div></span>
 
           <% elsif activity.key == "user.friend_cancel" %>
-          <% User.find_by(id: activity.owner_id) %>
+          <%= activity.owner %></strong>
           n'est plus ami avec<strong><%= activity.trackable.full_name %></strong><br>
           <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
           </div></span>
 
           <% elsif activity.key == "user.friend_decline" %>
-          <% User.find_by(id: activity.owner_id) %> a refysé la demande d'amitié de
+          <%= activity.owner%></strong>
+           a refusé la demande d'amitié de
           <strong><%= activity.trackable.full_name %></strong><br>
           <div class="time_ago"><%= time_ago_in_words(activity.created_at) %>
           </div></span>

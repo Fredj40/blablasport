@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :sports, through: :events, dependent: :destroy
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
+  has_many :activities, as: :owner, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
