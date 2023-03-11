@@ -90,7 +90,7 @@
               <%= form.submit "Je m'inscris", class: "btn btn-success btn-sm" %>
             <% end %><br>
           <% end %>
-        <% elsif @event.players_number - @event.bookings.where(booking_status: "Acceptée").count == nil %>
+        <% elsif @event.players_number - @event.bookings.where(booking_status: "Acceptée").count == 0 %>
           <div class="badge-danger">Cette partie est complète</div><br>
         <% end %><br>
 
@@ -137,8 +137,8 @@
                 </div>
               <div data-chatroom-subscription-target="messages">
                 <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f| %>
-                <%= f.input :content, label: false, placeholder: "Nouveau message", wrapper_html: {class: "flex-grow-1"} %>
-                <%= f.submit "Envoyer", class: "btn btn-outline-warning mb-3" %>
+                  <%= f.input :content, label: false, placeholder: "Nouveau message", wrapper_html: {class: "flex-grow-1"} %>
+                  <%= f.submit "Envoyer", class: "submit btn btn-outline-warning mb-3" %>
                 <% end %>
               </div>
             </div>

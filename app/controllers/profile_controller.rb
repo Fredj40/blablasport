@@ -18,7 +18,6 @@ class ProfileController < ApplicationController
   end
 
   def search
-    # user_params
     if params[:search].present?
       @users = User.global_search(params[:search])
     else
@@ -66,10 +65,6 @@ class ProfileController < ApplicationController
 
 
   private
-
-  # def user_params
-  #   params.require(:user).permit(:first_name, :user_description, :full_name, :city, sports_attributes: [:sport_name])
-  # end
 
   def make_it_an_unfriend_request
     @user.unfollow(current_user) if @user.mutual_following_with?(current_user)

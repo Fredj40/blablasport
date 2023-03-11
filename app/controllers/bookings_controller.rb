@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
+
   def create
     event = Event.find(params[:event_id])
-    if event.fully_booked?
+    if event.players_number - event.bookings.where(booking_status: "Acceptée").count == 0
       redirect_to event_path(event), alert: "Désolé, cet événement est complet"
     else
       booking = event.bookings.build(booking_params)

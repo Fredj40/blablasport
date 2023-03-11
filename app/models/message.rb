@@ -3,6 +3,7 @@ class Message < ApplicationRecord
   belongs_to :chatroom
 
   has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
+  has_many :activities, as: :owner, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   validates :user, presence: true
   validates :chatroom, presence: true

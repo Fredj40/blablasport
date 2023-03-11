@@ -147,6 +147,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_143405) do
     t.index ["followerable_type", "followerable_id"], name: "index_followability_relationships_on_followerable"
   end
 
+  create_table "friendships", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "friend_id"
+    t.bigint "user_id"
+    t.string "status", default: "pending"
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id", null: false
@@ -218,6 +228,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_143405) do
   add_foreign_key "events", "users"
   add_foreign_key "favorite_sports", "sports"
   add_foreign_key "favorite_sports", "users"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "events"
